@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { ButtonLink } from "@/components/ButtonLink";
 import { JsonLd } from "@/components/JsonLd";
 import {
   articleJsonLd,
   getArticleBySlug,
+  getArticleHref,
   getArticleUrl,
   getReadingTime,
   getWordCount,
@@ -20,9 +21,10 @@ type ArticlePageProps = {
 };
 
 export function generateStaticParams() {
-  return journalArticles.map((article) => ({
-    slug: article.slug,
-  }));
+  return journalArticles.flatMap((article) => [
+    { slug: article.slug },
+    ...(article.legacySlugs ?? []).map((slug) => ({ slug })),
+  ]);
 }
 
 export async function generateMetadata({
@@ -36,12 +38,12 @@ export async function generateMetadata({
   }
 
   return {
-    title: article.title,
-    description: article.excerpt,
+    title: article.seoTitle ?? article.title,
+    description: article.metaDescription ?? article.excerpt,
     alternates: { canonical: `/farm-journal/${article.slug}` },
     openGraph: {
-      title: `${article.title} | ${siteConfig.name}`,
-      description: article.excerpt,
+      title: `${article.seoTitle ?? article.title} | ${siteConfig.name}`,
+      description: article.metaDescription ?? article.excerpt,
       type: "article",
       publishedTime: article.publishedAt,
       modifiedTime: article.updatedAt ?? article.publishedAt,
@@ -63,6 +65,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   if (!article) {
     notFound();
+  }
+
+  if (slug !== article.slug) {
+    redirect(getArticleHref(article));
   }
 
   const formattedDate = new Intl.DateTimeFormat("en", {
@@ -112,23 +118,64 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         <div className="bg-[#F5F0E8] px-4 py-16 sm:px-6 lg:px-8">
           <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[minmax(0,1fr)_280px]">
             <div className="max-w-3xl">
-              {article.content.map((block, index) =>
-                block.type === "heading" ? (
-                  <h2
-                    key={`${block.type}-${index}`}
-                    className="mt-12 font-serif text-3xl font-bold leading-tight text-[#1C1C1A]"
-                  >
-                    {block.text}
-                  </h2>
-                ) : (
+              {article.content.map((block, index) => {
+                if (block.type === "heading") {
+                  return (
+                    <h2
+                      key={`${block.type}-${index}`}
+                      className="mt-12 font-serif text-3xl font-bold leading-tight text-[#1C1C1A]"
+                    >
+                      {block.text}
+                    </h2>
+                  );
+                }
+
+                if (block.type === "subheading") {
+                  return (
+                    <h3
+                      key={`${block.type}-${index}`}
+                      className="mt-10 font-serif text-2xl font-bold leading-tight text-[#1C1C1A]"
+                    >
+                      {block.text}
+                    </h3>
+                  );
+                }
+
+                if (block.type === "quote") {
+                  return (
+                    <blockquote
+                      key={`${block.type}-${index}`}
+                      className="mt-8 border-l-4 border-[#C6933F] bg-white/45 px-5 py-4 font-serif text-xl font-bold leading-8 text-[#2C4A2E]"
+                    >
+                      {block.text}
+                    </blockquote>
+                  );
+                }
+
+                if (block.type === "list") {
+                  return (
+                    <ul
+                      key={`${block.type}-${index}`}
+                      className="mt-6 grid gap-3 pl-6 text-lg leading-8 text-[#1C1C1A]/78"
+                    >
+                      {block.items.map((item) => (
+                        <li key={item} className="list-disc">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  );
+                }
+
+                return (
                   <p
                     key={`${block.type}-${index}`}
                     className="mt-6 text-lg leading-9 text-[#1C1C1A]/78"
                   >
                     {block.text}
                   </p>
-                ),
-              )}
+                );
+              })}
 
               {article.sourceNotes?.length ? (
                 <section className="mt-14 border-t-2 border-[#1C1C1A]/15 pt-8">
@@ -141,13 +188,19 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                   </p>
                   <ul className="mt-5 grid gap-3">
                     {article.sourceNotes.map((source) => (
-                      <li key={source.url}>
-                        <a
-                          href={source.url}
-                          className="focus-ring font-bold text-[#2C4A2E] underline decoration-[#C6933F] decoration-2 underline-offset-4 hover:text-[#8B2A2A]"
-                        >
-                          {source.label}
-                        </a>
+                      <li key={source.label}>
+                        {source.url ? (
+                          <a
+                            href={source.url}
+                            className="focus-ring font-bold text-[#2C4A2E] underline decoration-[#C6933F] decoration-2 underline-offset-4 hover:text-[#8B2A2A]"
+                          >
+                            {source.label}
+                          </a>
+                        ) : (
+                          <span className="font-bold text-[#1C1C1A]/78">
+                            {source.label}
+                          </span>
+                        )}
                       </li>
                     ))}
                   </ul>

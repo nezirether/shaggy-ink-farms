@@ -7,20 +7,35 @@ type JournalBlock =
       text: string;
     }
   | {
+      type: "subheading";
+      text: string;
+    }
+  | {
       type: "paragraph";
       text: string;
+    }
+  | {
+      type: "quote";
+      text: string;
+    }
+  | {
+      type: "list";
+      items: string[];
     };
 
 type SourceNote = {
   label: string;
-  url: string;
+  url?: string;
 };
 
 export type JournalArticle = {
   slug: string;
+  legacySlugs?: string[];
   title: string;
+  seoTitle?: string;
   dek: string;
   excerpt: string;
+  metaDescription?: string;
   publishedAt: string;
   updatedAt?: string;
   author: string;
@@ -144,173 +159,348 @@ export const journalArticles: JournalArticle[] = [
     ],
   },
   {
-    slug: "legacy-of-the-plymouth-barred-rock",
-    title: "The Legacy of the Plymouth Barred Rock",
-    dek: "A careful look at the American farm breed behind our flagship flock, why heritage poultry conservation matters, and why Shaggy Ink Farms chose Barred Rocks.",
+    slug: "plymouth-barred-rock-heritage-genetics",
+    legacySlugs: ["legacy-of-the-plymouth-barred-rock"],
+    title:
+      "From Good Shepherd to Our Pasture: The Heritage Genetics Behind Our Plymouth Barred Rock Flock",
+    seoTitle:
+      "Plymouth Barred Rock Heritage Genetics: The Frank Reese Lineage Behind Our Flock | Shaggy Ink Farms",
+    dek: "Our Barred Rock flock descends from Frank Reese and Good Shepherd Poultry Ranch -- among America's most important Standardbred poultry lines. Here's why that lineage matters.",
     excerpt:
-      "The Plymouth Barred Rock is more than a handsome farm chicken. Its history runs through nineteenth-century American poultry shows, practical dual-purpose farm life, and modern conservation work.",
+      "Our Barred Rock flock descends from Frank Reese and Good Shepherd Poultry Ranch -- among America's most important Standardbred poultry lines. Here's why that lineage matters.",
+    metaDescription:
+      "Our Barred Rock flock descends from Frank Reese and Good Shepherd Poultry Ranch -- among America's most important Standardbred poultry lines. Here's why that lineage matters.",
     publishedAt: "2026-06-11",
+    updatedAt: "2026-06-11",
     author: siteConfig.name,
     category: "Heritage Poultry",
     image: farmImages.barredRockFlock,
     content: [
       {
         type: "paragraph",
-        text: "The Plymouth Barred Rock is one of those farm animals that feels familiar even before you know its history. The black-and-white barring is instantly recognizable. The body is sturdy. The look is practical, almost architectural. It is a chicken that seems to belong near a fence line, under an old tree, or in the margin of a seed catalog from another century.",
+        text: "There is a hen at the far end of our pasture who does not know what she is.",
       },
       {
         type: "paragraph",
-        text: "At Shaggy Ink Farms, the Plymouth Barred Rock is our flagship breed. That choice is partly visual, partly practical, and partly historical. We chose Barred Rocks because they carry the kind of American farm identity we want the homestead to honor: useful, durable, family-scale, and rooted in a time when poultry was selected for more than speed and uniformity.",
+        text: "She is working a seam of overturned ground near the fence line, the way Barred Rocks have worked ground for a hundred and fifty years -- head down, deliberate, unbothered by us. The morning light comes in low across the oaks and catches the barring on her back, that black-and-white ladder of feather that any farm kid in 1910 would have recognized on sight. She is, by every appearance, an ordinary American chicken.",
       },
       {
         type: "paragraph",
-        text: "It is important to say this carefully. We are not claiming that our flock descends from a specific conservation line unless and until we can document that clearly. We are not claiming Good Shepherd Conservancy genetics. We are saying that the Plymouth Barred Rock as a breed deserves respect, and that the broader work of heritage poultry conservation has shaped how we think about keeping, documenting, and talking about our birds.",
+        text: "She is not ordinary. The genetics moving through her body trace back to a small ranch in Lindsborg, Kansas, and to a man who has spent roughly half a century doing one of the most difficult and least celebrated jobs in American agriculture: keeping old birds old. Keeping them true. Refusing, year after year, to let them become something easier and emptier than what they were bred to be.",
+      },
+      {
+        type: "paragraph",
+        text: "This is the story of that hen -- where she comes from, why it took us a long time to be able to say it honestly, and why we now believe a small family homestead has a real, if modest, part to play in keeping a living line of American poultry alive.",
+      },
+      {
+        type: "quote",
+        text: "There is a hen at the far end of our pasture who does not know what she is. The farm does. That is the whole point.",
       },
       {
         type: "heading",
-        text: "Origins in Nineteenth-Century America",
+        text: "The Plymouth Rock: An American Breed Built for Real Farms",
       },
       {
         type: "paragraph",
-        text: "The Plymouth Rock was developed in the United States during the middle of the nineteenth century. The Livestock Conservancy notes that birds called Plymouth Rocks were first exhibited in Boston in 1849, then effectively disappeared from view for about two decades before reappearing at a poultry show in Worcester, Massachusetts, in 1869. The later Worcester birds are generally treated as the ancestors of the Plymouth Rocks known today.",
+        text: "The Plymouth Rock did not arrive from anywhere fashionable. It was built, piece by piece, by working people in nineteenth-century New England who needed a bird that earned its keep.",
       },
       {
         type: "paragraph",
-        text: "Like many old farm breeds, the origin story is not perfectly tidy. The Livestock Conservancy's breed history connects the breed to multiple contributors and possible crosses, including birds such as Dominiques, Javas, Cochins, Brahmas, and Spanish chickens. That kind of layered development is typical of practical nineteenth-century livestock breeding.",
+        text: "The history is gloriously imperfect. A bird called the Plymouth Rock was first exhibited in Boston in 1849, then promptly lost its identity and disappeared from the record for two decades, before reappearing -- recognizably itself this time -- at a poultry show in Worcester, Massachusetts, in 1869. Those later Worcester birds are the true ancestors of the Plymouth Rocks we keep today. Several men claimed credit for inventing the breed, working from crosses that likely included Dominiques, Black Javas, Cochins, Brahmas, and Spanish chickens. No single origin survives the scrutiny. The breed came together the way most good farm animals did: through a lot of people, over a lot of seasons, all selecting for a bird that worked.",
       },
       {
         type: "paragraph",
-        text: "That uncertain origin is not a weakness. It is part of how many practical farm breeds came into being. Before genetic testing, national databases, and modern hatchery catalogs, breeds were formed by people selecting birds that worked: birds with the right size, vigor, feathering, temperament, body type, and utility. The Plymouth Rock became a breed because poultry people kept choosing and refining a useful kind of bird.",
+        text: "In 1874 the American Poultry Association admitted the Plymouth Rock into its Standard, and that date matters more than it looks. Standardization is what turned a scattering of regional barred birds into a breed -- a defined ideal of type, size, carriage, and color that a breeder in Vermont and a breeder in Ohio could both aim at and recognize. The original Plymouth Rock was barred, which is why, within the larger Plymouth Rock family, the Barred Rock carries a kind of founding authority. It was the first. The other colors came after.",
       },
       {
         type: "paragraph",
-        text: "The original Plymouth Rock was barred, which is why the Barred Rock carries such authority inside the larger Plymouth Rock family. Other color varieties came later. The American Poultry Association accepted the breed into its Standard of Excellence in 1874, a date that matters because standardization helped turn local breeding work into a nationally recognized breed identity.",
+        text: "What made the breed iconic was not its looks, though the looks helped. It was that the Barred Rock was a complete farm animal in an age when completeness was the whole point. It laid a respectable number of brown eggs. It carried enough body to matter at the table. It foraged. It went broody and raised its own chicks. It tolerated cold and damp and the ordinary chaos of a family farmyard. It was calm enough for children to handle and hardy enough to survive a New England winter in a drafty coop. Before the Second World War, the Barred Rock was very nearly the default American chicken -- not because anyone marketed it, but because it did everything a farm needed one bird to do.",
+      },
+      {
+        type: "quote",
+        text: "The Barred Rock was a complete farm animal in an age when completeness was the whole point.",
       },
       {
         type: "heading",
-        text: "A Chicken Built for the American Farm",
+        text: 'How Industrial Poultry Changed the Breed -- and What "Recovery" Actually Measures',
       },
       {
         type: "paragraph",
-        text: "The Plymouth Rock became popular because it fit real farm needs. The Livestock Conservancy describes the breed as hardy, docile, broody, a good producer of brown eggs, and valued for meat qualities. In plain language, it was a dual-purpose bird: useful for eggs and table birds, not only one or the other.",
+        text: "Then American agriculture made a decision, and the decision was scale.",
+      },
+      {
+        type: "subheading",
+        text: "What the Shift to Hybrids Removed",
       },
       {
         type: "paragraph",
-        text: "That dual-purpose identity is central to its legacy. On small farms and family homesteads, specialization was not always a virtue. A bird that could lay, forage, tolerate weather, reproduce, and carry enough body to be useful at the table had lasting value. The Plymouth Rock's popularity before World War II reflected that practical fit. It was not just a pretty bird. It was a working bird.",
+        text: "After the war, poultry stopped being a farm animal and became an industry. The single dual-purpose bird was split in two. One branch was driven relentlessly toward eggs; the other toward meat -- and that meat branch produced the Cornish Cross, the fast-growing hybrid that now fills nearly every supermarket case in the country. The Plymouth Rock was actually a foundation stone of that broiler revolution; the modern industrial chicken was built, in part, on the back of the very breed it would go on to make obsolete.",
       },
       {
         type: "paragraph",
-        text: "The breed also played a role in the development of the modern broiler industry. The Livestock Conservancy notes that Plymouth Rocks were among the foundation breeds for broiler development in the 1920s. Later industrial poultry systems moved toward specialized hybrids, especially birds selected for rapid growth, uniformity, and efficiency at enormous scale. That shift changed the meaning of poultry breeding in America.",
+        text: "The trade was efficiency for everything else. The modern broiler reaches slaughter weight in around six weeks, but it does so at a cost the industry rarely advertises: many of these birds can barely carry their own weight by maturity and no longer reproduce naturally at all. To get the bird, you need the system -- the breeders, the inputs, the controlled environment. Industrial selection optimized for a single number, growth rate, and in doing so quietly discarded the traits that had made the old breeds animals rather than products: the ability to mate naturally, to range outdoors and thrive, to grow slowly enough to develop sound bodies, to live long productive lives, to set a nest and mother a clutch. Those traits don't show up on a feed-conversion spreadsheet. So they were allowed to fade.",
+      },
+      {
+        type: "subheading",
+        text: 'Why "The Breed Recovered" Is the Wrong Comfort',
       },
       {
         type: "paragraph",
-        text: "The Barred Rock, in that context, becomes a bridge. It connects the era of family farm utility to the era of modern poultry production. It reminds us that today's poultry industry did not appear from nowhere. It grew out of older breeds, older breeders, and older farm systems, then narrowed its priorities around the demands of industrial scale.",
+        text: "Here is where the honest version of the story matters, and where we have to resist the easy emotional beat.",
+      },
+      {
+        type: "paragraph",
+        text: "You will sometimes hear that the Plymouth Rock was endangered and was saved. There's truth in it. The breed did decline sharply from its prewar peak, and The Livestock Conservancy placed it on its Conservation Priority List as a breed worth watching. But in 2023 the Plymouth Rock graduated off that list. Thanks largely to the explosion of backyard chicken-keeping, the global purebred population recovered -- to an estimated thirty-odd thousand birds -- enough that the breed is no longer counted among the threatened.",
+      },
+      {
+        type: "paragraph",
+        text: "That is genuinely good news. It is also not the news that matters most.",
+      },
+      {
+        type: "paragraph",
+        text: "Because a population count measures bodies, not integrity. \"There are enough Barred Rocks\" is a different statement from \"the old Barred Rock still exists.\" The breed name has recovered. The lines -- the carefully bred, standard-true, naturally reproducing, slow-grown production strains that made the Barred Rock worth keeping in the first place -- were never on that headcount, and they are still held in very few hands. A breed can be statistically safe and genetically hollowing out at the same time, as hatchery selection drifts toward whatever's quick and pretty and crossbreeding blurs the type. The danger to the heritage Barred Rock is not extinction. It is dilution -- the slow conversion of a working breed into a costume.",
+      },
+      {
+        type: "paragraph",
+        text: "That distinction is the entire reason a man in Kansas has spent his life doing what he does.",
+      },
+      {
+        type: "quote",
+        text: "A population count measures bodies, not integrity. The breed name recovered. The old lines were never on that count.",
       },
       {
         type: "heading",
-        text: "What Heritage Poultry Conservation Is Trying to Protect",
+        text: "Frank Reese, Good Shepherd Poultry Ranch, and the Fight to Keep the Old Lines True",
+      },
+      {
+        type: "subheading",
+        text: "What Standardbred Means",
       },
       {
         type: "paragraph",
-        text: "The phrase heritage poultry can be used loosely in marketing, so definitions matter. The Livestock Conservancy's heritage chicken definition centers on several requirements: recognized standard breeds, natural mating, long productive outdoor lifespans, and slow growth. The definition is meant to protect more than nostalgia. It protects functional traits that can disappear when breeding is narrowed to a few commercial goals.",
+        text: "To understand the flock at our farm, you have to understand a word: Standardbred.",
       },
       {
         type: "paragraph",
-        text: "For a family homestead, those traits are not abstract. Natural mating matters because a breed should be able to reproduce without constant intervention. Outdoor vigor matters because a bird should be able to live a real chicken life with movement, weather, forage, and seasonal change. Slow growth matters because bodies need time to develop soundly. Longevity matters because breeding knowledge depends on watching birds over time.",
+        text: "A Standardbred bird is one bred to the American Poultry Association Standard -- to the documented ideal of the breed, generation after generation, for genuine function rather than novelty. It is the opposite of a bird that merely happens to be labeled a Barred Rock. Standardbred breeding is slow, expensive, and unglamorous. It demands real culling, careful records, and the willingness to make hard decisions against your own short-term convenience for the sake of the line's long-term health. You cannot fake it, and you cannot rush it, and almost no one does it at any commercial scale.",
       },
       {
         type: "paragraph",
-        text: "Conservation also protects options. Rare and traditional livestock breeds can carry genetic diversity that may matter for future farming: disease resistance, hardiness, mothering ability, foraging behavior, climate adaptation, and body types that suit different production systems. Losing those traits would be a permanent narrowing of the agricultural toolbox.",
+        text: "In the United States, very nearly one person still does it commercially: Frank Reese, Jr., of Good Shepherd Poultry Ranch in Lindsborg, Kansas.",
+      },
+      {
+        type: "subheading",
+        text: "A Half-Century in Lindsborg",
       },
       {
         type: "paragraph",
-        text: "This is where heritage poultry conservation becomes more than sentiment. It is not only about saving the look of old breeds. It is about preserving living populations with enough quality, numbers, and breeder knowledge to remain useful. A breed in a photograph is history. A breed in a carefully managed flock is possibility.",
+        text: "For roughly fifty years, Reese has done a deceptively simple thing every single day. He raises old poultry the old way. On a property of well over a hundred acres, his birds -- chickens, turkeys, and more, across roughly ten heritage breeds -- free-range on pasture, mate naturally, grow at the pace their bodies were built for, and trace back through some of the oldest continuously bred flocks left in the country, with turkey lines documented to the 1830s. He is widely described, by conservation organizations and food writers alike, as the last remaining commercial breeder of certified Standardbred poultry in America. His work has been covered by the New York Times, National Geographic, and Vogue; he has partnered with Slow Food, supplied the chefs who launched Heritage Foods, and been named by the Anne Saxelby Legacy Fund as a stronghold for irreplaceable American market breeds -- the Plymouth Rock among them.",
+      },
+      {
+        type: "paragraph",
+        text: "What makes Reese matter is not nostalgia. It is that he kept the knowledge and the genetics together in one working place when nearly everyone else let one or both go. As he has put it, when you lose the old breeders and the old lines, it is gone forever -- and you will never know what you lost. The breeds in his barns are not museum pieces. They are working animals he has kept at work, because he understood that a breed only survives as long as someone keeps asking it to be a breed.",
+      },
+      {
+        type: "quote",
+        text: "He raises old poultry the old way. Every day. For fifty years. That sentence is easy to write and almost impossible to live.",
+      },
+      {
+        type: "subheading",
+        text: "Why This Is the Decisive Moment",
+      },
+      {
+        type: "paragraph",
+        text: "Reese is now in his seventies, and approaching retirement. In recent years he has deliberately downsized -- concentrating on a smaller, higher-quality flock of grandparent stock, the genetic wellspring everything else flows from -- while a wider network steps up to carry the production forward. Good Shepherd East took over the main chicken production in 2023; new breeder flocks have been established in Pennsylvania; partnerships are pushing the genetics outward into more hands, on purpose, while there is still time.",
+      },
+      {
+        type: "paragraph",
+        text: "This is the part most people miss. The danger isn't only that one man might stop. It's that genetics this rare cannot survive in a single location. They survive by being distributed -- by being placed, carefully and accountably, with enough stewards that no single failure can end the line. The most important conservation work happening around Good Shepherd right now is precisely this handoff: moving these birds off one Kansas ranch and into a wider circle of farms willing to keep them honestly.",
+      },
+      {
+        type: "paragraph",
+        text: "That is the circle we set out to join.",
       },
       {
         type: "heading",
-        text: "Frank Reese, Good Shepherd, and the Standardbred Conversation",
+        text: "Why Bloodlines Matter: Not All Barred Rocks Are the Same",
+      },
+      {
+        type: "subheading",
+        text: "A Breed Name Is a Starting Point, Not a Guarantee",
       },
       {
         type: "paragraph",
-        text: "Any respectful conversation about American heritage poultry eventually comes to Frank Reese of Good Shepherd Poultry Ranch in Kansas and the Good Shepherd Conservancy. Reese is widely discussed as one of the most important living advocates for Standardbred poultry and old production lines. Reporting and partner organizations have described his work as focused on preserving pre-industrial poultry genetics and keeping old breeds in active agricultural use.",
+        text: "If you take one idea from this whole piece, take this one: the breed name on a chicken tells you almost nothing about what's inside it.",
       },
       {
         type: "paragraph",
-        text: "Good Shepherd's work is often framed around Standardbred poultry, a term that emphasizes breeding to the American Poultry Association Standard and maintaining functional, historic lines. That distinction matters. A bird can have the name of an old breed and still be poorly selected. Conservation work depends on type, vigor, reproduction, records, and a breeder's willingness to make hard choices for the long-term health of the flock.",
+        text: "Within the single name \"Barred Rock,\" there is enormous range. Two birds can both be honestly called Plymouth Barred Rocks and share little beyond their feather pattern -- different in body type, in laying ability, in temperament, in how well they hold up outdoors, in whether they can even reproduce without help. The difference between them is bloodline: the accumulated record of every selection decision a chain of breeders did or did not make. A bloodline is a living document. It is the sum of what people chose to keep and what they let go, written into the animal itself.",
+      },
+      {
+        type: "subheading",
+        text: "Hatchery Barred Rock vs. Conservation-Line Barred Rock",
       },
       {
         type: "paragraph",
-        text: "The Anne Saxelby Legacy Fund describes Good Shepherd Poultry Ranch as a major stronghold for important American market breeds, including Plymouth Rock, and connects the ranch to a wider conservation effort. Heritage Foods has also written about Frank Reese's work preserving poultry biodiversity and bringing older poultry genetics back into meaningful agricultural use.",
+        text: "We want to be fair here, because the contrast is often drawn unfairly. A good mail-order hatchery is not the enemy of heritage poultry -- hatcheries have, in fact, helped recover breeds like the Plymouth Rock by putting birds in millions of backyards. If you want friendly brown-egg layers for the coop, a hatchery Barred Rock is a fine and honest choice, and we'd never tell you otherwise.",
       },
       {
         type: "paragraph",
-        text: "For Shaggy Ink Farms, the lesson is not to borrow prestige from someone else's genetics. The lesson is humility. If we are going to use words like heritage, conservation, and bloodline, we need to use them carefully. We need to document what we know, avoid claims we cannot support, and respect the difference between owning birds of a breed and stewarding a proven conservation line.",
+        text: "But the two birds are bred for different ends, and it shows.",
+      },
+      {
+        type: "paragraph",
+        text: "A typical hatchery Barred Rock is selected for high-volume hatching: chicks that ship well, lay reliably, look the part, and move quickly through a commercial pipeline. Over generations, that pressure tends to drift the bird away from the Standard -- lighter in body, less consistent in type, selected for the convenience of mass production rather than the integrity of the breed.",
+      },
+      {
+        type: "paragraph",
+        text: "A conservation-line Barred Rock -- a Standardbred bird carrying lineage like Good Shepherd's -- is selected for the opposite. For correct body type that matches the historic dual-purpose ideal. For the vigor to live a real outdoor life. For natural mating and natural mothering. For sound, unhurried growth. For the longevity that lets a breeder actually evaluate an animal over time. These birds carry, in their genes, decisions made for the breed rather than for the pipeline.",
+      },
+      {
+        type: "subheading",
+        text: "The Chain of Custody Problem",
+      },
+      {
+        type: "paragraph",
+        text: "Here is the hard part, and the reason any of this is urgent: conservation genetics cannot be reverse-engineered. You cannot take ordinary hatchery stock and breed your way back to a true Standardbred line by buying the right book. The information that makes the line what it is took generations to accumulate, and if the chain of breeders is broken -- if enough farms stop maintaining the line honestly -- that information is simply gone. There is no backup. There is no archive that restores it.",
+      },
+      {
+        type: "paragraph",
+        text: "So a heritage line survives the way a relay survives: only as long as each runner hands the baton to the next. Every farm that keeps these birds true is a link. Drop enough links and the whole thing hits the ground, and no amount of caring afterward picks it back up.",
+      },
+      {
+        type: "quote",
+        text: "You cannot breed your way back to a heritage line from ordinary stock. Once the chain breaks, the information is gone. There is no archive that restores it.",
       },
       {
         type: "heading",
-        text: "Why Bloodlines Matter",
+        text: "Why Shaggy Ink Farms Chose Good Shepherd-Lineage Birds",
       },
       {
         type: "paragraph",
-        text: "A breed name is not the whole story. Within any breed, different flocks can vary widely in type, productivity, temperament, size, vigor, and historical selection. Bloodlines matter because they carry the decisions of breeders across generations. They are living records of what people selected for, what they ignored, and what they protected.",
+        text: "We need to be plain about who we are, because the honesty of this story depends on it.",
       },
       {
         type: "paragraph",
-        text: "Preserving bloodlines does not mean freezing animals in time. Good breeding is active. It requires selection, culling, observation, and records. It asks breeders to balance appearance with function, individual birds with population health, and short-term convenience with long-term resilience. The goal is not to keep every bird. The goal is to keep a breed strong enough to remain itself.",
+        text: "Shaggy Ink Farms is a small family homestead. We are not a conservation institution. We are not a commercial Standardbred operation. We are not Frank Reese, and nothing we will ever do will be confused with what he has done. When we first wrote about our Barred Rocks, we deliberately declined to claim any connection to Good Shepherd, because at the time we could not document one, and a heritage claim you can't stand behind is worse than no claim at all.",
       },
       {
         type: "paragraph",
-        text: "That is why unsupported claims can do harm. If every flock is advertised as rare, historic, pure, or conservation-grade without evidence, the language loses meaning. Serious breeders and conservation organizations rely on clarity. Buyers and new flock owners need to know whether they are buying hatchery-quality backyard birds, exhibition stock, production-selected stock, or birds connected to a documented conservation program.",
+        text: "That has changed. Our foundation flock descends from Frank Reese and Good Shepherd Poultry Ranch conservation genetics. We can say that now because it is true, and because we chose it on purpose.",
       },
       {
         type: "paragraph",
-        text: "At our scale, the honest path is to start with respect and keep learning. We can choose a historic breed, observe our birds carefully, improve our husbandry, study the standard, learn from conservation sources, and be transparent about what we are and are not claiming. That is the foundation for better stewardship later.",
+        text: "The choice took longer and cost more than buying a box of chicks would have. It meant deciding, early, that we cared more about what was inside the bird than about getting birds in the ground fast. It meant sourcing deliberately rather than conveniently, and building our husbandry around what these birds actually need: room to range, the conditions to mate and brood naturally, the patience to let them grow at their own pace, and the discipline to keep records and to cull honestly toward the Standard rather than toward whatever is easiest to sell.",
+      },
+      {
+        type: "paragraph",
+        text: "We did not do this to borrow someone else's prestige. We did it because of the handoff described above -- because the single most useful thing a small farm can do for a line like this is to become one more accountable link in the chain. The genetics that need to leave Lindsborg need somewhere honest to land. A family homestead, kept with integrity, is exactly the kind of place they can land. Not impressive. Just real, and durable, and willing to tell the truth about itself.",
+      },
+      {
+        type: "paragraph",
+        text: "That last part is the responsibility, and we take it seriously. Carrying this lineage obligates us to document what we have, to represent it accurately, to never inflate our role, and to breed toward the bird the line is supposed to be -- not the bird that would be most convenient for us. We are at the beginning of that discipline, not the end of it. But we know what we are holding, and we know we did not make it. We were handed it.",
+      },
+      {
+        type: "quote",
+        text: "The single most useful thing a small farm can do for a line like this is to become one more accountable link in the chain.",
       },
       {
         type: "heading",
-        text: "Why We Chose Barred Rocks",
+        text: "What Heritage Poultry Sourcing Means for Your Flock",
       },
       {
         type: "paragraph",
-        text: "We chose Plymouth Barred Rocks because they make sense for the kind of farm Shaggy Ink Farms is becoming. They are visually iconic, historically American, practical for a family homestead, and connected to a conservation conversation that deserves more attention. They photograph beautifully in oak pasture, but they also give us a daily reason to practice actual animal care.",
+        text: "If this story has done its job, you're now looking at your own coop a little differently -- and wondering what any of it has to do with you. Here is the practical part.",
       },
       {
         type: "paragraph",
-        text: "Their barred feathers fit the visual world of the brand: rustic fencing, cream paper, charcoal ink, forest green, barn red, and warm gold light. Their history fits the storytelling world: American agriculture, family farms, breed standards, egg baskets, and the long tension between practical husbandry and industrial efficiency.",
+        text: "Where you get your birds is a decision with consequences beyond your own backyard. Every heritage chick bought from a breeder who keeps a line true is a small vote for that line's survival. It is one of the few places where an ordinary keeper's choices feed directly back into national conservation.",
+      },
+      {
+        type: "subheading",
+        text: "Questions to Ask Any Heritage Breeder",
       },
       {
         type: "paragraph",
-        text: "Most of all, Barred Rocks give us a starting point with depth. A flock can be charming on day one, but a breed with history gives you something to study for years. Where did it come from? What traits made it useful? What has modern poultry gained and lost? How do small farms talk honestly about conservation? How can a family homestead honor an old breed without overstating its own role?",
+        text: "You don't need to be an expert to source well. You need to ask better questions:",
+      },
+      {
+        type: "list",
+        items: [
+          "What line are these birds from, and can you tell me its history? A serious breeder can answer this without flinching.",
+          "Do they mate and brood naturally? This is the dividing line between a heritage animal and an industrial one.",
+          "Are you breeding to the Standard? Ask what they cull for. The answer tells you everything.",
+          "How do these birds perform outdoors, over a full life? Heritage value lives in longevity and vigor, not just in early lays.",
+          "Can you document any of this? Not as a gotcha -- but because the breeders worth buying from want to talk about it.",
+        ],
+      },
+      {
+        type: "subheading",
+        text: "Where to Look",
       },
       {
         type: "paragraph",
-        text: "Those are the questions we want to keep asking. The Plymouth Barred Rock is our flagship because it holds beauty, utility, and history in one bird. It belongs in a pasture, but it also belongs in a larger conversation about the future of small farms, food, biodiversity, and the breeds that helped build American agriculture.",
+        text: "Start with The Livestock Conservancy, which maintains breeder and hatchery directories and remains the central clearinghouse for heritage breed conservation in America. From there, look toward breed clubs, regional Standardbred breeders, and the small but growing network of farms now carrying Good Shepherd genetics outward. And if you keep hatchery birds and love them -- keep them. Loving your chickens is where every heritage keeper started. Just ask the next question, the next time, of the next bird.",
+      },
+      {
+        type: "heading",
+        text: "A Living Chain: Conservation, One Generation at a Time",
       },
       {
         type: "paragraph",
-        text: "At Shaggy Ink Farms, the Barred Rock is not a mascot pasted onto a brand. It is the beginning of a discipline. We are starting with a bird that asks us to pay attention, tell the truth, and build slowly enough that the story can carry weight.",
+        text: "Go back to the hen at the end of the pasture.",
+      },
+      {
+        type: "paragraph",
+        text: "She is still working that seam of ground, still indifferent to all of it -- to Worcester in 1869, to the broiler revolution, to the Conservation Priority List, to a man in Kansas opening barn doors at sunrise for fifty years. She does not know that her barred feathers are a kind of inheritance, or that the way she sets a nest and raises her own chicks is a trait that whole industries discarded as inefficient, or that the patient, slow-growing soundness of her body is the residue of ten thousand quiet decisions made by people she will never meet.",
+      },
+      {
+        type: "paragraph",
+        text: "She doesn't have to know. That is what we are for.",
+      },
+      {
+        type: "paragraph",
+        text: "The largest story in American agriculture turns out to live in the smallest places -- in specific birds, on specific ground, in the hands of specific people willing to keep asking an animal to remain itself. Frank Reese made those decisions, daily, for half a century, and built a place where the old lines could survive long enough to be handed forward. Now the handing-forward is the work. The chain extends -- carefully, honestly, one farm and one generation at a time -- and a small homestead under the oaks has been given a link to hold.",
+      },
+      {
+        type: "paragraph",
+        text: "We intend to hold it true. That is the discipline behind the brand, and the reason there is a chicken at the end of our pasture worth writing three thousand words about. She is the beginning of a long obedience: to pay attention, to tell the truth, and to build slowly enough that the story can carry weight.",
+      },
+      {
+        type: "paragraph",
+        text: "She doesn't know what she is.",
+      },
+      {
+        type: "paragraph",
+        text: "We do. And we are not going to be the ones who let it go.",
+      },
+      {
+        type: "paragraph",
+        text: "Shaggy Ink Farms represents its flock's lineage in good faith and to the best of its documentation. We describe our birds as descending from Good Shepherd conservation genetics; we do not claim to be a conservation institution, and we make no claim to speak for Frank Reese or Good Shepherd Poultry Ranch.",
       },
     ],
     sourceNotes: [
       {
-        label: "The Livestock Conservancy: Plymouth Rock Chicken",
-        url: "https://livestockconservancy.org/plymouth-rock-chicken/",
+        label:
+          "The Livestock Conservancy -- Plymouth Rock Chicken (breed history; graduated from the Conservation Priority List, 2023)",
       },
       {
-        label: "The Livestock Conservancy: Heritage Chicken Definition",
-        url: "https://livestockconservancy.org/heritage-chicken-definition/",
+        label:
+          "The Livestock Conservancy -- Heritage Chicken Definition and 2025 Conservation Priority List",
       },
       {
-        label: "Heritage Foods: Frank Reese, Savior of Biodiversity",
-        url: "https://heritagefoods.com/blogs/news/frank-reese-biodiversity-savior",
+        label: "Anne Saxelby Legacy Fund -- Good Shepherd Poultry Ranch",
       },
       {
-        label: "Farm Forward: High Welfare Meets High Tech",
-        url: "https://www.farmforward.com/news/high-welfare-meets-high-tech/",
+        label: "Heritage Foods -- Frank Reese, Savior of Biodiversity",
       },
       {
-        label: "Anne Saxelby Legacy Fund: Good Shepherd Poultry Ranch",
-        url: "https://www.annesaxelbylegacyfund.org/good-shepherd-ranch",
+        label:
+          "Good Shepherd Conservancy / Good Shepherd Poultry Farms -- ranch history and succession (Good Shepherd East, 2023; Pennsylvania breeder flocks)",
+      },
+      {
+        label:
+          "Socially Responsible Agriculture Project -- Beyond Factory Farming: Frank Reese",
       },
     ],
   },
@@ -319,7 +509,9 @@ export const journalArticles: JournalArticle[] = [
 export const featuredArticle = journalArticles[0];
 
 export function getArticleBySlug(slug: string) {
-  return journalArticles.find((article) => article.slug === slug);
+  return journalArticles.find(
+    (article) => article.slug === slug || article.legacySlugs?.includes(slug),
+  );
 }
 
 export function getArticleHref(article: JournalArticle) {
@@ -331,7 +523,9 @@ export function getArticleUrl(article: JournalArticle) {
 }
 
 export function getArticleText(article: JournalArticle) {
-  return article.content.map((block) => block.text).join(" ");
+  return article.content
+    .map((block) => (block.type === "list" ? block.items.join(" ") : block.text))
+    .join(" ");
 }
 
 export function getReadingTime(article: JournalArticle) {
@@ -355,7 +549,7 @@ export function articleJsonLd(article: JournalArticle) {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: article.title,
-    description: article.excerpt,
+    description: article.metaDescription ?? article.excerpt,
     image: `${siteConfig.url}${article.image.src}`,
     datePublished: article.publishedAt,
     dateModified: article.updatedAt ?? article.publishedAt,
