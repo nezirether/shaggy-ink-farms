@@ -1,4 +1,5 @@
 import { siteConfig } from "@/lib/site";
+import { farmImages } from "@/lib/images";
 
 type JsonLdProps = {
   data: Record<string, unknown>;
@@ -20,6 +21,8 @@ export function organizationJsonLd() {
     name: siteConfig.name,
     legalName: siteConfig.legalName,
     url: siteConfig.url,
+    image: `${siteConfig.url}${farmImages.heroRooster.src}`,
+    logo: `${siteConfig.url}${farmImages.badge.src}`,
     email: siteConfig.email,
     description: siteConfig.description,
     areaServed: {
@@ -44,6 +47,7 @@ export function farmJsonLd() {
     additionalType: "https://schema.org/Farm",
     name: siteConfig.name,
     url: siteConfig.url,
+    image: `${siteConfig.url}${farmImages.heroRooster.src}`,
     email: siteConfig.email,
     description:
       "Northern California family homestead focused on Plymouth Barred Rock chickens, seasonal eggs, homestead projects, and rural storytelling.",

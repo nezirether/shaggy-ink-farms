@@ -1,4 +1,6 @@
+import Image from "next/image";
 import { ButtonLink } from "@/components/ButtonLink";
+import { farmImages } from "@/lib/images";
 import { siteConfig } from "@/lib/site";
 
 type VideoTeaserProps = {
@@ -13,8 +15,16 @@ export function VideoTeaser({
   return (
     <section className="bg-[#D6DDC4] px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-        <div className="aspect-video overflow-hidden rounded-sm border-2 border-[#1C1C1A] bg-[#1C1C1A] p-5 text-[#F5F0E8] shadow-[10px_10px_0_rgba(28,28,26,0.14)]">
-          <div className="flex h-full flex-col justify-between border border-[#F5F0E8]/20 p-5">
+        <div className="relative aspect-video overflow-hidden rounded-sm border-2 border-[#1C1C1A] bg-[#1C1C1A] p-5 text-[#F5F0E8] shadow-[10px_10px_0_rgba(28,28,26,0.14)]">
+          <Image
+            src={farmImages.oakPasture.src}
+            alt={farmImages.oakPasture.alt}
+            fill
+            sizes="(min-width: 1024px) 52vw, 100vw"
+            className="object-cover opacity-65"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1C1C1A]/90 via-[#1C1C1A]/30 to-transparent" />
+          <div className="relative flex h-full flex-col justify-between border border-[#F5F0E8]/20 p-5">
             <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#C6933F]">
               Featured Video Slot
             </p>

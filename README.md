@@ -79,6 +79,8 @@ npm run start
 - `sitemap.xml`
 - `robots.txt`
 - Generated Open Graph image route
+- Brand favicon and web app manifest
+- Organized visual asset library under `public/images`
 - Contact form UI
 - Email signup UI
 - YouTube/embed-ready sections
@@ -123,3 +125,9 @@ Prioritize real or carefully generated photography with:
 - Egg cartons, labels, workbench surfaces, and field notes
 
 Avoid generic barns, tractors as main imagery, industrial agriculture, and Midwest farm visual cues.
+
+## Current Visual Assets
+
+The current launch build uses generated, brand-directed imagery because no user-uploaded image files were present in the supplied attachment folder. The asset inventory lives at `public/images/ASSET-INVENTORY.md`.
+
+Replace generated launch images with real farm photography over time while preserving the current SEO-friendly file naming, alt text strategy, and section placement.

@@ -4,6 +4,7 @@ import { CalloutGrid } from "@/components/CalloutGrid";
 import { PageHero } from "@/components/PageHero";
 import { PlaceholderImage } from "@/components/PlaceholderImage";
 import { SectionHeader } from "@/components/SectionHeader";
+import { farmImages } from "@/lib/images";
 import { pageMetadata, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -25,6 +26,8 @@ export default function ChickensPage() {
         copy="Plymouth Barred Rock chickens are the livestock center of Shaggy Ink Farms. They bring old American utility, strong visual identity, steady temperament, and the kind of recurring characters a farm media brand needs."
         imageTitle="Rooster, hens, and oak shade"
         imageDetail="Replace with hero-quality portraits of the rooster, hens, chicks, feather patterning, and coop life."
+        imageSrc={farmImages.barredRockFlock.src}
+        imageAlt={farmImages.barredRockFlock.alt}
       />
       <section className="px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
@@ -33,6 +36,8 @@ export default function ChickensPage() {
             detail="Close-up feather photography can become a signature pattern for packaging, thumbnails, and product design."
             tone="red"
             label="Visual system"
+            src={farmImages.heroRooster.src}
+            alt={farmImages.heroRooster.alt}
           />
           <div>
             <SectionHeader

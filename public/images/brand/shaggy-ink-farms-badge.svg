@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Shaggy Ink Farms badge</title>
+  <desc id="desc">A forest green heritage-style circular badge for Shaggy Ink Farms.</desc>
+  <rect width="512" height="512" fill="#F5F0E8"/>
+  <circle cx="256" cy="256" r="220" fill="#2C4A2E"/>
+  <circle cx="256" cy="256" r="190" fill="none" stroke="#C6933F" stroke-width="12"/>
+  <path d="M124 286c44 22 96 28 143 12 50-17 87-57 121-105-6 85-45 154-122 174-55 14-109-4-142-81Z" fill="#F5F0E8"/>
+  <path d="M180 235c25-68 88-94 148-62 22 12 39 31 52 54-44-36-87-42-128-21-30 15-52 39-72 29Z" fill="#1C1C1A"/>
+  <path d="M159 311c37 13 81 15 121 2 28-9 55-26 80-51-18 43-48 77-93 90-40 12-80 0-108-41Z" fill="#8B2A2A"/>
+  <text x="256" y="133" text-anchor="middle" fill="#F5F0E8" font-family="Georgia, serif" font-size="44" font-weight="700">SHAGGY INK</text>
+  <text x="256" y="414" text-anchor="middle" fill="#F5F0E8" font-family="Georgia, serif" font-size="42" font-weight="700">FARMS</text>
+  <text x="256" y="454" text-anchor="middle" fill="#C6933F" font-family="Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="4">NORTHERN CALIFORNIA</text>
+</svg>

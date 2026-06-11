@@ -4,6 +4,7 @@ import { CalloutGrid } from "@/components/CalloutGrid";
 import { PageHero } from "@/components/PageHero";
 import { PlaceholderImage } from "@/components/PlaceholderImage";
 import { SectionHeader } from "@/components/SectionHeader";
+import { farmImages } from "@/lib/images";
 import { pageMetadata, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -25,6 +26,8 @@ export default function HomesteadProjectsPage() {
         copy="Shaggy Ink Farms documents the practical work that makes the place function: coops, fencing, garden systems, handmade labels, repairs, signs, and the lessons learned between plans and finished projects."
         imageTitle="Fence line, lumber, tools, and oak shade"
         imageDetail="Project photography should show hands, materials, weathered surfaces, finished details, and the land around the work."
+        imageSrc={farmImages.oakPasture.src}
+        imageAlt={farmImages.oakPasture.alt}
       />
       <section className="px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
@@ -61,6 +64,8 @@ export default function HomesteadProjectsPage() {
             detail="Future project pages can combine finished photography, material lists, short notes, and embedded videos."
             tone="gold"
             label="Archive direction"
+            src={farmImages.storeGoods.src}
+            alt={farmImages.storeGoods.alt}
           />
           <div>
             <SectionHeader

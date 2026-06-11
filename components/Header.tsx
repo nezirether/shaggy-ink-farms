@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
+import { farmImages } from "@/lib/images";
 import { navItems, siteConfig } from "@/lib/site";
 
 export function Header() {
@@ -14,8 +16,14 @@ export function Header() {
         aria-label="Primary navigation"
       >
         <Link href="/" className="flex items-center gap-3">
-          <span className="grid h-12 w-12 place-items-center rounded-full border-2 border-[#2C4A2E] bg-[#2C4A2E] font-serif text-lg font-bold text-[#F5F0E8] shadow-[4px_4px_0_rgba(198,147,63,0.45)]">
-            SI
+          <span className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-[#2C4A2E] bg-[#2C4A2E] shadow-[4px_4px_0_rgba(198,147,63,0.45)]">
+            <Image
+              src={farmImages.badge.src}
+              alt=""
+              fill
+              sizes="48px"
+              className="object-cover"
+            />
           </span>
           <span>
             <span className="block font-serif text-lg font-bold leading-none text-[#1C1C1A]">

@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import { farmImages } from "@/lib/images";
 import { navItems, siteConfig } from "@/lib/site";
 
 export function Footer() {
@@ -6,7 +8,16 @@ export function Footer() {
     <footer className="border-t-2 border-[#1C1C1A]/10 bg-[#1C1C1A] px-4 py-14 text-[#F5F0E8] sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.35fr_0.9fr_0.9fr]">
         <div>
-          <p className="font-serif text-2xl font-bold">{siteConfig.name}</p>
+          <div className="flex items-center gap-4">
+            <Image
+              src={farmImages.badge.src}
+              alt={farmImages.badge.alt}
+              width={72}
+              height={72}
+              className="rounded-full border-2 border-[#C6933F]"
+            />
+            <p className="font-serif text-2xl font-bold">{siteConfig.name}</p>
+          </div>
           <p className="mt-3 max-w-md leading-7 text-[#F5F0E8]/75">
             A Northern California homestead and media brand rooted in Plymouth
             Barred Rock chickens, oak pasture, family craft, and heritage farm

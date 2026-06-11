@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { BrandPanel } from "@/components/BrandPanel";
 import { CalloutGrid } from "@/components/CalloutGrid";
+import { ImageGallery } from "@/components/ImageGallery";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeader } from "@/components/SectionHeader";
+import { farmImages } from "@/lib/images";
 import { pageMetadata, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -24,6 +26,8 @@ export default function AboutPage() {
         copy="Shaggy Ink Farms is a Northern California homestead and media brand growing from a simple premise: build useful things, care for the flock, respect the land, and tell the story with taste."
         imageTitle="Oak pasture, fence line, and family work"
         imageDetail="Use a wide, warm photograph that shows mature oaks, open pastureland, rustic fencing, and the scale of a real family homestead."
+        imageSrc={farmImages.oakPasture.src}
+        imageAlt={farmImages.oakPasture.alt}
       />
       <BrandPanel
         eyebrow="What Makes It Different"
@@ -62,6 +66,30 @@ export default function AboutPage() {
               },
             ]}
           />
+          <div className="mt-12">
+            <ImageGallery
+              items={[
+                {
+                  ...farmImages.oakPasture,
+                  title: "Land identity",
+                  caption:
+                    "Oak pasture and fence lines establish the Northern California ranch feel.",
+                },
+                {
+                  ...farmImages.heroRooster,
+                  title: "Flagship poultry",
+                  caption:
+                    "The rooster gives the brand a living icon and immediate specificity.",
+                },
+                {
+                  ...farmImages.storeGoods,
+                  title: "Craft direction",
+                  caption:
+                    "Goods, labels, and workbench scenes show where the brand can grow.",
+                },
+              ]}
+            />
+          </div>
         </div>
       </section>
     </>

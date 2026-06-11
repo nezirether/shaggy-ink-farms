@@ -4,9 +4,11 @@ import { BrandPanel } from "@/components/BrandPanel";
 import { ButtonLink } from "@/components/ButtonLink";
 import { CalloutGrid } from "@/components/CalloutGrid";
 import { EmailSignup } from "@/components/EmailSignup";
+import { ImageGallery } from "@/components/ImageGallery";
 import { PlaceholderImage } from "@/components/PlaceholderImage";
 import { SectionHeader } from "@/components/SectionHeader";
 import { VideoTeaser } from "@/components/VideoTeaser";
+import { farmImages } from "@/lib/images";
 import { featureCards, pageMetadata, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -67,6 +69,9 @@ export default function Home() {
             detail="Hero photography should feel like a national park poster met a heritage seed catalog: bold rooster, mature oaks, rustic fencing, and warm Northern California light."
             tone="green"
             label="Hero image direction"
+            src={farmImages.heroRooster.src}
+            alt={farmImages.heroRooster.alt}
+            priority
           />
         </div>
       </section>
@@ -122,6 +127,8 @@ export default function Home() {
             detail="Use a composed flock image with rooster, hens, pasture grass, and fence texture for a signature brand asset."
             tone="red"
             label="Flagship livestock"
+            src={farmImages.barredRockFlock.src}
+            alt={farmImages.barredRockFlock.alt}
           />
           <div>
             <SectionHeader
@@ -156,6 +163,38 @@ export default function Home() {
       <AvailabilityCard />
       <VideoTeaser />
 
+      <section className="field-journal px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeader
+            eyebrow="Property Gallery"
+            title="Oak pasture, flock, cartons, and the goods to come."
+            copy="These launch visuals establish the image direction until real farm photography is added: warm, grounded, premium, and specific to the Shaggy Ink Farms world."
+          />
+          <ImageGallery
+            items={[
+              {
+                ...farmImages.oakPasture,
+                title: "Northern California oak pasture",
+                caption:
+                  "The land identity: mature oaks, open grass, rustic fence lines, and golden light.",
+              },
+              {
+                ...farmImages.barredRockFlock,
+                title: "The flagship flock",
+                caption:
+                  "Plymouth Barred Rocks bring the heritage poultry focus and a recognizable pattern.",
+              },
+              {
+                ...farmImages.eggCartons,
+                title: "Seasonal egg story",
+                caption:
+                  "Farm fresh eggs and carton language built around scarcity, care, and local trust.",
+              },
+            ]}
+          />
+        </div>
+      </section>
+
       <section className="poster-grain px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:items-center">
           <div>
@@ -183,6 +222,8 @@ export default function Home() {
             detail="Product imagery should borrow from vintage ranch branding, seed company labels, and practical homestead goods."
             tone="gold"
             label="Commerce direction"
+            src={farmImages.storeGoods.src}
+            alt={farmImages.storeGoods.alt}
           />
         </div>
       </section>

@@ -3,6 +3,7 @@ import { AvailabilityCard } from "@/components/AvailabilityCard";
 import { CalloutGrid } from "@/components/CalloutGrid";
 import { EmailSignup } from "@/components/EmailSignup";
 import { PageHero } from "@/components/PageHero";
+import { farmImages } from "@/lib/images";
 import { pageMetadata, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -24,6 +25,8 @@ export default function EggsPage() {
         copy="Eggs at Shaggy Ink Farms are part of a living rhythm: daylight, weather, molting, flock growth, family chores, and the everyday care of Plymouth Barred Rock hens."
         imageTitle="Egg cartons, warm light, and hand-stamped labels"
         imageDetail="Future imagery should feel like a seed catalog still life: cream cartons, warm gold light, handwritten notes, and honest farm texture."
+        imageSrc={farmImages.eggCartons.src}
+        imageAlt={farmImages.eggCartons.alt}
       />
       <AvailabilityCard />
       <section className="field-journal px-4 py-16 sm:px-6 lg:px-8">

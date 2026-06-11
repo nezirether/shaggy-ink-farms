@@ -6,6 +6,9 @@ type PageHeroProps = {
   copy: string;
   imageTitle: string;
   imageDetail: string;
+  imageSrc?: string;
+  imageAlt?: string;
+  priority?: boolean;
 };
 
 export function PageHero({
@@ -14,6 +17,9 @@ export function PageHero({
   copy,
   imageTitle,
   imageDetail,
+  imageSrc,
+  imageAlt,
+  priority = false,
 }: PageHeroProps) {
   return (
     <section className="poster-grain px-4 py-16 sm:px-6 lg:px-8">
@@ -34,6 +40,9 @@ export function PageHero({
           detail={imageDetail}
           tone="green"
           label="Page image direction"
+          src={imageSrc}
+          alt={imageAlt}
+          priority={priority}
         />
       </div>
     </section>

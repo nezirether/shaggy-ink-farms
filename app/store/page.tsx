@@ -4,6 +4,7 @@ import { EmailSignup } from "@/components/EmailSignup";
 import { PageHero } from "@/components/PageHero";
 import { PlaceholderImage } from "@/components/PlaceholderImage";
 import { SectionHeader } from "@/components/SectionHeader";
+import { farmImages } from "@/lib/images";
 import { pageMetadata, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -25,6 +26,8 @@ export default function StorePage() {
         copy="The future store should feel curated rather than crowded: seasonal egg notes, printed field pieces, stickers, apparel, labels, and useful homestead goods that carry the Shaggy Ink Farms identity."
         imageTitle="Cartons, labels, field notes, and goods"
         imageDetail="Product photography should pair cream paper, barn red marks, warm gold, barred feather texture, and rugged work surfaces."
+        imageSrc={farmImages.storeGoods.src}
+        imageAlt={farmImages.storeGoods.alt}
       />
       <section className="px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
@@ -60,6 +63,8 @@ export default function StorePage() {
             detail="Use this area for the first product collection or a clean coming-soon campaign image."
             tone="gold"
             label="Shop direction"
+            src={farmImages.eggCartons.src}
+            alt={farmImages.eggCartons.alt}
           />
         </div>
       </section>

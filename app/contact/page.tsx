@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
 import { EmailSignup } from "@/components/EmailSignup";
 import { PageHero } from "@/components/PageHero";
+import { farmImages } from "@/lib/images";
 import { pageMetadata, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -23,6 +24,8 @@ export default function ContactPage() {
         copy="Use the form for egg availability, YouTube and media notes, future product interest, homestead project ideas, or general farm updates."
         imageTitle="Mailbox, fence line, and oak shade"
         imageDetail="A strong contact image can show a rural mailbox, weathered fence, pasture grass, and a mature oak in warm light."
+        imageSrc={farmImages.oakPasture.src}
+        imageAlt={farmImages.oakPasture.alt}
       />
       <section className="px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.8fr_1.2fr]">
