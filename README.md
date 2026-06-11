@@ -1,6 +1,6 @@
 # Shaggy Ink Farms
 
-A production-ready Next.js App Router website for Shaggy Ink Farms, a Northern California family homestead and media brand centered on Plymouth Barred Rock chickens, seasonal eggs, homestead projects, oak pasture ranch life, and future farm commerce.
+A production-ready Next.js App Router website for Shaggy Ink Farms, a Northern California family homestead and media brand centered on Plymouth Barred Rock chickens, seasonal eggs, homestead projects, oak pasture ranch life, and farm commerce.
 
 ## Brand Direction
 
@@ -116,24 +116,24 @@ Implementation details:
 4. Install command: `npm install`.
 5. Build command: `npm run build`.
 6. Output directory: leave Vercel default.
-7. Add the final production domain.
-8. Update `siteConfig.url` in `lib/site.ts` to the final domain.
+7. Add `https://shaggyinkfarms.com` as the production domain.
+8. Confirm `siteConfig.url` in `lib/site.ts` remains `https://shaggyinkfarms.com`.
 9. Redeploy after the domain is connected.
 
 ## Launch Checklist
 
 - Add real farm photography as the media library grows.
 - Add a real YouTube channel URL if the handle changes.
-- Connect the email signup form to an email service.
-- Connect the contact form to a form handler, Resend, or a Vercel server action.
-- Confirm the public farm email address.
+- Add `RESEND_API_KEY`, `RESEND_AUDIENCE_ID`, `CONTACT_TO_EMAIL`, and `CONTACT_FROM_EMAIL` in Vercel.
+- Confirm the verified Resend sending domain before public traffic.
+- Confirm the public farm email address remains `hello@shaggyinkfarms.com`.
 - Update privacy policy details for the final email, analytics, form, and store providers.
 - Add a favicon and final brand mark.
 - Add real product or egg availability details when ready.
 - Verify mobile navigation on physical devices.
 - Submit the sitemap in Google Search Console after launch.
 
-## Image Direction
+## Photography Standards
 
 Prioritize real farm photography with:
 

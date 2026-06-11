@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { pageMetadata, siteConfig } from "@/lib/site";
+import { openGraphImage, pageMetadata, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: pageMetadata.privacy.title,
@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${pageMetadata.privacy.title} | ${siteConfig.name}`,
     description: pageMetadata.privacy.description,
+    images: [openGraphImage],
   },
 };
 

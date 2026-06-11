@@ -58,6 +58,7 @@ export function EmailSignup() {
         <form
           onSubmit={handleSubmit}
           className="grid gap-3 rounded-sm border-2 border-[#F5F0E8]/25 bg-[#1C1C1A]/20 p-4 sm:grid-cols-[1fr_auto]"
+          aria-busy={state === "loading"}
         >
           <label className="sr-only" htmlFor="email-signup">
             Email address
@@ -97,7 +98,7 @@ export function EmailSignup() {
               className={`sm:col-span-2 text-sm font-semibold ${
                 state === "success" ? "text-[#D6DDC4]" : "text-[#F2B8A8]"
               }`}
-              role="status"
+              role={state === "error" ? "alert" : "status"}
               aria-live="polite"
             >
               {message}

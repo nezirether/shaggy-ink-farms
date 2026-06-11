@@ -5,11 +5,16 @@ import { ButtonLink } from "@/components/ButtonLink";
 import { CalloutGrid } from "@/components/CalloutGrid";
 import { EmailSignup } from "@/components/EmailSignup";
 import { ImageGallery } from "@/components/ImageGallery";
-import { PlaceholderImage } from "@/components/PlaceholderImage";
+import { FarmVisual } from "@/components/FarmVisual";
 import { SectionHeader } from "@/components/SectionHeader";
 import { VideoTeaser } from "@/components/VideoTeaser";
 import { farmImages } from "@/lib/images";
-import { featureCards, pageMetadata, siteConfig } from "@/lib/site";
+import {
+  featureCards,
+  openGraphImage,
+  pageMetadata,
+  siteConfig,
+} from "@/lib/site";
 
 export const metadata: Metadata = {
   title: pageMetadata.home.title,
@@ -20,6 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${pageMetadata.home.title} | ${siteConfig.name}`,
     description: pageMetadata.home.description,
+    images: [openGraphImage],
   },
 };
 
@@ -70,7 +76,7 @@ export default function Home() {
               ))}
             </dl>
           </div>
-          <PlaceholderImage
+          <FarmVisual
             title="Barred Rock rooster, oak silhouettes, and pasture light"
             detail="A Plymouth Barred Rock rooster stands in oak pasture light, carrying the farm's heritage poultry identity from the first glance."
             tone="green"
@@ -128,7 +134,7 @@ export default function Home() {
 
       <section className="px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          <PlaceholderImage
+          <FarmVisual
             title="Plymouth Barred Rock flock portrait"
             detail="The Barred Rock flock gives Shaggy Ink Farms its pattern, rhythm, eggs, and unmistakable living icon."
             tone="red"
@@ -240,7 +246,7 @@ export default function Home() {
               </ButtonLink>
             </div>
           </div>
-          <PlaceholderImage
+          <FarmVisual
             title="Farm goods, labels, cartons, and printed field notes"
             detail="Cream paper, field notes, cartons, apparel, and workbench textures bring the farm's product world into focus."
             tone="gold"

@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { CalloutGrid } from "@/components/CalloutGrid";
 import { EmailSignup } from "@/components/EmailSignup";
 import { PageHero } from "@/components/PageHero";
-import { PlaceholderImage } from "@/components/PlaceholderImage";
+import { FarmVisual } from "@/components/FarmVisual";
 import { SectionHeader } from "@/components/SectionHeader";
 import { farmImages } from "@/lib/images";
-import { pageMetadata, siteConfig } from "@/lib/site";
+import { openGraphImage, pageMetadata, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: pageMetadata.store.title,
@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${pageMetadata.store.title} | ${siteConfig.name}`,
     description: pageMetadata.store.description,
+    images: [openGraphImage],
   },
 };
 
@@ -58,7 +59,7 @@ export default function StorePage() {
               ]}
             />
           </div>
-          <PlaceholderImage
+          <FarmVisual
             title="Farm goods system"
             detail="Egg cartons, labels, printed pieces, and farm goods share one restrained, heritage-inspired visual language."
             tone="gold"

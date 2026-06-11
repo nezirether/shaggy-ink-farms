@@ -1,5 +1,5 @@
 import { ButtonLink } from "@/components/ButtonLink";
-import { PlaceholderImage } from "@/components/PlaceholderImage";
+import { FarmVisual } from "@/components/FarmVisual";
 
 type ContentBandProps = {
   eyebrow: string;
@@ -43,7 +43,7 @@ export function ContentBand({
             </ButtonLink>
           </div>
         </div>
-        <PlaceholderImage
+        <FarmVisual
           title={imageTitle}
           detail={imageDetail}
           tone={reverse ? "gold" : "green"}

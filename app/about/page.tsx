@@ -5,7 +5,7 @@ import { ImageGallery } from "@/components/ImageGallery";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeader } from "@/components/SectionHeader";
 import { farmImages } from "@/lib/images";
-import { pageMetadata, siteConfig } from "@/lib/site";
+import { openGraphImage, pageMetadata, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: pageMetadata.about.title,
@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${pageMetadata.about.title} | ${siteConfig.name}`,
     description: pageMetadata.about.description,
+    images: [openGraphImage],
   },
 };
 

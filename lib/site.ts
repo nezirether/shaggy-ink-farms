@@ -108,3 +108,10 @@ export const routes = [
 export function absoluteUrl(path = "") {
   return `${siteConfig.url}${path}`;
 }
+
+export const openGraphImage = {
+  url: absoluteUrl("/opengraph-image"),
+  width: 1200,
+  height: 630,
+  alt: "Shaggy Ink Farms heritage poultry and Northern California homestead",
+};

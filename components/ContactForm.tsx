@@ -43,7 +43,8 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="grid gap-4 rounded-sm border-2 border-[#1C1C1A]/15 bg-white/45 p-5"
+      className="grid min-w-0 gap-4 rounded-sm border-2 border-[#1C1C1A]/15 bg-white/45 p-5"
+      aria-busy={state === "loading"}
     >
       <div className="grid gap-2">
         <label htmlFor="name" className="text-sm font-bold text-[#1C1C1A]">
@@ -123,7 +124,7 @@ export function ContactForm() {
           className={`text-sm font-semibold ${
             state === "success" ? "text-[#2C4A2E]" : "text-[#8B2A2A]"
           }`}
-          role="status"
+          role={state === "error" ? "alert" : "status"}
           aria-live="polite"
         >
           {message}

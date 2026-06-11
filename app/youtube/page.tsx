@@ -3,7 +3,7 @@ import { CalloutGrid } from "@/components/CalloutGrid";
 import { PageHero } from "@/components/PageHero";
 import { VideoTeaser } from "@/components/VideoTeaser";
 import { farmImages } from "@/lib/images";
-import { pageMetadata, siteConfig } from "@/lib/site";
+import { openGraphImage, pageMetadata, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: pageMetadata.youtube.title,
@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${pageMetadata.youtube.title} | ${siteConfig.name}`,
     description: pageMetadata.youtube.description,
+    images: [openGraphImage],
   },
 };
 

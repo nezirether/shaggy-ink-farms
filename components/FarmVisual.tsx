@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-type PlaceholderImageProps = {
+type FarmVisualProps = {
   title: string;
   detail: string;
   tone?: "green" | "red" | "gold";
@@ -10,7 +10,7 @@ type PlaceholderImageProps = {
   priority?: boolean;
 };
 
-export function PlaceholderImage({
+export function FarmVisual({
   title,
   detail,
   tone = "green",
@@ -18,7 +18,7 @@ export function PlaceholderImage({
   src,
   alt,
   priority = false,
-}: PlaceholderImageProps) {
+}: FarmVisualProps) {
   const color = {
     green: "from-[#2C4A2E] to-[#476B3D]",
     red: "from-[#8B2A2A] to-[#B05A33]",

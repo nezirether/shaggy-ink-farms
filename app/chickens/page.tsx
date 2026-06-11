@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { ButtonLink } from "@/components/ButtonLink";
 import { CalloutGrid } from "@/components/CalloutGrid";
 import { PageHero } from "@/components/PageHero";
-import { PlaceholderImage } from "@/components/PlaceholderImage";
+import { FarmVisual } from "@/components/FarmVisual";
 import { SectionHeader } from "@/components/SectionHeader";
 import { farmImages } from "@/lib/images";
-import { pageMetadata, siteConfig } from "@/lib/site";
+import { openGraphImage, pageMetadata, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: pageMetadata.chickens.title,
@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${pageMetadata.chickens.title} | ${siteConfig.name}`,
     description: pageMetadata.chickens.description,
+    images: [openGraphImage],
   },
 };
 
@@ -31,7 +32,7 @@ export default function ChickensPage() {
       />
       <section className="px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-          <PlaceholderImage
+          <FarmVisual
             title="Barred feather pattern as brand texture"
             detail="Barred feathering gives the farm a natural pattern language for packaging, videos, labels, and seasonal storytelling."
             tone="red"

@@ -3,7 +3,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { EmailSignup } from "@/components/EmailSignup";
 import { PageHero } from "@/components/PageHero";
 import { farmImages } from "@/lib/images";
-import { pageMetadata, siteConfig } from "@/lib/site";
+import { openGraphImage, pageMetadata, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: pageMetadata.contact.title,
@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${pageMetadata.contact.title} | ${siteConfig.name}`,
     description: pageMetadata.contact.description,
+    images: [openGraphImage],
   },
 };
 
@@ -29,7 +30,7 @@ export default function ContactPage() {
       />
       <section className="px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-          <div>
+          <div className="min-w-0">
             <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#8B2A2A]">
               Start Here
             </p>
@@ -41,13 +42,13 @@ export default function ContactPage() {
               whether your note is about eggs, a project, media, or a future
               product.
             </p>
-            <div className="mt-6 rounded-sm border-2 border-[#1C1C1A]/15 bg-[#F5F0E8] p-5">
+            <div className="mt-6 min-w-0 rounded-sm border-2 border-[#1C1C1A]/15 bg-[#F5F0E8] p-5">
               <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#8B2A2A]">
                 Email
               </p>
               <a
                 href={`mailto:${siteConfig.email}`}
-                className="focus-ring mt-2 block font-serif text-2xl font-bold text-[#2C4A2E]"
+                className="focus-ring mt-2 block break-words font-serif text-xl font-bold text-[#2C4A2E] sm:text-2xl"
               >
                 {siteConfig.email}
               </a>

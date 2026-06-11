@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { ButtonLink } from "@/components/ButtonLink";
 import { CalloutGrid } from "@/components/CalloutGrid";
 import { PageHero } from "@/components/PageHero";
-import { PlaceholderImage } from "@/components/PlaceholderImage";
+import { FarmVisual } from "@/components/FarmVisual";
 import { SectionHeader } from "@/components/SectionHeader";
 import { farmImages } from "@/lib/images";
-import { pageMetadata, siteConfig } from "@/lib/site";
+import { openGraphImage, pageMetadata, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: pageMetadata.projects.title,
@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${pageMetadata.projects.title} | ${siteConfig.name}`,
     description: pageMetadata.projects.description,
+    images: [openGraphImage],
   },
 };
 
@@ -59,7 +60,7 @@ export default function HomesteadProjectsPage() {
       </section>
       <section className="poster-grain px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:items-center">
-          <PlaceholderImage
+          <FarmVisual
             title="Build journal and finished project archive"
             detail="Finished builds, material notes, embedded videos, and field observations keep the work useful after the dust settles."
             tone="gold"

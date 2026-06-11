@@ -3,7 +3,7 @@ import "./globals.css";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd, farmJsonLd, organizationJsonLd } from "@/components/JsonLd";
-import { absoluteUrl, siteConfig } from "@/lib/site";
+import { openGraphImage, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -37,14 +37,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: absoluteUrl("/opengraph-image"),
-        width: 1200,
-        height: 630,
-        alt: "Shaggy Ink Farms heritage poultry and Northern California homestead",
-      },
-    ],
+    images: [openGraphImage],
   },
   twitter: {
     card: "summary_large_image",

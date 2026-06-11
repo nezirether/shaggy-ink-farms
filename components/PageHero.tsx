@@ -1,4 +1,4 @@
-import { PlaceholderImage } from "@/components/PlaceholderImage";
+import { FarmVisual } from "@/components/FarmVisual";
 
 type PageHeroProps = {
   eyebrow: string;
@@ -35,7 +35,7 @@ export function PageHero({
             {copy}
           </p>
         </div>
-        <PlaceholderImage
+        <FarmVisual
           title={imageTitle}
           detail={imageDetail}
           tone="green"
