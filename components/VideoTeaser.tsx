@@ -17,8 +17,8 @@ export function VideoTeaser({
       <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <div className="relative aspect-video overflow-hidden rounded-sm border-2 border-[#1C1C1A] bg-[#1C1C1A] p-5 text-[#F5F0E8] shadow-[10px_10px_0_rgba(28,28,26,0.14)]">
           <Image
-            src={farmImages.oakPasture.src}
-            alt={farmImages.oakPasture.alt}
+            src={farmImages.youtubeSetup.src}
+            alt={farmImages.youtubeSetup.alt}
             fill
             sizes="(min-width: 1024px) 52vw, 100vw"
             className="object-cover opacity-65"

@@ -24,6 +24,18 @@ No user-uploaded image files were present in the attachment folder for this pass
   - Placement: Store hero, homepage store preview, About craft gallery, Projects archive section.
   - Alt text: Premium Shaggy Ink Farms store goods mockup with cap, folded shirt, blank labels, eggs, and rustic workbench.
 
+- `wildlife/mule-deer-oak-pasture-fence-line.png`
+  - Placement: About gallery, conservation/wildlife storytelling, property visual system.
+  - Alt text: Mule deer standing in golden Northern California oak pasture near a rustic fence line.
+
+- `projects/homestead-workbench-coop-plans-tools.png`
+  - Placement: Homestead Projects page, homepage gallery, craft and build storytelling.
+  - Alt text: Homestead workbench with lumber, hand tools, fence wire, and chicken coop plans in warm oak pasture light.
+
+- `youtube/homestead-youtube-camera-oak-pasture-chickens.png`
+  - Placement: YouTube page and media hub sections.
+  - Alt text: Camera and microphone setup filming Plymouth Barred Rock chickens in golden oak pasture.
+
 ## Brand Assets
 
 - `brand/shaggy-ink-farms-badge.svg`

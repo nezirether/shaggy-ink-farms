@@ -82,7 +82,13 @@ export default function AboutPage() {
                     "The rooster gives the brand a living icon and immediate specificity.",
                 },
                 {
-                  ...farmImages.storeGoods,
+                  ...farmImages.muleDeerPasture,
+                  title: "Wildlife edges",
+                  caption:
+                    "Mule deer and oak pasture make conservation part of the visual identity.",
+                },
+                {
+                  ...farmImages.projectWorkbench,
                   title: "Craft direction",
                   caption:
                     "Goods, labels, and workbench scenes show where the brand can grow.",

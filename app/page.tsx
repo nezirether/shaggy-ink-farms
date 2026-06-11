@@ -190,6 +190,24 @@ export default function Home() {
                 caption:
                   "Farm fresh eggs and carton language built around scarcity, care, and local trust.",
               },
+              {
+                ...farmImages.muleDeerPasture,
+                title: "Wildlife-aware pasture",
+                caption:
+                  "Mule deer and oak edges reinforce the conservation-minded Northern California setting.",
+              },
+              {
+                ...farmImages.projectWorkbench,
+                title: "Project craft",
+                caption:
+                  "Workbench scenes show the long-term buildout behind the homestead story.",
+              },
+              {
+                ...farmImages.youtubeSetup,
+                title: "Media in the field",
+                caption:
+                  "The YouTube journey is grounded in real chores, real land, and useful storytelling.",
+              },
             ]}
           />
         </div>

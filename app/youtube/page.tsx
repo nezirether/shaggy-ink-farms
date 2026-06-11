@@ -24,8 +24,8 @@ export default function YouTubePage() {
         copy="Shaggy Ink Farms on YouTube should feel observant, useful, and cinematic: flock updates, project days, egg notes, wildlife sightings, and honest lessons from the homestead."
         imageTitle="Featured episode thumbnail"
         imageDetail="Use high-contrast thumbnails with roosters, oak pasture, build materials, family work, and warm outdoor light."
-        imageSrc={farmImages.heroRooster.src}
-        imageAlt={farmImages.heroRooster.alt}
+        imageSrc={farmImages.youtubeSetup.src}
+        imageAlt={farmImages.youtubeSetup.alt}
       />
       <VideoTeaser
         title="Built for episodes, shorts, field notes, and launch moments."

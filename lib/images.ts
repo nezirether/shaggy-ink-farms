@@ -19,6 +19,18 @@ export const farmImages = {
     src: "/images/store/shaggy-ink-farms-store-goods-mockup.png",
     alt: "Premium Shaggy Ink Farms store goods mockup with cap, folded shirt, blank labels, eggs, and rustic workbench",
   },
+  muleDeerPasture: {
+    src: "/images/wildlife/mule-deer-oak-pasture-fence-line.png",
+    alt: "Mule deer standing in golden Northern California oak pasture near a rustic fence line",
+  },
+  projectWorkbench: {
+    src: "/images/projects/homestead-workbench-coop-plans-tools.png",
+    alt: "Homestead workbench with lumber, hand tools, fence wire, and chicken coop plans in warm oak pasture light",
+  },
+  youtubeSetup: {
+    src: "/images/youtube/homestead-youtube-camera-oak-pasture-chickens.png",
+    alt: "Camera and microphone setup filming Plymouth Barred Rock chickens in golden oak pasture",
+  },
   badge: {
     src: "/images/brand/shaggy-ink-farms-badge.svg",
     alt: "Shaggy Ink Farms heritage badge mark",
@@ -50,6 +62,21 @@ export const imageInventory = [
     file: "public/images/store/shaggy-ink-farms-store-goods-mockup.png",
     source: "Generated launch asset",
     placement: "Store page and homepage store preview",
+  },
+  {
+    file: "public/images/wildlife/mule-deer-oak-pasture-fence-line.png",
+    source: "Generated launch asset",
+    placement: "About gallery, conservation/wildlife storytelling, property visual system",
+  },
+  {
+    file: "public/images/projects/homestead-workbench-coop-plans-tools.png",
+    source: "Generated launch asset",
+    placement: "Homestead Projects hero/support, homepage gallery, craft storytelling",
+  },
+  {
+    file: "public/images/youtube/homestead-youtube-camera-oak-pasture-chickens.png",
+    source: "Generated launch asset",
+    placement: "YouTube hero and media hub sections",
   },
   {
     file: "public/images/brand/shaggy-ink-farms-badge.svg",
