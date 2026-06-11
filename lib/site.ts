@@ -16,6 +16,7 @@ export const siteConfig = {
 export const navItems = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
+  { href: "/farm-journal", label: "Journal" },
   { href: "/chickens", label: "Chickens" },
   { href: "/eggs", label: "Eggs" },
   { href: "/homestead-projects", label: "Projects" },
@@ -50,6 +51,11 @@ export const pageMetadata = {
     title: "Northern California Heritage Poultry and Family Homestead",
     description:
       "Shaggy Ink Farms is a premium Northern California homestead brand sharing Plymouth Barred Rock chickens, seasonal eggs, family projects, and rural ranch storytelling.",
+  },
+  journal: {
+    title: "Farm Journal",
+    description:
+      "Read the Shaggy Ink Farms Farm Journal for homestead field notes, Plymouth Barred Rock history, seasonal eggs, projects, and Northern California ranch life.",
   },
   about: {
     title: "About the Northern California Homestead",
@@ -96,6 +102,7 @@ export const pageMetadata = {
 export const routes = [
   "/",
   "/about",
+  "/farm-journal",
   "/chickens",
   "/eggs",
   "/homestead-projects",

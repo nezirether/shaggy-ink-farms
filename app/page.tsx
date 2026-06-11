@@ -6,9 +6,11 @@ import { CalloutGrid } from "@/components/CalloutGrid";
 import { EmailSignup } from "@/components/EmailSignup";
 import { ImageGallery } from "@/components/ImageGallery";
 import { FarmVisual } from "@/components/FarmVisual";
+import { JournalCard } from "@/components/JournalCard";
 import { SectionHeader } from "@/components/SectionHeader";
 import { VideoTeaser } from "@/components/VideoTeaser";
 import { farmImages } from "@/lib/images";
+import { featuredArticle } from "@/lib/journal";
 import {
   featureCards,
   openGraphImage,
@@ -99,6 +101,17 @@ export default function Home() {
           "Goods that feel collected, useful, and worthy of keeping",
         ]}
       />
+
+      <section className="px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeader
+            eyebrow="Featured Farm Journal"
+            title="The written record starts here."
+            copy="Longer field notes give the farm room to tell the stories behind the flock, the family, the land, and the heritage poultry work that shapes Shaggy Ink Farms."
+          />
+          <JournalCard article={featuredArticle} featured />
+        </div>
+      </section>
 
       <section className="field-journal px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">

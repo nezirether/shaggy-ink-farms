@@ -36,14 +36,14 @@ export function Header() {
         </Link>
         <button
           type="button"
-          className="focus-ring rounded-sm border-2 border-[#1C1C1A] px-3 py-2 text-sm font-bold uppercase tracking-[0.08em] text-[#1C1C1A] md:hidden"
+          className="focus-ring rounded-sm border-2 border-[#1C1C1A] px-3 py-2 text-sm font-bold uppercase tracking-[0.08em] text-[#1C1C1A] lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
           onClick={() => setOpen((value) => !value)}
         >
           Menu
         </button>
-        <div className="hidden items-center gap-6 md:flex">
+        <div className="hidden items-center gap-5 lg:flex">
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -64,7 +64,7 @@ export function Header() {
       {open ? (
         <div
           id="mobile-menu"
-          className="border-t-2 border-[#1C1C1A]/10 bg-[#F5F0E8] px-4 py-4 md:hidden"
+          className="border-t-2 border-[#1C1C1A]/10 bg-[#F5F0E8] px-4 py-4 lg:hidden"
         >
           <div className="mx-auto grid max-w-7xl gap-2">
             {navItems.map((item) => (
