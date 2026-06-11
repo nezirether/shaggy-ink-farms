@@ -1,8 +1,8 @@
 # Shaggy Ink Farms Visual Asset Inventory
 
-No user-uploaded image files were present in the attachment folder for this pass. The launch site now uses generated, brand-directed visual assets plus a vector badge/favicon created for the project.
+The launch site uses a curated brand visual library plus a vector badge/favicon created for the project.
 
-## Generated Launch Assets
+## Brand Visual Assets
 
 - `farm/plymouth-barred-rock-rooster-oak-pasture-hero.png`
   - Placement: homepage hero, Chickens support visual, YouTube hero, JSON-LD image reference.
@@ -44,7 +44,7 @@ No user-uploaded image files were present in the attachment folder for this pass
 - `app/icon.svg`
   - Placement: favicon, app icon, manifest icon.
 
-## Future Real Photography Priorities
+## Photography Priorities
 
 1. Real hero rooster in oak pasture.
 2. Wide property photo with mature oak trees and open pasture.

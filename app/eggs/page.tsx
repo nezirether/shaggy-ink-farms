@@ -24,7 +24,7 @@ export default function EggsPage() {
         title="Seasonal eggs from a small flock, not a production line."
         copy="Eggs at Shaggy Ink Farms are part of a living rhythm: daylight, weather, molting, flock growth, family chores, and the everyday care of Plymouth Barred Rock hens."
         imageTitle="Egg cartons, warm light, and hand-stamped labels"
-        imageDetail="Future imagery should feel like a seed catalog still life: cream cartons, warm gold light, handwritten notes, and honest farm texture."
+        imageDetail="Cream cartons, warm gold light, and honest farm texture make the egg program feel local, careful, and worth waiting for."
         imageSrc={farmImages.eggCartons.src}
         imageAlt={farmImages.eggCartons.alt}
       />

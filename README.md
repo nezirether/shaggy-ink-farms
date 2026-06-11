@@ -19,8 +19,8 @@ Shaggy Ink Farms should feel like Patagonia meets family homestead meets heritag
 - Tailwind CSS
 - Mobile-first responsive layout
 - JSON-LD structured data
-- Generated sitemap and robots routes
-- Generated Open Graph image
+- Sitemap and robots routes
+- Open Graph image route
 - Vercel-ready deployment
 
 ## Getting Started
@@ -59,6 +59,27 @@ Start the production server locally:
 npm run start
 ```
 
+## Form Configuration
+
+The contact form and farm updates signup are wired to production API routes with validation, loading states, success states, error states, and honeypot spam protection.
+
+Create these environment variables in Vercel:
+
+```bash
+RESEND_API_KEY=
+RESEND_AUDIENCE_ID=
+CONTACT_TO_EMAIL=hello@shaggyinkfarms.com
+CONTACT_FROM_EMAIL=Shaggy Ink Farms <updates@shaggyinkfarms.com>
+```
+
+Implementation details:
+
+- `/api/contact` sends contact messages through Resend email.
+- `/api/subscribe` adds subscribers to a Resend Audience.
+- `RESEND_AUDIENCE_ID` is required for email signup.
+- `CONTACT_FROM_EMAIL` must use a verified sending domain in Resend.
+- If credentials are missing, forms return a clear public fallback message instead of silently failing.
+
 ## Pages
 
 - Home
@@ -78,14 +99,14 @@ npm run start
 - JSON-LD structured data for Organization, LocalBusiness, and Farm-style context
 - `sitemap.xml`
 - `robots.txt`
-- Generated Open Graph image route
+- Open Graph image route
 - Brand favicon and web app manifest
 - Organized visual asset library under `public/images`
 - Contact form UI
 - Email signup UI
 - YouTube/embed-ready sections
 - Egg availability section
-- Store coming soon section
+- Store section
 
 ## Vercel Launch
 
@@ -101,7 +122,7 @@ npm run start
 
 ## Launch Checklist
 
-- Replace placeholder image blocks with real farm photography.
+- Add real farm photography as the media library grows.
 - Add a real YouTube channel URL if the handle changes.
 - Connect the email signup form to an email service.
 - Connect the contact form to a form handler, Resend, or a Vercel server action.
@@ -114,7 +135,7 @@ npm run start
 
 ## Image Direction
 
-Prioritize real or carefully generated photography with:
+Prioritize real farm photography with:
 
 - Barred Rock roosters and hens
 - Mature oak trees
@@ -128,6 +149,6 @@ Avoid generic barns, tractors as main imagery, industrial agriculture, and Midwe
 
 ## Current Visual Assets
 
-The current launch build uses generated, brand-directed imagery because no user-uploaded image files were present in the supplied attachment folder. The asset inventory lives at `public/images/ASSET-INVENTORY.md`.
+The visual asset inventory lives at `public/images/ASSET-INVENTORY.md`.
 
-Replace generated launch images with real farm photography over time while preserving the current SEO-friendly file naming, alt text strategy, and section placement.
+Add real farm photography over time while preserving the current SEO-friendly file naming, alt text strategy, and section placement.

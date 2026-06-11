@@ -25,7 +25,7 @@ export default function HomesteadProjectsPage() {
         title="The workbench side of the farm."
         copy="Shaggy Ink Farms documents the practical work that makes the place function: coops, fencing, garden systems, handmade labels, repairs, signs, and the lessons learned between plans and finished projects."
         imageTitle="Fence line, lumber, tools, and oak shade"
-        imageDetail="Project photography should show hands, materials, weathered surfaces, finished details, and the land around the work."
+        imageDetail="Lumber, wire, tools, notes, and oak pasture light show the practical craft behind the homestead."
         imageSrc={farmImages.projectWorkbench.src}
         imageAlt={farmImages.projectWorkbench.alt}
       />
@@ -34,7 +34,7 @@ export default function HomesteadProjectsPage() {
           <SectionHeader
             eyebrow="Project Tracks"
             title="Useful builds with a strong visual point of view."
-            copy="The projects page is designed to become an archive for YouTube episodes, how-to notes, product development, and the craft language of the farm."
+            copy="The project archive follows the builds, fixes, systems, and lessons that turn raw ideas into a more capable homestead."
           />
           <CalloutGrid
             items={[
@@ -61,9 +61,9 @@ export default function HomesteadProjectsPage() {
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:items-center">
           <PlaceholderImage
             title="Build journal and finished project archive"
-            detail="Future project pages can combine finished photography, material lists, short notes, and embedded videos."
+            detail="Finished builds, material notes, embedded videos, and field observations keep the work useful after the dust settles."
             tone="gold"
-            label="Archive direction"
+            label="Project Archive"
             src={farmImages.oakPasture.src}
             alt={farmImages.oakPasture.alt}
           />
@@ -75,7 +75,7 @@ export default function HomesteadProjectsPage() {
               align="left"
             />
             <ButtonLink href="/youtube" variant="secondary">
-              Watch Project Videos
+              Watch on YouTube
             </ButtonLink>
           </div>
         </div>

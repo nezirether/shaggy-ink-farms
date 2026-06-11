@@ -42,7 +42,7 @@ export function AvailabilityCard() {
         <div className="bg-[#2C4A2E] p-5 text-[#F5F0E8] md:col-span-2 md:m-6 md:mt-0">
           <p className="font-serif text-2xl font-bold">Current Status</p>
           <p className="mt-3 text-sm font-bold uppercase tracking-[0.16em] text-[#C6933F]">
-            Updates coming soon
+            Seasonal list open
           </p>
           <p className="mt-4 leading-7 text-[#F5F0E8]/78">
             Join the list for future carton announcements, local pickup notes,
@@ -50,7 +50,7 @@ export function AvailabilityCard() {
           </p>
           <div className="mt-6">
             <ButtonLink href="/eggs" variant="light">
-              Egg Details
+              Reserve Eggs
             </ButtonLink>
           </div>
         </div>

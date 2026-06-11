@@ -9,7 +9,7 @@ type VideoTeaserProps = {
 };
 
 export function VideoTeaser({
-  title = "The YouTube channel is being built like a field journal.",
+  title = "The YouTube channel follows the farm like a field journal.",
   copy = "Flock walks, project days, egg notes, wildlife moments, and the practical work behind a Northern California homestead brand.",
 }: VideoTeaserProps) {
   return (
@@ -26,7 +26,7 @@ export function VideoTeaser({
           <div className="absolute inset-0 bg-gradient-to-t from-[#1C1C1A]/90 via-[#1C1C1A]/30 to-transparent" />
           <div className="relative flex h-full flex-col justify-between border border-[#F5F0E8]/20 p-5">
             <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#C6933F]">
-              Featured Video Slot
+              Farm Media
             </p>
             <div>
               <div className="mb-5 grid h-16 w-16 place-items-center rounded-full border-2 border-[#C6933F] text-[#C6933F]">
@@ -47,9 +47,9 @@ export function VideoTeaser({
           </h2>
           <p className="mt-5 text-lg leading-8 text-[#1C1C1A]/75">{copy}</p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href={siteConfig.social.youtube}>Open YouTube</ButtonLink>
+            <ButtonLink href={siteConfig.social.youtube}>Watch on YouTube</ButtonLink>
             <ButtonLink href="/youtube" variant="secondary">
-              See Channel Plan
+              Follow the Story
             </ButtonLink>
           </div>
         </div>

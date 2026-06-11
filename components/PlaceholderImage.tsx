@@ -14,7 +14,7 @@ export function PlaceholderImage({
   title,
   detail,
   tone = "green",
-  label = "Photo direction",
+  label = "Farm visual",
   src,
   alt,
   priority = false,

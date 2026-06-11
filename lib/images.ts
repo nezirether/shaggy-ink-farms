@@ -40,42 +40,42 @@ export const farmImages = {
 export const imageInventory = [
   {
     file: "public/images/farm/plymouth-barred-rock-rooster-oak-pasture-hero.png",
-    source: "Generated launch asset",
+    source: "Brand visual",
     placement: "Homepage hero, Open Graph reference, premium brand hero context",
   },
   {
     file: "public/images/farm/northern-california-oak-pasture-fence-line.png",
-    source: "Generated launch asset",
+    source: "Brand visual",
     placement: "About, Projects, Contact, property gallery, oak pasture storytelling",
   },
   {
     file: "public/images/chickens/plymouth-barred-rock-flock-rustic-fence.png",
-    source: "Generated launch asset",
+    source: "Brand visual",
     placement: "Chickens page, homepage flock feature, gallery",
   },
   {
     file: "public/images/eggs/farm-fresh-eggs-cream-cartons-workbench.png",
-    source: "Generated launch asset",
+    source: "Brand visual",
     placement: "Eggs page, egg availability section, store transition",
   },
   {
     file: "public/images/store/shaggy-ink-farms-store-goods-mockup.png",
-    source: "Generated launch asset",
+    source: "Brand visual",
     placement: "Store page and homepage store preview",
   },
   {
     file: "public/images/wildlife/mule-deer-oak-pasture-fence-line.png",
-    source: "Generated launch asset",
+    source: "Brand visual",
     placement: "About gallery, conservation/wildlife storytelling, property visual system",
   },
   {
     file: "public/images/projects/homestead-workbench-coop-plans-tools.png",
-    source: "Generated launch asset",
+    source: "Brand visual",
     placement: "Homestead Projects hero/support, homepage gallery, craft storytelling",
   },
   {
     file: "public/images/youtube/homestead-youtube-camera-oak-pasture-chickens.png",
-    source: "Generated launch asset",
+    source: "Brand visual",
     placement: "YouTube hero and media hub sections",
   },
   {

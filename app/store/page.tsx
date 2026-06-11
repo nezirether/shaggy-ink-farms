@@ -21,11 +21,11 @@ export default function StorePage() {
   return (
     <>
       <PageHero
-        eyebrow="Store Coming Soon"
+        eyebrow="Store"
         title="Goods with farm character, made for people who notice details."
-        copy="The future store should feel curated rather than crowded: seasonal egg notes, printed field pieces, stickers, apparel, labels, and useful homestead goods that carry the Shaggy Ink Farms identity."
+        copy="The store is taking shape around seasonal egg notes, printed field pieces, stickers, apparel, labels, and useful homestead goods that carry the Shaggy Ink Farms identity."
         imageTitle="Cartons, labels, field notes, and goods"
-        imageDetail="Product photography should pair cream paper, barn red marks, warm gold, barred feather texture, and rugged work surfaces."
+        imageDetail="Cream paper, barn red marks, warm gold, barred feather texture, and rugged work surfaces define the farm goods system."
         imageSrc={farmImages.storeGoods.src}
         imageAlt={farmImages.storeGoods.alt}
       />
@@ -35,7 +35,7 @@ export default function StorePage() {
             <SectionHeader
               eyebrow="Commerce Direction"
               title="Build the shop slowly, make every item feel worth keeping."
-              copy="The best first products will be specific to the farm story, easy to fulfill, visually strong, and useful for turning casual viewers into long-term supporters."
+              copy="The first products stay close to the farm story: useful, handsome, easy to keep, and strong enough to turn viewers into long-term supporters."
               align="left"
             />
             <CalloutGrid
@@ -59,10 +59,10 @@ export default function StorePage() {
             />
           </div>
           <PlaceholderImage
-            title="Future product system"
-            detail="Use this area for the first product collection or a clean coming-soon campaign image."
+            title="Farm goods system"
+            detail="Egg cartons, labels, printed pieces, and farm goods share one restrained, heritage-inspired visual language."
             tone="gold"
-            label="Shop direction"
+            label="Farm Goods"
             src={farmImages.eggCartons.src}
             alt={farmImages.eggCartons.alt}
           />

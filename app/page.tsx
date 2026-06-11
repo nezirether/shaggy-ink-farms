@@ -44,9 +44,15 @@ export default function Home() {
               golden-hour texture of rural Northern California.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/youtube">Watch the Journey</ButtonLink>
+              <ButtonLink href="/eggs">Reserve Eggs</ButtonLink>
               <ButtonLink href="#updates" variant="secondary">
-                Get Farm Updates
+                Join Farm Updates
+              </ButtonLink>
+              <ButtonLink href="/youtube" variant="secondary">
+                Watch on YouTube
+              </ButtonLink>
+              <ButtonLink href={siteConfig.social.instagram} variant="secondary">
+                Follow on Instagram
               </ButtonLink>
             </div>
             <dl className="mt-10 grid gap-4 sm:grid-cols-3">
@@ -66,9 +72,9 @@ export default function Home() {
           </div>
           <PlaceholderImage
             title="Barred Rock rooster, oak silhouettes, and pasture light"
-            detail="Hero photography should feel like a national park poster met a heritage seed catalog: bold rooster, mature oaks, rustic fencing, and warm Northern California light."
+            detail="A Plymouth Barred Rock rooster stands in oak pasture light, carrying the farm's heritage poultry identity from the first glance."
             tone="green"
-            label="Hero image direction"
+            label="Oak Pasture"
             src={farmImages.heroRooster.src}
             alt={farmImages.heroRooster.alt}
             priority
@@ -93,7 +99,7 @@ export default function Home() {
           <SectionHeader
             eyebrow="What We Are Building"
             title="Poultry, projects, eggs, and a media brand with staying power."
-            copy="Every part of the site is designed to grow: from flock notes and egg availability to project archives, YouTube episodes, and a future shop."
+            copy="Follow the flock, reserve seasonal eggs, watch the project archive, and stay close to the work shaping this Northern California homestead."
           />
           <div className="grid gap-5 md:grid-cols-3">
             {featureCards.map((card) => (
@@ -124,7 +130,7 @@ export default function Home() {
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <PlaceholderImage
             title="Plymouth Barred Rock flock portrait"
-            detail="Use a composed flock image with rooster, hens, pasture grass, and fence texture for a signature brand asset."
+            detail="The Barred Rock flock gives Shaggy Ink Farms its pattern, rhythm, eggs, and unmistakable living icon."
             tone="red"
             label="Flagship livestock"
             src={farmImages.barredRockFlock.src}
@@ -168,7 +174,7 @@ export default function Home() {
           <SectionHeader
             eyebrow="Property Gallery"
             title="Oak pasture, flock, cartons, and the goods to come."
-            copy="These launch visuals establish the image direction until real farm photography is added: warm, grounded, premium, and specific to the Shaggy Ink Farms world."
+            copy="A visual record of the land, flock, wildlife, projects, eggs, and field work behind the Shaggy Ink Farms brand."
           />
           <ImageGallery
             items={[
@@ -217,29 +223,28 @@ export default function Home() {
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:items-center">
           <div>
             <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#8B2A2A]">
-              Store Coming Soon
+              Farm Goods
             </p>
             <h2 className="mt-4 font-serif text-3xl font-bold leading-tight sm:text-5xl">
-              Future goods should feel like they belong on a workbench, in a
+              Farm goods should feel like they belong on a workbench, in a
               seed drawer, or on a well-loved shelf.
             </h2>
             <p className="mt-5 text-lg leading-8 text-[#1C1C1A]/75">
-              The store is designed for patient growth: egg updates, printed
-              field notes, stickers, apparel, farm labels, small goods, and
-              useful pieces that carry the farm identity without feeling
-              disposable.
+              The first collection is being shaped around printed field notes,
+              stickers, apparel, farm labels, small goods, and useful pieces
+              that carry the farm identity without feeling disposable.
             </p>
             <div className="mt-7">
               <ButtonLink href="/store" variant="secondary">
-                Preview the Store
+                View Farm Goods
               </ButtonLink>
             </div>
           </div>
           <PlaceholderImage
             title="Farm goods, labels, cartons, and printed field notes"
-            detail="Product imagery should borrow from vintage ranch branding, seed company labels, and practical homestead goods."
+            detail="Cream paper, field notes, cartons, apparel, and workbench textures bring the farm's product world into focus."
             tone="gold"
-            label="Commerce direction"
+            label="Farm Goods"
             src={farmImages.storeGoods.src}
             alt={farmImages.storeGoods.alt}
           />

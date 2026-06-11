@@ -25,7 +25,7 @@ export default function ChickensPage() {
         title="The flagship flock: practical, beautiful, and unmistakably barred."
         copy="Plymouth Barred Rock chickens are the livestock center of Shaggy Ink Farms. They bring old American utility, strong visual identity, steady temperament, and the kind of recurring characters a farm media brand needs."
         imageTitle="Rooster, hens, and oak shade"
-        imageDetail="Replace with hero-quality portraits of the rooster, hens, chicks, feather patterning, and coop life."
+        imageDetail="The flock brings together rooster presence, steady hens, bold barred feathering, and the oak pasture setting."
         imageSrc={farmImages.barredRockFlock.src}
         imageAlt={farmImages.barredRockFlock.alt}
       />
@@ -33,7 +33,7 @@ export default function ChickensPage() {
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <PlaceholderImage
             title="Barred feather pattern as brand texture"
-            detail="Close-up feather photography can become a signature pattern for packaging, thumbnails, and product design."
+            detail="Barred feathering gives the farm a natural pattern language for packaging, videos, labels, and seasonal storytelling."
             tone="red"
             label="Visual system"
             src={farmImages.heroRooster.src}
@@ -66,7 +66,7 @@ export default function ChickensPage() {
               ]}
             />
             <div className="mt-8">
-              <ButtonLink href="/youtube">Watch Flock Updates</ButtonLink>
+              <ButtonLink href="/youtube">Watch on YouTube</ButtonLink>
             </div>
           </div>
         </div>

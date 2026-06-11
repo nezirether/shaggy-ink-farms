@@ -39,7 +39,7 @@ export function PageHero({
           title={imageTitle}
           detail={imageDetail}
           tone="green"
-          label="Page image direction"
+          label="Shaggy Ink Farms"
           src={imageSrc}
           alt={imageAlt}
           priority={priority}

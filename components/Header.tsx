@@ -57,7 +57,7 @@ export function Header() {
             href="/contact"
             className="focus-ring rounded-sm border-2 border-[#8B2A2A] bg-[#8B2A2A] px-4 py-2 text-sm font-bold uppercase tracking-[0.08em] text-[#F5F0E8] transition hover:bg-[#6f2020]"
           >
-            Updates
+            Join Farm Updates
           </Link>
         </div>
       </nav>

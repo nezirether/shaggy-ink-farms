@@ -4,7 +4,7 @@ export const siteConfig = {
   subtitle: "Northern California Heritage Poultry and Family Homestead",
   description:
     "A premium Northern California homestead and media brand centered on Plymouth Barred Rock chickens, farm fresh eggs, family projects, and oak pasture ranch life.",
-  url: "https://shaggy-ink-farms.vercel.app",
+  url: "https://shaggyinkfarms.com",
   email: "hello@shaggyinkfarms.com",
   location: "Northern California",
   social: {
@@ -77,9 +77,9 @@ export const pageMetadata = {
       "Watch the Shaggy Ink Farms YouTube journey through heritage poultry, farm fresh eggs, homestead projects, wildlife, and oak pasture ranch life.",
   },
   store: {
-    title: "Store Coming Soon",
+    title: "Store",
     description:
-      "The future Shaggy Ink Farms store for farm goods, print pieces, heritage poultry merchandise, labels, and homestead-inspired products.",
+      "The Shaggy Ink Farms store for farm goods, print pieces, heritage poultry merchandise, labels, and homestead-inspired products.",
   },
   contact: {
     title: "Contact Shaggy Ink Farms",
