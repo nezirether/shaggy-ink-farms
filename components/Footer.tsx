@@ -3,13 +3,17 @@ import { navItems, siteConfig } from "@/lib/site";
 
 export function Footer() {
   return (
-    <footer className="border-t-2 border-[#1C1C1A]/10 bg-[#1C1C1A] px-4 py-12 text-[#F5F0E8] sm:px-6 lg:px-8">
-      <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.2fr_1fr_1fr]">
+    <footer className="border-t-2 border-[#1C1C1A]/10 bg-[#1C1C1A] px-4 py-14 text-[#F5F0E8] sm:px-6 lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.35fr_0.9fr_0.9fr]">
         <div>
           <p className="font-serif text-2xl font-bold">{siteConfig.name}</p>
           <p className="mt-3 max-w-md leading-7 text-[#F5F0E8]/75">
-            Northern California heritage poultry, family homesteading,
-            handmade projects, and rural ranch life under mature oak trees.
+            A Northern California homestead and media brand rooted in Plymouth
+            Barred Rock chickens, oak pasture, family craft, and heritage farm
+            storytelling.
+          </p>
+          <p className="mt-5 w-fit border border-[#C6933F]/60 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-[#C6933F]">
+            Built under mature oaks
           </p>
         </div>
         <div>
@@ -21,14 +25,14 @@ export function Footer() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm text-[#F5F0E8]/75 hover:text-[#F5F0E8]"
+                className="focus-ring text-sm text-[#F5F0E8]/75 hover:text-[#F5F0E8]"
               >
                 {item.label}
               </Link>
             ))}
             <Link
               href="/privacy-policy"
-              className="text-sm text-[#F5F0E8]/75 hover:text-[#F5F0E8]"
+              className="focus-ring text-sm text-[#F5F0E8]/75 hover:text-[#F5F0E8]"
             >
               Privacy Policy
             </Link>
@@ -41,19 +45,19 @@ export function Footer() {
           <div className="grid gap-2">
             <a
               href={siteConfig.social.youtube}
-              className="text-sm text-[#F5F0E8]/75 hover:text-[#F5F0E8]"
+              className="focus-ring text-sm text-[#F5F0E8]/75 hover:text-[#F5F0E8]"
             >
               YouTube
             </a>
             <a
               href={siteConfig.social.instagram}
-              className="text-sm text-[#F5F0E8]/75 hover:text-[#F5F0E8]"
+              className="focus-ring text-sm text-[#F5F0E8]/75 hover:text-[#F5F0E8]"
             >
               Instagram
             </a>
             <a
               href={`mailto:${siteConfig.email}`}
-              className="text-sm text-[#F5F0E8]/75 hover:text-[#F5F0E8]"
+              className="focus-ring text-sm text-[#F5F0E8]/75 hover:text-[#F5F0E8]"
             >
               {siteConfig.email}
             </a>

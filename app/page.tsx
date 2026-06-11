@@ -1,136 +1,189 @@
 import type { Metadata } from "next";
+import { AvailabilityCard } from "@/components/AvailabilityCard";
+import { BrandPanel } from "@/components/BrandPanel";
 import { ButtonLink } from "@/components/ButtonLink";
-import { ContentBand } from "@/components/ContentBand";
+import { CalloutGrid } from "@/components/CalloutGrid";
 import { EmailSignup } from "@/components/EmailSignup";
 import { PlaceholderImage } from "@/components/PlaceholderImage";
 import { SectionHeader } from "@/components/SectionHeader";
-import { featureCards, siteConfig } from "@/lib/site";
+import { VideoTeaser } from "@/components/VideoTeaser";
+import { featureCards, pageMetadata, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Home",
-  description: siteConfig.description,
+  title: pageMetadata.home.title,
+  description: pageMetadata.home.description,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: siteConfig.name,
-    description: siteConfig.description,
+    title: `${pageMetadata.home.title} | ${siteConfig.name}`,
+    description: pageMetadata.home.description,
   },
 };
 
 export default function Home() {
   return (
     <>
-      <section className="poster-grain overflow-hidden bg-[#F5F0E8] px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
+      <section className="sun-wash overflow-hidden px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div>
-            <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#8B2A2A]">
-              Heritage Poultry & Ranch Life
+            <p className="w-fit border-y-2 border-[#8B2A2A] py-2 text-xs font-extrabold uppercase tracking-[0.22em] text-[#8B2A2A]">
+              Northern California Oak Pasture
             </p>
-            <h1 className="mt-4 font-serif text-5xl font-bold leading-none text-[#1C1C1A] sm:text-7xl">
+            <h1 className="mt-6 max-w-4xl font-serif text-5xl font-bold leading-[0.95] text-[#1C1C1A] sm:text-7xl">
               Shaggy Ink Farms
             </h1>
-            <p className="mt-5 max-w-2xl text-xl font-semibold text-[#2C4A2E]">
+            <p className="mt-6 max-w-2xl text-xl font-bold leading-8 text-[#2C4A2E] sm:text-2xl">
               {siteConfig.subtitle}
             </p>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-[#1C1C1A]/75">
-              A family homestead among mature oaks and open pastureland,
-              sharing Plymouth Barred Rock chickens, farm fresh eggs, handmade
-              projects, and the slow work of building a useful place.
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-[#1C1C1A]/76">
+              A family homestead and media brand built around Plymouth Barred
+              Rock chickens, farm fresh eggs, handmade projects, and the
+              golden-hour texture of rural Northern California.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/youtube">Watch on YouTube</ButtonLink>
+              <ButtonLink href="/youtube">Watch the Journey</ButtonLink>
               <ButtonLink href="#updates" variant="secondary">
                 Get Farm Updates
               </ButtonLink>
             </div>
+            <dl className="mt-10 grid gap-4 sm:grid-cols-3">
+              {[
+                ["Flagship flock", "Plymouth Barred Rock"],
+                ["Landscape", "Oak pasture and fence lines"],
+                ["Direction", "Media, eggs, and goods"],
+              ].map(([label, value]) => (
+                <div key={label} className="border-l-2 border-[#C6933F] pl-4">
+                  <dt className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#8B2A2A]">
+                    {label}
+                  </dt>
+                  <dd className="mt-1 font-serif text-lg font-bold">{value}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
           <PlaceholderImage
-            title="Barred Rock Rooster at Golden Hour"
-            detail="A future hero photo can show the flagship rooster, oak silhouettes, pasture grass, and rustic fence lines."
+            title="Barred Rock rooster, oak silhouettes, and pasture light"
+            detail="Hero photography should feel like a national park poster met a heritage seed catalog: bold rooster, mature oaks, rustic fencing, and warm Northern California light."
             tone="green"
+            label="Hero image direction"
           />
         </div>
       </section>
 
-      <section className="bg-[#2C4A2E] px-4 py-12 text-[#F5F0E8] sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-4 sm:grid-cols-3">
-          {featureCards.map((card) => (
-            <a
-              key={card.href}
-              href={card.href}
-              className="rounded-sm border-2 border-[#F5F0E8]/20 bg-[#1C1C1A]/15 p-5 transition hover:border-[#C6933F]"
-            >
-              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#C6933F]">
-                {card.eyebrow}
-              </p>
-              <h2 className="mt-3 font-serif text-xl font-bold">
-                {card.title}
-              </h2>
-              <p className="mt-3 text-sm leading-6 text-[#F5F0E8]/75">
-                {card.copy}
-              </p>
-            </a>
-          ))}
-        </div>
-      </section>
-
-      <ContentBand
-        eyebrow="Heritage Poultry"
-        title="A flock built around Plymouth Barred Rock chickens."
-        copy="Barred Rocks bring the visual rhythm, temperament, and practical history that defines Shaggy Ink Farms. They are classic American homestead birds: sturdy, handsome, useful, and full of personality."
-        href="/chickens"
-        cta="Meet the Flock"
-        imageTitle="Plymouth Barred Rock Flock"
-        imageDetail="Use this space for roosters, hens, chicks, and close-up feather pattern photography."
+      <BrandPanel
+        eyebrow="The Brand Thesis"
+        title="A premium farm story with dirt under its fingernails."
+        copy="Shaggy Ink Farms is being built as more than a place. It is a visual world: heritage poultry, family work, conservation-minded land care, useful craft, seasonal food, and the honest narrative of building a homestead in public."
+        items={[
+          "Plymouth Barred Rock chickens as a recognizable brand icon",
+          "Oak trees, mule deer, pasture, and rural Northern California atmosphere",
+          "YouTube storytelling that can expand into commerce and education",
+          "Goods that feel collected, useful, and worthy of keeping",
+        ]}
       />
 
-      <ContentBand
-        eyebrow="Farm Fresh Eggs"
-        title="Small-batch eggs from hens raised close to home."
-        copy="Eggs are part of the everyday rhythm here: collecting, washing, packing, and sharing what the flock provides in season."
-        href="/eggs"
-        cta="Learn About Eggs"
-        imageTitle="Cream Carton & Seed Label Styling"
-        imageDetail="A future still life can pair eggs, kraft cartons, handwritten notes, and warm morning light."
-        reverse
-      />
-
-      <ContentBand
-        eyebrow="Homestead Projects"
-        title="Coops, fencing, gardens, labels, repairs, and handmade experiments."
-        copy="The homestead is both a working place and a creative studio. We document useful builds, lessons learned, and the craft behind a more self-reliant family life."
-        href="/homestead-projects"
-        cta="See Projects"
-        imageTitle="Oak Shade Workshop"
-        imageDetail="Add project photos of tools, lumber, fencing, garden starts, and finished homestead builds."
-      />
-
-      <section className="bg-[#D6DDC4] px-4 py-16 sm:px-6 lg:px-8">
+      <section className="field-journal px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionHeader
-            eyebrow="YouTube Journey"
-            title="Follow the farm as it grows."
-            copy="The channel is where the story unfolds: flock updates, egg days, homestead projects, wildlife moments, and Northern California ranch life in progress."
+            eyebrow="What We Are Building"
+            title="Poultry, projects, eggs, and a media brand with staying power."
+            copy="Every part of the site is designed to grow: from flock notes and egg availability to project archives, YouTube episodes, and a future shop."
           />
-          <div className="grid gap-6 md:grid-cols-3">
-            {["Flock Walks", "Project Days", "Wildlife & Oaks"].map((title) => (
-              <div
-                key={title}
-                className="rounded-sm border-2 border-[#1C1C1A]/15 bg-[#F5F0E8] p-5"
+          <div className="grid gap-5 md:grid-cols-3">
+            {featureCards.map((card) => (
+              <a
+                key={card.href}
+                href={card.href}
+                className="group rounded-sm border-2 border-[#1C1C1A] bg-[#F5F0E8] p-6 shadow-[8px_8px_0_rgba(44,74,46,0.16)] transition hover:-translate-y-1 hover:shadow-[10px_10px_0_rgba(139,42,42,0.18)]"
               >
-                <div className="mb-4 aspect-video rounded-sm bg-[#1C1C1A] p-4 text-[#F5F0E8]">
-                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#C6933F]">
-                    Video Placeholder
-                  </p>
-                </div>
-                <h3 className="font-serif text-xl font-bold">{title}</h3>
-                <p className="mt-2 text-sm leading-6 text-[#1C1C1A]/70">
-                  Space for embedded videos once the channel library is ready.
+                <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#8B2A2A]">
+                  {card.eyebrow}
                 </p>
-              </div>
+                <h2 className="mt-4 font-serif text-2xl font-bold leading-tight">
+                  {card.title}
+                </h2>
+                <p className="mt-4 text-sm leading-7 text-[#1C1C1A]/72">
+                  {card.copy}
+                </p>
+                <p className="mt-6 text-sm font-bold uppercase tracking-[0.08em] text-[#2C4A2E] group-hover:text-[#8B2A2A]">
+                  Explore
+                </p>
+              </a>
             ))}
           </div>
-          <div className="mt-8 text-center">
-            <ButtonLink href="/youtube">Watch on YouTube</ButtonLink>
+        </div>
+      </section>
+
+      <section className="px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <PlaceholderImage
+            title="Plymouth Barred Rock flock portrait"
+            detail="Use a composed flock image with rooster, hens, pasture grass, and fence texture for a signature brand asset."
+            tone="red"
+            label="Flagship livestock"
+          />
+          <div>
+            <SectionHeader
+              eyebrow="Heritage Poultry"
+              title="The flock gives the brand its pattern, rhythm, and voice."
+              copy="Barred Rocks bring old American farm utility, striking visual identity, and a grounded sense of place. They are not decorative props. They are the anchor livestock of the Shaggy Ink Farms story."
+              align="left"
+            />
+            <CalloutGrid
+              items={[
+                {
+                  eyebrow: "Breed",
+                  title: "Plymouth Barred Rock",
+                  copy: "Hardy, useful, familiar, and visually unmistakable in a way that supports a lasting brand identity.",
+                },
+                {
+                  eyebrow: "Care",
+                  title: "Small flock attention",
+                  copy: "Coop systems, rooster management, chick starts, seasonal laying, and practical husbandry documented clearly.",
+                },
+                {
+                  eyebrow: "Story",
+                  title: "A recognizable character",
+                  copy: "The flock creates recurring faces, seasonal arcs, and a reason for people to follow the journey.",
+                },
+              ]}
+            />
           </div>
+        </div>
+      </section>
+
+      <AvailabilityCard />
+      <VideoTeaser />
+
+      <section className="poster-grain px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:items-center">
+          <div>
+            <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#8B2A2A]">
+              Store Coming Soon
+            </p>
+            <h2 className="mt-4 font-serif text-3xl font-bold leading-tight sm:text-5xl">
+              Future goods should feel like they belong on a workbench, in a
+              seed drawer, or on a well-loved shelf.
+            </h2>
+            <p className="mt-5 text-lg leading-8 text-[#1C1C1A]/75">
+              The store is designed for patient growth: egg updates, printed
+              field notes, stickers, apparel, farm labels, small goods, and
+              useful pieces that carry the farm identity without feeling
+              disposable.
+            </p>
+            <div className="mt-7">
+              <ButtonLink href="/store" variant="secondary">
+                Preview the Store
+              </ButtonLink>
+            </div>
+          </div>
+          <PlaceholderImage
+            title="Farm goods, labels, cartons, and printed field notes"
+            detail="Product imagery should borrow from vintage ranch branding, seed company labels, and practical homestead goods."
+            tone="gold"
+            label="Commerce direction"
+          />
         </div>
       </section>
 

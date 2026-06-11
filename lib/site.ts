@@ -1,10 +1,12 @@
 export const siteConfig = {
   name: "Shaggy Ink Farms",
-  subtitle: "Northern California Heritage Poultry & Family Homestead",
+  legalName: "Shaggy Ink Farms",
+  subtitle: "Northern California Heritage Poultry and Family Homestead",
   description:
-    "A Northern California family homestead focused on Plymouth Barred Rock chickens, farm fresh eggs, family projects, and a YouTube journey through rural ranch life.",
+    "A premium Northern California homestead and media brand centered on Plymouth Barred Rock chickens, farm fresh eggs, family projects, and oak pasture ranch life.",
   url: "https://shaggy-ink-farms.vercel.app",
   email: "hello@shaggyinkfarms.com",
+  location: "Northern California",
   social: {
     youtube: "https://www.youtube.com/@shaggyinkfarms",
     instagram: "https://www.instagram.com/shaggyinkfarms",
@@ -25,20 +27,84 @@ export const navItems = [
 export const featureCards = [
   {
     eyebrow: "Heritage Poultry",
-    title: "Plymouth Barred Rock chickens with old-fashioned utility.",
-    copy: "Our flagship flock celebrates the calm, hardy, dual-purpose bird that belongs in family barnyards and pasture edges.",
+    title: "Plymouth Barred Rock chickens as the signature flock.",
+    copy: "Classic American poultry with practical utility, calm presence, bold barred feathering, and the kind of character a serious homestead brand can grow around.",
     href: "/chickens",
   },
   {
     eyebrow: "Farm Fresh Eggs",
-    title: "Pasture-minded eggs from a small family flock.",
-    copy: "Egg availability follows the seasons, the weather, and the steady rhythm of hens living close to the land.",
+    title: "Small-flock eggs, seasonal by nature.",
+    copy: "Availability follows daylight, weather, molts, and the honest rhythm of hens raised close to home under oak shade and pasture air.",
     href: "/eggs",
   },
   {
     eyebrow: "Homestead Projects",
-    title: "Fence lines, garden beds, coops, labels, and handmade work.",
-    copy: "We document the practical, dusty, satisfying projects that keep a Northern California homestead moving.",
+    title: "Craft, conservation, and practical ranch work.",
+    copy: "Coops, fencing, gardens, labels, repairs, and handmade goods documented with the care of a field journal and the ambition of a media brand.",
     href: "/homestead-projects",
   },
 ];
+
+export const pageMetadata = {
+  home: {
+    title: "Northern California Heritage Poultry and Family Homestead",
+    description:
+      "Shaggy Ink Farms is a premium Northern California homestead brand sharing Plymouth Barred Rock chickens, seasonal eggs, family projects, and rural ranch storytelling.",
+  },
+  about: {
+    title: "About the Northern California Homestead",
+    description:
+      "Meet Shaggy Ink Farms, a family homestead among mature oaks, open pastureland, heritage poultry, wildlife, craft, and rural Northern California ranch life.",
+  },
+  chickens: {
+    title: "Plymouth Barred Rock Chickens",
+    description:
+      "Meet the flagship Plymouth Barred Rock flock at Shaggy Ink Farms and follow heritage poultry care, roosters, hens, chicks, and breed notes.",
+  },
+  eggs: {
+    title: "Farm Fresh Eggs",
+    description:
+      "Learn about seasonal farm fresh eggs from the Shaggy Ink Farms Plymouth Barred Rock flock in Northern California.",
+  },
+  projects: {
+    title: "Homestead Projects",
+    description:
+      "Follow Shaggy Ink Farms homestead projects, including chicken coops, rustic fencing, garden builds, handmade labels, and family ranch work.",
+  },
+  youtube: {
+    title: "YouTube Homestead Journey",
+    description:
+      "Watch the Shaggy Ink Farms YouTube journey through heritage poultry, farm fresh eggs, homestead projects, wildlife, and oak pasture ranch life.",
+  },
+  store: {
+    title: "Store Coming Soon",
+    description:
+      "The future Shaggy Ink Farms store for farm goods, print pieces, heritage poultry merchandise, labels, and homestead-inspired products.",
+  },
+  contact: {
+    title: "Contact Shaggy Ink Farms",
+    description:
+      "Contact Shaggy Ink Farms for egg availability, homestead projects, YouTube collaborations, and family farm updates.",
+  },
+  privacy: {
+    title: "Privacy Policy",
+    description:
+      "Read the Shaggy Ink Farms privacy policy for contact forms, email updates, analytics, and third-party services.",
+  },
+};
+
+export const routes = [
+  "/",
+  "/about",
+  "/chickens",
+  "/eggs",
+  "/homestead-projects",
+  "/youtube",
+  "/store",
+  "/contact",
+  "/privacy-policy",
+];
+
+export function absoluteUrl(path = "") {
+  return `${siteConfig.url}${path}`;
+}

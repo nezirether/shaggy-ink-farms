@@ -1,13 +1,26 @@
 # Shaggy Ink Farms
 
-A production-ready Next.js App Router website for Shaggy Ink Farms, a Northern California family homestead brand focused on Plymouth Barred Rock chickens, farm fresh eggs, family projects, homesteading, and YouTube storytelling.
+A production-ready Next.js App Router website for Shaggy Ink Farms, a Northern California family homestead and media brand centered on Plymouth Barred Rock chickens, seasonal eggs, homestead projects, oak pasture ranch life, and future farm commerce.
+
+## Brand Direction
+
+Shaggy Ink Farms should feel like Patagonia meets family homestead meets heritage poultry farm:
+
+- Rugged, premium, and authentic
+- Northern California oak pasture, not generic farm stock imagery
+- Plymouth Barred Rock chickens as the flagship livestock and visual icon
+- Vintage ranch marks, seed company labels, Americana farm heritage, and national park poster aesthetics
+- Built to scale into YouTube, eggs, products, education, and a larger media brand
 
 ## Tech Stack
 
 - Next.js App Router
 - TypeScript
 - Tailwind CSS
-- Responsive mobile-first layout
+- Mobile-first responsive layout
+- JSON-LD structured data
+- Generated sitemap and robots routes
+- Generated Open Graph image
 - Vercel-ready deployment
 
 ## Getting Started
@@ -24,14 +37,20 @@ Run the development server:
 npm run dev
 ```
 
-Open `http://localhost:3000` to view the site.
+Open `http://localhost:3000`.
 
-## Build
+## Production Checks
 
-Create a production build:
+Run a production build:
 
 ```bash
 npm run build
+```
+
+Run the static TypeScript check:
+
+```bash
+npm run lint
 ```
 
 Start the production server locally:
@@ -39,14 +58,6 @@ Start the production server locally:
 ```bash
 npm run start
 ```
-
-## Vercel Launch
-
-1. Push the repository to GitHub.
-2. Import the repo in Vercel.
-3. Keep the default framework setting as Next.js.
-4. Use `npm install` for install and `npm run build` for build.
-5. Deploy.
 
 ## Pages
 
@@ -56,10 +67,59 @@ npm run start
 - Eggs
 - Homestead Projects
 - YouTube
-- Store / Coming Soon
+- Store
 - Contact
 - Privacy Policy
 
-## Notes
+## SEO and Launch Features
 
-The site currently uses rustic styled placeholder image blocks for brand imagery. Replace these blocks with real photography of Barred Rock roosters, hens, oak trees, pasture grass, mule deer, fencing, eggs, and homestead projects as the farm media library grows.
+- Page-level metadata and Open Graph copy
+- Canonical URLs
+- JSON-LD structured data for Organization, LocalBusiness, and Farm-style context
+- `sitemap.xml`
+- `robots.txt`
+- Generated Open Graph image route
+- Contact form UI
+- Email signup UI
+- YouTube/embed-ready sections
+- Egg availability section
+- Store coming soon section
+
+## Vercel Launch
+
+1. Push the repository to GitHub.
+2. Import the repository in Vercel.
+3. Confirm framework preset: Next.js.
+4. Install command: `npm install`.
+5. Build command: `npm run build`.
+6. Output directory: leave Vercel default.
+7. Add the final production domain.
+8. Update `siteConfig.url` in `lib/site.ts` to the final domain.
+9. Redeploy after the domain is connected.
+
+## Launch Checklist
+
+- Replace placeholder image blocks with real farm photography.
+- Add a real YouTube channel URL if the handle changes.
+- Connect the email signup form to an email service.
+- Connect the contact form to a form handler, Resend, or a Vercel server action.
+- Confirm the public farm email address.
+- Update privacy policy details for the final email, analytics, form, and store providers.
+- Add a favicon and final brand mark.
+- Add real product or egg availability details when ready.
+- Verify mobile navigation on physical devices.
+- Submit the sitemap in Google Search Console after launch.
+
+## Image Direction
+
+Prioritize real or carefully generated photography with:
+
+- Barred Rock roosters and hens
+- Mature oak trees
+- Mule deer and wildlife edges when available
+- Rustic fencing
+- Pasture grass
+- Golden-hour Northern California light
+- Egg cartons, labels, workbench surfaces, and field notes
+
+Avoid generic barns, tractors as main imagery, industrial agriculture, and Midwest farm visual cues.

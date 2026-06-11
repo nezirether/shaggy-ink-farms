@@ -1,17 +1,16 @@
 import type { Metadata } from "next";
-import { ButtonLink } from "@/components/ButtonLink";
+import { CalloutGrid } from "@/components/CalloutGrid";
 import { PageHero } from "@/components/PageHero";
-import { SectionHeader } from "@/components/SectionHeader";
-import { siteConfig } from "@/lib/site";
+import { VideoTeaser } from "@/components/VideoTeaser";
+import { pageMetadata, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "YouTube",
-  description:
-    "Watch the Shaggy Ink Farms YouTube journey through poultry, eggs, projects, and homestead life.",
+  title: pageMetadata.youtube.title,
+  description: pageMetadata.youtube.description,
+  alternates: { canonical: "/youtube" },
   openGraph: {
-    title: `YouTube | ${siteConfig.name}`,
-    description:
-      "Flock updates, homestead projects, wildlife moments, and rural Northern California storytelling.",
+    title: `${pageMetadata.youtube.title} | ${siteConfig.name}`,
+    description: pageMetadata.youtube.description,
   },
 };
 
@@ -19,34 +18,37 @@ export default function YouTubePage() {
   return (
     <>
       <PageHero
-        eyebrow="Watch the Journey"
-        title="A homestead channel about chickens, projects, and the land."
-        copy="The YouTube channel is the moving record of Shaggy Ink Farms: flock walks, project days, egg updates, wildlife sightings, and the steady buildout of a family homestead."
-        imageTitle="Golden-Hour Video Frame"
-        imageDetail="Add a channel banner, thumbnail grid, or embedded featured video here when content is ready."
+        eyebrow="YouTube"
+        title="The channel is the long-form record of the farm being built."
+        copy="Shaggy Ink Farms on YouTube should feel observant, useful, and cinematic: flock updates, project days, egg notes, wildlife sightings, and honest lessons from the homestead."
+        imageTitle="Featured episode thumbnail"
+        imageDetail="Use high-contrast thumbnails with roosters, oak pasture, build materials, family work, and warm outdoor light."
       />
-      <section className="px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl">
-          <SectionHeader
-            eyebrow="Channel Themes"
-            title="What viewers can expect."
+      <VideoTeaser
+        title="Built for episodes, shorts, field notes, and launch moments."
+        copy="The site is ready for embedded videos, channel playlists, episode recaps, and email capture around the YouTube journey."
+      />
+      <section className="field-journal px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <CalloutGrid
+            items={[
+              {
+                eyebrow: "Series",
+                title: "Flock Walks",
+                copy: "Recurring updates on roosters, hens, chicks, laying seasons, flock behavior, and care decisions.",
+              },
+              {
+                eyebrow: "Series",
+                title: "Project Days",
+                copy: "Builds and repairs documented with useful detail, clean visuals, and honest lessons learned.",
+              },
+              {
+                eyebrow: "Series",
+                title: "Oak Pasture Notes",
+                copy: "Wildlife, weather, land care, mule deer, golden-hour moments, and the ecology around the homestead.",
+              },
+            ]}
           />
-          <div className="grid gap-5 md:grid-cols-3">
-            {["Flock updates", "Project builds", "Wildlife and oak pasture"].map(
-              (topic) => (
-                <div
-                  key={topic}
-                  className="rounded-sm border-2 border-[#1C1C1A]/15 bg-white/45 p-5"
-                >
-                  <div className="mb-4 aspect-video bg-[#1C1C1A]" />
-                  <h2 className="font-serif text-xl font-bold">{topic}</h2>
-                </div>
-              ),
-            )}
-          </div>
-          <div className="mt-8 text-center">
-            <ButtonLink href={siteConfig.social.youtube}>Visit YouTube</ButtonLink>
-          </div>
         </div>
       </section>
     </>

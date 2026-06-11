@@ -9,7 +9,8 @@ export function ContactForm() {
           id="name"
           name="name"
           type="text"
-          className="min-h-12 rounded-sm border-2 border-[#1C1C1A]/15 bg-[#F5F0E8] px-3 outline-none focus:border-[#8B2A2A]"
+          required
+          className="focus-ring min-h-12 rounded-sm border-2 border-[#1C1C1A]/15 bg-[#F5F0E8] px-3 outline-none focus:border-[#8B2A2A]"
         />
       </div>
       <div className="grid gap-2">
@@ -20,7 +21,8 @@ export function ContactForm() {
           id="email"
           name="email"
           type="email"
-          className="min-h-12 rounded-sm border-2 border-[#1C1C1A]/15 bg-[#F5F0E8] px-3 outline-none focus:border-[#8B2A2A]"
+          required
+          className="focus-ring min-h-12 rounded-sm border-2 border-[#1C1C1A]/15 bg-[#F5F0E8] px-3 outline-none focus:border-[#8B2A2A]"
         />
       </div>
       <div className="grid gap-2">
@@ -30,7 +32,7 @@ export function ContactForm() {
         <select
           id="topic"
           name="topic"
-          className="min-h-12 rounded-sm border-2 border-[#1C1C1A]/15 bg-[#F5F0E8] px-3 outline-none focus:border-[#8B2A2A]"
+          className="focus-ring min-h-12 rounded-sm border-2 border-[#1C1C1A]/15 bg-[#F5F0E8] px-3 outline-none focus:border-[#8B2A2A]"
         >
           <option>Egg availability</option>
           <option>Homestead projects</option>
@@ -46,15 +48,21 @@ export function ContactForm() {
           id="message"
           name="message"
           rows={6}
-          className="rounded-sm border-2 border-[#1C1C1A]/15 bg-[#F5F0E8] px-3 py-3 outline-none focus:border-[#8B2A2A]"
+          required
+          placeholder="Tell us what you are looking for."
+          className="focus-ring rounded-sm border-2 border-[#1C1C1A]/15 bg-[#F5F0E8] px-3 py-3 outline-none focus:border-[#8B2A2A]"
         />
       </div>
       <button
         type="submit"
-        className="rounded-sm border-2 border-[#8B2A2A] bg-[#8B2A2A] px-5 py-3 text-sm font-bold uppercase tracking-[0.08em] text-[#F5F0E8] transition hover:bg-[#6f2020]"
+        className="focus-ring rounded-sm border-2 border-[#8B2A2A] bg-[#8B2A2A] px-5 py-3 text-sm font-bold uppercase tracking-[0.08em] text-[#F5F0E8] transition hover:bg-[#6f2020]"
       >
         Send Message
       </button>
+      <p className="text-xs leading-5 text-[#1C1C1A]/58">
+        This is a launch-ready UI. Connect it to a form service or server action
+        before accepting live submissions.
+      </p>
     </form>
   );
 }

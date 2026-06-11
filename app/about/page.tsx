@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
+import { BrandPanel } from "@/components/BrandPanel";
+import { CalloutGrid } from "@/components/CalloutGrid";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeader } from "@/components/SectionHeader";
-import { siteConfig } from "@/lib/site";
+import { pageMetadata, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "About",
-  description:
-    "Learn about the Northern California family homestead behind Shaggy Ink Farms.",
+  title: pageMetadata.about.title,
+  description: pageMetadata.about.description,
+  alternates: { canonical: "/about" },
   openGraph: {
-    title: `About | ${siteConfig.name}`,
-    description:
-      "A family homestead among oak trees, pastureland, heritage poultry, wildlife, and practical craft.",
+    title: `${pageMetadata.about.title} | ${siteConfig.name}`,
+    description: pageMetadata.about.description,
   },
 };
 
@@ -19,32 +20,48 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="About the Farm"
-        title="A family homestead shaped by oak trees, pasture, and patient work."
-        copy="Shaggy Ink Farms is a Northern California family homestead and media brand sharing the useful, creative, and seasonal work of rural life."
-        imageTitle="Oak Pasture Homestead"
-        imageDetail="A wide future image can show mature oaks, pasture grass, rustic fencing, and family-scale farm life."
+        title="A family homestead with a long view."
+        copy="Shaggy Ink Farms is a Northern California homestead and media brand growing from a simple premise: build useful things, care for the flock, respect the land, and tell the story with taste."
+        imageTitle="Oak pasture, fence line, and family work"
+        imageDetail="Use a wide, warm photograph that shows mature oaks, open pastureland, rustic fencing, and the scale of a real family homestead."
       />
-      <section className="px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-5xl">
+      <BrandPanel
+        eyebrow="What Makes It Different"
+        title="Not a generic farm site. A living brand world."
+        copy="The farm identity combines heritage poultry, conservation-minded land care, rural Northern California texture, practical craft, and the visual language of vintage ranch marks, seed labels, and national park posters."
+        items={[
+          "Premium without becoming polished beyond recognition",
+          "Family-oriented without feeling small or temporary",
+          "Rugged, useful, and visually memorable",
+          "Designed to support YouTube, eggs, projects, and future goods",
+        ]}
+      />
+      <section className="field-journal px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
           <SectionHeader
-            eyebrow="Our Point of View"
-            title="Heritage poultry, conservation-minded land care, and family projects."
-            copy="The farm is built around the belief that small places matter: a healthy flock, a tidy fence line, an oak left standing, a project finished well, and a story shared honestly."
+            eyebrow="Operating Principles"
+            title="The farm is built around rhythm, restraint, and usefulness."
+            copy="Every project should earn its place. Every product should feel durable. Every story should make the viewer feel closer to the land, flock, and work."
           />
-          <div className="grid gap-6 md:grid-cols-3">
-            {[
-              "Plymouth Barred Rock chickens as the flagship livestock and visual heart of the brand.",
-              "Wildlife-aware pasture life with respect for mule deer, oaks, native edges, and seasonal change.",
-              "Practical craftsmanship, from coops and labels to garden systems and small farm goods.",
-            ].map((item) => (
-              <div
-                key={item}
-                className="rounded-sm border-2 border-[#1C1C1A]/15 bg-white/45 p-5 text-sm leading-7 text-[#1C1C1A]/75"
-              >
-                {item}
-              </div>
-            ))}
-          </div>
+          <CalloutGrid
+            items={[
+              {
+                eyebrow: "Land",
+                title: "Oak pasture first",
+                copy: "Mature oaks, open grass, wildlife corridors, and rustic edges shape the visual and practical life of the farm.",
+              },
+              {
+                eyebrow: "Livestock",
+                title: "Barred Rocks as an icon",
+                copy: "Plymouth Barred Rock chickens give the brand a recognizable animal, pattern, and practical poultry focus.",
+              },
+              {
+                eyebrow: "Craft",
+                title: "Handmade over disposable",
+                copy: "Coops, labels, signs, garden beds, and future goods should feel thoughtful, useful, and built to last.",
+              },
+            ]}
+          />
         </div>
       </section>
     </>

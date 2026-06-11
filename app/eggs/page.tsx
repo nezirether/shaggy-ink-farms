@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
+import { AvailabilityCard } from "@/components/AvailabilityCard";
+import { CalloutGrid } from "@/components/CalloutGrid";
+import { EmailSignup } from "@/components/EmailSignup";
 import { PageHero } from "@/components/PageHero";
-import { SectionHeader } from "@/components/SectionHeader";
-import { siteConfig } from "@/lib/site";
+import { pageMetadata, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Eggs",
-  description:
-    "Seasonal farm fresh egg information from the Shaggy Ink Farms flock.",
+  title: pageMetadata.eggs.title,
+  description: pageMetadata.eggs.description,
+  alternates: { canonical: "/eggs" },
   openGraph: {
-    title: `Eggs | ${siteConfig.name}`,
-    description:
-      "Farm fresh eggs, seasonal availability, carton notes, and small flock care.",
+    title: `${pageMetadata.eggs.title} | ${siteConfig.name}`,
+    description: pageMetadata.eggs.description,
   },
 };
 
@@ -19,37 +20,36 @@ export default function EggsPage() {
     <>
       <PageHero
         eyebrow="Farm Fresh Eggs"
-        title="Eggs from a small flock, gathered with the seasons."
-        copy="Our egg story is intentionally small scale: steady care, honest availability, and a closer connection between the flock and the people who enjoy what it produces."
-        imageTitle="Egg Cartons & Morning Light"
-        imageDetail="Future photos can feature eggs, kraft cartons, hand-stamped labels, and warm gold accents."
+        title="Seasonal eggs from a small flock, not a production line."
+        copy="Eggs at Shaggy Ink Farms are part of a living rhythm: daylight, weather, molting, flock growth, family chores, and the everyday care of Plymouth Barred Rock hens."
+        imageTitle="Egg cartons, warm light, and hand-stamped labels"
+        imageDetail="Future imagery should feel like a seed catalog still life: cream cartons, warm gold light, handwritten notes, and honest farm texture."
       />
-      <section className="px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-5xl">
-          <SectionHeader
-            eyebrow="Availability"
-            title="Seasonal, local, and shaped by the hens."
-            copy="Laying changes with age, weather, daylight, and flock size. This page can become the home for pickup details, waitlist notes, and carton announcements when eggs are available."
+      <AvailabilityCard />
+      <section className="field-journal px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <CalloutGrid
+            items={[
+              {
+                eyebrow: "Supply",
+                title: "Limited by design",
+                copy: "Availability should remain honest and seasonal, with clear updates instead of overpromising cartons.",
+              },
+              {
+                eyebrow: "Packaging",
+                title: "Ready for premium labels",
+                copy: "Carton design can lean into cream stock, barn red marks, warm gold detail, and Barred Rock patterning.",
+              },
+              {
+                eyebrow: "Updates",
+                title: "The email list comes first",
+                copy: "Subscribers should hear first about carton drops, pickup windows, flock notes, and seasonal changes.",
+              },
+            ]}
           />
-          <div className="grid gap-6 md:grid-cols-3">
-            {[
-              ["Collected Often", "Eggs are handled with a small-flock approach and practical daily care."],
-              ["Seasonal Supply", "Availability may pause or change as the flock molts, rests, or grows."],
-              ["Local Updates", "The email list is the best place for future carton drops and pickup notes."],
-            ].map(([title, copy]) => (
-              <div
-                key={title}
-                className="rounded-sm border-2 border-[#1C1C1A]/15 bg-white/45 p-5"
-              >
-                <h2 className="font-serif text-xl font-bold">{title}</h2>
-                <p className="mt-3 text-sm leading-6 text-[#1C1C1A]/70">
-                  {copy}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
+      <EmailSignup />
     </>
   );
 }

@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import { siteConfig } from "@/lib/site";
+import { pageMetadata, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description: "Privacy policy for Shaggy Ink Farms.",
+  title: pageMetadata.privacy.title,
+  description: pageMetadata.privacy.description,
+  alternates: { canonical: "/privacy-policy" },
   openGraph: {
-    title: `Privacy Policy | ${siteConfig.name}`,
-    description:
-      "How Shaggy Ink Farms handles contact forms, email updates, analytics, and third-party links.",
+    title: `${pageMetadata.privacy.title} | ${siteConfig.name}`,
+    description: pageMetadata.privacy.description,
   },
 };
 
 export default function PrivacyPolicyPage() {
   return (
-    <section className="px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-3xl">
+    <section className="field-journal px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-3xl rounded-sm border-2 border-[#1C1C1A]/15 bg-[#F5F0E8] p-6 sm:p-10">
         <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#8B2A2A]">
           Privacy Policy
         </p>
@@ -27,22 +27,28 @@ export default function PrivacyPolicyPage() {
         <div className="mt-8 grid gap-7 text-base leading-8 text-[#1C1C1A]/75">
           <p>
             Shaggy Ink Farms may collect information you voluntarily provide,
-            such as your name, email address, and message details when using a
-            contact form or email signup.
+            including your name, email address, message topic, and message
+            details when you use a contact form or email signup.
           </p>
           <p>
             We use this information to respond to messages, share farm updates,
-            and improve the website. We do not sell personal information.
+            announce future egg or product availability, improve the website,
+            and understand what content is most useful to visitors.
           </p>
           <p>
-            This website may link to third-party services such as YouTube,
-            Instagram, email providers, analytics tools, or future storefront
-            platforms. Those services are governed by their own privacy
-            policies.
+            We do not sell personal information. If we use third-party services
+            for email, analytics, embedded video, forms, or future commerce,
+            those services may process information according to their own
+            privacy policies.
           </p>
           <p>
-            If you want to update or remove information you have shared, contact
-            us at {siteConfig.email}.
+            This website may link to YouTube, Instagram, Vercel, email
+            providers, analytics tools, form handlers, or future storefront
+            platforms. Review those services directly for their privacy terms.
+          </p>
+          <p>
+            To request an update or removal of information you have shared,
+            contact us at {siteConfig.email}.
           </p>
         </div>
       </div>
