@@ -11,7 +11,7 @@ type JournalCardProps = {
 export function JournalCard({ article, featured = false }: JournalCardProps) {
   return (
     <article
-      className={`overflow-hidden rounded-sm border-2 border-[#1C1C1A] bg-[#F5F0E8] shadow-[8px_8px_0_rgba(44,74,46,0.16)] ${
+      className={`overflow-hidden rounded-sm border-2 border-[#1C1C1A] bg-[#D7D4CC] shadow-[8px_8px_0_rgba(44,74,46,0.16)] ${
         featured ? "grid lg:grid-cols-[0.9fr_1.1fr]" : ""
       }`}
     >

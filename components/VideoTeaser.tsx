@@ -10,7 +10,7 @@ type VideoTeaserProps = {
 
 export function VideoTeaser({
   title = "The YouTube channel follows the farm like a field journal.",
-  copy = "Flock walks, project days, egg notes, wildlife moments, and the practical work behind a Northern California homestead brand.",
+  copy = "Flock walks, project days, egg notes, wildlife moments, and the practical work behind a Northern California homestead.",
 }: VideoTeaserProps) {
   return (
     <section className="bg-[#D6DDC4] px-4 py-16 sm:px-6 lg:px-8">

@@ -2,7 +2,9 @@
 
 :root {
   --forest: #2c4a2e;
-  --cream: #f5f0e8;
+  --oak: #b8b6ae;
+  --oak-light: #c8c5bc;
+  --oak-paper: #d7d4cc;
   --barn: #8b2a2a;
   --charcoal: #1c1c1a;
   --gold: #c6933f;
@@ -19,7 +21,7 @@ html {
 
 body {
   margin: 0;
-  background: var(--cream);
+  background: var(--oak);
   color: var(--charcoal);
   font-family: "Trebuchet MS", Arial, sans-serif;
   text-rendering: optimizeLegibility;
@@ -54,7 +56,7 @@ a {
 .sun-wash {
   background:
     radial-gradient(circle at 20% 10%, rgba(198, 147, 63, 0.35), transparent 26%),
-    linear-gradient(135deg, rgba(245, 240, 232, 0.95), rgba(214, 221, 196, 0.78));
+    linear-gradient(135deg, rgba(184, 182, 174, 0.96), rgba(214, 221, 196, 0.72));
 }
 
 .ink-border {

@@ -19,9 +19,9 @@ export function Footer() {
             <p className="font-serif text-2xl font-bold">{siteConfig.name}</p>
           </div>
           <p className="mt-3 max-w-md leading-7 text-[#F5F0E8]/75">
-            A Northern California homestead and media brand rooted in Plymouth
-            Barred Rock chickens, oak pasture, family craft, and heritage farm
-            storytelling.
+            A Northern California family homestead built around Plymouth Barred
+            Rock chickens, oak pasture, useful work, and a record of the build
+            as it happens.
           </p>
           <p className="mt-5 w-fit border border-[#C6933F]/60 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-[#C6933F]">
             Built under mature oaks

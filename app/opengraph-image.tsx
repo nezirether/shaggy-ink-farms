@@ -16,7 +16,7 @@ export default function Image() {
           width: "100%",
           height: "100%",
           display: "flex",
-          background: "#F5F0E8",
+          background: "#B8B6AE",
           color: "#1C1C1A",
           fontFamily: "Georgia, serif",
           padding: 60,
@@ -32,7 +32,7 @@ export default function Image() {
             justifyContent: "space-between",
             padding: 48,
             background:
-              "linear-gradient(135deg, rgba(198,147,63,0.28), rgba(245,240,232,1) 42%, rgba(44,74,46,0.18))",
+              "linear-gradient(135deg, rgba(198,147,63,0.28), rgba(215,212,204,1) 42%, rgba(44,74,46,0.18))",
           }}
         >
           <div
@@ -91,8 +91,8 @@ export default function Image() {
               letterSpacing: 2,
             }}
           >
-            <span style={{ color: "#2C4A2E" }}>Eggs</span>
-            <span style={{ color: "#8B2A2A" }}>Projects</span>
+            <span style={{ color: "#2C4A2E" }}>Journal</span>
+            <span style={{ color: "#8B2A2A" }}>Family</span>
             <span style={{ color: "#C6933F" }}>YouTube</span>
           </div>
         </div>
