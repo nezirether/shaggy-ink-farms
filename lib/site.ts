@@ -1,9 +1,9 @@
 export const siteConfig = {
   name: "Shaggy Ink Farms",
   legalName: "Shaggy Ink Farms",
-  subtitle: "Northern California Heritage Poultry and Family Homestead",
+  subtitle: "A family farm in Anderson, California",
   description:
-    "A Northern California family homestead centered on Plymouth Barred Rock chickens, seasonal eggs, useful projects, and the ongoing work of building in public.",
+    "A Northern California family farm raising Plymouth Barred Rock chickens, growing strawberries and sunflowers, and sharing the work as we go.",
   url: "https://shaggyinkfarms.com",
   email: "hello@shaggyinkfarms.com",
   location: "Northern California",
@@ -24,30 +24,30 @@ export const navItems = [
 
 export const featureCards = [
   {
-    eyebrow: "Heritage Poultry",
-    title: "Plymouth Barred Rock chickens as the flock at the center of the place.",
-    copy: "Classic American poultry with practical utility, calm presence, bold barred feathering, and the kind of character a family can build a homestead around.",
+    eyebrow: "Chickens",
+    title: "Plymouth Barred Rock flock.",
+    copy: "We keep a small flock of Barred Rocks — classic American farm birds with a calm personality, bold feathering, and reliable eggs. This is the heart of the farm.",
     href: "/chickens",
   },
   {
-    eyebrow: "Farm Fresh Eggs",
-    title: "Small-flock eggs, seasonal by nature.",
-    copy: "Availability follows daylight, weather, molts, and the honest rhythm of hens raised close to home under oak shade and pasture air.",
-    href: "/eggs",
+    eyebrow: "Garden",
+    title: "Strawberries, sunflowers, and cut flowers.",
+    copy: "We grow strawberries, sunflowers, and a family garden. Nothing fancy — just things we want to eat and grow and share.",
+    href: "/farm-journal",
   },
   {
-    eyebrow: "Homestead Projects",
-    title: "Craft, conservation, and practical ranch work.",
-    copy: "Coops, fencing, gardens, labels, repairs, and useful projects documented with the care of a field journal and a long view of the place.",
-    href: "/homestead-projects",
+    eyebrow: "Giant Pumpkin Project",
+    title: "We are trying to grow a very large pumpkin.",
+    copy: "This is a family project we're doing together. We're learning as we go and documenting everything in the journal.",
+    href: "/farm-journal",
   },
 ];
 
 export const pageMetadata = {
   home: {
-    title: "Northern California Heritage Poultry and Family Homestead",
+    title: "A Family Farm in Anderson, California",
     description:
-      "Shaggy Ink Farms is a Northern California family homestead sharing Plymouth Barred Rock chickens, seasonal eggs, useful projects, and an honest record of the build.",
+      "Shaggy Ink Farms is a family farm in Northern California raising Plymouth Barred Rock chickens, growing strawberries and sunflowers, and sharing the work along the way.",
   },
   journal: {
     title: "Farm Journal",
@@ -55,9 +55,9 @@ export const pageMetadata = {
       "Read the Shaggy Ink Farms Farm Journal for homestead field notes, Plymouth Barred Rock history, seasonal eggs, projects, and Northern California ranch life.",
   },
   about: {
-    title: "About the Northern California Homestead",
+    title: "About the Farm",
     description:
-      "Meet Shaggy Ink Farms, a family homestead among mature oaks, open pastureland, heritage poultry, wildlife, craft, and rural Northern California ranch life.",
+      "Meet the Bartlett family and learn about Shaggy Ink Farms — a small Northern California homestead in Anderson, California.",
   },
   chickens: {
     title: "Plymouth Barred Rock Chickens",
@@ -117,5 +117,5 @@ export const openGraphImage = {
   url: absoluteUrl("/opengraph-image"),
   width: 1200,
   height: 630,
-  alt: "Shaggy Ink Farms heritage poultry and Northern California homestead",
+  alt: "Shaggy Ink Farms — a family farm in Anderson, California",
 };
