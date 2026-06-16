@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { journalArticles, getArticleHref } from "@/lib/journal";
 import { absoluteUrl, routes } from "@/lib/site";
+import { getZoneNumbers } from "@/lib/growing-guide/zones";
+import { getLocalSlugs } from "@/lib/growing-guide/local";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -28,5 +30,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }));
 
-  return [...staticRoutes, ...articleRoutes];
+  const zoneRoutes = getZoneNumbers().map((zone) => ({
+    url: absoluteUrl(`/growing-guide/zones/${zone}`),
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  const localRoutes = getLocalSlugs().map((slug) => ({
+    url: absoluteUrl(`/growing-guide/local/${slug}`),
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: slug === "anderson" ? 0.85 : 0.75,
+  }));
+
+  return [...staticRoutes, ...articleRoutes, ...zoneRoutes, ...localRoutes];
 }
