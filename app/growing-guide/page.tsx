@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { FindMyZone } from "./FindMyZone";
-import type { SearchRow } from "./FindMyZone";
-import { cities, resolveCity } from "@/lib/growing-guide";
 import { zoneGuides } from "@/lib/growing-guide/zones";
 import { localGuides } from "@/lib/growing-guide/local";
 import { pageMetadata, siteConfig, openGraphImage } from "@/lib/site";
@@ -18,32 +16,7 @@ export const metadata: Metadata = {
   },
 };
 
-function normalizeKey(city: string, state: string): string {
-  return `${city} ${state}`.toLowerCase().replace(/[.,]/g, "").replace(/\s+/g, " ");
-}
-
-// Precompute string-only search rows so the client search ships no heavy data.
-function buildSearchRows(): SearchRow[] {
-  return cities.map((entry) => {
-    const match = resolveCity(entry);
-    const guideHref =
-      match.guide.type === "local"
-        ? `/growing-guide/local/${match.guide.slug}`
-        : `/growing-guide/zones/${match.guide.slug}`;
-    return {
-      key: normalizeKey(entry.city, entry.state),
-      city: entry.city,
-      state: entry.state,
-      zone: entry.zone,
-      closestRegion: entry.closestRegion,
-      guideLabel: match.guide.label,
-      guideHref,
-    };
-  });
-}
-
 export default function GrowingGuidePage() {
-  const rows = buildSearchRows();
 
   return (
     <>
@@ -81,7 +54,7 @@ export default function GrowingGuidePage() {
                 and the closest guide we have.
               </p>
             </div>
-            <FindMyZone rows={rows} />
+            <FindMyZone />
           </section>
 
           {/* Section 2: Browse USDA Zones */}
