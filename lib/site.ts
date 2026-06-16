@@ -18,6 +18,7 @@ export const navItems = [
   { href: "/about", label: "About" },
   { href: "/farm-journal", label: "Journal" },
   { href: "/chickens", label: "Chickens" },
+  { href: "/growing-guide", label: "Growing Guide" },
   { href: "/youtube", label: "YouTube" },
   { href: "/contact", label: "Contact" },
 ];
@@ -84,6 +85,11 @@ export const pageMetadata = {
     description:
       "The Shaggy Ink Farms store for farm goods, print pieces, heritage poultry merchandise, labels, and homestead-inspired products.",
   },
+  growingGuide: {
+    title: "Growing Guide — What To Plant Right Now",
+    description:
+      "A no-frills growing guide for Northern California and the West Coast. Pick your region and see what to plant, start, harvest, and prepare this month.",
+  },
   contact: {
     title: "Contact Shaggy Ink Farms",
     description:
@@ -101,6 +107,7 @@ export const routes = [
   "/about",
   "/farm-journal",
   "/chickens",
+  "/growing-guide",
   "/eggs",
   "/homestead-projects",
   "/youtube",
