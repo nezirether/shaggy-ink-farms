@@ -906,6 +906,206 @@ For fall flowers, a late summer sowing can work, but seedlings need protection f
     },
   },
 
+  {
+    slug: 'growing-strawberries-northern-california',
+    title: 'Growing Strawberries in Northern California',
+    shortTitle: 'Strawberries',
+    description:
+      'How to grow strawberries in Northern California and the Sacramento Valley — choosing June-bearing vs day-neutral types, planting bare-root crowns, managing Zone 9b heat, and getting sweet berries off a small bed.',
+    category: 'Crop-Specific',
+    status: 'published',
+    readingTimeMinutes: 13,
+    lastUpdated: '2026-06-17',
+    keywords: [
+      'growing strawberries in northern california',
+      'when to plant strawberries in california',
+      'strawberry varieties for sacramento valley',
+      'day neutral vs june bearing strawberries',
+      'strawberry crown planting depth',
+      'zone 9b strawberries',
+      'growing strawberries anderson ca',
+    ],
+    content: {
+      introduction: `Strawberries are one of the most rewarding crops a Northern California family can grow. A single well-kept bed can hand you sweet, sun-warm berries that taste nothing like the firm, shipped fruit in a clamshell. They are one of the first things we wanted growing at Shaggy Ink Farms because they earn their space: kids love them, they fit small beds and containers, and a healthy planting produces for years.
+
+The catch is that our climate is not the cool, coastal one most strawberry advice is written for. Here in Anderson and across the Sacramento Valley we deal with mild winters and long, triple-digit summers. That changes which varieties to plant, when to plant them, and how hard you have to work at water and shade.
+
+This guide walks through the whole cycle for inland Northern California: picking the right type for your goals, planting bare-root crowns at the correct depth, keeping the bed alive through Zone 9b heat, and renovating the planting so it keeps producing.`,
+
+      whoThisIsFor: `This guide is for home gardeners and small homesteads in Northern California — especially the hotter inland valleys around Redding, Anderson, Chico, Red Bluff, and Sacramento — who want a productive strawberry bed rather than a row of plants that fries by July.
+
+It is also for anyone who planted strawberries once, got a handful of berries, and gave up. Most of the time the problem was variety choice, planting depth, or summer water — all fixable.`,
+
+      bestTime: `In Northern California, the best time to plant bare-root strawberries is late fall through late winter — roughly November through February — while plants are dormant and the soil is workable. Fall planting gives roots time to establish before spring growth and produces a stronger first harvest.
+
+If you miss the dormant window, you can set out potted strawberry plants in early spring, but get them in before the heat arrives. Avoid planting new strawberries in the middle of a Sacramento Valley summer.`,
+
+      toolsAndSupplies: [
+        'Bare-root strawberry crowns or healthy potted plants',
+        'Compost or well-aged manure',
+        'Raised bed, mound, or container with excellent drainage',
+        'Drip irrigation or soaker hose',
+        'Straw or clean mulch (the name says it all)',
+        'Balanced or slightly potassium-forward fertilizer',
+        'Bird netting',
+        '30 to 40 percent shade cloth for peak summer heat',
+        'Sharp snips for runners and renovation',
+      ],
+
+      steps: [
+        {
+          title: 'Choose the right type for our climate',
+          body: `Strawberries come in three patterns, and the choice matters more than the brand name on the tag.
+
+June-bearing types produce one large flush in late spring (here, often May into June). They make the biggest berries and the best jam harvest, but for a short window. Good performers for inland California include Chandler, Camarosa, and Seascape's June-bearing cousins.
+
+Day-neutral types — Albion, Seascape, San Andreas, Monterey — flower and fruit on and off through the season as long as temperatures are moderate. They are the better choice for most Northern California families because they spread the harvest out and shrug off our long season, though they slow down in extreme heat.
+
+Everbearing types fruit in spring and again in fall and sit in between. For a steady supply of fresh berries to eat, plant day-neutrals. For a concentrated harvest to preserve, plant June-bearers. Many gardeners grow a few of each.`,
+        },
+        {
+          title: 'Build a bed with drainage and sun',
+          body: `Strawberries want full sun, rich soil, and sharp drainage. They hate sitting in wet feet, which is exactly what causes crown and root rot.
+
+Plant in a raised bed, a wide mound, or containers. Work in two to three inches of compost. Strawberries prefer slightly acidic soil, around pH 5.5 to 6.5 — most valley soils are fine, but heavy clay should be lightened with compost and raised up so water drains away from the crown.
+
+In the hottest inland gardens, a spot that gets strong morning sun and a little afternoon shade in midsummer is ideal. Full all-day exposure works too, but you will lean harder on mulch and water.`,
+        },
+        {
+          title: 'Plant the crown at the correct depth',
+          body: `This is the single most important step, and the one most new growers get wrong.
+
+The crown is the thick point where the leaves meet the roots. Set each plant so the crown sits right at the soil surface — roots fully buried and fanned out below, crown not covered. Plant too deep and the crown rots. Plant too shallow with exposed roots and the plant dries out and dies.
+
+Soak bare-root crowns in water for 20 to 30 minutes before planting. Trim any extra-long roots to a few inches so they spread instead of bending upward. Space plants 12 to 18 inches apart, in rows about 18 inches apart, to leave room for runners and airflow.`,
+        },
+        {
+          title: 'Mulch to keep berries clean and roots cool',
+          body: `Straw mulch is classic for a reason. A clean layer of straw around the plants keeps developing berries off the soil, conserves moisture, suppresses weeds, and — critically for us — keeps the root zone cooler through valley heat.
+
+Tuck mulch under the leaves and around the crowns without burying them. Refresh it as it breaks down. In the worst of summer, that buffer between soil and sun is doing real work.
+
+Use /learn/growing-guides/companion-planting to plan good neighbors — borage and bush beans get along with strawberries, while you should keep them away from the cabbage family.`,
+        },
+        {
+          title: 'Water steadily — the make-or-break factor here',
+          body: `Strawberries have shallow roots and thin skins. In Northern California heat, inconsistent water is the fastest way to small, sour, or sunburned fruit.
+
+Aim for about one to two inches of water per week during cool weather, and more during heat waves — beds can need water daily when temperatures climb past 95 degrees. Drip irrigation or a soaker hose is far better than overhead watering, which wets the fruit and leaves and invites rot and disease.
+
+Keep the soil evenly moist, never swampy and never bone dry. Consistency matters more than volume.`,
+        },
+        {
+          title: 'Feed, pinch, and manage runners',
+          body: `Feed strawberries with a balanced or slightly potassium-forward fertilizer as growth starts in spring, and again lightly through the season for day-neutrals. Do not overdo nitrogen — you will get lush leaves and few berries.
+
+On June-bearing plants in their first year, pinch off the early flowers for the first several weeks. It feels wrong, but it pushes the plant to build roots and runners and pays you back with a much stronger harvest. Day-neutrals can be allowed to fruit their first season, though pinching the very first flush still helps establishment.
+
+Runners are the long stems that root new daughter plants. For bigger berries, trim most runners off so the plant feeds fruit instead of babies. To expand your bed for free, let a few runners root into pots or open soil, then cut them loose once established.`,
+        },
+        {
+          title: 'Protect the crop through summer heat',
+          body: `Two threats peak in a Sacramento Valley summer: heat and birds.
+
+When a serious heat wave is coming — sustained days over 95 to 100 degrees — drape 30 to 40 percent shade cloth over the bed during the hottest afternoon hours. It prevents flower drop and sunscald on the fruit. Combined with mulch and steady water, shade cloth is what keeps day-neutrals producing instead of stalling.
+
+Birds will find ripe berries before you do. Bird netting over hoops is the reliable fix. Watch for slugs and snails in the mulch, and for spider mites, which thrive in hot, dusty, dry conditions — a sign you may need more consistent water and humidity at the leaf.`,
+        },
+        {
+          title: 'Renovate and refresh the planting',
+          body: `After a June-bearing harvest finishes, renovate the bed: mow or shear the old leaves to a few inches above the crowns (never cut into the crown), thin crowded plants, weed, top-dress with compost, and water it back into growth. This resets the planting for next year.
+
+Day-neutral beds do not get the same hard renovation, but they benefit from grooming — removing spent leaves and tired plants — and from a compost top-dress.
+
+Strawberry plants lose vigor after about three years. Plan to start new plants from runners or fresh crowns on a rolling basis so part of your bed is always young and productive. Letting a few runners root each year makes this nearly free.`,
+        },
+      ],
+
+      commonMistakes: [
+        {
+          mistake: 'Planting the crown too deep or too shallow',
+          fix: 'Set the crown exactly at the soil line — roots buried, crown exposed. Too deep rots; too shallow dries out.',
+        },
+        {
+          mistake: 'Choosing a variety bred for the cool coast',
+          fix: 'For hot inland gardens, lean on day-neutrals like Albion, Seascape, and San Andreas that handle a long season.',
+        },
+        {
+          mistake: 'Watering overhead and wetting the fruit',
+          fix: 'Use drip or a soaker hose to keep water at the roots. Wet berries and leaves invite rot and disease.',
+        },
+        {
+          mistake: 'Letting the bed dry out in summer',
+          fix: 'Strawberries are shallow-rooted. Keep moisture steady — beds may need daily water above 95 degrees.',
+        },
+        {
+          mistake: 'Letting first-year June-bearers fruit heavily',
+          fix: 'Pinch early flowers the first few weeks so the plant builds roots and runners for a stronger real harvest.',
+        },
+        {
+          mistake: 'Keeping the same plants forever',
+          fix: 'Vigor drops after about three years. Root fresh runners on a rolling basis so the bed stays young.',
+        },
+      ],
+
+      northernCaliforniaNotes: `Most strawberry advice online is written for the cool, foggy coast where California's commercial berries are grown. Inland Northern California — the Sacramento Valley, the Redding and Anderson area, Chico, Red Bluff — is a different game. Our winters are mild enough that strawberries often hold their leaves and barely go dormant, and our summers are long and brutally hot.
+
+That cuts two ways. The mild winter lets you fall-plant and get an early, strong harvest. The hot summer means day-neutral varieties can stall or scorch in July and August without help. Mulch, drip irrigation, and afternoon shade during heat waves are not optional extras here — they are the difference between a productive bed and a fried one.`,
+
+      zone9Notes: `In Zone 9b, plant bare-root crowns from November through February while dormant. Strawberries here often behave as a near-evergreen perennial rather than dying back hard, so a fall planting can give berries the following spring.
+
+Expect day-neutrals to fruit spring through fall with a clear slowdown during peak summer heat, then a pleasant second wind as temperatures ease in autumn. June-bearers concentrate their crop in May and June — get it preserved before the heat arrives. Plan to refresh plants every few years as our long season ages them faster than cooler climates do.`,
+
+      wateringConsiderations: `Consistent moisture is the top priority for Northern California strawberries. Shallow roots dry out fast, and uneven water produces small, misshapen, or sour fruit. Target one to two inches per week in mild weather and water daily during heat waves. Always water at the base with drip or a soaker hose, never overhead, to keep fruit and foliage dry and disease-free.`,
+
+      heatConsiderations: `Heat is the main limiting factor inland. Above roughly 85 to 90 degrees, flowering and fruit quality decline; sustained triple digits cause flower drop and sunscald. Use straw mulch to cool the root zone, run 30 to 40 percent shade cloth over the bed during the hottest afternoons of a heat wave, and harvest ripe berries in the cool of the morning. Day-neutral varieties handle our season better than June-bearers but still need this support in midsummer.`,
+
+      checklist: [
+        'Pick day-neutral types for fresh eating, June-bearers for preserving',
+        'Plant bare-root crowns Nov through Feb while dormant',
+        'Build a raised, compost-rich bed with sharp drainage',
+        'Set the crown right at the soil line — not buried, not exposed',
+        'Space plants 12 to 18 inches apart',
+        'Mulch with straw to keep berries clean and roots cool',
+        'Water steadily with drip; never overhead',
+        'Pinch first-year June-bearing flowers to build the plant',
+        'Net against birds and shade the bed in extreme heat',
+        'Renovate June-bearers after harvest; refresh plants every few years',
+      ],
+
+      relatedSlugs: [
+        'companion-planting',
+        'seed-starting-instructions',
+        'growing-sunflowers-cut-flowers',
+        'crop-rotation',
+        'preserving-your-harvest',
+      ],
+
+      sources: [
+        {
+          title: 'Know Your Growing Zone',
+          author: 'Shaggy Ink Farms',
+          url: '/learn/know-your-growing-zone',
+        },
+        {
+          title: 'Family Food Security Garden Planner',
+          author: 'Shaggy Ink Farms',
+          url: '/garden-planner',
+        },
+        {
+          title: 'Growing Strawberries in the Home Garden',
+          author: 'UC Agriculture and Natural Resources',
+          url: 'https://ucanr.edu/',
+        },
+        {
+          title: 'The California Backyard Orchard & Home Garden',
+          author: 'UC Master Gardeners',
+          url: 'https://ucanr.edu/sites/gardenweb/',
+        },
+      ],
+    },
+  },
+
   // ── COMING SOON GUIDES ──────────────────────────────────────────────────────
   // TODO: Write full content for each of the following guides.
   // Structure mirrors the published guides above.

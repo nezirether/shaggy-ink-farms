@@ -233,6 +233,62 @@ export default function LearnPage() {
           </div>
         </section>
 
+        {/* Beyond the garden — link out to the rest of the farm */}
+        <section>
+          <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#8B2A2A]">
+            Beyond the Garden
+          </p>
+          <h2 className="mt-1 font-serif text-2xl font-bold text-[#1C1C1A]">
+            This is a working family farm, too
+          </h2>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#1C1C1A]/65">
+            The Learning Center grows out of a real homestead in Anderson, CA.
+            Meet the flock, get on the egg list, and follow the build.
+          </p>
+          <div className="mt-6 grid gap-5 sm:grid-cols-3">
+            {[
+              {
+                href: '/chickens',
+                label: 'The Flock',
+                title: 'Plymouth Barred Rock chickens',
+                description:
+                  'Meet the heritage breed at the center of the farm — and why we chose it.',
+              },
+              {
+                href: '/eggs',
+                label: 'Eggs',
+                title: 'Seasonal farm fresh eggs',
+                description:
+                  'Pasture-raised eggs with local pickup near Anderson and Redding.',
+              },
+              {
+                href: '/farm-journal',
+                label: 'Journal',
+                title: 'Notes from the farm',
+                description:
+                  'Honest field notes on the flock, the garden, and homestead projects.',
+              },
+            ].map((item) => (
+              <Link key={item.href} href={item.href} className="group block">
+                <div className="h-full rounded-sm border-2 border-[#1C1C1A] bg-[#D7D4CC] p-6 shadow-[4px_4px_0_rgba(44,74,46,0.1)] transition hover:-translate-y-0.5 hover:shadow-[6px_6px_0_rgba(44,74,46,0.18)]">
+                  <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#8B2A2A]">
+                    {item.label}
+                  </p>
+                  <h3 className="mt-2 font-serif text-lg font-bold text-[#1C1C1A] group-hover:text-[#2C4A2E]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[#1C1C1A]/65">
+                    {item.description}
+                  </p>
+                  <p className="mt-4 text-xs font-bold text-[#2C4A2E] group-hover:underline">
+                    Visit →
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
         {/* Email signup */}
         <EmailSignup defaultInterest="growing" source="learn" />
 
