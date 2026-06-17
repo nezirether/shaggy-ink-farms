@@ -42,6 +42,11 @@ export function organizationJsonLd() {
 }
 
 export function farmJsonLd() {
+  // No `makesOffer`/Product here. A bare Product (no price/review/rating) is
+  // flagged as an invalid Product Snippet by Google on every page, and the
+  // farm does not sell online. The egg program is described in page content,
+  // and `knowsAbout` below conveys the topical association without implying a
+  // purchasable product.
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -58,17 +63,10 @@ export function farmJsonLd() {
       addressCountry: "US",
     },
     areaServed: siteConfig.location,
-    makesOffer: [
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Product",
-          name: "Seasonal farm fresh eggs",
-          description:
-            "Small-flock eggs from Plymouth Barred Rock chickens, available seasonally.",
-        },
-        availability: "https://schema.org/LimitedAvailability",
-      },
+    knowsAbout: [
+      "Plymouth Barred Rock chickens",
+      "seasonal farm fresh eggs",
+      "Northern California homesteading",
     ],
   };
 }
