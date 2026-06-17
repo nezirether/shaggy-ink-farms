@@ -38,7 +38,7 @@ export default function PrivacyPolicyPage() {
           </p>
           <p>
             We do not sell personal information. If we use third-party services
-            for email, analytics, embedded video, forms, or future commerce,
+            for email, analytics, embedded video, forms, or future store features,
             those services may process information according to their own
             privacy policies.
           </p>

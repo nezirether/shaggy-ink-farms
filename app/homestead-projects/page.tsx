@@ -34,8 +34,8 @@ export default function HomesteadProjectsPage() {
         <div className="mx-auto max-w-7xl">
           <SectionHeader
             eyebrow="Project Tracks"
-            title="Useful builds with a strong visual point of view."
-            copy="The project archive follows the builds, fixes, systems, and lessons that turn raw ideas into a more capable homestead."
+            title="Useful builds, repairs, and lessons."
+            copy="The project archive follows the builds, fixes, systems, and lessons that make the homestead more capable over time."
           />
           <CalloutGrid
             items={[
@@ -50,9 +50,9 @@ export default function HomesteadProjectsPage() {
                 copy: "Rural Northern California texture: posts, wire, shade, grass, wildlife, and the everyday maintenance of open space.",
               },
               {
-                eyebrow: "Brand Craft",
+                eyebrow: "Farm Details",
                 title: "Labels, signs, packaging, and goods",
-                copy: "The visual pieces that turn a homestead into a recognizable brand people can follow, collect, and support.",
+                copy: "Small practical details that help the farm stay organized and make eggs, updates, and projects clearer.",
               },
             ]}
           />
@@ -70,9 +70,9 @@ export default function HomesteadProjectsPage() {
           />
           <div>
             <SectionHeader
-              eyebrow="Scalable Content"
-              title="Every good project can become a post, a video, a product lesson, or a field note."
-              copy="That is the engine of the brand: real work, documented beautifully, organized clearly, and reused across web, YouTube, email, and future commerce."
+              eyebrow="Project Notes"
+              title="Every good project should leave useful notes behind."
+              copy="We document real work so we can remember what we did, explain what changed, and help someone else avoid a few mistakes."
               align="left"
             />
             <ButtonLink href="/youtube" variant="secondary">

@@ -23,10 +23,10 @@ export default function StorePage() {
     <>
       <PageHero
         eyebrow="Store"
-        title="Goods with farm character, made for people who notice details."
-        copy="The store is taking shape around seasonal egg notes, printed field pieces, stickers, apparel, labels, and useful homestead goods that carry the Shaggy Ink Farms identity."
+        title="A small farm store, built slowly."
+        copy="The store is not open as a full shop yet. As the farm grows, this page will hold simple goods, seasonal notes, seeds, plants, and practical things that make sense for Shaggy Ink Farms."
         imageTitle="Cartons, labels, field notes, and goods"
-        imageDetail="Cream paper, barn red marks, warm gold, barred feather texture, and rugged work surfaces define the farm goods system."
+        imageDetail="Cream paper, barn red marks, warm gold, barred feather texture, and rugged work surfaces for small farm goods."
         imageSrc={farmImages.storeGoods.src}
         imageAlt={farmImages.storeGoods.alt}
       />
@@ -34,9 +34,9 @@ export default function StorePage() {
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
           <div>
             <SectionHeader
-              eyebrow="Commerce Direction"
-              title="Build the shop slowly, make every item feel worth keeping."
-              copy="The first products stay close to the farm story: useful, handsome, easy to keep, and strong enough to turn viewers into long-term supporters."
+              eyebrow="Store Plans"
+              title="Nothing here needs to be rushed."
+              copy="The first offerings should stay close to the farm: eggs when available, small printed pieces, plants, seeds, and useful goods when we can make or source them honestly."
               align="left"
             />
             <CalloutGrid
@@ -54,14 +54,14 @@ export default function StorePage() {
                 {
                   eyebrow: "Goods",
                   title: "Apparel and durable small items",
-                  copy: "Brand goods with enough restraint to feel premium, not novelty-driven.",
+                  copy: "Simple items only if they fit the farm and are worth keeping.",
                 },
               ]}
             />
           </div>
           <FarmVisual
-            title="Farm goods system"
-            detail="Egg cartons, labels, printed pieces, and farm goods share one restrained, heritage-inspired visual language."
+            title="Small farm goods"
+            detail="Egg cartons, labels, printed pieces, and farm goods should be plain, useful, and tied to real work on the farm."
             tone="gold"
             label="Farm Goods"
             src={farmImages.eggCartons.src}

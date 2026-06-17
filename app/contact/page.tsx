@@ -21,10 +21,10 @@ export default function ContactPage() {
     <>
       <PageHero
         eyebrow="Contact"
-        title="Reach the farm about eggs, projects, media, or the next build."
-        copy="Use the form for egg availability, YouTube and media notes, future product interest, homestead project ideas, or general farm updates."
+        title="Reach the farm about eggs, projects, YouTube, or general notes."
+        copy="Use the form for egg availability, YouTube notes, homestead project ideas, store questions, or general farm updates."
         imageTitle="Mailbox, fence line, and oak shade"
-        imageDetail="A strong contact image can show a rural mailbox, weathered fence, pasture grass, and a mature oak in warm light."
+        imageDetail="A rural mailbox, weathered fence, pasture grass, and a mature oak in warm light."
         imageSrc={farmImages.oakPasture.src}
         imageAlt={farmImages.oakPasture.alt}
       />
@@ -39,8 +39,8 @@ export default function ContactPage() {
             </h2>
             <p className="mt-4 leading-7 text-[#1C1C1A]/75">
               Tell us what you are looking for, where you found the farm, and
-              whether your note is about eggs, a project, media, or a future
-              product.
+              whether your note is about eggs, a project, YouTube, the store,
+              or a general question.
             </p>
             <div className="mt-6 min-w-0 rounded-sm border-2 border-[#1C1C1A]/15 bg-[#F5F0E8] p-5">
               <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#8B2A2A]">

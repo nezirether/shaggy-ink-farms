@@ -43,9 +43,9 @@ export const EMAIL_SIGNUP_INTERESTS: Record<
   store: {
     label: "Store & Product Releases",
     description:
-      "Merchandise, seeds, plants, digital products, and future offerings.",
+      "Simple farm goods, seeds, plants, and future offerings when they are ready.",
     eyebrow: "Store Releases",
-    headline: "Get Store & Product Release Notes",
+    headline: "Hear When Farm Goods Are Ready",
     buttonLabel: "Join Store Alerts",
     eventName: "email_signup_store",
   },

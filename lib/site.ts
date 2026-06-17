@@ -3,7 +3,7 @@ export const siteConfig = {
   legalName: "Shaggy Ink Farms",
   subtitle: "A family farm in Anderson, California",
   description:
-    "A Northern California family farm raising Plymouth Barred Rock chickens, growing strawberries and sunflowers, and sharing the work as we go.",
+    "A Northern California family farm building a Heritage Plymouth Barred Rock breeding program, keeping a mixed laying flock, growing flowers and food, and sharing the work as we go.",
   url: "https://www.shaggyinkfarms.com",
   email: "hello@shaggyinkfarms.com",
   location: "Northern California",
@@ -57,14 +57,14 @@ export const learnNavItems = [
 export const featureCards = [
   {
     eyebrow: "Chickens",
-    title: "Plymouth Barred Rock flock.",
-    copy: "We keep a small flock of Barred Rocks — classic American farm birds with a calm personality, bold feathering, and reliable eggs. This is the heart of the farm.",
+    title: "Mixed laying flock and Barred Rock breeding work.",
+    copy: "We keep a mixed laying flock and are building a Heritage Plymouth Barred Rock breeding program. The birds are part of the daily work here.",
     href: "/chickens",
   },
   {
     eyebrow: "Garden",
-    title: "Strawberries, sunflowers, and cut flowers.",
-    copy: "We grow strawberries, sunflowers, and a family garden. Nothing fancy — just things we want to eat and grow and share.",
+    title: "Cut flowers, strawberries, orchard, and family food.",
+    copy: "We are growing cut flowers, establishing strawberries and an orchard, and raising food for the family.",
     href: "/farm-journal",
   },
   {
@@ -79,27 +79,27 @@ export const pageMetadata = {
   home: {
     title: "A Family Farm in Anderson, California",
     description:
-      "Shaggy Ink Farms is a family farm in Northern California raising Plymouth Barred Rock chickens, growing strawberries and sunflowers, and sharing the work along the way.",
+      "Shaggy Ink Farms is a family farm in Anderson, California, building poultry, garden, flower, strawberry, and orchard projects one season at a time.",
   },
   journal: {
     title: "Farm Journal",
     description:
-      "Read the Shaggy Ink Farms Farm Journal for homestead field notes, Plymouth Barred Rock history, seasonal eggs, projects, and Northern California ranch life.",
+      "Read the Shaggy Ink Farms Farm Journal for homestead field notes, Heritage Plymouth Barred Rock breeding work, seasonal eggs, projects, and Northern California ranch life.",
   },
   about: {
     title: "About the Farm",
     description:
-      "Meet the Bartlett family and learn about Shaggy Ink Farms — a small Northern California homestead in Anderson, California.",
+      "Meet the Bartlett family and learn about Shaggy Ink Farms, a small Northern California homestead in Anderson, California.",
   },
   chickens: {
-    title: "Plymouth Barred Rock Chickens",
+    title: "Chickens and Heritage Barred Rocks",
     description:
-      "Meet the flagship Plymouth Barred Rock flock at Shaggy Ink Farms and follow heritage poultry care, roosters, hens, chicks, and breed notes.",
+      "Meet the mixed laying flock at Shaggy Ink Farms and follow the Heritage Plymouth Barred Rock breeding program as it develops.",
   },
   eggs: {
     title: "Farm Fresh Eggs in Anderson & Redding, CA",
     description:
-      "Seasonal, pasture-raised farm fresh eggs from a small flock of Plymouth Barred Rock hens in Anderson, California. Join the list for local pickup near Redding and Shasta County.",
+      "Seasonal farm fresh eggs from a small mixed laying flock in Anderson, California. Join the list for local pickup near Redding and Shasta County.",
   },
   projects: {
     title: "Homestead Projects",
@@ -114,17 +114,17 @@ export const pageMetadata = {
   store: {
     title: "Store",
     description:
-      "The Shaggy Ink Farms store for farm goods, print pieces, heritage poultry merchandise, labels, and homestead-inspired products.",
+      "The Shaggy Ink Farms store for simple farm goods and future offerings as the family farm grows.",
   },
   growingGuide: {
-    title: "Growing Guide — What To Plant Right Now",
+    title: "Growing Guide - What To Plant Right Now",
     description:
       "A no-frills growing guide for Northern California and the West Coast. Pick your region and see what to plant, start, harvest, and prepare this month.",
   },
   contact: {
     title: "Contact Shaggy Ink Farms",
     description:
-      "Contact Shaggy Ink Farms for egg availability, homestead projects, YouTube collaborations, and family farm updates.",
+      "Contact Shaggy Ink Farms for egg availability, homestead projects, YouTube notes, and family farm updates.",
   },
   privacy: {
     title: "Privacy Policy",
@@ -160,5 +160,5 @@ export const openGraphImage = {
   url: absoluteUrl("/opengraph-image"),
   width: 1200,
   height: 630,
-  alt: "Shaggy Ink Farms — a family farm in Anderson, California",
+  alt: "Shaggy Ink Farms - a family farm in Anderson, California",
 };

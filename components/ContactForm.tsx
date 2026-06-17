@@ -83,7 +83,7 @@ export function ContactForm() {
         >
           <option>Egg availability</option>
           <option>Homestead projects</option>
-          <option>YouTube or media</option>
+          <option>YouTube notes</option>
           <option>Store and farm goods</option>
           <option>General question</option>
         </select>

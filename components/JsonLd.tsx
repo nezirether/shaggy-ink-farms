@@ -42,10 +42,10 @@ export function organizationJsonLd() {
 }
 
 export function farmJsonLd() {
-  // No `makesOffer`/Product here. A bare Product (no price/review/rating) is
+  // No makesOffer/Product here. A bare Product (no price/review/rating) is
   // flagged as an invalid Product Snippet by Google on every page, and the
   // farm does not sell online. The egg program is described in page content,
-  // and `knowsAbout` below conveys the topical association without implying a
+  // and knowsAbout below conveys the topical association without implying a
   // purchasable product.
   return {
     "@context": "https://schema.org",
@@ -56,7 +56,7 @@ export function farmJsonLd() {
     image: `${siteConfig.url}${farmImages.heroRooster.src}`,
     email: siteConfig.email,
     description:
-      "Northern California family homestead focused on Plymouth Barred Rock chickens, seasonal eggs, homestead projects, and rural storytelling.",
+      "Northern California family homestead focused on a mixed laying flock, a Heritage Plymouth Barred Rock breeding program, seasonal eggs, flowers, strawberries, orchard work, and family food.",
     address: {
       "@type": "PostalAddress",
       addressRegion: "CA",
@@ -64,14 +64,18 @@ export function farmJsonLd() {
     },
     areaServed: siteConfig.location,
     knowsAbout: [
+      "mixed laying flock",
       "Plymouth Barred Rock chickens",
       "seasonal farm fresh eggs",
       "Northern California homesteading",
+      "cut flowers",
+      "strawberries",
+      "orchard work",
     ],
   };
 }
 
-// ─── Reusable schema builders ────────────────────────────────────────────────
+// Reusable schema builders
 
 type Crumb = { name: string; path: string };
 
@@ -91,7 +95,7 @@ export function breadcrumbJsonLd(crumbs: Crumb[]) {
 
 type FaqItem = { question: string; answer: string };
 
-/** FAQPage rich result. `answer` should be plain text (no markup). */
+/** FAQPage rich result. answer should be plain text. */
 export function faqPageJsonLd(items: FaqItem[]) {
   return {
     "@context": "https://schema.org",

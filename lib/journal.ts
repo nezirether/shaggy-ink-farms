@@ -52,9 +52,9 @@ export const journalArticles: JournalArticle[] = [
   {
     slug: "welcome-to-shaggy-ink-farms",
     title: "Welcome to Shaggy Ink Farms",
-    dek: "A first field note on family, oak pasture, Barred Rocks, and the long work of building a Northern California homestead from the ground up.",
+    dek: "A first field note on family, oak pasture, a mixed laying flock, Barred Rock breeding work, and the long work of building a Northern California homestead from the ground up.",
     excerpt:
-      "The opening note from Shaggy Ink Farms: why we started, what we are building, and how chickens, eggs, projects, and YouTube fit into the family homestead ahead.",
+      "The opening note from Shaggy Ink Farms: why we started, what we are building, and how chickens, eggs, gardens, flowers, orchard work, projects, and YouTube fit into the family homestead ahead.",
     publishedAt: "2026-06-11",
     author: siteConfig.name,
     category: "Farm Journal",
@@ -62,7 +62,7 @@ export const journalArticles: JournalArticle[] = [
     content: [
       {
         type: "paragraph",
-        text: "Welcome to Shaggy Ink Farms. If you are finding us at the beginning, that is the best place to arrive. The fences are still being improved, the systems are still being tuned, the flock is still teaching us, and the farm is becoming itself one project at a time. We are a Northern California family homestead set among mature oak trees and open pastureland, with Plymouth Barred Rock chickens at the center of the story.",
+        text: "Welcome to Shaggy Ink Farms. If you are finding us at the beginning, that is the best place to arrive. The fences are still being improved, the systems are still being tuned, the flock is still teaching us, and the farm is becoming itself one project at a time. We are a Northern California family homestead set among mature oak trees and open pastureland, with a mixed laying flock now and a Heritage Plymouth Barred Rock breeding program being built slowly.",
       },
       {
         type: "paragraph",
@@ -82,11 +82,11 @@ export const journalArticles: JournalArticle[] = [
       },
       {
         type: "paragraph",
-        text: "That is also why we are building this as a media brand. A homestead has a thousand small stories, and most of them are easy to lose if nobody records them. The first egg from a young hen. The first time a child confidently carries feed. The first storm that tests a roofline. The first version of a label that finally feels right. The first video that turns a regular chore into something useful for somebody else.",
+        text: "That is also why we are keeping a record of the work. A homestead has a thousand small stories, and most of them are easy to lose if nobody writes them down. The first egg from a young hen. The first time a child confidently carries feed. The first storm that tests a roofline. The first version of a label that finally feels right. The first video that turns a regular chore into something useful for somebody else.",
       },
       {
         type: "paragraph",
-        text: "We want Shaggy Ink Farms to feel personal without feeling small. The aim is a serious farm brand with family at the center: premium in its care, but not precious; thoughtful in its design, but still practical; rooted in tradition, but built for the way people discover farms now, through websites, videos, photos, newsletters, and the quiet trust that grows over time.",
+        text: "We want Shaggy Ink Farms to feel personal and honest. The aim is simple: take good care of the place, raise useful birds, grow food and flowers, teach the kids real work, and share enough of the process that people can follow along without us pretending the farm is finished.",
       },
       {
         type: "heading",
@@ -94,11 +94,11 @@ export const journalArticles: JournalArticle[] = [
       },
       {
         type: "paragraph",
-        text: "Northern California gives this place its visual language. Mature oaks, dry grass, warm light, wildlife edges, weathered fence posts, and wide pastureland are not background decoration. They are the frame. We are not trying to copy a generic farm postcard. We are building from the land we have, the climate we live in, and the rural character of this part of California.",
+        text: "Northern California shapes this place. Mature oaks, dry grass, warm light, wildlife edges, weathered fence posts, and wide pastureland are not background decoration. They are daily conditions. We are not trying to copy a generic farm postcard. We are building from the land we have, the climate we live in, and the rural character of this part of California.",
       },
       {
         type: "paragraph",
-        text: "The oaks slow everything down in the best way. They make you look up. They mark the seasons. They hold shade in summer and shape the way a pasture feels at golden hour. Mule deer moving through the edge of the property, chickens scratching near a fence, and the long line of an evening shadow all become part of the brand because they are part of the place.",
+        text: "The oaks slow everything down in the best way. They make you look up. They mark the seasons. They hold shade in summer and shape the way a pasture feels at golden hour. Mule deer moving through the edge of the property, chickens scratching near a fence, and the long line of an evening shadow are part of the place because we see them every day.",
       },
       {
         type: "paragraph",
@@ -110,7 +110,7 @@ export const journalArticles: JournalArticle[] = [
       },
       {
         type: "paragraph",
-        text: "Our flagship livestock is the Plymouth Barred Rock chicken. There are practical reasons for that choice, and there are emotional ones. Barred Rocks are a classic American farm breed: useful, sturdy, familiar, and beautiful in a way that feels earned. Their black-and-white barring gives the farm an immediate visual pattern. Their presence gives the brand a living icon.",
+        text: "Our long-term poultry focus is the Heritage Plymouth Barred Rock chicken. There are practical reasons for that choice, and there are emotional ones. Barred Rocks are a classic American farm breed: useful, sturdy, familiar, and beautiful in a way that feels earned. At the same time, our laying flock is mixed, with Rhode Island Reds, Salmon Faverolles, Ameraucanas, Olive Eggers, Copper Marans, Plymouth Barred Rocks, and other birds all part of the current farm rhythm.",
       },
       {
         type: "paragraph",
@@ -126,7 +126,7 @@ export const journalArticles: JournalArticle[] = [
       },
       {
         type: "paragraph",
-        text: "A lot of what we are building will happen in layers. First come the essential systems: safe coops, better fencing, feed storage, water routines, predator awareness, seasonal egg handling, and record keeping. Then come the parts that turn a working homestead into a brand people can follow: field notes, photography, video, packaging, farm goods, educational articles, and a store that feels like it belongs to the land.",
+        text: "A lot of what we are building will happen in layers. First come the essential systems: safe coops, better fencing, feed storage, water routines, predator awareness, seasonal egg handling, and record keeping. Alongside that come the gardens, cut flowers, strawberries, orchard trees, field notes, photography, video, and small farm goods if they fit the real work of the place.",
       },
       {
         type: "paragraph",
@@ -146,11 +146,11 @@ export const journalArticles: JournalArticle[] = [
       },
       {
         type: "paragraph",
-        text: "The future plan is simple in direction and large in scope: care for the flock, build the homestead, share the work, offer seasonal eggs, develop farm goods, and create videos and articles that help people feel closer to the process. We want Shaggy Ink Farms to become a place people return to because it feels trustworthy, useful, beautiful, and alive.",
+        text: "The future plan is simple in direction and large in scope: care for the flock, build the Barred Rock program carefully, grow food for the family, establish flowers, strawberries, and orchard trees, offer seasonal eggs when we have them, and make videos and articles that tell the truth about the process.",
       },
       {
         type: "paragraph",
-        text: "If you are here early, thank you. Early supporters matter because they give a young farm its first circle of witnesses. We are not asking you to believe in a finished thing. We are inviting you to follow the making of it: the first flock notes, the first egg updates, the first videos, the first store pieces, the first lessons learned the hard way, and the first glimpses of what this place can become.",
+        text: "If you are here early, thank you. We are not asking you to believe in a finished thing. We are inviting you to follow the making of it: the first flock notes, the first egg updates, the first videos, the first garden wins, the first store pieces if they make sense, and the first lessons learned the hard way.",
       },
       {
         type: "paragraph",
@@ -165,11 +165,11 @@ export const journalArticles: JournalArticle[] = [
       "From Good Shepherd to Our Pasture: The Heritage Genetics Behind Our Plymouth Barred Rock Flock",
     seoTitle:
       "Plymouth Barred Rock Heritage Genetics: The Frank Reese Lineage Behind Our Flock | Shaggy Ink Farms",
-    dek: "Our Barred Rock flock descends from Frank Reese and Good Shepherd Poultry Ranch -- among America's most important Standardbred poultry lines. Here's why that lineage matters.",
+    dek: "Our Barred Rock breeding stock descends from Frank Reese and Good Shepherd Poultry Ranch -- a well-known Standardbred poultry line. Here's why that lineage matters.",
     excerpt:
-      "Our Barred Rock flock descends from Frank Reese and Good Shepherd Poultry Ranch -- among America's most important Standardbred poultry lines. Here's why that lineage matters.",
+      "Our Barred Rock breeding stock descends from Frank Reese and Good Shepherd Poultry Ranch -- a well-known Standardbred poultry line. Here's why that lineage matters.",
     metaDescription:
-      "Our Barred Rock flock descends from Frank Reese and Good Shepherd Poultry Ranch -- among America's most important Standardbred poultry lines. Here's why that lineage matters.",
+      "Our Barred Rock breeding stock descends from Frank Reese and Good Shepherd Poultry Ranch -- a well-known Standardbred poultry line. Here's why that lineage matters.",
     publishedAt: "2026-06-11",
     updatedAt: "2026-06-11",
     author: siteConfig.name,
@@ -362,7 +362,7 @@ export const journalArticles: JournalArticle[] = [
       },
       {
         type: "paragraph",
-        text: "Here is the hard part, and the reason any of this is urgent: conservation genetics cannot be reverse-engineered. You cannot take ordinary hatchery stock and breed your way back to a true Standardbred line by buying the right book. The information that makes the line what it is took generations to accumulate, and if the chain of breeders is broken -- if enough farms stop maintaining the line honestly -- that information is simply gone. There is no backup. There is no archive that restores it.",
+        text: "Here is the hard part, and the reason this matters: conservation genetics cannot be reverse-engineered. You cannot take ordinary hatchery stock and breed your way back to a true Standardbred line by buying the right book. The information that makes the line what it is took generations to accumulate, and if the chain of breeders is broken -- if enough farms stop maintaining the line honestly -- that information is simply gone. There is no backup. There is no archive that restores it.",
       },
       {
         type: "paragraph",
@@ -464,7 +464,7 @@ export const journalArticles: JournalArticle[] = [
       },
       {
         type: "paragraph",
-        text: "We intend to hold it true. That is the discipline behind the brand, and the reason there is a chicken at the end of our pasture worth writing three thousand words about. She is the beginning of a long obedience: to pay attention, to tell the truth, and to build slowly enough that the story can carry weight.",
+        text: "We intend to hold it true. That is the discipline behind the breeding work, and the reason there is a chicken at the end of our pasture worth writing three thousand words about. She is the beginning of a long obedience: to pay attention, to tell the truth, and to build slowly enough that the story can carry weight.",
       },
       {
         type: "paragraph",

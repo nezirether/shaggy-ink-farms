@@ -7,7 +7,6 @@ export function Footer() {
   return (
     <footer className="border-t-2 border-[#1C1C1A]/10 bg-[#1C1C1A] px-4 py-14 text-[#F5F0E8] sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.35fr_0.9fr_0.9fr_0.9fr]">
-
         {/* Brand */}
         <div>
           <div className="flex items-center gap-4">
@@ -21,9 +20,10 @@ export function Footer() {
             <p className="font-serif text-2xl font-bold">{siteConfig.name}</p>
           </div>
           <p className="mt-3 max-w-md leading-7 text-[#F5F0E8]/75">
-            A Northern California family homestead built around Plymouth Barred
-            Rock chickens, oak pasture, useful work, and a record of the build
-            as it happens.
+            A Northern California family farm with a mixed laying flock,
+            Heritage Plymouth Barred Rock breeding work, cut flowers,
+            strawberries, orchard projects, and a record of the build as it
+            happens.
           </p>
           <p className="mt-5 w-fit border border-[#C6933F]/60 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-[#C6933F]">
             Built under mature oaks
@@ -106,7 +106,7 @@ export function Footer() {
 
       <div className="mx-auto mt-10 max-w-7xl border-t border-[#F5F0E8]/15 pt-6 text-sm text-[#F5F0E8]/55">
         &copy; {new Date().getFullYear()} Shaggy Ink Farms. All rights reserved.
-        &nbsp;·&nbsp; Anderson, CA &nbsp;·&nbsp; Zone 9b
+        &nbsp;-&nbsp; Anderson, CA &nbsp;-&nbsp; Zone 9b
       </div>
     </footer>
   );

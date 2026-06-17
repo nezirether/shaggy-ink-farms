@@ -36,7 +36,7 @@ export default function Home() {
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div>
             <p className="w-fit border-y-2 border-[#8B2A2A] py-2 text-xs font-extrabold uppercase tracking-[0.22em] text-[#8B2A2A]">
-              Anderson, California · 3 acres
+              Anderson, California - 3 acres
             </p>
             <h1 className="mt-6 max-w-4xl font-serif text-5xl font-bold leading-[0.95] text-[#1C1C1A] sm:text-7xl">
               Shaggy Ink Farms
@@ -45,9 +45,10 @@ export default function Home() {
               {siteConfig.subtitle}
             </p>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-[#1C1C1A]/76">
-              We raise Plymouth Barred Rock chickens, grow strawberries and
-              sunflowers, and share the work as we figure it out. This is a
-              real family farm — not a finished one.
+              We keep a mixed laying flock, build toward Heritage Plymouth
+              Barred Rock breeding, grow cut flowers and food, establish
+              strawberries and orchard trees, and share the work as we figure
+              it out. This is a real family farm, not a finished one.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/farm-journal">Read the Journal</ButtonLink>
@@ -73,7 +74,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl">
           <SectionHeader
             eyebrow="What We're Working On"
-            title="Chickens, strawberries, sunflowers, and one very large pumpkin."
+            title="Chickens, flowers, strawberries, orchard trees, and family food."
             copy="Here is what is actually happening on the farm right now."
           />
           <div className="grid gap-5 md:grid-cols-3">
@@ -117,8 +118,8 @@ export default function Home() {
                 raise animals, and do something real together as a family.
               </p>
               <p>
-                We are sharing the whole thing — the good days and the hard
-                ones — in the journal and on YouTube.
+                We are sharing the whole thing, the good days and the hard
+                ones, in the journal and on YouTube.
               </p>
             </div>
           </div>
