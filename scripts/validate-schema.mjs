@@ -4,6 +4,7 @@
 import { readFileSync } from "node:fs";
 
 const PAGES = [
+  { label: "/ (home)", file: ".next/server/app/index.html" },
   { label: "/eggs", file: ".next/server/app/eggs.html" },
   {
     label: "/learn/growing-guides/growing-strawberries-northern-california",
@@ -33,6 +34,19 @@ const bad = (m) => {
   failures++;
   console.log(`    ✗ ${m}`);
 };
+
+// Walk the whole JSON tree and collect every @type value, at any depth.
+// Google reads nested nodes (e.g. makesOffer.itemOffered) as their own items,
+// so a nested Product/Offer must be caught here, not just at the top level.
+function collectTypes(node, acc = []) {
+  if (Array.isArray(node)) {
+    node.forEach((n) => collectTypes(n, acc));
+  } else if (node && typeof node === "object") {
+    if (node["@type"]) acc.push(...[].concat(node["@type"]));
+    Object.values(node).forEach((v) => collectTypes(v, acc));
+  }
+  return acc;
+}
 
 function isHttpUrl(v) {
   return typeof v === "string" && /^https?:\/\//.test(v);
@@ -108,6 +122,7 @@ for (const page of PAGES) {
   const blocks = [...html.matchAll(LD_RE)];
   if (blocks.length === 0) bad("no JSON-LD blocks found");
   const types = [];
+  const allNestedTypes = [];
   for (const [, raw] of blocks) {
     let node;
     try {
@@ -118,10 +133,18 @@ for (const page of PAGES) {
     }
     const type = Array.isArray(node["@type"]) ? node["@type"].join("+") : node["@type"];
     types.push(type);
+    allNestedTypes.push(...collectTypes(node));
     console.log(`  [${type}]`);
     const primary = Array.isArray(node["@type"]) ? node["@type"][0] : node["@type"];
     validate(primary, node);
   }
+  // Catch ecommerce-implying types anywhere in the tree, including nested nodes.
+  if (allNestedTypes.includes("Product"))
+    bad("Product type found in the JSON tree (nested or top-level) — implies a sellable product");
+  else ok("no Product type anywhere in the page's JSON-LD");
+  if (allNestedTypes.includes("Offer"))
+    bad("Offer type found in the JSON tree — implies a transaction");
+  else ok("no Offer type anywhere in the page's JSON-LD");
   console.log(`  types on page: ${types.join(", ")}`);
 }
 
