@@ -3,6 +3,7 @@ import { journalArticles, getArticleHref } from "@/lib/journal";
 import { absoluteUrl, routes } from "@/lib/site";
 import { getZoneNumbers } from "@/lib/growing-guide/zones";
 import { getLocalSlugs } from "@/lib/growing-guide/local";
+import { getPublishedGuides } from "@/data/growingGuides";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -30,6 +31,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }));
 
+  const learningGuideRoutes = getPublishedGuides().map((guide) => ({
+    url: absoluteUrl(`/learn/growing-guides/${guide.slug}`),
+    lastModified: new Date(`${guide.lastUpdated}T12:00:00Z`),
+    changeFrequency: "monthly" as const,
+    priority: 0.75,
+  }));
+
   const zoneRoutes = getZoneNumbers().map((zone) => ({
     url: absoluteUrl(`/growing-guide/zones/${zone}`),
     lastModified: now,
@@ -44,5 +52,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: slug === "anderson" ? 0.85 : 0.75,
   }));
 
-  return [...staticRoutes, ...articleRoutes, ...zoneRoutes, ...localRoutes];
+  return [
+    ...staticRoutes,
+    ...articleRoutes,
+    ...learningGuideRoutes,
+    ...zoneRoutes,
+    ...localRoutes,
+  ];
 }
