@@ -204,7 +204,7 @@ export default function KnowYourGrowingZonePage() {
           </div>
         </section>
 
-        <EmailSignup />
+        <EmailSignup defaultInterest="growing" source="learn-growing-zone" />
 
         {/* Related links */}
         <section>

@@ -155,7 +155,7 @@ export default function Home() {
 
       {/* Email Signup */}
       <div id="updates">
-        <EmailSignup />
+        <EmailSignup defaultInterest="farm" source="homepage" />
       </div>
     </>
   );

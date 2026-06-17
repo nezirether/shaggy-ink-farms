@@ -53,7 +53,7 @@ export default function EggsPage() {
           />
         </div>
       </section>
-      <EmailSignup />
+      <EmailSignup defaultInterest="eggs" source="eggs" />
     </>
   );
 }

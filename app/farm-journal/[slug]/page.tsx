@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound, redirect } from "next/navigation";
 import { ButtonLink } from "@/components/ButtonLink";
+import { EmailSignup } from "@/components/EmailSignup";
 import { JsonLd } from "@/components/JsonLd";
 import {
   articleJsonLd,
@@ -230,6 +231,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </div>
         </div>
       </article>
+      <EmailSignup defaultInterest="farm" source="farm-journal-article" />
     </>
   );
 }

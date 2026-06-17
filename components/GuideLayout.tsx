@@ -243,7 +243,7 @@ export function GuideLayout({ guide }: GuideLayoutProps) {
 
         {/* Email signup */}
         <div className="mb-10">
-          <EmailSignup />
+          <EmailSignup defaultInterest="growing" source="learn-growing-guide" />
         </div>
 
         {/* Related guides */}

@@ -234,7 +234,7 @@ export default function LearnPage() {
         </section>
 
         {/* Email signup */}
-        <EmailSignup />
+        <EmailSignup defaultInterest="growing" source="learn" />
 
       </div>
     </div>

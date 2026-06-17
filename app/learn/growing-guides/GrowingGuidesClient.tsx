@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { GROWING_GUIDES, GUIDE_CATEGORIES } from '@/data/growingGuides';
 import { GuideCard } from '@/components/GuideCard';
+import { EmailSignup } from '@/components/EmailSignup';
 import type { GuideCategory } from '@/data/growingGuides';
 
 export function GrowingGuidesClient() {
@@ -89,35 +90,11 @@ export function GrowingGuidesClient() {
         </div>
 
         {/* Newsletter CTA */}
-        <div className="mt-14 rounded-sm border-2 border-[#1C1C1A] bg-[#2C4A2E] p-8 text-center text-white">
-          <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#C6933F]">
-            More guides coming
-          </p>
-          <h2 className="mt-2 font-serif text-2xl font-bold">
-            Get notified when new guides publish
-          </h2>
-          <p className="mt-3 text-sm text-white/65">
-            We publish new in-depth guides regularly. Subscribe to get them in your inbox.
-          </p>
-          <form
-            action="/api/subscribe"
-            method="POST"
-            className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center"
-          >
-            <input
-              type="email"
-              name="email"
-              required
-              placeholder="your@email.com"
-              className="rounded-sm border-2 border-white/30 bg-white/10 px-4 py-2.5 text-sm text-white placeholder:text-white/40 focus:border-white focus:outline-none sm:w-64"
-            />
-            <button
-              type="submit"
-              className="rounded-sm border-2 border-[#C6933F] bg-[#C6933F] px-6 py-2.5 text-sm font-bold text-white transition hover:bg-[#b07f35]"
-            >
-              Subscribe
-            </button>
-          </form>
+        <div className="mt-14">
+          <EmailSignup
+            defaultInterest="growing"
+            source="learn-growing-guides"
+          />
         </div>
       </div>
     </div>

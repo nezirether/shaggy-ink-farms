@@ -130,7 +130,7 @@ export default function GardenPlanningPage() {
           </div>
         </section>
 
-        <EmailSignup />
+        <EmailSignup defaultInterest="growing" source="learn-garden-planning" />
 
       </div>
     </div>
