@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { EmailSignup } from "@/components/EmailSignup";
 import { JournalCard } from "@/components/JournalCard";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeader } from "@/components/SectionHeader";
@@ -50,6 +51,7 @@ export default function FarmJournalPage() {
           </div>
         </div>
       </section>
+      <EmailSignup defaultInterest="farm" source="farm-journal" />
     </>
   );
 }

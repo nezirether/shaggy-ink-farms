@@ -69,7 +69,7 @@ export default function StorePage() {
           />
         </div>
       </section>
-      <EmailSignup />
+      <EmailSignup defaultInterest="store" source="store" />
     </>
   );
 }

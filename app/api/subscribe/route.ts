@@ -1,7 +1,14 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import {
+  EMAIL_SIGNUP_INTERESTS,
+  isEmailSignupInterest,
+  type EmailSignupInterest,
+} from "@/lib/email-signup";
 
 export const runtime = "nodejs";
+
+const successMessage = "You're on the list.";
 
 function field(formData: FormData, key: string): string {
   return String(formData.get(key) ?? "").trim();
@@ -11,17 +18,63 @@ function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+function getInterest(value: string): EmailSignupInterest {
+  return isEmailSignupInterest(value) ? value : "farm";
+}
+
+function contactPayload({
+  email,
+  firstName,
+  interest,
+  source,
+}: {
+  email: string;
+  firstName: string;
+  interest: EmailSignupInterest;
+  source: string;
+}) {
+  const interestDetails = EMAIL_SIGNUP_INTERESTS[interest];
+  return {
+    email,
+    firstName: firstName || undefined,
+    unsubscribed: false,
+    properties: {
+      signup_interest: interest,
+      signup_interest_label: interestDetails.label,
+      signup_source: source,
+    },
+  };
+}
+
+function contactUpdatePayload({
+  interest,
+  source,
+}: {
+  interest: EmailSignupInterest;
+  source: string;
+}) {
+  const interestDetails = EMAIL_SIGNUP_INTERESTS[interest];
+  // Do NOT include `unsubscribed` — preserve the contact's existing status.
+  return {
+    properties: {
+      signup_interest: interest,
+      signup_interest_label: interestDetails.label,
+      signup_source: source,
+    },
+  };
+}
+
 export async function POST(request: Request) {
   const formData = await request.formData();
+  const firstName = field(formData, "firstName");
   const email = field(formData, "email").toLowerCase();
+  const interest = getInterest(field(formData, "interest"));
+  const source = field(formData, "source") || "website";
   const company = field(formData, "company"); // honeypot
-  const source = field(formData, "source") || "web_general";
-  const interest = field(formData, "interest") || "farm_updates";
-  const interestLabel = field(formData, "interest_label") || "Farm Updates";
 
   // Honeypot — bots fill hidden fields; real users never see this.
   if (company) {
-    return NextResponse.json({ message: "You are on the farm updates list." });
+    return NextResponse.json({ message: successMessage });
   }
 
   if (!isValidEmail(email)) {
@@ -48,25 +101,17 @@ export async function POST(request: Request) {
   // The new API does not require an audienceId — contacts are global.
   // Properties (signup_source, signup_interest, signup_interest_label) must be
   // pre-created in the Resend dashboard under Contacts → Properties before they
-  // will be stored. If they are not pre-created, Resend returns a validation
-  // error and the contact is not created. See README.md for setup instructions.
-  const { data: createData, error: createError } = await resend.contacts.create(
-    {
-      email,
-      unsubscribed: false,
-      properties: {
-        signup_source: source,
-        signup_interest: interest,
-        signup_interest_label: interestLabel,
-      },
-    },
-  );
+  // will be stored. See README.md for setup instructions.
+  const { data: createData, error: createError } =
+    await resend.contacts.create(
+      contactPayload({ email, firstName, interest, source }),
+    );
 
   if (!createError) {
     console.log(
       `[subscribe] Contact created: ${createData.id} (email: ${email}, source: ${source})`,
     );
-    return NextResponse.json({ message: "You are on the farm updates list." });
+    return NextResponse.json({ message: successMessage });
   }
 
   // Resend returns validation_error when a contact already exists.
@@ -89,17 +134,12 @@ export async function POST(request: Request) {
   }
 
   // Update the existing contact.
-  // Do NOT set `unsubscribed` here — preserve the contact's current status.
-  const { data: updateData, error: updateError } = await resend.contacts.update(
-    {
+  // contactUpdatePayload intentionally omits `unsubscribed` to preserve status.
+  const { data: updateData, error: updateError } =
+    await resend.contacts.update({
       email,
-      properties: {
-        signup_source: source,
-        signup_interest: interest,
-        signup_interest_label: interestLabel,
-      },
-    },
-  );
+      ...contactUpdatePayload({ interest, source }),
+    });
 
   if (updateError) {
     console.error(
@@ -117,5 +157,5 @@ export async function POST(request: Request) {
   console.log(
     `[subscribe] Contact updated: ${updateData.id} (email: ${email}, source: ${source})`,
   );
-  return NextResponse.json({ message: "You are on the farm updates list." });
+  return NextResponse.json({ message: successMessage });
 }

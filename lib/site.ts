@@ -4,7 +4,7 @@ export const siteConfig = {
   subtitle: "A family farm in Anderson, California",
   description:
     "A Northern California family farm raising Plymouth Barred Rock chickens, growing strawberries and sunflowers, and sharing the work as we go.",
-  url: "https://shaggyinkfarms.com",
+  url: "https://www.shaggyinkfarms.com",
   email: "hello@shaggyinkfarms.com",
   location: "Northern California",
   social: {
@@ -13,26 +13,45 @@ export const siteConfig = {
   },
 };
 
-// Flat nav items (used for footer and mobile fallback).
-// The Header component renders "Learn & Plan" as a dropdown via LearnDropdown.
+// Primary navigation items used by the header and footer.
 export const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
+  { href: "/about", label: "Farm" },
+  { href: "/learn", label: "Learn" },
+  { href: "/garden-planner", label: "Plan" },
   { href: "/farm-journal", label: "Journal" },
-  { href: "/chickens", label: "Chickens" },
-  { href: "/youtube", label: "YouTube" },
+  { href: "/eggs", label: "Eggs" },
+  { href: "/store", label: "Store" },
   { href: "/contact", label: "Contact" },
 ];
 
-// Learn & Plan sub-navigation (used in footer Resources column)
+// Supporting Learn and Plan links used in the footer.
 export const learnNavItems = [
-  { href: "/learn", label: "Learning Center" },
-  { href: "/learn/growing-guides", label: "Growing Guides" },
-  { href: "/learn/garden-planning", label: "Planning Tools" },
-  { href: "/learn/know-your-growing-zone", label: "Know Your Zone" },
-  { href: "/garden-planner", label: "Garden Planner" },
-  // Legacy route — preserved for backlinks and bookmarks
-  { href: "/growing-guide", label: "Old Growing Guide" },
+  {
+    href: "/learn",
+    label: "Learning Center",
+    description:
+      "Start here for Shaggy Ink Farms growing and homesteading resources.",
+  },
+  {
+    href: "/learn/growing-guides",
+    label: "Growing Guides",
+    description: "Practical crop, seed starting, and garden guides.",
+  },
+  {
+    href: "/learn/know-your-growing-zone",
+    label: "Know Your Zone",
+    description: "USDA zone lookup, frost dates, and weekly growing tasks.",
+  },
+  {
+    href: "/learn/garden-planning",
+    label: "Garden Planning",
+    description: "Planning tools and food security garden resources.",
+  },
+  {
+    href: "/growing-guide",
+    label: "Local Growing Guides",
+    description: "Northern California city and zone-specific growing pages.",
+  },
 ];
 
 export const featureCards = [
@@ -119,6 +138,10 @@ export const routes = [
   "/about",
   "/farm-journal",
   "/chickens",
+  "/learn",
+  "/learn/growing-guides",
+  "/learn/garden-planning",
+  "/learn/know-your-growing-zone",
   "/growing-guide",
   "/garden-planner",
   "/eggs",

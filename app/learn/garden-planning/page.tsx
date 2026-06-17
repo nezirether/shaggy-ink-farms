@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     'garden square footage calculator',
     'zone lookup garden',
   ],
+  alternates: { canonical: '/learn/garden-planning' },
 };
 
 export default function GardenPlanningPage() {
@@ -129,7 +130,7 @@ export default function GardenPlanningPage() {
           </div>
         </section>
 
-        <EmailSignup />
+        <EmailSignup defaultInterest="growing" source="learn-garden-planning" />
 
       </div>
     </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { Header } from "@/components/Header";
 import { JsonLd, farmJsonLd, organizationJsonLd } from "@/components/JsonLd";
 import { openGraphImage, siteConfig } from "@/lib/site";
@@ -22,9 +23,6 @@ export const metadata: Metadata = {
     "family homestead",
     "homestead YouTube",
   ],
-  alternates: {
-    canonical: siteConfig.url,
-  },
   icons: {
     icon: "/icon.svg",
     apple: "/icon.svg",
@@ -59,6 +57,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        <GoogleAnalytics />
       </body>
     </html>
   );

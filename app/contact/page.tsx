@@ -57,7 +57,7 @@ export default function ContactPage() {
           <ContactForm />
         </div>
       </section>
-      <EmailSignup />
+      <EmailSignup defaultInterest="farm" source="contact" />
     </>
   );
 }

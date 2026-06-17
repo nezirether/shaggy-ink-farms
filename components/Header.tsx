@@ -49,26 +49,20 @@ export function Header() {
         </button>
 
         {/* Desktop nav */}
-        <div className="hidden items-center gap-5 lg:flex">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-sm font-bold uppercase tracking-[0.08em] text-[#D7D4CC]/75 transition hover:text-[#C6933F]"
-            >
-              {item.label}
-            </Link>
-          ))}
-
-          {/* Learn & Plan dropdown */}
-          <LearnDropdown />
-
-          <Link
-            href="/contact"
-            className="rounded-sm border-2 border-[#C6933F] bg-[#C6933F] px-4 py-2 text-sm font-bold uppercase tracking-[0.08em] text-white transition hover:bg-[#b07f35]"
-          >
-            Join Farm Updates
-          </Link>
+        <div className="hidden items-center gap-4 lg:flex xl:gap-5">
+          {navItems.map((item) =>
+            item.label === "Learn" ? (
+              <LearnDropdown key={item.href} />
+            ) : (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-sm font-bold uppercase tracking-[0.08em] text-[#D7D4CC]/75 transition hover:text-[#C6933F]"
+              >
+                {item.label}
+              </Link>
+            ),
+          )}
         </div>
       </nav>
 
@@ -79,27 +73,23 @@ export function Header() {
           className="border-t-2 border-[#D7D4CC]/10 bg-[#2C4A2E] px-4 py-4 lg:hidden"
         >
           <div className="mx-auto grid max-w-7xl gap-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="rounded-sm px-2 py-2.5 text-sm font-bold uppercase tracking-[0.08em] text-[#D7D4CC] transition hover:text-[#C6933F]"
-                onClick={() => setOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
-
-            {/* Learn & Plan accordion */}
-            <LearnMobileAccordion />
-
-            <Link
-              href="/contact"
-              className="mt-2 rounded-sm border-2 border-[#C6933F] bg-[#C6933F] px-4 py-2.5 text-center text-sm font-bold uppercase tracking-[0.08em] text-white transition hover:bg-[#b07f35]"
-              onClick={() => setOpen(false)}
-            >
-              Join Farm Updates
-            </Link>
+            {navItems.map((item) =>
+              item.label === "Learn" ? (
+                <LearnMobileAccordion
+                  key={item.href}
+                  onNavigate={() => setOpen(false)}
+                />
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="rounded-sm px-2 py-2.5 text-sm font-bold uppercase tracking-[0.08em] text-[#D7D4CC] transition hover:text-[#C6933F]"
+                  onClick={() => setOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ),
+            )}
           </div>
         </div>
       )}

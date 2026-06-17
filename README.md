@@ -129,6 +129,22 @@ Signup forms already pass a hidden `source` and `interest` field — no route ch
 - `CONTACT_FROM_EMAIL` must use a verified sending domain in Resend.
 - Honeypot spam protection: a hidden `company` field is present in the form; if filled, the request is silently accepted without calling Resend.
 
+## Analytics Configuration
+
+Google Analytics 4 is loaded only in production when a measurement ID is present.
+
+Create this environment variable in Vercel:
+
+```bash
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-D192EV37FB
+```
+
+Implementation details:
+
+- Analytics uses `next/script` with `afterInteractive` loading.
+- The initial page view and App Router route changes are tracked as GA4 `page_view` events.
+- Local development and builds without `NEXT_PUBLIC_GA_MEASUREMENT_ID` do not load Google Analytics.
+
 ## Pages
 
 - Home
@@ -165,15 +181,15 @@ Signup forms already pass a hidden `source` and `interest` field — no route ch
 4. Install command: `npm install`.
 5. Build command: `npm run build`.
 6. Output directory: leave Vercel default.
-7. Add `https://shaggyinkfarms.com` as the production domain.
-8. Confirm `siteConfig.url` in `lib/site.ts` remains `https://shaggyinkfarms.com`.
+7. Add `https://www.shaggyinkfarms.com` as the production domain.
+8. Confirm `siteConfig.url` in `lib/site.ts` remains `https://www.shaggyinkfarms.com`.
 9. Redeploy after the domain is connected.
 
 ## Launch Checklist
 
 - Add real farm photography as the media library grows.
 - Add a real YouTube channel URL if the handle changes.
-- Add `RESEND_API_KEY`, `RESEND_AUDIENCE_ID`, `CONTACT_TO_EMAIL`, and `CONTACT_FROM_EMAIL` in Vercel.
+- Add `RESEND_API_KEY`, `RESEND_AUDIENCE_ID`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`, and `NEXT_PUBLIC_GA_MEASUREMENT_ID` in Vercel.
 - Confirm the verified Resend sending domain before public traffic.
 - Confirm the public farm email address remains `hello@shaggyinkfarms.com`.
 - Update privacy policy details for the final email, analytics, form, and store providers.

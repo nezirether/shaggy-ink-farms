@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     'sacramento valley garden',
     'anderson ca gardening',
   ],
+  alternates: { canonical: '/learn' },
   openGraph: {
     title: 'Learning Center — Shaggy Ink Farms',
     description:
@@ -233,7 +234,7 @@ export default function LearnPage() {
         </section>
 
         {/* Email signup */}
-        <EmailSignup />
+        <EmailSignup defaultInterest="growing" source="learn" />
 
       </div>
     </div>

@@ -54,23 +54,21 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Learn & Plan */}
+        {/* Resources */}
         <div>
           <p className="mb-4 text-xs font-extrabold uppercase tracking-[0.2em] text-[#C6933F]">
-            Learn &amp; Plan
+            Resources
           </p>
           <div className="grid gap-2">
-            {learnNavItems
-              .filter((item) => item.label !== 'Old Growing Guide')
-              .map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="text-sm text-[#F5F0E8]/75 hover:text-[#F5F0E8]"
-                >
-                  {item.label}
-                </Link>
-              ))}
+            {learnNavItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-sm text-[#F5F0E8]/75 hover:text-[#F5F0E8]"
+              >
+                {item.label}
+              </Link>
+            ))}
           </div>
         </div>
 
