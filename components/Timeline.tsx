@@ -1,21 +1,10 @@
 'use client';
 
 import { useGardenPlanner } from '@/app/garden-planner/GardenPlannerContext';
+import { CATEGORY_COLORS } from '@/data/crops';
 import { MONTH_NAMES } from '@/data/zones';
 import { CATEGORY_ORDER } from '@/types/garden-planner';
-import type { CropCategory, TimelineRow } from '@/types/garden-planner';
-
-const CATEGORY_COLORS: Record<CropCategory, string> = {
-  'Tomatoes & Peppers': '#8B2A2A',
-  'Cucurbits':          '#2C4A2E',
-  'Beans & Peas':       '#4A6741',
-  'Brassicas':          '#3A5A8A',
-  'Root Vegetables':    '#7A4A2A',
-  'Leafy Greens':       '#2C6A3E',
-  'Alliums':            '#6A4A8A',
-  'Corn':               '#C6933F',
-  'Flowers & Other':    '#8A4A6A',
-};
+import type { TimelineRow } from '@/types/garden-planner';
 
 const MONTH_STARTS_DOY = [1, 32, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335];
 
@@ -33,7 +22,7 @@ interface RowBarProps {
 
 function RowBar({ row }: RowBarProps) {
   const color = CATEGORY_COLORS[row.category];
-  const label = row.totalSuccessions > 1 ? `${row.cropName} (wave ${row.succession})` : row.cropName;
+  const label = row.totalSuccessions > 1 ? `${row.cropName} (planting ${row.succession})` : row.cropName;
 
   return (
     <div className="flex items-center gap-2" style={{ minHeight: 32 }}>
@@ -198,7 +187,7 @@ export function Timeline() {
       {/* Row count */}
       <p className="text-xs text-[#1C1C1A]/50">
         {timelineRows.length} planting event{timelineRows.length !== 1 ? 's' : ''} across {Object.keys(byCategory).length} categories.
-        Some successions may be hidden if harvest falls after first frost for your zone.
+        Some later plantings may be hidden if harvest would begin after first frost in your zone.
       </p>
     </div>
   );

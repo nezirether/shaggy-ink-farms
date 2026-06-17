@@ -1,0 +1,26 @@
+﻿diff --git a/components/GardenConfigurator.tsx b/components/GardenConfigurator.tsx
+index 71eb9bf..fec3393 100644
+--- a/components/GardenConfigurator.tsx
++++ b/components/GardenConfigurator.tsx
+@@ -1,20 +1,8 @@
+ 'use client';
+ 
+ import { useGardenPlanner } from '@/app/garden-planner/GardenPlannerContext';
++import { CATEGORY_COLORS } from '@/data/crops';
+ import { CATEGORY_ORDER } from '@/types/garden-planner';
+-import type { CropCategory } from '@/types/garden-planner';
+-
+-const CATEGORY_COLORS: Record<CropCategory, string> = {
+-  'Tomatoes & Peppers': '#8B2A2A',
+-  'Cucurbits':          '#2C4A2E',
+-  'Beans & Peas':       '#4A6741',
+-  'Brassicas':          '#3A5A8A',
+-  'Root Vegetables':    '#7A4A2A',
+-  'Leafy Greens':       '#2C6A3E',
+-  'Alliums':            '#6A4A8A',
+-  'Corn':               '#C6933F',
+-  'Flowers & Other':    '#8A4A6A',
+-};
+ 
+ export function GardenConfigurator() {
+   const { spaceResult } = useGardenPlanner();

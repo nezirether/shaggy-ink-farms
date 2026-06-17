@@ -1,17 +1,27 @@
-import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import { NextResponse } from 'next/server';
 import {
   EMAIL_SIGNUP_INTERESTS,
   isEmailSignupInterest,
   type EmailSignupInterest,
-} from "@/lib/email-signup";
+} from '@/lib/email-signup';
 
-export const runtime = "nodejs";
+export const runtime = 'nodejs';
 
 const successMessage = "You're on the list.";
+const RESEND_API_BASE = 'https://api.resend.com/contacts';
+
+type ResendError = {
+  name: string;
+  message: string;
+};
+
+type ResendContactResponse = {
+  data: { id: string } | null;
+  error: ResendError | null;
+};
 
 function field(formData: FormData, key: string): string {
-  return String(formData.get(key) ?? "").trim();
+  return String(formData.get(key) ?? '').trim();
 }
 
 function isValidEmail(email: string): boolean {
@@ -19,7 +29,7 @@ function isValidEmail(email: string): boolean {
 }
 
 function getInterest(value: string): EmailSignupInterest {
-  return isEmailSignupInterest(value) ? value : "farm";
+  return isEmailSignupInterest(value) ? value : 'farm';
 }
 
 function contactPayload({
@@ -54,7 +64,6 @@ function contactUpdatePayload({
   source: string;
 }) {
   const interestDetails = EMAIL_SIGNUP_INTERESTS[interest];
-  // Do NOT include `unsubscribed` — preserve the contact's existing status.
   return {
     properties: {
       signup_interest: interest,
@@ -64,118 +73,147 @@ function contactUpdatePayload({
   };
 }
 
+async function resendRequest(
+  apiKey: string,
+  method: 'POST' | 'PATCH',
+  body: Record<string, unknown>,
+): Promise<ResendContactResponse> {
+  try {
+    const response = await fetch(RESEND_API_BASE, {
+      method,
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+      cache: 'no-store',
+    });
+
+    const payload = await response.json() as Record<string, unknown>;
+
+    if (!response.ok) {
+      return {
+        data: null,
+        error: {
+          name: String(payload.name ?? 'resend_error'),
+          message: String(payload.message ?? `Request failed with status ${response.status}`),
+        },
+      };
+    }
+
+    return {
+      data: { id: String((payload as { id?: string }).id ?? '') },
+      error: null,
+    };
+  } catch (error) {
+    return {
+      data: null,
+      error: {
+        name: 'network_error',
+        message: error instanceof Error ? error.message : 'Unknown network error',
+      },
+    };
+  }
+}
+
 export async function POST(request: Request) {
   const formData = await request.formData();
-  const firstName = field(formData, "firstName");
-  const email = field(formData, "email").toLowerCase();
-  const interest = getInterest(field(formData, "interest"));
-  const source = field(formData, "source") || "website";
-  const company = field(formData, "company"); // honeypot
+  const firstName = field(formData, 'firstName');
+  const email = field(formData, 'email').toLowerCase();
+  const interest = getInterest(field(formData, 'interest'));
+  const source = field(formData, 'source') || 'website';
+  const company = field(formData, 'company');
 
-  // Honeypot — bots fill hidden fields; real users never see this.
   if (company) {
     return NextResponse.json({ message: successMessage });
   }
 
   if (!isValidEmail(email)) {
     return NextResponse.json(
-      { message: "Please enter a valid email address." },
+      { message: 'Please enter a valid email address.' },
       { status: 400 },
     );
   }
 
-  if (!process.env.RESEND_API_KEY) {
-    console.error("[subscribe] RESEND_API_KEY is not set.");
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.error('[subscribe] RESEND_API_KEY is not set.');
     return NextResponse.json(
       {
         message:
-          "Farm updates are almost ready. Please check back soon or email hello@shaggyinkfarms.com.",
+          'Farm updates are almost ready. Please check back soon or email hello@shaggyinkfarms.com.',
       },
       { status: 503 },
     );
   }
 
-  const resend = new Resend(process.env.RESEND_API_KEY);
-
-  // Attempt to create the contact using the current Resend Contacts API.
-  // The new API does not require an audienceId — contacts are global.
-  // Try with custom properties first; fall back to bare create if Resend
-  // rejects the properties (they must be pre-created in the dashboard).
-  let createData: { id: string } | null = null;
-  let createError: { name: string; message: string } | null = null;
-
-  ({ data: createData, error: createError } = await resend.contacts.create(
+  let createResult = await resendRequest(
+    apiKey,
+    'POST',
     contactPayload({ email, firstName, interest, source }),
-  ));
+  );
 
-  if (createError && !createError.message.toLowerCase().includes("already exist")) {
-    // Properties may not be registered in Resend — retry without them.
+  if (createResult.error && !createResult.error.message.toLowerCase().includes('already exist')) {
     console.warn(
-      `[subscribe] Retrying without properties — ${createError.name}: ${createError.message}`,
+      `[subscribe] Retrying without properties - ${createResult.error.name}: ${createResult.error.message}`,
     );
-    ({ data: createData, error: createError } = await resend.contacts.create({
+    createResult = await resendRequest(apiKey, 'POST', {
       email,
       firstName: firstName || undefined,
       unsubscribed: false,
-    }));
+    });
   }
 
-  if (!createError) {
+  if (!createResult.error) {
     console.log(
-      `[subscribe] Contact created: ${createData!.id} (email: ${email}, source: ${source})`,
+      `[subscribe] Contact created: ${createResult.data?.id ?? 'unknown'} (email: ${email}, source: ${source})`,
     );
     return NextResponse.json({ message: successMessage });
   }
 
-  // Only treat "already exists" messages as a duplicate — not generic validation errors.
-  const isDuplicate = createError.message.toLowerCase().includes("already exist");
-
+  const isDuplicate = createResult.error.message.toLowerCase().includes('already exist');
   if (!isDuplicate) {
     console.error(
-      `[subscribe] Resend create error for ${email} — ${createError.name}: ${createError.message}`,
+      `[subscribe] Resend create error for ${email} - ${createResult.error.name}: ${createResult.error.message}`,
     );
     return NextResponse.json(
       {
         message:
-          "The farm updates list could not be joined right now. Please try again soon.",
+          'The farm updates list could not be joined right now. Please try again soon.',
       },
       { status: 502 },
     );
   }
 
-  // Update the existing contact.
-  // contactUpdatePayload intentionally omits `unsubscribed` to preserve status.
-  const { data: updateData, error: updateError } =
-    await resend.contacts.update({
-      email,
-      ...contactUpdatePayload({ interest, source }),
-    });
+  let updateResult = await resendRequest(apiKey, 'PATCH', {
+    email,
+    ...contactUpdatePayload({ interest, source }),
+  });
 
-  if (updateError) {
-    // Properties not registered — try update without them.
-    if (updateError.message.toLowerCase().includes("property") ||
-        updateError.name === "validation_error") {
-      const { data: bareUpdateData, error: bareUpdateError } =
-        await resend.contacts.update({ email });
-      if (!bareUpdateError) {
-        console.log(`[subscribe] Contact updated (no properties): ${bareUpdateData.id} (email: ${email})`);
-        return NextResponse.json({ message: successMessage });
-      }
+  if (updateResult.error) {
+    if (
+      updateResult.error.message.toLowerCase().includes('property') ||
+      updateResult.error.name === 'validation_error'
+    ) {
+      updateResult = await resendRequest(apiKey, 'PATCH', { email });
     }
-    console.error(
-      `[subscribe] Resend update error for ${email} — ${updateError.name}: ${updateError.message}`,
-    );
-    return NextResponse.json(
-      {
-        message:
-          "The farm updates list could not be joined right now. Please try again soon.",
-      },
-      { status: 502 },
-    );
+
+    if (updateResult.error) {
+      console.error(
+        `[subscribe] Resend update error for ${email} - ${updateResult.error.name}: ${updateResult.error.message}`,
+      );
+      return NextResponse.json(
+        {
+          message:
+            'The farm updates list could not be joined right now. Please try again soon.',
+        },
+        { status: 502 },
+      );
+    }
   }
 
   console.log(
-    `[subscribe] Contact updated: ${updateData.id} (email: ${email}, source: ${source})`,
+    `[subscribe] Contact updated: ${updateResult.data?.id ?? 'unknown'} (email: ${email}, source: ${source})`,
   );
   return NextResponse.json({ message: successMessage });
 }

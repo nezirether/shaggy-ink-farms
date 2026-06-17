@@ -1,0 +1,366 @@
+﻿diff --git a/types/garden-planner.ts b/types/garden-planner.ts
+index e6c8304..aabe1b2 100644
+--- a/types/garden-planner.ts
++++ b/types/garden-planner.ts
+@@ -1,6 +1,4 @@
+-// ─────────────────────────────────────────────────────────────────────────────
+-// Family Food Security Garden Planner — Core Types
+-// ─────────────────────────────────────────────────────────────────────────────
++// Core Garden Planner types
+ 
+ export type FamilyRole = 'child' | 'teen' | 'adult' | 'senior';
+ 
+@@ -13,131 +11,175 @@ export const CONSUMPTION_MULTIPLIERS: Record<FamilyRole, number> = {
+ 
+ export const ROLE_LABELS: Record<FamilyRole, string> = {
+   child: 'Child (under 12)',
+-  teen: 'Teen (12–17)',
++  teen: 'Teen (12-17)',
+   adult: 'Adult',
+   senior: 'Senior (65+)',
+ };
+ 
+-export const ROLE_EMOJI: Record<FamilyRole, string> = {
+-  child: '🧒',
+-  teen: '👦',
+-  adult: '🧑',
+-  senior: '🧓',
+-};
+-
+ export interface FamilyMember {
+   id: string;
+   role: FamilyRole;
+   count: number;
+ }
+ 
+-// ─── Crop Types ───────────────────────────────────────────────────────────────
+-
+ export type CropCategory =
+-  | 'Tomatoes & Peppers'
+-  | 'Cucurbits'
+-  | 'Beans & Peas'
+-  | 'Brassicas'
+-  | 'Root Vegetables'
+-  | 'Leafy Greens'
+-  | 'Alliums'
+-  | 'Corn'
+-  | 'Flowers & Other';
++  | 'Vegetables'
++  | 'Herbs'
++  | 'Flowers'
++  | 'Medicinals'
++  | 'Cover Crops'
++  | 'Grains'
++  | 'Perennial Vegetables'
++  | 'Berries'
++  | 'Fruit Trees'
++  | 'Nut Trees'
++  | 'Vines'
++  | 'Tropical Fruits'
++  | 'Subtropical Fruits'
++  | 'Food Forest Plants'
++  | 'Experimental Crops';
++
++export type CropType = 'annual' | 'biennial' | 'perennial';
++
++export type GrowthHabit =
++  | 'tree'
++  | 'shrub'
++  | 'vine'
++  | 'groundcover'
++  | 'herb'
++  | 'vegetable'
++  | 'flower';
++
++export type FoodForestLayer =
++  | 'canopy'
++  | 'subcanopy'
++  | 'shrub'
++  | 'herbaceous'
++  | 'groundcover'
++  | 'vine'
++  | 'root';
++
++export type PlannerMode =
++  | 'family-food-security'
++  | 'market-garden'
++  | 'orchard'
++  | 'food-forest'
++  | 'perennial-planning'
++  | 'beginner'
++  | 'advanced';
+ 
+ export const CATEGORY_ORDER: CropCategory[] = [
+-  'Tomatoes & Peppers',
+-  'Cucurbits',
+-  'Beans & Peas',
+-  'Brassicas',
+-  'Root Vegetables',
+-  'Leafy Greens',
+-  'Alliums',
+-  'Corn',
+-  'Flowers & Other',
++  'Vegetables',
++  'Herbs',
++  'Flowers',
++  'Medicinals',
++  'Cover Crops',
++  'Grains',
++  'Perennial Vegetables',
++  'Berries',
++  'Fruit Trees',
++  'Nut Trees',
++  'Vines',
++  'Tropical Fruits',
++  'Subtropical Fruits',
++  'Food Forest Plants',
++  'Experimental Crops',
++];
++
++export const PLANNER_MODES: PlannerMode[] = [
++  'family-food-security',
++  'market-garden',
++  'orchard',
++  'food-forest',
++  'perennial-planning',
++  'beginner',
++  'advanced',
+ ];
+ 
+ export interface Crop {
+   id: string;
+   name: string;
++  scientificName?: string;
+   category: CropCategory;
+-  /** Average lbs produced per plant over a full season / single planting */
+-  yieldPerPlant: number;
+-  yieldUnit: 'lbs' | 'heads' | 'ears' | 'bulbs';
+-  /** Days from transplant or direct sow to first harvest */
+-  daysToMaturity: number;
+-  /** Square feet needed per plant */
++  subcategory?: string;
++  type: CropType;
++  growthHabit: GrowthHabit;
++  zoneMin: number;
++  zoneMax: number;
+   spacingSqFt: number;
+-  /** Recommended number of successive plantings per season */
+-  successions: number;
+-  /** Weeks before last frost to start indoors (0 = direct sow only) */
++  squareFeetPerPlant?: number;
++  spacingInches: number;
++  rowSpacingInches: number;
++  daysToMaturity: number;
++  daysToHarvest?: number;
++  yearsToProduction?: number;
++  yieldPerPlant: number;
++  yieldPerPlantLbs?: number;
++  yieldPerPlantUnits?: string;
++  yieldUnit: 'lbs' | 'heads' | 'ears' | 'bulbs' | 'bunches' | 'flowers' | 'fruit' | 'clusters';
++  annualConsumptionLbs: number;
++  recommendedSuccessivePlantings: number;
++  successionFriendly: boolean;
++  successionCapable?: boolean;
+   startIndoorsWeeks: number;
+-  /**
+-   * Weeks after last frost to transplant or direct-sow outdoors.
+-   * Negative = before last frost (cold-hardy crops that can go out early).
+-   */
+   transplantWeeks: number;
+-  /** How many weeks the harvest window lasts per planting */
+   harvestWindowWeeks: number;
+-  /** Annual consumption in lbs per adult equivalent */
+-  annualConsumptionLbs: number;
+-  /** True if this crop is typically direct-seeded rather than transplanted */
+   directSow: boolean;
+-  /** Tolerates frost — can go out before last frost, continues past first frost */
+   coldHardy: boolean;
+-  /** Performs well in summer heat */
+   heatTolerant: boolean;
+-  notes?: string;
++  hotWeatherCrop: boolean;
++  coolWeatherCrop: boolean;
++  droughtTolerant: boolean;
++  perennial: boolean;
++  containerFriendly: boolean;
++  pollinatorFriendly: boolean;
++  familyFoodProduction: boolean;
++  marketGardenSuitable: boolean;
++  foodForestLayer?: FoodForestLayer;
++  pollinationNotes?: string;
++  treesPerAcre?: number;
++  climateRegions?: string[];
++  plannerModes?: PlannerMode[];
++  commonNames?: string[];
++  successionNote?: string;
++  notes: string;
+ }
+ 
+-// ─── Crop Plan ────────────────────────────────────────────────────────────────
+-
+ export interface CropPlan {
+   cropId: string;
+   included: boolean;
+-  /** System-calculated plants per succession wave */
+-  plantsPerSuccessionCalc: number;
+-  /** User-adjustable plants per succession (defaults to plantsPerSuccessionCalc) */
+-  plantsPerSuccession: number;
+-  /** Number of succession waves (defaults to crop.successions) */
+-  successions: number;
++  recommendedTotalPlants: number;
++  recommendedPlantsPerPlanting: number;
++  recommendedSuccessivePlantings: number;
++  plantsPerPlanting: number;
++  successivePlantings: number;
++  plantsPerPlantingCustomized: boolean;
++  successivePlantingsCustomized: boolean;
+ }
+ 
+-// ─── Zone Data ────────────────────────────────────────────────────────────────
+-
+ export interface ZoneData {
+   zone: string;
+   label: string;
+-  /** Day of year (1–365) for average last frost */
+   lastFrostDOY: number;
+-  /** Day of year (1–365) for average first fall frost */
+   firstFrostDOY: number;
+-  /** Number of frost-free days between last and first frost */
+   growingSeasonDays: number;
+   description: string;
+ }
+ 
+-// ─── Timeline ─────────────────────────────────────────────────────────────────
+-
+ export interface TimelineRow {
+-  key: string;            // unique: `${cropId}-s${succession}`
++  key: string;
+   cropId: string;
+   cropName: string;
+   category: CropCategory;
+   succession: number;
+   totalSuccessions: number;
+-  /** DOY when indoor seeds are started (null if not applicable) */
+   indoorStartDOY: number | null;
+-  /** DOY for transplant out or direct sow */
+   plantingDOY: number;
+   isDirectSow: boolean;
+-  /** DOY when harvest begins */
+   harvestStartDOY: number;
+-  /** DOY when harvest ends */
+   harvestEndDOY: number;
+ }
+ 
+-// ─── Space Calculation ────────────────────────────────────────────────────────
+-
+ export interface SpaceCrop {
+   cropId: string;
+   cropName: string;
+@@ -154,28 +196,23 @@ export interface SpaceResult {
+   crops: SpaceCrop[];
+ }
+ 
+-// ─── Shopping List ────────────────────────────────────────────────────────────
+-
+ export interface ShoppingItem {
+   cropId: string;
+   cropName: string;
+   totalPlants: number;
+-  successions: number;
+-  plantsPerSuccession: number;
+-  /** 'seed' = start from seed; 'transplant' = buy starts; 'both' = either works */
++  successivePlantings: number;
++  plantsPerPlanting: number;
+   acquisition: 'seed' | 'transplant' | 'both';
+-  /** Estimated seed packets (assuming ~50 seeds/packet for small seeds, 25 for large) */
+   seedPackets: number;
+   note: string;
+ }
+ 
+-// ─── Derived / Computed ───────────────────────────────────────────────────────
+-
+ export interface CropMetrics {
+   annualConsumption: number;
+   productionTarget: number;
+-  plantsPerSuccessionCalc: number;
+-  totalPlants: number;
++  recommendedPlantsPerPlanting: number;
++  recommendedSuccessivePlantings: number;
++  recommendedTotalPlants: number;
+   totalSqFt: number;
+   annualYield: number;
+ }
+@@ -189,8 +226,6 @@ export interface PlanSummary {
+   topCrops: { cropId: string; name: string; plants: number; sqFt: number }[];
+ }
+ 
+-// ─── App State ────────────────────────────────────────────────────────────────
+-
+ export type ActiveTab =
+   | 'dashboard'
+   | 'family'
+@@ -205,36 +240,43 @@ export interface GardenPlannerState {
+   zone: string;
+   familyMembers: FamilyMember[];
+   cropPlans: Record<string, CropPlan>;
+-  safetyMargin: number;  // 0.10–0.50
++  safetyMargin: number;
+   activeTab: ActiveTab;
+ }
+ 
+-// ─── Future Expansion Hooks ───────────────────────────────────────────────────
+-// These modules are not yet implemented. Types are defined here to allow
+-// architecture planning and eventual integration without breaking changes.
+-
+-export type ExpansionModuleId =
+-  | 'chicken-feed-calculator'
+-  | 'orchard-planner'
+-  | 'preservation-planner'
+-  | 'canning-planner'
+-  | 'freezer-inventory'
+-  | 'livestock-carrying-capacity'
+-  | 'market-garden-planner';
++export interface CropFilterState {
++  category: CropCategory | 'All';
++  zone: number | 'All';
++  type: CropType | 'All';
++  season: 'all' | 'hot' | 'cool';
++  droughtTolerantOnly: boolean;
++  containerFriendlyOnly: boolean;
++  pollinatorFriendlyOnly: boolean;
++  familyFoodOnly: boolean;
++  marketGardenOnly: boolean;
++  search: string;
++}
+ 
+ export interface ExpansionModule {
+-  id: ExpansionModuleId;
++  id:
++    | 'chicken-feed-calculator'
++    | 'orchard-planner'
++    | 'preservation-planner'
++    | 'canning-planner'
++    | 'freezer-inventory'
++    | 'livestock-carrying-capacity'
++    | 'market-garden-planner';
+   name: string;
+   description: string;
+   comingSoon: true;
+ }
+ 
+ export const EXPANSION_MODULES: ExpansionModule[] = [
+-  { id: 'chicken-feed-calculator',        name: 'Chicken Feed Calculator',         description: 'Calculate feed needs and pasture requirements for your flock.',         comingSoon: true },
+-  { id: 'orchard-planner',               name: 'Orchard Planner',                 description: 'Plan fruit tree spacing, pollination pairs, and harvest windows.',      comingSoon: true },
+-  { id: 'preservation-planner',          name: 'Preservation Planner',            description: 'Tie garden output to canning, drying, and fermentation goals.',         comingSoon: true },
+-  { id: 'canning-planner',               name: 'Canning Planner',                 description: 'Calculate jar counts, lids, and storage space for your harvest.',       comingSoon: true },
+-  { id: 'freezer-inventory',             name: 'Freezer Inventory',               description: 'Track frozen produce and plan for seasonal gaps.',                       comingSoon: true },
+-  { id: 'livestock-carrying-capacity',   name: 'Livestock Carrying Capacity',     description: 'Estimate how many animals your land and water can sustainably support.', comingSoon: true },
+-  { id: 'market-garden-planner',         name: 'Market Garden Planner',           description: 'Plan for CSA boxes, farmers market, or on-farm sales.',                 comingSoon: true },
++  { id: 'chicken-feed-calculator', name: 'Chicken Feed Calculator', description: 'Calculate feed needs and pasture requirements for your flock.', comingSoon: true },
++  { id: 'orchard-planner', name: 'Orchard Planner', description: 'Plan fruit tree spacing, pollination pairs, and harvest windows.', comingSoon: true },
++  { id: 'preservation-planner', name: 'Preservation Planner', description: 'Tie garden output to canning, drying, and fermentation goals.', comingSoon: true },
++  { id: 'canning-planner', name: 'Canning Planner', description: 'Calculate jar counts, lids, and storage space for your harvest.', comingSoon: true },
++  { id: 'freezer-inventory', name: 'Freezer Inventory', description: 'Track frozen produce and plan for seasonal gaps.', comingSoon: true },
++  { id: 'livestock-carrying-capacity', name: 'Livestock Carrying Capacity', description: 'Estimate how many animals your land and water can sustainably support.', comingSoon: true },
++  { id: 'market-garden-planner', name: 'Market Garden Planner', description: 'Plan for CSA boxes, farmers market, or on-farm sales.', comingSoon: true },
+ ];

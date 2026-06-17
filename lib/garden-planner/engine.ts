@@ -33,18 +33,22 @@ export function calcCropMetrics(
 ): CropMetrics {
   const annualConsumption = crop.annualConsumptionLbs * adultEq;
   const productionTarget = annualConsumption * (1 + safetyMargin);
-  // Total plants needed across all successions to hit the production target
-  const totalPlantsNeeded = Math.max(1, Math.ceil(productionTarget / crop.yieldPerPlant));
-  const plantsPerSuccessionCalc = Math.max(1, Math.ceil(totalPlantsNeeded / crop.successions));
-  const totalPlants = plantsPerSuccessionCalc * crop.successions;
-  const totalSqFt = totalPlants * crop.spacingSqFt;
-  const annualYield = totalPlants * crop.yieldPerPlant;
+  const baseRecommendedTotalPlants = Math.max(1, Math.ceil(productionTarget / crop.yieldPerPlant));
+  const recommendedSuccessivePlantings = Math.max(1, crop.recommendedSuccessivePlantings);
+  const recommendedPlantsPerPlanting = Math.max(
+    1,
+    Math.ceil(baseRecommendedTotalPlants / recommendedSuccessivePlantings),
+  );
+  const recommendedTotalPlants = recommendedPlantsPerPlanting * recommendedSuccessivePlantings;
+  const totalSqFt = recommendedTotalPlants * crop.spacingSqFt;
+  const annualYield = recommendedTotalPlants * crop.yieldPerPlant;
 
   return {
     annualConsumption,
     productionTarget,
-    plantsPerSuccessionCalc,
-    totalPlants,
+    recommendedPlantsPerPlanting,
+    recommendedSuccessivePlantings,
+    recommendedTotalPlants,
     totalSqFt,
     annualYield,
   };
@@ -81,7 +85,7 @@ export function calcPlanSummary(
     if (!plan.included) continue;
     const crop = getCropById(cropId);
     if (!crop) continue;
-    const plants = plan.plantsPerSuccession * plan.successions;
+    const plants = plan.plantsPerPlanting * plan.successivePlantings;
     const sqFt = plants * crop.spacingSqFt;
     totalPlants += plants;
     totalSqFt += sqFt;
@@ -110,7 +114,7 @@ export function calcSpaceResult(cropPlans: Record<string, CropPlan>): SpaceResul
     if (!plan.included) continue;
     const crop = getCropById(cropId);
     if (!crop) continue;
-    const totalPlants = plan.plantsPerSuccession * plan.successions;
+    const totalPlants = plan.plantsPerPlanting * plan.successivePlantings;
     const sqFt = Math.round(totalPlants * crop.spacingSqFt);
     crops.push({ cropId, cropName: crop.name, totalPlants, sqFt });
     byCategory[crop.category] = (byCategory[crop.category] ?? 0) + sqFt;
@@ -147,7 +151,7 @@ export function calcTimelineRows(
     const crop = getCropById(cropId);
     if (!crop) continue;
 
-    const successions = plan.successions;
+    const successions = plan.successivePlantings;
 
     for (let s = 0; s < successions; s++) {
       // Spread successive plantings by ~80% of the harvest window
@@ -249,7 +253,7 @@ export function calcShoppingList(cropPlans: Record<string, CropPlan>): ShoppingI
     const crop = getCropById(cropId);
     if (!crop) continue;
 
-    const totalPlants = plan.plantsPerSuccession * plan.successions;
+    const totalPlants = plan.plantsPerPlanting * plan.successivePlantings;
 
     // Determine acquisition type
     let acquisition: ShoppingItem['acquisition'] = 'both';
@@ -280,8 +284,8 @@ export function calcShoppingList(cropPlans: Record<string, CropPlan>): ShoppingI
       cropId,
       cropName: crop.name,
       totalPlants,
-      successions: plan.successions,
-      plantsPerSuccession: plan.plantsPerSuccession,
+      successivePlantings: plan.successivePlantings,
+      plantsPerPlanting: plan.plantsPerPlanting,
       acquisition,
       seedPackets: packetsNeeded,
       note: noteMap[cropId.replace('-', '_')] ?? '',
@@ -313,12 +317,12 @@ export function generateShareText(
 // ─── CSV Export ───────────────────────────────────────────────────────────
 
 export function generateCSV(items: ShoppingItem[]): string {
-  const header = ['Crop', 'Total Plants', 'Plants/Wave', 'Successions', 'Acquisition', 'Seed Packets', 'Notes'];
+  const header = ['Crop', 'Total Plants', 'Plants Per Planting', 'Successive Plantings', 'Acquisition', 'Seed Packets', 'Notes'];
   const rows = items.map((i) => [
     i.cropName,
     i.totalPlants,
-    i.plantsPerSuccession,
-    i.successions,
+    i.plantsPerPlanting,
+    i.successivePlantings,
     i.acquisition,
     i.seedPackets > 0 ? i.seedPackets : '—',
     i.note,

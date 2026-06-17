@@ -1,0 +1,121 @@
+﻿diff --git a/app/garden-planner/GardenPlannerApp.tsx b/app/garden-planner/GardenPlannerApp.tsx
+index 50d3b65..50d37cc 100644
+--- a/app/garden-planner/GardenPlannerApp.tsx
++++ b/app/garden-planner/GardenPlannerApp.tsx
+@@ -13,46 +13,53 @@ import type { ActiveTab } from '@/types/garden-planner';
+ 
+ const TABS: { id: ActiveTab; label: string; short: string }[] = [
+   { id: 'dashboard', label: 'Dashboard', short: 'Home' },
+-  { id: 'family',    label: 'Family & Zone', short: 'Family' },
+-  { id: 'crops',     label: 'Crop Library', short: 'Crops' },
+-  { id: 'plan',      label: 'Planting Plan', short: 'Plan' },
+-  { id: 'timeline',  label: 'Timeline', short: 'Timeline' },
+-  { id: 'space',     label: 'Garden Space', short: 'Space' },
+-  { id: 'shopping',  label: 'Shopping List', short: 'Shop' },
+-  { id: 'share',     label: 'Share Plan', short: 'Share' },
++  { id: 'family', label: 'Family & Zone', short: 'Family' },
++  { id: 'crops', label: 'Crop Library', short: 'Crops' },
++  { id: 'plan', label: 'Planting Plan', short: 'Plan' },
++  { id: 'timeline', label: 'Timeline', short: 'Timeline' },
++  { id: 'space', label: 'Garden Space', short: 'Space' },
++  { id: 'shopping', label: 'Shopping List', short: 'Shop' },
++  { id: 'share', label: 'Share Plan', short: 'Share' },
+ ];
+ 
+ export function GardenPlannerApp() {
+-  const { state, setTab, planSummary } = useGardenPlanner();
++  const { state, setTab, planSummary, resetPlanner } = useGardenPlanner();
+   const activeTab = state.activeTab;
+ 
+   return (
+     <div className="min-h-screen bg-[#F2EFE8]">
+-
+-      {/* Page header */}
+       <div className="border-b-2 border-[#1C1C1A] bg-[#D7D4CC]">
+         <div className="mx-auto max-w-6xl px-4 py-6">
+-          <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#8B2A2A]">
+-            Shaggy Ink Farms
+-          </p>
+-          <h1 className="mt-1 font-serif text-3xl font-bold text-[#1C1C1A] sm:text-4xl">
+-            Family Food Security Garden Planner
+-          </h1>
+-          <p className="mt-2 text-sm leading-6 text-[#1C1C1A]/65 max-w-2xl">
+-            Calculate exactly how much to plant to feed your family for a year.
+-            Built for homesteaders, food-security gardeners, and anyone growing beyond the hobby garden.
+-          </p>
+-          {planSummary.includedCropCount > 0 && (
+-            <p className="mt-2 text-xs text-[#1C1C1A]/50">
+-              Zone {state.zone} · {planSummary.includedCropCount} crops ·{' '}
+-              {planSummary.totalPlants.toLocaleString()} plants ·{' '}
+-              {Math.round(planSummary.totalSqFt).toLocaleString()} sq ft
+-            </p>
+-          )}
++          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
++            <div>
++              <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#8B2A2A]">
++                Shaggy Ink Farms
++              </p>
++              <h1 className="mt-1 font-serif text-3xl font-bold text-[#1C1C1A] sm:text-4xl">
++                Family Food Security Garden Planner
++              </h1>
++              <p className="mt-2 max-w-2xl text-sm leading-6 text-[#1C1C1A]/65">
++                Calculate how many plants to grow, how much room they need, and whether to plant them all at once or in stages.
++              </p>
++              {planSummary.includedCropCount > 0 && (
++                <p className="mt-2 text-xs text-[#1C1C1A]/50">
++                  Zone {state.zone} · {planSummary.includedCropCount} crops ·{' '}
++                  {planSummary.totalPlants.toLocaleString()} plants ·{' '}
++                  {Math.round(planSummary.totalSqFt).toLocaleString()} sq ft
++                </p>
++              )}
++            </div>
++
++            <button
++              onClick={resetPlanner}
++              className="rounded border-2 border-[#8B2A2A] px-4 py-2 text-xs font-extrabold uppercase tracking-[0.14em] text-[#8B2A2A] transition hover:bg-[#8B2A2A] hover:text-white"
++            >
++              Reset Plan
++            </button>
++          </div>
+         </div>
+       </div>
+ 
+-      {/* Tab navigation */}
+       <div className="sticky top-0 z-20 border-b-2 border-[#1C1C1A] bg-[#1C1C1A]">
+         <div className="mx-auto max-w-6xl px-4">
+           <nav className="flex overflow-x-auto">
+@@ -74,19 +81,17 @@ export function GardenPlannerApp() {
+         </div>
+       </div>
+ 
+-      {/* Tab content */}
+       <main className="mx-auto max-w-6xl px-4 py-8">
+         {activeTab === 'dashboard' && <Dashboard />}
+-        {activeTab === 'family'    && <FamilyProfile />}
+-        {activeTab === 'crops'     && <CropLibrary />}
+-        {activeTab === 'plan'      && <PlantingPlan />}
+-        {activeTab === 'timeline'  && <Timeline />}
+-        {activeTab === 'space'     && <GardenConfigurator />}
+-        {activeTab === 'shopping'  && <ShoppingList />}
+-        {activeTab === 'share'     && <SharePlan />}
++        {activeTab === 'family' && <FamilyProfile />}
++        {activeTab === 'crops' && <CropLibrary />}
++        {activeTab === 'plan' && <PlantingPlan />}
++        {activeTab === 'timeline' && <Timeline />}
++        {activeTab === 'space' && <GardenConfigurator />}
++        {activeTab === 'shopping' && <ShoppingList />}
++        {activeTab === 'share' && <SharePlan />}
+       </main>
+ 
+-      {/* Sticky bottom bar — quick nav on mobile */}
+       <div className="fixed bottom-0 left-0 right-0 z-20 flex border-t-2 border-[#1C1C1A] bg-[#1C1C1A] sm:hidden">
+         {TABS.slice(0, 5).map((tab) => (
+           <button
+@@ -101,7 +106,6 @@ export function GardenPlannerApp() {
+         ))}
+       </div>
+ 
+-      {/* Bottom padding for mobile sticky bar */}
+       <div className="h-14 sm:hidden" />
+     </div>
+   );

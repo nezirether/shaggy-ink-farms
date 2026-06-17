@@ -103,8 +103,8 @@ export function ShoppingList() {
               <th className="px-4 py-2.5">Crop</th>
               <th className="px-4 py-2.5 text-center">Acquire As</th>
               <th className="px-4 py-2.5 text-right">Total Plants</th>
-              <th className="px-4 py-2.5 text-right">Plants/Wave</th>
-              <th className="px-4 py-2.5 text-right">Waves</th>
+              <th className="px-4 py-2.5 text-right">Plants Per Planting</th>
+              <th className="px-4 py-2.5 text-right">Successive Plantings</th>
               <th className="px-4 py-2.5 text-right">Seed Packets</th>
               <th className="px-4 py-2.5">Notes</th>
             </tr>
@@ -130,8 +130,8 @@ export function ShoppingList() {
                   </span>
                 </td>
                 <td className="px-4 py-3 text-right font-bold text-[#1C1C1A]">{item.totalPlants}</td>
-                <td className="px-4 py-3 text-right text-[#1C1C1A]/70">{item.plantsPerSuccession}</td>
-                <td className="px-4 py-3 text-right text-[#1C1C1A]/70">{item.successions}</td>
+                <td className="px-4 py-3 text-right text-[#1C1C1A]/70">{item.plantsPerPlanting}</td>
+                <td className="px-4 py-3 text-right text-[#1C1C1A]/70">{item.successivePlantings}</td>
                 <td className="px-4 py-3 text-right">
                   {item.seedPackets > 0 ? (
                     <span className="font-bold text-[#1C1C1A]">{item.seedPackets}</span>

@@ -1,0 +1,357 @@
+﻿diff --git a/components/CropLibrary.tsx b/components/CropLibrary.tsx
+index f315c3d..3f07583 100644
+--- a/components/CropLibrary.tsx
++++ b/components/CropLibrary.tsx
+@@ -1,48 +1,71 @@
+ 'use client';
+ 
+-import { useState } from 'react';
++import { useMemo, useState } from 'react';
+ import { useGardenPlanner } from '@/app/garden-planner/GardenPlannerContext';
+-import { CROPS, getCropsByCategory } from '@/data/crops';
+-import { CATEGORY_ORDER } from '@/types/garden-planner';
+-import type { CropCategory } from '@/types/garden-planner';
+-
+-const CATEGORY_COLORS: Record<CropCategory, string> = {
+-  'Tomatoes & Peppers': '#8B2A2A',
+-  'Cucurbits':          '#2C4A2E',
+-  'Beans & Peas':       '#4A6741',
+-  'Brassicas':          '#3A5A8A',
+-  'Root Vegetables':    '#7A4A2A',
+-  'Leafy Greens':       '#2C6A3E',
+-  'Alliums':            '#6A4A8A',
+-  'Corn':               '#C6933F',
+-  'Flowers & Other':    '#8A4A6A',
++import { CATEGORY_METADATA, CROPS, filterCrops } from '@/data/crops';
++import type { CropFilterState, CropType } from '@/types/garden-planner';
++
++const INITIAL_FILTERS: CropFilterState = {
++  category: 'All',
++  zone: 'All',
++  type: 'All',
++  season: 'all',
++  droughtTolerantOnly: false,
++  containerFriendlyOnly: false,
++  pollinatorFriendlyOnly: false,
++  familyFoodOnly: false,
++  marketGardenOnly: false,
++  search: '',
+ };
+ 
++function FilterToggle({
++  active,
++  label,
++  onClick,
++}: {
++  active: boolean;
++  label: string;
++  onClick: () => void;
++}) {
++  return (
++    <button
++      onClick={onClick}
++      className={`rounded border-2 px-3 py-1.5 text-xs font-bold transition ${
++        active
++          ? 'border-[#2C4A2E] bg-[#2C4A2E] text-white'
++          : 'border-[#1C1C1A] bg-[#B8B6AE] text-[#1C1C1A] hover:bg-[#1C1C1A] hover:text-white'
++      }`}
++    >
++      {label}
++    </button>
++  );
++}
++
+ export function CropLibrary() {
+   const { state, cropMetrics, toggleCrop } = useGardenPlanner();
+-  const [activeCategory, setActiveCategory] = useState<CropCategory | 'All'>('All');
+-  const [search, setSearch] = useState('');
++  const [filters, setFilters] = useState<CropFilterState>(INITIAL_FILTERS);
+ 
+-  const byCategory = getCropsByCategory();
++  const includedCount = Object.values(state.cropPlans).filter((plan) => plan.included).length;
++  const filteredCrops = useMemo(() => filterCrops(filters), [filters]);
+ 
+-  const includedCount = Object.values(state.cropPlans).filter((p) => p.included).length;
++  const zoneOptions = useMemo(() => {
++    const zones = new Set<number>();
++    for (const crop of CROPS) {
++      for (let zone = crop.zoneMin; zone <= crop.zoneMax; zone += 1) zones.add(zone);
++    }
++    return Array.from(zones).sort((a, b) => a - b);
++  }, []);
+ 
+-  const filteredCrops = CROPS.filter((crop) => {
+-    const matchesCategory = activeCategory === 'All' || crop.category === activeCategory;
+-    const matchesSearch = search === '' || crop.name.toLowerCase().includes(search.toLowerCase());
+-    return matchesCategory && matchesSearch;
+-  });
++  const activeTypeLabel = (type: CropType | 'All') => (type === 'All' ? 'All Types' : type[0].toUpperCase() + type.slice(1));
+ 
+   return (
+     <div className="space-y-6">
+-
+-      {/* Header */}
+       <div className="flex items-start justify-between gap-4">
+         <div>
+-          <h2 className="font-serif text-xl font-bold text-[#1C1C1A]">Crop Library</h2>
++          <h2 className="font-serif text-xl font-bold text-[#1C1C1A]">Master Crop Library</h2>
+           <p className="mt-1 text-sm text-[#1C1C1A]/65">
+-            Select which crops to include in your family food plan. Plant counts are
+-            calculated automatically based on your family and safety margin.
++            Browse annuals, herbs, flowers, berries, trees, vines, and long-term food production crops.
++            New additions still open into the existing Garden Planner with recommendation defaults.
+           </p>
+         </div>
+         <div className="text-right">
+@@ -52,57 +75,90 @@ export function CropLibrary() {
+         </div>
+       </div>
+ 
+-      {/* Search */}
+       <input
+         type="search"
+-        value={search}
+-        onChange={(e) => setSearch(e.target.value)}
+-        placeholder="Search crops…"
++        value={filters.search}
++        onChange={(e) => setFilters((current) => ({ ...current, search: e.target.value }))}
++        placeholder="Search by crop name, scientific name, or alias..."
+         className="w-full rounded-sm border-2 border-[#1C1C1A] bg-[#D7D4CC] px-4 py-2 text-sm text-[#1C1C1A] placeholder:text-[#1C1C1A]/40 focus:border-[#2C4A2E] focus:outline-none"
+       />
+ 
+-      {/* Category filter */}
++      <div className="grid gap-4 rounded-sm border border-[#1C1C1A]/10 bg-[#D7D4CC]/50 p-4 lg:grid-cols-3">
++        <label className="space-y-1 text-sm text-[#1C1C1A]/70">
++          <span className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-[#1C1C1A]/55">Category</span>
++          <select
++            value={filters.category}
++            onChange={(e) => setFilters((current) => ({ ...current, category: e.target.value as CropFilterState['category'] }))}
++            className="w-full rounded border border-[#1C1C1A]/20 bg-white/70 px-3 py-2 text-sm text-[#1C1C1A]"
++          >
++            <option value="All">All Categories</option>
++            {CATEGORY_METADATA.map((category) => (
++              <option key={category.id} value={category.id}>{category.label}</option>
++            ))}
++          </select>
++        </label>
++
++        <label className="space-y-1 text-sm text-[#1C1C1A]/70">
++          <span className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-[#1C1C1A]/55">USDA Zone</span>
++          <select
++            value={filters.zone}
++            onChange={(e) => setFilters((current) => ({
++              ...current,
++              zone: e.target.value === 'All' ? 'All' : Number(e.target.value),
++            }))}
++            className="w-full rounded border border-[#1C1C1A]/20 bg-white/70 px-3 py-2 text-sm text-[#1C1C1A]"
++          >
++            <option value="All">All Zones</option>
++            {zoneOptions.map((zone) => (
++              <option key={zone} value={zone}>Zone {zone}</option>
++            ))}
++          </select>
++        </label>
++
++        <label className="space-y-1 text-sm text-[#1C1C1A]/70">
++          <span className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-[#1C1C1A]/55">Life Cycle</span>
++          <select
++            value={filters.type}
++            onChange={(e) => setFilters((current) => ({ ...current, type: e.target.value as CropFilterState['type'] }))}
++            className="w-full rounded border border-[#1C1C1A]/20 bg-white/70 px-3 py-2 text-sm text-[#1C1C1A]"
++          >
++            <option value="All">{activeTypeLabel('All')}</option>
++            <option value="annual">{activeTypeLabel('annual')}</option>
++            <option value="biennial">{activeTypeLabel('biennial')}</option>
++            <option value="perennial">{activeTypeLabel('perennial')}</option>
++          </select>
++        </label>
++      </div>
++
+       <div className="flex flex-wrap gap-2">
++        <FilterToggle active={filters.season === 'hot'} label="Hot Weather" onClick={() => setFilters((current) => ({ ...current, season: current.season === 'hot' ? 'all' : 'hot' }))} />
++        <FilterToggle active={filters.season === 'cool'} label="Cool Weather" onClick={() => setFilters((current) => ({ ...current, season: current.season === 'cool' ? 'all' : 'cool' }))} />
++        <FilterToggle active={filters.droughtTolerantOnly} label="Drought Tolerant" onClick={() => setFilters((current) => ({ ...current, droughtTolerantOnly: !current.droughtTolerantOnly }))} />
++        <FilterToggle active={filters.containerFriendlyOnly} label="Container Friendly" onClick={() => setFilters((current) => ({ ...current, containerFriendlyOnly: !current.containerFriendlyOnly }))} />
++        <FilterToggle active={filters.pollinatorFriendlyOnly} label="Pollinator Friendly" onClick={() => setFilters((current) => ({ ...current, pollinatorFriendlyOnly: !current.pollinatorFriendlyOnly }))} />
++        <FilterToggle active={filters.familyFoodOnly} label="Family Food" onClick={() => setFilters((current) => ({ ...current, familyFoodOnly: !current.familyFoodOnly }))} />
++        <FilterToggle active={filters.marketGardenOnly} label="Market Garden" onClick={() => setFilters((current) => ({ ...current, marketGardenOnly: !current.marketGardenOnly }))} />
+         <button
+-          onClick={() => setActiveCategory('All')}
+-          className={`rounded border-2 px-3 py-1.5 text-xs font-bold transition ${
+-            activeCategory === 'All'
+-              ? 'border-[#1C1C1A] bg-[#1C1C1A] text-[#D7D4CC]'
+-              : 'border-[#1C1C1A] bg-[#B8B6AE] text-[#1C1C1A] hover:bg-[#1C1C1A] hover:text-[#D7D4CC]'
+-          }`}
++          onClick={() => setFilters(INITIAL_FILTERS)}
++          className="rounded border-2 border-[#8B2A2A] px-3 py-1.5 text-xs font-bold text-[#8B2A2A] transition hover:bg-[#8B2A2A] hover:text-white"
+         >
+-          All ({CROPS.length})
++          Clear Filters
+         </button>
+-        {CATEGORY_ORDER.map((cat) => {
+-          const crops = byCategory[cat] ?? [];
+-          if (!crops.length) return null;
+-          const color = CATEGORY_COLORS[cat];
+-          const isActive = activeCategory === cat;
+-          return (
+-            <button
+-              key={cat}
+-              onClick={() => setActiveCategory(cat)}
+-              style={isActive ? { borderColor: color, backgroundColor: color } : { borderColor: color }}
+-              className={`rounded border-2 px-3 py-1.5 text-xs font-bold transition ${
+-                isActive ? 'text-white' : 'bg-[#D7D4CC] text-[#1C1C1A] hover:opacity-80'
+-              }`}
+-            >
+-              {cat} ({crops.length})
+-            </button>
+-          );
+-        })}
+       </div>
+ 
+-      {/* Crop Grid */}
++      <p className="text-xs text-[#1C1C1A]/50">
++        Showing {filteredCrops.length} crops. Filters are designed to support family food production, orchard planning, and future food forest workflows.
++      </p>
++
+       {filteredCrops.length === 0 ? (
+-        <p className="py-8 text-center text-sm text-[#1C1C1A]/50">No crops match your search.</p>
++        <p className="py-8 text-center text-sm text-[#1C1C1A]/50">No crops match your filters.</p>
+       ) : (
+-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
++        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+           {filteredCrops.map((crop) => {
+             const plan = state.cropPlans[crop.id];
+-            const included = plan?.included ?? false;
+             const metrics = cropMetrics[crop.id];
+-            const catColor = CATEGORY_COLORS[crop.category];
++            const included = plan?.included ?? false;
++            const categoryMeta = CATEGORY_METADATA.find((item) => item.id === crop.category);
+ 
+             return (
+               <button
+@@ -114,63 +170,55 @@ export function CropLibrary() {
+                     : 'border-[#1C1C1A] bg-[#D7D4CC] text-[#1C1C1A] shadow-[3px_3px_0_rgba(28,28,26,0.1)] hover:border-[#2C4A2E] hover:bg-[#C8C5BD]'
+                 }`}
+               >
+-                {/* Category pill */}
+-                <span
+-                  className="mb-2 inline-block rounded-sm px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-white"
+-                  style={{ backgroundColor: included ? 'rgba(255,255,255,0.2)' : catColor }}
+-                >
+-                  {crop.category}
+-                </span>
++                <div className="mb-2 flex flex-wrap items-center gap-2">
++                  <span
++                    className="inline-block rounded-sm px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-white"
++                    style={{ backgroundColor: included ? 'rgba(255,255,255,0.2)' : categoryMeta?.color ?? '#2C4A2E' }}
++                  >
++                    {crop.category}
++                  </span>
++                  <span className={`text-[9px] font-extrabold uppercase tracking-wider ${included ? 'text-white/70' : 'text-[#1C1C1A]/45'}`}>
++                    Zones {crop.zoneMin}-{crop.zoneMax}
++                  </span>
++                </div>
+ 
+                 <p className="font-serif text-base font-bold leading-tight">{crop.name}</p>
++                {crop.subcategory && (
++                  <p className={`mt-1 text-xs ${included ? 'text-white/65' : 'text-[#1C1C1A]/55'}`}>
++                    {crop.subcategory}
++                  </p>
++                )}
+ 
+-                {/* Key metrics */}
+-                <div className={`mt-2 grid grid-cols-2 gap-x-3 gap-y-0.5 text-xs ${included ? 'text-white/75' : 'text-[#1C1C1A]/60'}`}>
+-                  <span>{crop.daysToMaturity}d to harvest</span>
++                <div className={`mt-3 grid grid-cols-2 gap-x-3 gap-y-0.5 text-xs ${included ? 'text-white/75' : 'text-[#1C1C1A]/60'}`}>
++                  <span>{crop.type}</span>
++                  <span>{crop.growthHabit}</span>
++                  <span>{crop.daysToHarvest ?? crop.daysToMaturity}d to harvest</span>
+                   <span>{crop.yieldPerPlant} {crop.yieldUnit}/plant</span>
+                   <span>{crop.spacingSqFt} sq ft each</span>
+-                  <span>{crop.annualConsumptionLbs} lbs/yr adult</span>
++                  <span>{crop.yearsToProduction ? `${crop.yearsToProduction}y to produce` : 'first-year crop'}</span>
+                 </div>
+ 
+-                {/* Tags */}
+                 <div className="mt-2 flex flex-wrap gap-1">
+-                  {crop.coldHardy && (
+-                    <span className={`rounded-sm px-1.5 py-0.5 text-[9px] font-bold uppercase ${included ? 'bg-white/15 text-white' : 'bg-[#3A5A8A]/15 text-[#3A5A8A]'}`}>
+-                      Cold Hardy
+-                    </span>
+-                  )}
+-                  {crop.heatTolerant && (
+-                    <span className={`rounded-sm px-1.5 py-0.5 text-[9px] font-bold uppercase ${included ? 'bg-white/15 text-white' : 'bg-[#8B2A2A]/15 text-[#8B2A2A]'}`}>
+-                      Heat Tolerant
+-                    </span>
+-                  )}
+-                  {crop.directSow && (
+-                    <span className={`rounded-sm px-1.5 py-0.5 text-[9px] font-bold uppercase ${included ? 'bg-white/15 text-white' : 'bg-[#B8B6AE] text-[#1C1C1A]/70'}`}>
+-                      Direct Sow
+-                    </span>
+-                  )}
+-                  {crop.successions > 1 && (
+-                    <span className={`rounded-sm px-1.5 py-0.5 text-[9px] font-bold uppercase ${included ? 'bg-white/15 text-white' : 'bg-[#C6933F]/15 text-[#7A5A1A]'}`}>
+-                      {crop.successions}× successions
+-                    </span>
+-                  )}
++                  {crop.hotWeatherCrop && <span className={`rounded-sm px-1.5 py-0.5 text-[9px] font-bold uppercase ${included ? 'bg-white/15 text-white' : 'bg-[#8B2A2A]/15 text-[#8B2A2A]'}`}>Hot</span>}
++                  {crop.coolWeatherCrop && <span className={`rounded-sm px-1.5 py-0.5 text-[9px] font-bold uppercase ${included ? 'bg-white/15 text-white' : 'bg-[#3A5A8A]/15 text-[#3A5A8A]'}`}>Cool</span>}
++                  {crop.droughtTolerant && <span className={`rounded-sm px-1.5 py-0.5 text-[9px] font-bold uppercase ${included ? 'bg-white/15 text-white' : 'bg-[#7A4A2A]/15 text-[#7A4A2A]'}`}>Dryland</span>}
++                  {crop.containerFriendly && <span className={`rounded-sm px-1.5 py-0.5 text-[9px] font-bold uppercase ${included ? 'bg-white/15 text-white' : 'bg-[#B8B6AE] text-[#1C1C1A]/70'}`}>Container</span>}
++                  {crop.pollinatorFriendly && <span className={`rounded-sm px-1.5 py-0.5 text-[9px] font-bold uppercase ${included ? 'bg-white/15 text-white' : 'bg-[#C6933F]/15 text-[#7A5A1A]'}`}>Pollinator</span>}
+                 </div>
+ 
+-                {/* Computed plant count when included */}
+-                {included && metrics && (
+-                  <div className="mt-3 border-t border-white/20 pt-3">
+-                    <p className="text-xs text-white/75">
+-                      Recommended:{' '}
+-                      <strong className="text-white">
+-                        {metrics.plantsPerSuccessionCalc} plant{metrics.plantsPerSuccessionCalc !== 1 ? 's' : ''}
+-                        {plan && plan.successions > 1 ? ` × ${plan.successions} waves` : ''}
+-                      </strong>
+-                      {' '}→ {Math.round(metrics.annualYield)} lbs/yr
+-                    </p>
+-                  </div>
+-                )}
++                <div className="mt-3 border-t border-current/15 pt-3 text-xs leading-5">
++                  <p className={included ? 'text-white/75' : 'text-[#1C1C1A]/70'}>
++                    Recommended:
++                    <strong className={included ? 'text-white' : 'text-[#2C4A2E]'}>
++                      {' '}{metrics.recommendedTotalPlants} total
++                    </strong>
++                    {' '}from {metrics.recommendedPlantsPerPlanting} per planting x {metrics.recommendedSuccessivePlantings} planting{metrics.recommendedSuccessivePlantings === 1 ? '' : 's'}.
++                  </p>
++                  <p className={`mt-2 ${included ? 'text-white/65' : 'text-[#1C1C1A]/60'}`}>
++                    {crop.notes}
++                  </p>
++                </div>
+ 
+-                {/* Checkmark */}
+                 <div
+                   className={`absolute right-3 top-3 flex h-5 w-5 items-center justify-center rounded-full border-2 transition ${
+                     included
+@@ -187,23 +235,6 @@ export function CropLibrary() {
+           })}
+         </div>
+       )}
+-
+-      {/* Select all / clear */}
+-      <div className="flex gap-3 border-t border-[#1C1C1A]/10 pt-4">
+-        <button
+-          onClick={() => filteredCrops.forEach((c) => { if (!state.cropPlans[c.id]?.included) toggleCrop(c.id); })}
+-          className="rounded border-2 border-[#2C4A2E] px-4 py-2 text-xs font-bold text-[#2C4A2E] transition hover:bg-[#2C4A2E] hover:text-white"
+-        >
+-          Select All {activeCategory !== 'All' ? activeCategory : 'Crops'}
+-        </button>
+-        <button
+-          onClick={() => filteredCrops.forEach((c) => { if (state.cropPlans[c.id]?.included) toggleCrop(c.id); })}
+-          className="rounded border-2 border-[#8B2A2A] px-4 py-2 text-xs font-bold text-[#8B2A2A] transition hover:bg-[#8B2A2A] hover:text-white"
+-        >
+-          Clear {activeCategory !== 'All' ? activeCategory : 'All'}
+-        </button>
+-      </div>
+-
+     </div>
+   );
+ }

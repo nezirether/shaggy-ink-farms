@@ -71,7 +71,7 @@ export default function GardenPlanningPage() {
           </p>
           <ul className="mt-4 space-y-2">
             {[
-              'Exact plant counts by crop and succession wave',
+              'Exact plant counts by crop and planting stage',
               'Total square footage and raised bed count',
               'A full Gantt timeline showing indoor start, transplant, and harvest windows',
               'A printable shopping list with seed and transplant quantities',
