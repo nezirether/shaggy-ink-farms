@@ -23,10 +23,10 @@ export default function StorePage() {
     <>
       <PageHero
         eyebrow="Store"
-        title="Goods with farm character, made for people who notice details."
-        copy="The store is taking shape around seasonal egg notes, printed field pieces, stickers, apparel, labels, and useful homestead goods that carry the Shaggy Ink Farms identity."
+        title="The store isn't open yet — but here's where it's headed."
+        copy="We're starting small. The first things we'd like to offer are simple and close to the farm: seasonal egg cartons, a few printed field pieces and stickers, and maybe some sturdy basics down the road. When the first items are ready, the list hears first."
         imageTitle="Cartons, labels, field notes, and goods"
-        imageDetail="Cream paper, barn red marks, warm gold, barred feather texture, and rugged work surfaces define the farm goods system."
+        imageDetail="Cream paper, barn red marks, warm gold, and rugged work surfaces — the look we have in mind for farm goods."
         imageSrc={farmImages.storeGoods.src}
         imageAlt={farmImages.storeGoods.alt}
       />
@@ -34,9 +34,9 @@ export default function StorePage() {
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
           <div>
             <SectionHeader
-              eyebrow="Commerce Direction"
-              title="Build the shop slowly, make every item feel worth keeping."
-              copy="The first products stay close to the farm story: useful, handsome, easy to keep, and strong enough to turn viewers into long-term supporters."
+              eyebrow="What's Coming"
+              title="A small shop, started slowly, with things worth keeping."
+              copy="We'd rather offer a few useful, well-made things than a big catalog. Here's the kind of thing we have in mind."
               align="left"
             />
             <CalloutGrid
@@ -44,24 +44,24 @@ export default function StorePage() {
                 {
                   eyebrow: "Farm",
                   title: "Egg cartons and pickup notes",
-                  copy: "Seasonal drops, waitlist updates, and packaging that feels like a real farm label.",
+                  copy: "Seasonal egg drops and local pickup near Anderson and Redding.",
                 },
                 {
                   eyebrow: "Print",
                   title: "Field notes and labels",
-                  copy: "Small printed pieces inspired by seed packets, ranch marks, and field journal pages.",
+                  copy: "Small printed pieces inspired by seed packets, ranch marks, and field-journal pages.",
                 },
                 {
                   eyebrow: "Goods",
-                  title: "Apparel and durable small items",
-                  copy: "Brand goods with enough restraint to feel premium, not novelty-driven.",
+                  title: "Apparel and durable basics",
+                  copy: "Simple, sturdy items we'd actually wear and use — added only when they're ready.",
                 },
               ]}
             />
           </div>
           <FarmVisual
-            title="Farm goods system"
-            detail="Egg cartons, labels, printed pieces, and farm goods share one restrained, heritage-inspired visual language."
+            title="Farm goods, kept simple"
+            detail="Egg cartons, labels, and printed pieces in one plain, heritage-inspired style."
             tone="gold"
             label="Farm Goods"
             src={farmImages.eggCartons.src}

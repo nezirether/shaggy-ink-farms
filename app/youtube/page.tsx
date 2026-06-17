@@ -22,15 +22,15 @@ export default function YouTubePage() {
       <PageHero
         eyebrow="YouTube"
         title="The channel is the long-form record of the farm being built."
-        copy="Shaggy Ink Farms on YouTube should feel observant, useful, and cinematic: flock updates, project days, egg notes, wildlife sightings, and honest lessons from the homestead."
-        imageTitle="Featured episode thumbnail"
-        imageDetail="Use high-contrast thumbnails with roosters, oak pasture, build materials, family work, and warm outdoor light."
+        copy="Our YouTube channel is where the farm story plays out in full: flock updates, project days, egg notes, wildlife sightings, and honest lessons from the homestead."
+        imageTitle="Camera, oak pasture, and chickens"
+        imageDetail="Filming the flock and the work out in the oak pasture in warm outdoor light."
         imageSrc={farmImages.youtubeSetup.src}
         imageAlt={farmImages.youtubeSetup.alt}
       />
       <VideoTeaser
-        title="Built for episodes, shorts, field notes, and launch moments."
-        copy="The site is ready for embedded videos, channel playlists, episode recaps, and email capture around the YouTube journey."
+        title="Flock walks, project days, and the work in between."
+        copy="New videos as we go — the builds, the birds, the garden, and the parts that don't go to plan."
       />
       <section className="field-journal px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">

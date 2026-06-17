@@ -38,7 +38,7 @@ export default function FarmJournalPage() {
           <SectionHeader
             eyebrow="Latest Articles"
             title="The written record of Shaggy Ink Farms."
-            copy="Start with the opening field note and the breed history behind our flagship Plymouth Barred Rock flock."
+            copy="Start with the opening field note and the breed history behind the Plymouth Barred Rocks we're building a program around."
           />
           <div className="grid gap-8">
             {journalArticles.map((article, index) => (

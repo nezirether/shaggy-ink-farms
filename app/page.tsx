@@ -45,9 +45,10 @@ export default function Home() {
               {siteConfig.subtitle}
             </p>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-[#1C1C1A]/76">
-              We raise Plymouth Barred Rock chickens, grow strawberries and
-              sunflowers, and share the work as we figure it out. This is a
-              real family farm — not a finished one.
+              We&apos;re raising a mixed flock of chickens, starting a Heritage
+              Plymouth Barred Rock breeding program, and growing strawberries
+              and cut flowers. This is a real family farm — not a finished one —
+              and we&apos;re sharing the work as we figure it out.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/farm-journal">Read the Journal</ButtonLink>
@@ -163,15 +164,15 @@ export default function Home() {
         links={[
           {
             href: "/chickens",
-            eyebrow: "Livestock",
-            title: "Plymouth Barred Rock chickens",
-            copy: "Meet the heritage flock at the center of the farm — calm, hardy, and unmistakably barred.",
+            eyebrow: "The Flock",
+            title: "Our chickens & Barred Rocks",
+            copy: "Meet our mixed laying flock and the Plymouth Barred Rocks we're building a breeding program around.",
           },
           {
             href: "/eggs",
             eyebrow: "From the Flock",
             title: "Seasonal farm fresh eggs",
-            copy: "Pasture-raised eggs with local pickup near Anderson and Redding. Join the list to know when cartons drop.",
+            copy: "Pasture-raised eggs with local pickup near Anderson and Redding. Join the list to know when cartons are ready.",
           },
           {
             href: "/garden-planner",

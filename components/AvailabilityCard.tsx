@@ -23,7 +23,7 @@ export function AvailabilityCard() {
             Small-flock eggs, offered when the hens and season allow.
           </h2>
           <p className="mt-5 text-lg leading-8 text-[#1C1C1A]/75">
-            The farm will not pretend eggs are a factory product. Availability
+            We won&apos;t pretend eggs are a factory product. Availability
             follows daylight, flock size, weather, molts, and the pace of a real
             family homestead.
           </p>
@@ -49,8 +49,8 @@ export function AvailabilityCard() {
             and seasonal flock updates.
           </p>
           <div className="mt-6">
-            <ButtonLink href="/eggs" variant="light">
-              Reserve Eggs
+            <ButtonLink href="/eggs#egg-list" variant="light">
+              Join the Egg List
             </ButtonLink>
           </div>
         </div>

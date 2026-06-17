@@ -14,18 +14,18 @@ export const EMAIL_SIGNUP_INTERESTS: Record<
   EmailSignupInterestDetails
 > = {
   growing: {
-    label: "Weekly Growing Tips",
+    label: "Growing Tips",
     description:
       "Northern California gardening, planting dates, seasonal tasks, and growing guides.",
     eyebrow: "Growing Tips",
-    headline: "Get Weekly Northern California Growing Tips",
+    headline: "Get Northern California Growing Tips",
     buttonLabel: "Join Growing Tips",
     eventName: "email_signup_growing",
   },
   eggs: {
     label: "Egg Availability Alerts",
     description:
-      "Fresh eggs, hatching eggs, chicks, and future poultry availability.",
+      "Seasonal eggs, plus hatching eggs and chicks as the breeding program grows.",
     eyebrow: "Egg Alerts",
     headline: "Be First To Know When Eggs Are Available",
     buttonLabel: "Join Egg Alerts",

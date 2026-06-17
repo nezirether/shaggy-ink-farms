@@ -3,7 +3,7 @@ export const siteConfig = {
   legalName: "Shaggy Ink Farms",
   subtitle: "A family farm in Anderson, California",
   description:
-    "A Northern California family farm raising Plymouth Barred Rock chickens, growing strawberries and sunflowers, and sharing the work as we go.",
+    "A family farm in Anderson, California, raising a mixed flock of chickens, starting a Heritage Plymouth Barred Rock breeding program, and growing strawberries and cut flowers. We're building it in public.",
   url: "https://www.shaggyinkfarms.com",
   email: "hello@shaggyinkfarms.com",
   location: "Northern California",
@@ -57,14 +57,14 @@ export const learnNavItems = [
 export const featureCards = [
   {
     eyebrow: "Chickens",
-    title: "Plymouth Barred Rock flock.",
-    copy: "We keep a small flock of Barred Rocks — classic American farm birds with a calm personality, bold feathering, and reliable eggs. This is the heart of the farm.",
+    title: "A mixed laying flock.",
+    copy: "Our laying flock is a mix right now — Rhode Island Reds, Salmon Faverolles, Ameraucanas, Olive Eggers, Copper Marans, Plymouth Barred Rocks, and a few others. The Barred Rocks are the breed we're building a program around.",
     href: "/chickens",
   },
   {
     eyebrow: "Garden",
-    title: "Strawberries, sunflowers, and cut flowers.",
-    copy: "We grow strawberries, sunflowers, and a family garden. Nothing fancy — just things we want to eat and grow and share.",
+    title: "Strawberries, cut flowers, and a young orchard.",
+    copy: "We grow strawberries and cut flowers, keep a family garden, and are starting an orchard. Nothing fancy — just things we want to eat, grow, and share.",
     href: "/farm-journal",
   },
   {
@@ -79,7 +79,7 @@ export const pageMetadata = {
   home: {
     title: "A Family Farm in Anderson, California",
     description:
-      "Shaggy Ink Farms is a family farm in Northern California raising Plymouth Barred Rock chickens, growing strawberries and sunflowers, and sharing the work along the way.",
+      "Shaggy Ink Farms is a family farm in Anderson, California, raising a mixed flock of chickens, starting a Heritage Plymouth Barred Rock breeding program, and growing strawberries and cut flowers. We're sharing the work as we go.",
   },
   journal: {
     title: "Farm Journal",
@@ -89,17 +89,17 @@ export const pageMetadata = {
   about: {
     title: "About the Farm",
     description:
-      "Meet the Bartlett family and learn about Shaggy Ink Farms — a small Northern California homestead in Anderson, California.",
+      "Meet the family behind Shaggy Ink Farms — a small family farm in Anderson, California, raising a mixed flock of chickens and building a homestead in public.",
   },
   chickens: {
-    title: "Plymouth Barred Rock Chickens",
+    title: "Our Chickens & Barred Rock Breeding Program",
     description:
-      "Meet the flagship Plymouth Barred Rock flock at Shaggy Ink Farms and follow heritage poultry care, roosters, hens, chicks, and breed notes.",
+      "Meet the mixed laying flock at Shaggy Ink Farms and the Heritage Plymouth Barred Rock breeding program we're starting in Anderson, California.",
   },
   eggs: {
     title: "Farm Fresh Eggs in Anderson & Redding, CA",
     description:
-      "Seasonal, pasture-raised farm fresh eggs from a small flock of Plymouth Barred Rock hens in Anderson, California. Join the list for local pickup near Redding and Shasta County.",
+      "Seasonal, pasture-raised farm fresh eggs from our small mixed flock in Anderson, California. Join the list for local pickup near Redding and Shasta County.",
   },
   projects: {
     title: "Homestead Projects",
@@ -114,7 +114,7 @@ export const pageMetadata = {
   store: {
     title: "Store",
     description:
-      "The Shaggy Ink Farms store for farm goods, print pieces, heritage poultry merchandise, labels, and homestead-inspired products.",
+      "The Shaggy Ink Farms store is still being built. Join the list to hear when the first farm goods and prints are ready.",
   },
   growingGuide: {
     title: "Growing Guide — What To Plant Right Now",

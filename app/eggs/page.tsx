@@ -41,9 +41,9 @@ const eggFaqs: FaqItem[] = [
       "We sell eggs seasonally from our small flock in Anderson, CA, with local pickup arranged in the Anderson, Cottonwood, and greater Redding area of Shasta County. Because we keep a small flock, eggs go out to our email list first. Join the list and you will get a message when cartons are available and where to pick them up.",
   },
   {
-    question: "What kind of eggs do Plymouth Barred Rock hens lay?",
+    question: "What kind of eggs will I get?",
     answer:
-      "Barred Rock hens lay medium-to-large brown eggs with sturdy shells. A healthy hen lays several eggs a week in her productive season. Because our hens range on pasture and eat a varied diet, the yolks tend to be deep and rich. Egg size and shell color naturally vary a little from hen to hen and across the season.",
+      "Our laying flock is a mix of breeds, so a carton is rarely all one color. Depending on the hens laying that week, you might get brown eggs from the Rhode Island Reds and Barred Rocks, blue or green eggs from the Ameraucanas and Olive Eggers, and dark, speckled eggs from the Copper Marans. Sizes vary a little from hen to hen and across the season. Because the hens range on pasture and eat a varied diet, the yolks tend to be deep and rich.",
   },
   {
     question: "Are pasture-raised eggs actually better than store eggs?",
@@ -68,7 +68,7 @@ const eggFaqs: FaqItem[] = [
   {
     question: "Can I raise my own laying hens?",
     answer:
-      "Absolutely, and we encourage it. Plymouth Barred Rocks are one of the best beginner breeds: calm, hardy, and reliable. You can read about our flock and heritage lineage on the chickens page and in the farm journal, and our Learning Center covers the garden side of feeding a family from your own land.",
+      "Absolutely, and we encourage it. Plymouth Barred Rocks are one of the best beginner breeds: calm, hardy, and reliable, which is part of why we're building our breeding program around them. You can read about our flock on the chickens page and in the farm journal, and our Learning Center covers the garden side of feeding a family from your own land.",
   },
 ];
 
@@ -86,7 +86,7 @@ export default function EggsPage() {
       <PageHero
         eyebrow="Farm Fresh Eggs · Anderson, CA"
         title="Pasture-raised eggs from a small flock, not a production line."
-        copy="Our eggs come from a small flock of Plymouth Barred Rock hens raised on open pasture in Anderson, California. They are seasonal by nature — shaped by daylight, weather, and the everyday care of a real family homestead near Redding."
+        copy="Our eggs come from a small, mixed flock of hens raised on open pasture in Anderson, California. They are seasonal by nature — shaped by daylight, weather, and the everyday care of a real family homestead near Redding."
         imageTitle="Egg cartons, warm light, and hand-stamped labels"
         imageDetail="Cream cartons, warm gold light, and honest farm texture make the egg program feel local, careful, and worth waiting for."
         imageSrc={farmImages.eggCartons.src}
@@ -109,12 +109,12 @@ export default function EggsPage() {
               {
                 eyebrow: "Pasture-Raised",
                 title: "Hens that forage",
-                copy: "Our Barred Rocks range on Northern California oak pasture, scratching for grass, seeds, and insects. That varied diet is why the yolks come out deep and rich.",
+                copy: "Our hens range on Northern California oak pasture, scratching for grass, seeds, and insects. That varied diet is why the yolks come out deep and rich.",
               },
               {
-                eyebrow: "Heritage Breed",
-                title: "Plymouth Barred Rocks",
-                copy: "We keep a classic American dual-purpose breed with documented conservation lineage — calm, hardy hens that lay sturdy brown eggs the old-fashioned way.",
+                eyebrow: "Mixed Flock",
+                title: "A carton of different colors",
+                copy: "Our laying flock is a mix of breeds, so a carton can hold brown, blue, green, and dark-speckled eggs — not the uniform white of a warehouse.",
               },
               {
                 eyebrow: "Truly Local",
@@ -129,14 +129,14 @@ export default function EggsPage() {
               href="/chickens"
               className="font-bold text-[#2C4A2E] underline decoration-[#C6933F] underline-offset-2 hover:text-[#8B2A2A]"
             >
-              Plymouth Barred Rock chickens
-            </Link>{" "}
-            page, or read the story of our{" "}
+              chickens page
+            </Link>
+            , or read the story of the{" "}
             <Link
               href="/farm-journal/plymouth-barred-rock-heritage-genetics"
               className="font-bold text-[#2C4A2E] underline decoration-[#C6933F] underline-offset-2 hover:text-[#8B2A2A]"
             >
-              heritage Barred Rock genetics
+              Barred Rocks we're building a program around
             </Link>{" "}
             in the journal.
           </p>
@@ -221,14 +221,14 @@ export default function EggsPage() {
           {
             href: "/chickens",
             eyebrow: "The Flock",
-            title: "Plymouth Barred Rock chickens",
-            copy: "Meet the heritage hens behind the eggs — temperament, history, and why we chose this classic American breed.",
+            title: "Our chickens & Barred Rocks",
+            copy: "Meet the mixed laying flock behind the eggs, and the Plymouth Barred Rocks we're building a breeding program around.",
           },
           {
             href: "/farm-journal/plymouth-barred-rock-heritage-genetics",
             eyebrow: "Journal",
-            title: "The genetics behind our flock",
-            copy: "How our Barred Rocks trace back to Good Shepherd conservation lines — and why bloodline matters.",
+            title: "The Barred Rock heritage story",
+            copy: "How the Barred Rocks we're breeding trace back to Good Shepherd conservation lines — and why bloodline matters.",
           },
           {
             href: "/garden-planner",

@@ -33,9 +33,9 @@ export default function HomesteadProjectsPage() {
       <section className="px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionHeader
-            eyebrow="Project Tracks"
-            title="Useful builds with a strong visual point of view."
-            copy="The project archive follows the builds, fixes, systems, and lessons that turn raw ideas into a more capable homestead."
+            eyebrow="What We Build"
+            title="Useful builds, fixes, and the lessons in between."
+            copy="These are the builds, repairs, and systems that turn a piece of land into a working homestead — including the things we got wrong along the way."
           />
           <CalloutGrid
             items={[
@@ -47,12 +47,12 @@ export default function HomesteadProjectsPage() {
               {
                 eyebrow: "Land Work",
                 title: "Fence lines, pasture edges, and oak care",
-                copy: "Rural Northern California texture: posts, wire, shade, grass, wildlife, and the everyday maintenance of open space.",
+                copy: "Rural Northern California work: posts, wire, shade, grass, wildlife, and the everyday maintenance of open space.",
               },
               {
-                eyebrow: "Brand Craft",
-                title: "Labels, signs, packaging, and goods",
-                copy: "The visual pieces that turn a homestead into a recognizable brand people can follow, collect, and support.",
+                eyebrow: "Handmade",
+                title: "Labels, signs, and small goods",
+                copy: "The handmade pieces around the farm — coop signs, egg labels, and field notes we make ourselves.",
               },
             ]}
           />
@@ -61,18 +61,18 @@ export default function HomesteadProjectsPage() {
       <section className="poster-grain px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:items-center">
           <FarmVisual
-            title="Build journal and finished project archive"
-            detail="Finished builds, material notes, embedded videos, and field observations keep the work useful after the dust settles."
+            title="Build notes and finished projects"
+            detail="Finished builds, material notes, and field observations that keep the work useful after the dust settles."
             tone="gold"
-            label="Project Archive"
+            label="Project Notes"
             src={farmImages.oakPasture.src}
             alt={farmImages.oakPasture.alt}
           />
           <div>
             <SectionHeader
-              eyebrow="Scalable Content"
-              title="Every good project can become a post, a video, a product lesson, or a field note."
-              copy="That is the engine of the brand: real work, documented beautifully, organized clearly, and reused across web, YouTube, email, and future commerce."
+              eyebrow="Why We Write It Down"
+              title="Every project is worth a few notes."
+              copy="We document the work so it's useful later — for us when we build the next one, and for anyone following along on the site or on YouTube."
               align="left"
             />
             <ButtonLink href="/youtube" variant="secondary">

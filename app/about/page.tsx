@@ -23,47 +23,47 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="About the Farm"
-        title="A family homestead with a long view."
-        copy="Shaggy Ink Farms is a Northern California homestead and media brand growing from a simple premise: build useful things, care for the flock, respect the land, and tell the story with taste."
+        title="A family building a homestead, one project at a time."
+        copy="Shaggy Ink Farms is a family farm in Anderson, California. We're raising a mixed flock of chickens, starting a Heritage Plymouth Barred Rock breeding program, growing strawberries and cut flowers, and putting in an orchard — and we're sharing the work as we go."
         imageTitle="Oak pasture, fence line, and family work"
-        imageDetail="Use a wide, warm photograph that shows mature oaks, open pastureland, rustic fencing, and the scale of a real family homestead."
+        imageDetail="A wide, warm photograph of mature oaks, open pastureland, and rustic fencing on the Anderson property."
         imageSrc={farmImages.oakPasture.src}
         imageAlt={farmImages.oakPasture.alt}
       />
       <BrandPanel
-        eyebrow="What Makes It Different"
-        title="Not a generic farm site. A living brand world."
-        copy="The farm identity combines heritage poultry, conservation-minded land care, rural Northern California texture, practical craft, and the visual language of vintage ranch marks, seed labels, and national park posters."
+        eyebrow="What We're About"
+        title="A real family farm, built slowly and in public."
+        copy="We started this place to grow our own food, raise animals, and do something real together as a family. It isn't finished — the fences, the flock, and the garden are all still coming together — and we'd rather show that honestly than pretend otherwise."
         items={[
-          "Premium without becoming polished beyond recognition",
-          "Family-oriented without feeling small or temporary",
-          "Rugged, useful, and visually memorable",
-          "Designed to support YouTube, eggs, projects, and future goods",
+          "Family-run, here in Anderson, California",
+          "Heritage poultry, starting with Plymouth Barred Rocks",
+          "Strawberries, cut flowers, and a young orchard",
+          "Documented as we build it, not after",
         ]}
       />
       <section className="field-journal px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionHeader
-            eyebrow="Operating Principles"
-            title="The farm is built around rhythm, restraint, and usefulness."
-            copy="Every project should earn its place. Every product should feel durable. Every story should make the viewer feel closer to the land, flock, and work."
+            eyebrow="How We Work"
+            title="Useful work, done at a pace we can keep up."
+            copy="We try to make every project earn its place, build things to last, and learn out loud — including the parts that don't go to plan."
           />
           <CalloutGrid
             items={[
               {
                 eyebrow: "Land",
                 title: "Oak pasture first",
-                copy: "Mature oaks, open grass, wildlife corridors, and rustic edges shape the visual and practical life of the farm.",
+                copy: "Mature oaks, open grass, wildlife edges, and rustic fencing shape how the farm works and feels.",
               },
               {
                 eyebrow: "Livestock",
-                title: "Barred Rocks as an icon",
-                copy: "Plymouth Barred Rock chickens give the brand a recognizable animal, pattern, and practical poultry focus.",
+                title: "Barred Rocks, the long game",
+                copy: "Our laying flock is mixed today, but Plymouth Barred Rocks are the breed we're working to breed well over time.",
               },
               {
                 eyebrow: "Craft",
                 title: "Handmade over disposable",
-                copy: "Coops, labels, signs, garden beds, and future goods should feel thoughtful, useful, and built to last.",
+                copy: "Coops, garden beds, labels, and signs we make ourselves and intend to keep using.",
               },
             ]}
           />
@@ -72,27 +72,27 @@ export default function AboutPage() {
               items={[
                 {
                   ...farmImages.oakPasture,
-                  title: "Land identity",
+                  title: "Oak pasture",
                   caption:
-                    "Oak pasture and fence lines establish the Northern California ranch feel.",
+                    "Oak trees and fence lines across the Anderson property.",
                 },
                 {
                   ...farmImages.heroRooster,
-                  title: "Flagship poultry",
+                  title: "The flock",
                   caption:
-                    "The rooster gives the brand a living icon and immediate specificity.",
+                    "One of the roosters out on pasture in the morning light.",
                 },
                 {
                   ...farmImages.muleDeerPasture,
-                  title: "Wildlife edges",
+                  title: "Wildlife",
                   caption:
-                    "Mule deer and oak pasture make conservation part of the visual identity.",
+                    "Mule deer move through the oak pasture along the fence line.",
                 },
                 {
                   ...farmImages.projectWorkbench,
-                  title: "Craft direction",
+                  title: "Projects",
                   caption:
-                    "Goods, labels, and workbench scenes show where the brand can grow.",
+                    "The workbench where coop plans, repairs, and labels get made.",
                 },
               ]}
             />
