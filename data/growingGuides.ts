@@ -371,6 +371,541 @@ Install drip irrigation before transplanting if possible — setting up drip aro
     },
   },
 
+  {
+    slug: 'growing-tomatoes-northern-california',
+    title: 'Growing Tomatoes in Northern California',
+    shortTitle: 'Tomatoes',
+    description:
+      'A practical guide to planting, watering, pruning, and harvesting tomatoes in hot Northern California gardens.',
+    category: 'Crop-Specific',
+    status: 'published',
+    readingTimeMinutes: 10,
+    lastUpdated: '2026-06-17',
+    keywords: [
+      'growing tomatoes northern california',
+      'tomato planting dates',
+      'tomato irrigation',
+      'hot weather tomatoes',
+    ],
+    content: {
+      introduction: `Tomatoes are one of the best crops for a Northern California garden, but they are not automatic. In places like Anderson, Redding, Chico, Red Bluff, and the Sacramento Valley, the season is long and hot. That gives tomatoes time to grow big, but it also brings heat stress, blossom drop, dry soil, spider mites, and sunscald.
+
+At Shaggy Ink Farms, we treat tomatoes like a main crop, not a casual extra. They need good timing, deep watering, mulch, strong support, and a plan for July heat. If you get those parts right, a small tomato patch can feed a family, fill sauce jars, and still leave a few tomatoes on the counter for sandwiches.`,
+
+      whoThisIsFor: `This guide is for gardeners growing tomatoes in Northern California, especially Zone 8, Zone 9, and Zone 10 gardens. It is useful if you are planting tomatoes for fresh eating, sauce, salsa, or family food security.
+
+It is also for gardeners who have had tomato plants grow huge but set very little fruit once summer heat arrived.`,
+
+      bestTime: `Start tomato seeds indoors 6 to 8 weeks before transplanting. In much of inland Northern California, that means starting seeds in late January or February.
+
+Transplant tomatoes outside after frost danger has passed and soil has warmed. In Anderson and similar Zone 9b gardens, late March through mid-April is the normal window. Cooler foothill gardens may need to wait until late April or early May.`,
+
+      toolsAndSupplies: [
+        'Tomato seedlings or seed-starting supplies',
+        'Compost or finished organic matter',
+        'Tomato cages, stakes, cattle panel, or trellis',
+        'Drip irrigation or soaker hose',
+        'Mulch, such as straw, leaves, or wood chips',
+        'Pruners or garden scissors',
+        'Shade cloth for extreme heat',
+      ],
+
+      steps: [
+        {
+          title: 'Choose the right tomato types',
+          body: `Grow a mix of tomatoes instead of betting the whole season on one variety.
+
+Cherry tomatoes are usually the most reliable in high heat. Slicer tomatoes give the classic summer harvest but may stop setting fruit during heat waves. Paste tomatoes are best for sauce and canning because they have less juice.
+
+Indeterminate tomatoes keep growing and producing until frost if they stay healthy. Determinate tomatoes make a shorter, heavier crop and are easier to manage in cages. For a family garden, plant both if you have room.`,
+        },
+        {
+          title: 'Start or buy strong transplants',
+          body: `A good tomato transplant is short, sturdy, dark green, and not root-bound. Avoid tall, pale plants that already have flowers in a tiny pot.
+
+If you start seeds indoors, use bright lights and do not start too early. Big root-bound tomato plants do not always beat smaller healthy plants once they go into the garden.
+
+Before planting outside, harden plants off for 7 to 14 days. Move them into outdoor light slowly so they do not get sunburned.`,
+        },
+        {
+          title: 'Plant after the soil warms',
+          body: `Tomatoes hate cold soil. A warm week in March does not mean the soil is ready. Wait until nights are mostly above 50 degrees and the soil is near 60 degrees or warmer.
+
+Plant tomatoes deep. Remove the lower leaves and bury part of the stem. Roots can form along buried tomato stems, which helps the plant handle heat later.
+
+Space most tomatoes 24 to 36 inches apart. In hot areas, crowded plants get poor air flow and are harder to water evenly.`,
+        },
+        {
+          title: 'Install support at planting',
+          body: `Do not wait until the plant falls over. Put cages, stakes, or trellis panels in the same day you plant.
+
+A basic tomato cage is fine for determinate types. Large indeterminate tomatoes need stronger support. Cattle panel, T-posts, or a Florida weave can work well.
+
+Tie stems loosely. The goal is support, not a tourniquet. Check ties every week as stems grow.`,
+        },
+        {
+          title: 'Water deeply and mulch early',
+          body: `Tomatoes need steady moisture. Big swings from dry to soaked can lead to cracked fruit and blossom end rot.
+
+Drip irrigation is best. Water at the soil, not over the leaves. In hot inland valleys, tomatoes often need deep watering 2 to 4 times per week by summer, depending on soil and mulch.
+
+Add 2 to 4 inches of mulch after the soil warms. Mulch keeps roots cooler and slows evaporation. It also keeps soil from splashing onto leaves, which can reduce disease pressure.`,
+        },
+        {
+          title: 'Prune for airflow, not perfection',
+          body: `You do not need to strip a tomato plant bare. Remove leaves that touch the soil, broken stems, and crowded growth inside the plant.
+
+For indeterminate tomatoes, removing some suckers can make the plant easier to tie and harvest. For determinate tomatoes, prune lightly. Heavy pruning can reduce the crop.
+
+In our heat, leaves protect fruit from sunscald. A tomato plant should breathe, but it still needs shade from its own leaves.`,
+        },
+        {
+          title: 'Plan for July and August heat',
+          body: `When daytime temperatures stay above 95 degrees and nights stay warm, tomato pollen can fail. The plant may flower but not set fruit. That is not always your fault.
+
+Keep plants alive and healthy through the heat. Fruit set often improves again when temperatures ease. Use 30 percent shade cloth during extreme heat over 105 degrees, especially on young plants and exposed fruit.
+
+Use the zone lookup at /learn/know-your-growing-zone and build a planting plan at /garden-planner so your tomatoes go into the ground before the worst heat arrives.`,
+        },
+      ],
+
+      commonMistakes: [
+        {
+          mistake: 'Planting too early in cold soil',
+          fix: 'Wait for warm soil and steady nights above 50 degrees. Cold-stressed tomatoes sit still and can be weaker all season.',
+        },
+        {
+          mistake: 'Watering shallow every day',
+          fix: 'Water deeply so roots grow down. Mulch the bed and adjust drip time as summer heat increases.',
+        },
+        {
+          mistake: 'Using weak cages for large indeterminate tomatoes',
+          fix: 'Use strong cages, stakes, cattle panel, or T-post support at planting time.',
+        },
+        {
+          mistake: 'Removing too many leaves',
+          fix: 'Prune for airflow and access, but keep enough leaf cover to protect fruit from sunscald.',
+        },
+        {
+          mistake: 'Expecting heavy fruit set during heat waves',
+          fix: 'Keep plants alive and watered. Fruit set often returns when temperatures drop below extreme levels.',
+        },
+      ],
+
+      northernCaliforniaNotes: `Inland Northern California has a fast spring and a hard summer. Tomatoes should be established before the long heat sets in. In valley gardens, planting too late can mean the plant is still small when 100 degree days arrive.
+
+Coastal and foothill gardeners may have cooler nights and a later start. Valley gardeners usually fight heat more than frost once spring is over. Check your own microclimate before copying another garden's dates.`,
+
+      zone9Notes: `In Zone 9b, tomato transplants often go out from late March to mid-April. A second small planting of quick cherry tomatoes can go in during late summer if you have water and shade, but spring planting is the main crop.
+
+First frost may not arrive until late fall or early winter, so healthy indeterminate plants can keep producing for months.`,
+
+      wateringConsiderations: `Tomatoes need consistent water, especially from flowering through harvest. In clay soil, water longer but less often. In sandy soil, water more often. Do not let the root zone go bone dry, then flood it. That pattern causes stress and fruit problems.`,
+
+      heatConsiderations: `Use mulch, steady drip irrigation, and shade cloth during extreme heat. Blossom drop is common during hot spells. Do not overfertilize with nitrogen to fix it. The plant needs cooler weather, not more leaf growth.`,
+
+      checklist: [
+        'Start seeds indoors 6 to 8 weeks before transplanting',
+        'Transplant after soil warms and frost danger has passed',
+        'Plant deep and remove lower leaves',
+        'Install strong support at planting',
+        'Mulch after soil warms',
+        'Water deeply and consistently',
+        'Prune lower leaves and crowded growth',
+        'Use shade cloth during severe heat',
+        'Harvest before fruit overripens on the vine',
+      ],
+
+      relatedSlugs: [
+        'seed-starting-instructions',
+        'companion-planting',
+        'tomato-growth-habit',
+        'tomato-pepper-spray-program',
+        'common-plant-diseases',
+      ],
+
+      sources: [
+        {
+          title: 'Know Your Growing Zone',
+          author: 'Shaggy Ink Farms',
+          url: '/learn/know-your-growing-zone',
+        },
+        {
+          title: 'Family Food Security Garden Planner',
+          author: 'Shaggy Ink Farms',
+          url: '/garden-planner',
+        },
+        {
+          title: 'Tomatoes in the Home Garden',
+          author: 'UC Agriculture and Natural Resources',
+          url: 'https://ucanr.edu/',
+        },
+        {
+          title: 'Tomato Growing Guide',
+          author: "Johnny's Selected Seeds Growing Library",
+          url: 'https://www.johnnyseeds.com/growers-library/',
+        },
+      ],
+    },
+  },
+
+  {
+    slug: 'growing-cucumbers-northern-california',
+    title: 'Growing Cucumbers in Northern California',
+    shortTitle: 'Cucumbers',
+    description:
+      'How to grow crisp cucumbers through Northern California heat with good timing, trellising, irrigation, and pest scouting.',
+    category: 'Crop-Specific',
+    status: 'published',
+    readingTimeMinutes: 9,
+    lastUpdated: '2026-06-17',
+    keywords: [
+      'growing cucumbers northern california',
+      'cucumber planting dates',
+      'trellising cucumbers',
+      'cucumber irrigation',
+    ],
+    content: {
+      introduction: `Cucumbers grow fast, but they are not as tough as they look. In Northern California, they can sprint from seed to harvest, then crash when heat, dry soil, mites, mildew, or cucumber beetles pile on.
+
+The trick is to plant when the soil is warm, give the vines steady water, keep fruit picked, and watch the leaves. A cucumber patch can go from perfect to bitter and tired in a week if it dries out during a heat wave.
+
+At Shaggy Ink Farms, cucumbers are a practical summer crop. They earn their space when they are trellised, watered well, and picked often.`,
+
+      whoThisIsFor: `This guide is for gardeners who want slicing cucumbers, pickling cucumbers, or fresh cucumbers for family meals. It is written for hot Northern California gardens where summer water and shade matter.
+
+It is also useful if your cucumber plants start strong but turn bitter, stop producing, or get dusty-looking leaves in midsummer.`,
+
+      bestTime: `Direct sow cucumbers after the soil is warm, usually April through May in inland Zone 9 gardens. Soil should be at least 60 degrees, with 70 degrees better for quick sprouting.
+
+For a longer harvest, plant a second round 3 to 4 weeks later. In very hot areas, a late summer planting can work if you can protect seedlings from heat and keep them watered.`,
+
+      toolsAndSupplies: [
+        'Cucumber seed or healthy transplants',
+        'Compost',
+        'Trellis, cattle panel, netting, or strong stakes',
+        'Drip irrigation or soaker hose',
+        'Mulch',
+        'Pruners or scissors for harvest',
+        'Insect netting for young plants if beetles are a problem',
+      ],
+
+      steps: [
+        {
+          title: 'Pick the right cucumber type',
+          body: `Slicing cucumbers are best for fresh eating. Pickling cucumbers are shorter, firm, and better for jars. Armenian cucumbers handle heat well and are worth trying in hot valley gardens, even though they are technically melons.
+
+Look for disease resistance if powdery mildew has been a problem in your garden. A resistant variety does not make the plant bulletproof, but it can buy you more harvest time.`,
+        },
+        {
+          title: 'Plant in warm soil',
+          body: `Cucumber seed rots or sits still in cold soil. Wait until the soil is warm and nights are mild.
+
+Direct sow seeds 1 inch deep. Plant 2 to 3 seeds per spot, then thin to the strongest plant. If using transplants, handle roots gently. Cucumbers do not like rough transplanting.
+
+Use /learn/know-your-growing-zone to check your local timing, then plan spacing and harvest goals in /garden-planner before you plant too many vines.`,
+        },
+        {
+          title: 'Use a trellis if you can',
+          body: `Trellising cucumbers saves space, improves airflow, and keeps fruit straighter and cleaner. A cattle panel arch, vertical netting, or a strong fence panel can all work.
+
+Set the trellis before or at planting. Do not try to untangle large vines later. Guide young vines toward the support and let tendrils do the rest.
+
+Bush cucumbers can grow on the ground, but even they benefit from mulch and open airflow.`,
+        },
+        {
+          title: 'Feed lightly but steadily',
+          body: `Cucumbers like fertile soil, but too much nitrogen gives you giant vines with fewer flowers. Mix compost into the bed before planting.
+
+Once vines begin to run, feed with a balanced organic fertilizer or compost tea if growth looks pale. Do not keep pouring on nitrogen after vines are lush.`,
+        },
+        {
+          title: 'Water before stress shows',
+          body: `Cucumbers are mostly water. If the plant wilts hard every afternoon, fruit quality will drop. Bitter cucumbers often come from stress, especially heat and uneven moisture.
+
+Use drip irrigation at the base of the plants. Keep leaves dry when possible. Mulch once seedlings are established.
+
+During hot spells, check soil moisture with your finger under the mulch. The surface can look dry while the root zone is fine, or the top can look damp while roots are dry.`,
+        },
+        {
+          title: 'Scout for pests and mildew',
+          body: `Check the underside of leaves every few days. Cucumber beetles chew leaves and can spread disease. Spider mites make leaves look dusty or speckled. Aphids gather on tender growth.
+
+Powdery mildew usually shows as white patches on leaves later in the season. Improve airflow, avoid overhead watering, and remove badly infected leaves.
+
+Young plants can be protected with insect netting, but remove covers when flowers appear so pollinators can reach them.`,
+        },
+        {
+          title: 'Harvest often',
+          body: `Pick cucumbers young and often. A vine with oversized yellow fruit thinks its job is done and slows down.
+
+Use scissors or pruners instead of yanking fruit off the vine. Harvest every day or two once production starts.
+
+If fruit tastes bitter, peel the stem end first. If the whole cucumber is bitter, the plant was likely heat or water stressed.`,
+        },
+      ],
+
+      commonMistakes: [
+        {
+          mistake: 'Planting before soil is warm',
+          fix: 'Wait until soil is at least 60 degrees. Warm soil gives fast germination and stronger plants.',
+        },
+        {
+          mistake: 'Letting vines dry out between waterings',
+          fix: 'Use drip irrigation, mulch, and regular soil checks. Cucumbers need steady moisture.',
+        },
+        {
+          mistake: 'Leaving mature fruit on the vine',
+          fix: 'Pick every day or two. Overgrown cucumbers slow new production.',
+        },
+        {
+          mistake: 'Keeping row cover on after flowering starts',
+          fix: 'Remove insect netting when flowers open unless you are hand pollinating.',
+        },
+        {
+          mistake: 'Planting too many vines without a trellis',
+          fix: 'Use vertical support or reduce plant count. Tangled ground vines are harder to water, harvest, and inspect.',
+        },
+      ],
+
+      northernCaliforniaNotes: `Cucumbers like heat, but they do not like dry heat without water. Inland Northern California gardens can produce excellent cucumbers in late spring and early summer, then struggle in the hottest part of July and August.
+
+A second planting can work, but only if seedlings are protected from severe heat. Morning sun with afternoon shade can help in the hottest valleys.`,
+
+      zone9Notes: `In Zone 9b, direct sow cucumbers from April into May. A second planting in June may work if water is steady. For a fall try, sow in late July or early August and use shade cloth while seedlings are small.
+
+Cucumbers grow quickly, so even a short window can produce food if the plants do not get stressed early.`,
+
+      wateringConsiderations: `Keep cucumber roots evenly moist. Drip irrigation under mulch is the best setup. In hot weather, shallow-rooted cucumber plants may need more frequent watering than tomatoes. Avoid overhead watering late in the day because wet leaves overnight can increase disease pressure.`,
+
+      heatConsiderations: `During heat waves above 100 degrees, cucumber leaves may wilt even with moist soil. If they recover by evening, the plant is coping. If they stay wilted, water is not reaching the root zone. Use shade cloth for young plants during extreme heat.`,
+
+      checklist: [
+        'Wait for warm soil before planting',
+        'Choose slicer, pickling, or heat-tolerant Armenian types',
+        'Install trellis before vines run',
+        'Direct sow or transplant gently',
+        'Mulch after seedlings establish',
+        'Water evenly with drip irrigation',
+        'Remove covers once flowers open',
+        'Scout for beetles, mites, aphids, and mildew',
+        'Harvest every day or two',
+      ],
+
+      relatedSlugs: [
+        'companion-planting',
+        'seed-starting-instructions',
+        'pest-control-comparison',
+        'common-plant-diseases',
+        'warm-season-cover-crops',
+      ],
+
+      sources: [
+        {
+          title: 'Know Your Growing Zone',
+          author: 'Shaggy Ink Farms',
+          url: '/learn/know-your-growing-zone',
+        },
+        {
+          title: 'Family Food Security Garden Planner',
+          author: 'Shaggy Ink Farms',
+          url: '/garden-planner',
+        },
+        {
+          title: 'Cucumbers in the Home Garden',
+          author: 'UC Agriculture and Natural Resources',
+          url: 'https://ucanr.edu/',
+        },
+        {
+          title: 'Cucumber Growing Guide',
+          author: "Johnny's Selected Seeds Growing Library",
+          url: 'https://www.johnnyseeds.com/growers-library/',
+        },
+      ],
+    },
+  },
+
+  {
+    slug: 'growing-sunflowers-cut-flowers',
+    title: 'Growing Sunflowers for Cut Flowers',
+    shortTitle: 'Cut Sunflowers',
+    description:
+      'How to grow sunflowers for cutting, bouquets, and farm stand bunches with good stems, clean blooms, and steady timing.',
+    category: 'Crop-Specific',
+    status: 'published',
+    readingTimeMinutes: 9,
+    lastUpdated: '2026-06-17',
+    keywords: [
+      'growing sunflowers for cut flowers',
+      'cut flower sunflowers',
+      'sunflower planting dates',
+      'sunflower irrigation',
+    ],
+    content: {
+      introduction: `Sunflowers fit the Shaggy Ink Farms style: bright, useful, tough, and a little bold. They are simple to grow, but growing them well for cut flowers takes more planning than tossing seed along a fence.
+
+For bouquets, you want straight stems, clean petals, good vase life, and blooms ready over several weeks. That means choosing the right type, planting in successions, spacing correctly, and cutting at the right stage.
+
+Northern California gives sunflowers plenty of heat and light. The work is keeping them watered, upright, and harvested before the blooms get too old.`,
+
+      whoThisIsFor: `This guide is for gardeners, homesteads, and small farms that want sunflowers for bouquets, farm stand bunches, gifts, or kitchen table flowers.
+
+It is also useful if you have grown giant sunflowers before but ended up with stems too thick, flowers too large, or blooms that dropped pollen all over the house.`,
+
+      bestTime: `Direct sow sunflowers after frost danger has passed and soil has warmed. In Zone 9b Northern California, start sowing in March or April.
+
+For cut flowers, sow small batches every 10 to 14 days from spring into early summer. This gives you waves of blooms instead of one big flush.`,
+
+      toolsAndSupplies: [
+        'Pollenless or low-pollen sunflower seed for cutting',
+        'Compost',
+        'Drip irrigation or soaker hose',
+        'Flower netting, stakes, or support twine',
+        'Mulch',
+        'Clean harvest bucket',
+        'Sharp snips or pruners',
+        'Shade cloth for young seedlings during extreme heat',
+      ],
+
+      steps: [
+        {
+          title: 'Choose cut flower varieties',
+          body: `Not all sunflowers are good cut flowers. Giant seed types are fun, but they often make huge heads and thick stems that do not fit bouquets.
+
+For cutting, look for pollenless or low-pollen varieties. They are cleaner indoors and often have better vase life. Single-stem types make one main flower per plant. Branching types make several smaller blooms over time.
+
+Good bouquet colors include yellow, gold, lemon, orange, bronze, and soft cream. Plant a mix if you want bunches that look less like grocery store flowers and more like a farm table.`,
+        },
+        {
+          title: 'Plan successions before planting',
+          body: `Sunflowers bloom fast and then they are done. If you plant one big patch, you get one big harvest window.
+
+For cut flowers, plant a short row every 10 to 14 days. Stop or slow planting when the forecast points toward extreme summer heat unless you can irrigate well.
+
+Use /garden-planner to map how many row feet you can spare. Use /learn/know-your-growing-zone to check your frost and heat timing before you start the first round.`,
+        },
+        {
+          title: 'Direct sow into warm soil',
+          body: `Sunflowers prefer direct sowing. Plant seeds about 1 inch deep in warm soil. Keep the bed moist until germination.
+
+For single-stem cut sunflowers, close spacing makes thinner, more useful stems. Space plants 6 to 9 inches apart. For branching types, give more room, usually 12 to 18 inches.
+
+Protect seedlings from birds, slugs, earwigs, and cutworms. A sunflower seedling can disappear overnight.`,
+        },
+        {
+          title: 'Support the crop before stems stretch',
+          body: `Cut flower sunflowers should be straight. Wind and uneven water can bend stems.
+
+In a small garden, stakes and twine may be enough. In a larger patch, use flower netting stretched above the bed while plants are young. They will grow through it.
+
+Do not wait until plants are leaning. Support is much easier before the stems get tall.`,
+        },
+        {
+          title: 'Water for steady growth',
+          body: `Sunflowers are drought tolerant once established, but cut flower quality is better with steady water. Dry stress can shorten stems, reduce bloom size, and make plants finish too fast.
+
+Use drip irrigation at the base. Avoid frequent overhead watering once buds form. Wet petals and leaves can lead to spotting and disease.
+
+Mulch helps keep the root zone cooler in hot areas.`,
+        },
+        {
+          title: 'Cut at the right stage',
+          body: `For best vase life, cut sunflowers when petals just begin to lift from the center. The bloom should not be fully open yet.
+
+Cut early in the morning when stems are hydrated. Strip leaves that will sit below the water line. Put stems into clean water right away.
+
+For branching types, cut the main flower first and keep harvesting side stems as they open.`,
+        },
+        {
+          title: 'Handle heat and harvest windows',
+          body: `In hot Northern California weather, sunflowers can move from tight bud to too open very fast. During bloom season, check plants every morning.
+
+If a heat wave is coming, cut blooms a little earlier than normal. They can open in the bucket or vase. Waiting too long gives you tired flowers and shorter vase life.
+
+Succession planting is the real secret. One planting is a nice patch. Repeated plantings are a cut flower crop.`,
+        },
+      ],
+
+      commonMistakes: [
+        {
+          mistake: 'Growing giant seed sunflowers for bouquets',
+          fix: 'Choose pollenless or low-pollen cut flower varieties with smaller heads and better stems.',
+        },
+        {
+          mistake: 'Planting everything on one day',
+          fix: 'Sow every 10 to 14 days for a steady harvest instead of one short bloom window.',
+        },
+        {
+          mistake: 'Spacing plants too far apart for single-stem cuts',
+          fix: 'Use closer spacing, about 6 to 9 inches, for thinner bouquet stems.',
+        },
+        {
+          mistake: 'Cutting flowers fully open',
+          fix: 'Cut when petals just start to lift. Fully open blooms have shorter vase life.',
+        },
+        {
+          mistake: 'Letting young plants dry out',
+          fix: 'Keep soil evenly moist until plants are established. Drought stress early can shorten stems.',
+        },
+      ],
+
+      northernCaliforniaNotes: `Sunflowers handle Northern California sun better than many flowers, but cut flower quality still depends on water. In valley heat, dry plants may survive but produce shorter stems and rougher blooms.
+
+Spring and early summer plantings are usually the easiest. Mid-summer plantings can work with drip irrigation, mulch, and close attention. Smoke, hot wind, and long heat waves can shorten vase life.`,
+
+      zone9Notes: `In Zone 9b, start direct sowing in March or April after frost danger drops. Continue successions into June if you have water. Later plantings may bloom fast and short during peak heat.
+
+For fall flowers, a late summer sowing can work, but seedlings need protection from heat until they are established.`,
+
+      wateringConsiderations: `Give sunflowers steady water from germination through bloom. Deep watering builds stronger stems. Drip lines are better than sprinklers for cut flowers because dry leaves and petals stay cleaner.`,
+
+      heatConsiderations: `Sunflowers tolerate heat, but bloom timing speeds up during hot spells. Harvest earlier in the morning and cut before flowers are fully open. Use shade cloth only for young seedlings during extreme heat, not over mature plants unless they are wilting badly.`,
+
+      checklist: [
+        'Choose pollenless or low-pollen cut flower varieties',
+        'Direct sow after frost danger and warm soil',
+        'Plant a new batch every 10 to 14 days',
+        'Use closer spacing for single-stem bouquet sunflowers',
+        'Install support before stems get tall',
+        'Water steadily with drip irrigation',
+        'Scout seedlings for chewing pests',
+        'Cut when petals just begin to open',
+        'Harvest early in the morning into clean water',
+      ],
+
+      relatedSlugs: [
+        'seed-starting-instructions',
+        'companion-planting',
+        'spring-garden-layout',
+        'warm-season-cover-crops',
+        'low-sunlight-vegetables',
+      ],
+
+      sources: [
+        {
+          title: 'Know Your Growing Zone',
+          author: 'Shaggy Ink Farms',
+          url: '/learn/know-your-growing-zone',
+        },
+        {
+          title: 'Family Food Security Garden Planner',
+          author: 'Shaggy Ink Farms',
+          url: '/garden-planner',
+        },
+        {
+          title: 'Sunflower Production',
+          author: 'UC Agriculture and Natural Resources',
+          url: 'https://ucanr.edu/',
+        },
+        {
+          title: 'Sunflower Growing Guide',
+          author: "Johnny's Selected Seeds Growing Library",
+          url: 'https://www.johnnyseeds.com/growers-library/',
+        },
+      ],
+    },
+  },
+
   // ── COMING SOON GUIDES ──────────────────────────────────────────────────────
   // TODO: Write full content for each of the following guides.
   // Structure mirrors the published guides above.

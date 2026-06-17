@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useState } from "react";
 import { farmImages } from "@/lib/images";
 import { navItems, siteConfig } from "@/lib/site";
-import { LearnDropdown, LearnMobileAccordion } from "@/components/LearnDropdown";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -49,7 +48,7 @@ export function Header() {
         </button>
 
         {/* Desktop nav */}
-        <div className="hidden items-center gap-5 lg:flex">
+        <div className="hidden items-center gap-4 lg:flex xl:gap-5">
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -59,16 +58,6 @@ export function Header() {
               {item.label}
             </Link>
           ))}
-
-          {/* Learn & Plan dropdown */}
-          <LearnDropdown />
-
-          <Link
-            href="/contact"
-            className="rounded-sm border-2 border-[#C6933F] bg-[#C6933F] px-4 py-2 text-sm font-bold uppercase tracking-[0.08em] text-white transition hover:bg-[#b07f35]"
-          >
-            Join Farm Updates
-          </Link>
         </div>
       </nav>
 
@@ -89,17 +78,6 @@ export function Header() {
                 {item.label}
               </Link>
             ))}
-
-            {/* Learn & Plan accordion */}
-            <LearnMobileAccordion />
-
-            <Link
-              href="/contact"
-              className="mt-2 rounded-sm border-2 border-[#C6933F] bg-[#C6933F] px-4 py-2.5 text-center text-sm font-bold uppercase tracking-[0.08em] text-white transition hover:bg-[#b07f35]"
-              onClick={() => setOpen(false)}
-            >
-              Join Farm Updates
-            </Link>
           </div>
         </div>
       )}

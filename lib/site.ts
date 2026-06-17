@@ -13,26 +13,25 @@ export const siteConfig = {
   },
 };
 
-// Flat nav items (used for footer and mobile fallback).
-// The Header component renders "Learn & Plan" as a dropdown via LearnDropdown.
+// Primary navigation items used by the header and footer.
 export const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
+  { href: "/about", label: "Farm" },
+  { href: "/learn", label: "Learn" },
+  { href: "/garden-planner", label: "Plan" },
   { href: "/farm-journal", label: "Journal" },
-  { href: "/chickens", label: "Chickens" },
-  { href: "/youtube", label: "YouTube" },
+  { href: "/eggs", label: "Eggs" },
+  { href: "/store", label: "Store" },
   { href: "/contact", label: "Contact" },
 ];
 
-// Learn & Plan sub-navigation (used in footer Resources column)
+// Supporting Learn and Plan links used in the footer.
 export const learnNavItems = [
-  { href: "/learn", label: "Learning Center" },
+  { href: "/learn", label: "Learn" },
   { href: "/learn/growing-guides", label: "Growing Guides" },
-  { href: "/learn/garden-planning", label: "Planning Tools" },
-  { href: "/learn/know-your-growing-zone", label: "Know Your Zone" },
-  { href: "/garden-planner", label: "Garden Planner" },
-  // Legacy route — preserved for backlinks and bookmarks
-  { href: "/growing-guide", label: "Old Growing Guide" },
+  { href: "/learn/garden-planning", label: "Garden Planning" },
+  { href: "/learn/know-your-growing-zone", label: "Growing Zone" },
+  { href: "/garden-planner", label: "Plan" },
+  { href: "/growing-guide", label: "Legacy Growing Guide" },
 ];
 
 export const featureCards = [
