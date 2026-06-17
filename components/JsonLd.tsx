@@ -109,34 +109,6 @@ export function faqPageJsonLd(items: FaqItem[]) {
   };
 }
 
-/** Product + Offer schema for the seasonal egg program. */
-export function eggProductJsonLd() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: "Farm Fresh Pasture-Raised Eggs",
-    image: `${siteConfig.url}${farmImages.eggCartons.src}`,
-    description:
-      "Seasonal farm fresh eggs from a small flock of pasture-raised Plymouth Barred Rock hens in Anderson, California. Sold locally in the Redding and Shasta County area.",
-    brand: {
-      "@type": "Brand",
-      name: siteConfig.name,
-    },
-    category: "Eggs",
-    offers: {
-      "@type": "Offer",
-      priceCurrency: "USD",
-      availability: "https://schema.org/LimitedAvailability",
-      url: absoluteUrl("/eggs"),
-      seller: {
-        "@type": "Organization",
-        name: siteConfig.name,
-      },
-      areaServed: "Anderson, Redding, and Shasta County, California",
-    },
-  };
-}
-
 /** Article schema for a growing guide. */
 export function guideArticleJsonLd(guide: GrowingGuide) {
   const url = absoluteUrl(`/learn/growing-guides/${guide.slug}`);
@@ -146,6 +118,7 @@ export function guideArticleJsonLd(guide: GrowingGuide) {
     headline: guide.title,
     description: guide.description,
     image: `${siteConfig.url}${farmImages.oakPasture.src}`,
+    datePublished: guide.lastUpdated,
     dateModified: guide.lastUpdated,
     author: {
       "@type": "Organization",
@@ -162,26 +135,5 @@ export function guideArticleJsonLd(guide: GrowingGuide) {
     },
     mainEntityOfPage: url,
     keywords: guide.keywords.join(", "),
-  };
-}
-
-/** HowTo schema built from a guide's step-by-step instructions. */
-export function guideHowToJsonLd(guide: GrowingGuide) {
-  if (!guide.content) return null;
-  return {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: guide.title,
-    description: guide.description,
-    step: guide.content.steps.map((step, index) => ({
-      "@type": "HowToStep",
-      position: index + 1,
-      name: step.title,
-      text: step.body.replace(/\s+/g, " ").trim(),
-    })),
-    supply: guide.content.toolsAndSupplies.map((item) => ({
-      "@type": "HowToSupply",
-      name: item,
-    })),
   };
 }

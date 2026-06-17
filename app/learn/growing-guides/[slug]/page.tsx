@@ -6,7 +6,6 @@ import {
   JsonLd,
   breadcrumbJsonLd,
   guideArticleJsonLd,
-  guideHowToJsonLd,
 } from '@/components/JsonLd';
 
 interface Props {
@@ -45,12 +44,9 @@ export default async function GuideSlugPage({ params }: Props) {
     notFound();
   }
 
-  const howTo = guideHowToJsonLd(guide);
-
   return (
     <>
       <JsonLd data={guideArticleJsonLd(guide)} />
-      {howTo ? <JsonLd data={howTo} /> : null}
       <JsonLd
         data={breadcrumbJsonLd([
           { name: 'Home', path: '/' },

@@ -10,7 +10,6 @@ import { SectionHeader } from "@/components/SectionHeader";
 import {
   JsonLd,
   breadcrumbJsonLd,
-  eggProductJsonLd,
   faqPageJsonLd,
 } from "@/components/JsonLd";
 import { farmImages } from "@/lib/images";
@@ -76,7 +75,6 @@ const eggFaqs: FaqItem[] = [
 export default function EggsPage() {
   return (
     <>
-      <JsonLd data={eggProductJsonLd()} />
       <JsonLd data={faqPageJsonLd(eggFaqs)} />
       <JsonLd
         data={breadcrumbJsonLd([
