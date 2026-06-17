@@ -63,22 +63,74 @@ npm run start
 
 The contact form and farm updates signup are wired to production API routes with validation, loading states, success states, error states, and honeypot spam protection.
 
-Create these environment variables in Vercel:
+### Environment variables
 
-```bash
-RESEND_API_KEY=
-RESEND_AUDIENCE_ID=
-CONTACT_TO_EMAIL=hello@shaggyinkfarms.com
-CONTACT_FROM_EMAIL=Shaggy Ink Farms <updates@shaggyinkfarms.com>
-```
+Create these in Vercel → Project Settings → Environment Variables:
 
-Implementation details:
+| Variable | Required | Description |
+|---|---|---|
+| `RESEND_API_KEY` | Yes | Resend API key. Starts with `re_`. Found at resend.com/api-keys. |
+| `RESEND_AUDIENCE_ID` | Yes | Resend Audience UUID. See below — the most common setup mistake. |
+| `CONTACT_TO_EMAIL` | Yes | Where contact form submissions are delivered. |
+| `CONTACT_FROM_EMAIL` | Yes | Outbound "From" address. Must be on a Resend-verified domain. |
+
+### Finding your RESEND_AUDIENCE_ID (critical)
+
+**`RESEND_AUDIENCE_ID` must be the UUID, not the audience display name.**
+
+The most common setup mistake is copying the audience display name (e.g. `"Resend → Audience"` or `"Shaggy Ink Farms List"`) instead of the ID. This causes the Resend API URL to be malformed and returns a 502 error.
+
+How to find the correct value:
+
+1. Go to [resend.com/audiences](https://resend.com/audiences)
+2. Click on your audience
+3. The ID appears below the audience name — it looks like: `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`
+4. Copy that UUID and set it as `RESEND_AUDIENCE_ID` in Vercel
+
+If `RESEND_AUDIENCE_ID` is missing or does not look like a UUID, the API route returns a `503` with a user-friendly fallback message and logs the specific problem in Vercel Function Logs.
+
+### Diagnosing signup failures
+
+If subscribers are not being added, check **Vercel → Project → Functions → Logs** and filter by `/api/subscribe`. The route logs:
+
+- `[subscribe] RESEND_API_KEY environment variable is not set.` — key missing
+- `[subscribe] RESEND_AUDIENCE_ID looks wrong: "..."` — wrong format (display name instead of UUID)
+- `[subscribe] Resend API error — HTTP 4xx/5xx (audience: ...): ...` — Resend rejected the request; the error body is logged
+- `[subscribe] Contact created — email: ..., source: ..., audience: ...` — success
+- `[subscribe] Already subscribed: ...` — 409; contact exists, treated as success
+
+### Verifying contacts in the Resend dashboard
+
+After a successful signup in production:
+
+1. Go to [resend.com/audiences](https://resend.com/audiences)
+2. Click your audience
+3. Click **Contacts** tab
+4. The email should appear with **Unsubscribed: No**
+
+The contact is attached to the audience identified by `RESEND_AUDIENCE_ID`.
+
+### Newsletter list segmentation
+
+The current architecture (single Resend Audience) supports all planned newsletter types through **Resend Segments**:
+
+| Newsletter type | Segment approach |
+|---|---|
+| Farm Updates | All contacts (entire audience) |
+| Weekly Growing Tips | Segment: contacts from `/learn` signup source |
+| Egg Availability Alerts | Segment: contacts who clicked egg-related links |
+| Store & Product Releases | Segment: contacts from store-interest source |
+
+To implement per-interest segmentation: add a hidden `source` field to the signup forms on each page section, then create Resend Segments filtering by the tags or date ranges you care about. No code redesign needed — the route already reads a `source` field from the form.
+
+### Implementation details
 
 - `/api/contact` sends contact messages through Resend email.
-- `/api/subscribe` adds subscribers to a Resend Audience.
-- `RESEND_AUDIENCE_ID` is required for email signup.
+- `/api/subscribe` adds subscribers to a Resend Audience via `POST /audiences/{id}/contacts`.
+- `RESEND_AUDIENCE_ID` is validated as a UUID before any API call is made.
 - `CONTACT_FROM_EMAIL` must use a verified sending domain in Resend.
-- If credentials are missing, forms return a clear public fallback message instead of silently failing.
+- If credentials are missing or malformed, forms return a user-friendly fallback message and log the specific error server-side.
+- Honeypot spam protection: a hidden `company` field is present in the form; if filled, the request is silently accepted without calling Resend.
 
 ## Pages
 
