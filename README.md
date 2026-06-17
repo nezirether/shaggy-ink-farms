@@ -63,22 +63,71 @@ npm run start
 
 The contact form and farm updates signup are wired to production API routes with validation, loading states, success states, error states, and honeypot spam protection.
 
-Create these environment variables in Vercel:
+### Environment variables
 
-```bash
-RESEND_API_KEY=
-RESEND_AUDIENCE_ID=
-CONTACT_TO_EMAIL=hello@shaggyinkfarms.com
-CONTACT_FROM_EMAIL=Shaggy Ink Farms <updates@shaggyinkfarms.com>
-```
+Create these in Vercel → Project Settings → Environment Variables:
 
-Implementation details:
+| Variable | Required | Description |
+|---|---|---|
+| `RESEND_API_KEY` | Yes | Resend API key. Starts with `re_`. Found at resend.com/api-keys. |
+| `RESEND_AUDIENCE_ID` | No | Not used by the current signup route. Reserved for future segmentation. |
+| `CONTACT_TO_EMAIL` | Yes | Where contact form submissions are delivered. |
+| `CONTACT_FROM_EMAIL` | Yes | Outbound "From" address. Must be on a Resend-verified domain. |
+
+### How signup works
+
+`/api/subscribe` uses the [Resend SDK](https://resend.com/docs/api-reference/contacts) global Contacts API — no Audience ID required.
+
+- **New contact:** created with `unsubscribed: false` and custom properties (`signup_source`, `signup_interest`, `signup_interest_label`).
+- **Existing contact:** properties are updated; subscription status is **not changed** (an existing subscriber is never accidentally unsubscribed).
+- **Invalid email:** returns 400 with a friendly message.
+- **Missing API key:** returns 503 with a friendly message and logs the problem server-side.
+
+### Custom contact properties (optional)
+
+The route stores three properties on each contact: `signup_source`, `signup_interest`, and `signup_interest_label`. These must be **pre-created** in the Resend dashboard before they will be saved:
+
+1. Go to resend.com → Contacts → Properties
+2. Create a property for each key (type: Text)
+3. Redeploy — properties will now be stored with each new contact
+
+If the properties are not pre-created, Resend returns a validation error and the contact is not created. The error is logged in Vercel Function Logs.
+
+### Diagnosing signup failures
+
+Check **Vercel → Project → Functions → Logs** and filter by `/api/subscribe`. The route logs:
+
+- `[subscribe] RESEND_API_KEY is not set.` — key missing in Vercel env
+- `[subscribe] Contact created: <id>` — success, new contact
+- `[subscribe] Contact updated: <id>` — success, returning contact
+- `[subscribe] Resend create error for <email> — <name>: <message>` — unexpected API error on create
+- `[subscribe] Resend update error for <email> — <name>: <message>` — unexpected API error on update
+
+### Verifying contacts in the Resend dashboard
+
+After a successful signup:
+
+1. Go to resend.com → Contacts
+2. The email should appear with **Unsubscribed: No**
+
+### Newsletter segmentation plan
+
+| Newsletter type | Approach |
+|---|---|
+| Farm Updates | All global contacts |
+| Weekly Growing Tips | Filter by `signup_source` = `learn_zone` or `learn_guides` |
+| Egg Availability Alerts | Filter by `signup_interest` = `egg_alerts` |
+| Store & Product Releases | Filter by `signup_interest` = `store_releases` |
+
+Signup forms already pass a hidden `source` and `interest` field — no route changes needed to add segmentation.
+
+### Implementation details
 
 - `/api/contact` sends contact messages through Resend email.
-- `/api/subscribe` adds subscribers to a Resend Audience.
-- `RESEND_AUDIENCE_ID` is required for email signup.
+- `/api/subscribe` uses `resend.contacts.create()` and `resend.contacts.update()` from the `resend` npm SDK.
+- `RESEND_AUDIENCE_ID` is **not required** and is not read by the signup route.
 - `CONTACT_FROM_EMAIL` must use a verified sending domain in Resend.
-- If credentials are missing, forms return a clear public fallback message instead of silently failing.
+- Honeypot spam protection: a hidden `company` field is present in the form; if filled, the request is silently accepted without calling Resend.
 
 ## Analytics Configuration
 
