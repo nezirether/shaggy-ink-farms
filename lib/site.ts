@@ -97,9 +97,9 @@ export const pageMetadata = {
       "Meet the flagship Plymouth Barred Rock flock at Shaggy Ink Farms and follow heritage poultry care, roosters, hens, chicks, and breed notes.",
   },
   eggs: {
-    title: "Farm Fresh Eggs",
+    title: "Farm Fresh Eggs in Anderson & Redding, CA",
     description:
-      "Learn about seasonal farm fresh eggs from the Shaggy Ink Farms Plymouth Barred Rock flock in Northern California.",
+      "Seasonal, pasture-raised farm fresh eggs from a small flock of Plymouth Barred Rock hens in Anderson, California. Join the list for local pickup near Redding and Shasta County.",
   },
   projects: {
     title: "Homestead Projects",

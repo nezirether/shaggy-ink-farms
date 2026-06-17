@@ -1,5 +1,6 @@
-import { siteConfig } from "@/lib/site";
+import { siteConfig, absoluteUrl } from "@/lib/site";
 import { farmImages } from "@/lib/images";
+import type { GrowingGuide } from "@/data/growingGuides";
 
 type JsonLdProps = {
   data: Record<string, unknown>;
@@ -69,5 +70,70 @@ export function farmJsonLd() {
         availability: "https://schema.org/LimitedAvailability",
       },
     ],
+  };
+}
+
+// ─── Reusable schema builders ────────────────────────────────────────────────
+
+type Crumb = { name: string; path: string };
+
+/** BreadcrumbList for any page. Pass the trail from home to current page. */
+export function breadcrumbJsonLd(crumbs: Crumb[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: crumbs.map((crumb, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: crumb.name,
+      item: absoluteUrl(crumb.path),
+    })),
+  };
+}
+
+type FaqItem = { question: string; answer: string };
+
+/** FAQPage rich result. `answer` should be plain text (no markup). */
+export function faqPageJsonLd(items: FaqItem[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+}
+
+/** Article schema for a growing guide. */
+export function guideArticleJsonLd(guide: GrowingGuide) {
+  const url = absoluteUrl(`/learn/growing-guides/${guide.slug}`);
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: guide.title,
+    description: guide.description,
+    image: `${siteConfig.url}${farmImages.oakPasture.src}`,
+    datePublished: guide.lastUpdated,
+    dateModified: guide.lastUpdated,
+    author: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteConfig.url}${farmImages.badge.src}`,
+      },
+    },
+    mainEntityOfPage: url,
+    keywords: guide.keywords.join(", "),
   };
 }

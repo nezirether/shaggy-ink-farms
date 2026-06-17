@@ -2,6 +2,11 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getGuideBySlug, GROWING_GUIDES } from '@/data/growingGuides';
 import { GuideLayout } from '@/components/GuideLayout';
+import {
+  JsonLd,
+  breadcrumbJsonLd,
+  guideArticleJsonLd,
+} from '@/components/JsonLd';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -39,5 +44,18 @@ export default async function GuideSlugPage({ params }: Props) {
     notFound();
   }
 
-  return <GuideLayout guide={guide} />;
+  return (
+    <>
+      <JsonLd data={guideArticleJsonLd(guide)} />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: 'Home', path: '/' },
+          { name: 'Learning Center', path: '/learn' },
+          { name: 'Growing Guides', path: '/learn/growing-guides' },
+          { name: guide.shortTitle, path: `/learn/growing-guides/${guide.slug}` },
+        ])}
+      />
+      <GuideLayout guide={guide} />
+    </>
+  );
 }

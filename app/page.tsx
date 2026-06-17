@@ -4,6 +4,7 @@ import { ButtonLink } from "@/components/ButtonLink";
 import { EmailSignup } from "@/components/EmailSignup";
 import { FarmVisual } from "@/components/FarmVisual";
 import { JournalCard } from "@/components/JournalCard";
+import { RelatedLinks } from "@/components/RelatedLinks";
 import { SectionHeader } from "@/components/SectionHeader";
 import { farmImages } from "@/lib/images";
 import { featuredArticle } from "@/lib/journal";
@@ -152,6 +153,52 @@ export default function Home() {
           <JournalCard article={featuredArticle} featured />
         </div>
       </section>
+
+      {/* Explore the farm — internal hub */}
+      <RelatedLinks
+        tone="dark"
+        eyebrow="Find Your Way Around"
+        title="Explore the farm"
+        intro="Whether you came for the chickens, the eggs, or to grow more of your own food, here is where to start."
+        links={[
+          {
+            href: "/chickens",
+            eyebrow: "Livestock",
+            title: "Plymouth Barred Rock chickens",
+            copy: "Meet the heritage flock at the center of the farm — calm, hardy, and unmistakably barred.",
+          },
+          {
+            href: "/eggs",
+            eyebrow: "From the Flock",
+            title: "Seasonal farm fresh eggs",
+            copy: "Pasture-raised eggs with local pickup near Anderson and Redding. Join the list to know when cartons drop.",
+          },
+          {
+            href: "/garden-planner",
+            eyebrow: "Free Tool",
+            title: "Family Food Security Garden Planner",
+            copy: "Set your zone and family size and get a full planting plan — counts, space, timeline, and shopping list.",
+          },
+          {
+            href: "/learn",
+            eyebrow: "Learning Center",
+            title: "Growing guides & garden tools",
+            copy: "In-depth, Northern California growing guides and planners written for real Zone 9b conditions.",
+          },
+          {
+            href: "/learn/know-your-growing-zone",
+            eyebrow: "Plan",
+            title: "Know your growing zone",
+            copy: "Find your USDA zone, frost dates, and exactly what to plant this week in your area.",
+          },
+          {
+            href: "/farm-journal",
+            eyebrow: "Stories",
+            title: "Read the farm journal",
+            copy: "Honest field notes on the flock, the garden, and building this homestead season by season.",
+          },
+        ]}
+      />
 
       {/* Email Signup */}
       <div id="updates">
