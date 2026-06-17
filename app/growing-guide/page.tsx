@@ -83,36 +83,34 @@ export default function GrowingGuidePage() {
           </section>
 
           {/* Section 2: Local Growing Guides */}
-          <section>
-            <div className="mb-5">
+          <section className="text-center">
+            <div className="mb-6">
               <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#8B2A2A]">
                 Step 2
               </p>
               <h2 className="mt-2 font-serif text-3xl font-bold text-[#1C1C1A] sm:text-4xl">
                 Local Growing Guides
               </h2>
-              <p className="mt-2 max-w-2xl text-sm text-[#1C1C1A]/65">
+              <p className="mx-auto mt-2 max-w-2xl text-sm text-[#1C1C1A]/65">
                 Detailed guides for towns around Anderson, California. Varieties,
                 irrigation, heat and frost notes, and a month-by-month calendar.
                 The closer to our farm, the more specific the guide.
               </p>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap justify-center gap-2.5">
               {localGuides.map((guide) => (
                 <Link
                   key={guide.slug}
                   href={`/growing-guide/local/${guide.slug}`}
-                  className={`rounded border-2 px-3 py-1.5 text-xs font-bold leading-snug text-[#1C1C1A] transition hover:bg-[#1C1C1A] hover:text-[#D7D4CC] ${
+                  className={`inline-flex items-center justify-center gap-1.5 rounded border-2 px-4 py-2 text-sm font-bold leading-none text-[#1C1C1A] transition hover:bg-[#1C1C1A] hover:text-[#D7D4CC] ${
                     guide.slug === "shaggy-ink-farms"
-                      ? "border-[#C6933F] bg-[#C6933F]/15 hover:bg-[#1C1C1A]"
-                      : guide.slug === "anderson"
-                        ? "border-[#1C1C1A] bg-[#D7D4CC]"
-                        : "border-[#1C1C1A] bg-[#D7D4CC]"
+                      ? "border-[#C6933F] bg-[#C6933F]/15"
+                      : "border-[#1C1C1A] bg-[#D7D4CC]"
                   }`}
                 >
                   {guide.name}
                   {guide.slug === "shaggy-ink-farms" ? (
-                    <span className="ml-1.5 text-[10px] font-extrabold uppercase tracking-wide text-[#8B2A2A]">
+                    <span className="rounded-sm bg-[#C6933F] px-1.5 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-white">
                       The Farm
                     </span>
                   ) : null}
@@ -122,30 +120,27 @@ export default function GrowingGuidePage() {
           </section>
 
           {/* Section 3: Browse USDA Zones */}
-          <section>
-            <div className="mb-5">
+          <section className="text-center">
+            <div className="mb-6">
               <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#8B2A2A]">
                 Step 3
               </p>
               <h2 className="mt-2 font-serif text-3xl font-bold text-[#1C1C1A] sm:text-4xl">
                 Browse USDA Zones
               </h2>
-              <p className="mt-2 max-w-2xl text-sm text-[#1C1C1A]/65">
+              <p className="mx-auto mt-2 max-w-2xl text-sm text-[#1C1C1A]/65">
                 General planting guides by hardiness zone, with a monthly
                 calendar for each. Useful anywhere in the country.
               </p>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap justify-center gap-2.5">
               {zoneGuides.map((zone) => (
                 <Link
                   key={zone.zone}
                   href={`/growing-guide/zones/${zone.zone}`}
-                  className="rounded border-2 border-[#1C1C1A] bg-[#D7D4CC] px-3 py-1.5 text-xs font-bold leading-snug text-[#1C1C1A] transition hover:bg-[#1C1C1A] hover:text-[#D7D4CC]"
+                  className="inline-flex items-center justify-center rounded border-2 border-[#1C1C1A] bg-[#D7D4CC] px-4 py-2 text-sm font-bold leading-none text-[#1C1C1A] transition hover:bg-[#1C1C1A] hover:text-[#D7D4CC]"
                 >
                   Zone {zone.zone}
-                  <span className="ml-1.5 hidden text-[10px] font-normal text-[#1C1C1A]/55 sm:inline">
-                    {zone.blurb.split(" ").slice(0, 4).join(" ")}…
-                  </span>
                 </Link>
               ))}
             </div>
