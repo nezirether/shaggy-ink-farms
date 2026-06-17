@@ -53,6 +53,33 @@ export function Dashboard() {
         ))}
       </div>
 
+      {/* Setup prompt — shown when family or crops are missing */}
+      {(familySize === 0 || includedCrops === 0) && (
+        <section className="rounded-sm border-2 border-[#C6933F] bg-[#C6933F]/10 p-5">
+          <h3 className="font-serif text-base font-bold text-[#1C1C1A]">Complete Your Setup</h3>
+          <ul className="mt-3 space-y-2 text-sm text-[#1C1C1A]/75">
+            {familySize === 0 && (
+              <li className="flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-[#C6933F]" />
+                <button onClick={() => setTab('family')} className="underline hover:text-[#C6933F]">
+                  Add family members
+                </button>{' '}
+                — so the planner can calculate how much food you need.
+              </li>
+            )}
+            {includedCrops === 0 && (
+              <li className="flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-[#C6933F]" />
+                <button onClick={() => setTab('crops')} className="underline hover:text-[#C6933F]">
+                  Select crops
+                </button>{' '}
+                — browse the library and pick what your family eats.
+              </li>
+            )}
+          </ul>
+        </section>
+      )}
+
       {includedCrops > 0 && (
         <>
           {/* Top crops + Monthly workload */}
@@ -120,32 +147,6 @@ export function Dashboard() {
             </section>
           </div>
 
-          {/* Quick setup prompts if plan is incomplete */}
-          {(familySize === 0 || includedCrops === 0) && (
-            <section className="rounded-sm border-2 border-[#C6933F] bg-[#C6933F]/10 p-5">
-              <h3 className="font-serif text-base font-bold text-[#1C1C1A]">Complete Your Setup</h3>
-              <ul className="mt-3 space-y-2 text-sm text-[#1C1C1A]/75">
-                {familySize === 0 && (
-                  <li className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-[#C6933F]" />
-                    <button onClick={() => setTab('family')} className="underline hover:text-[#C6933F]">
-                      Add family members
-                    </button>{' '}
-                    — so the planner can calculate how much food you need.
-                  </li>
-                )}
-                {includedCrops === 0 && (
-                  <li className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-[#C6933F]" />
-                    <button onClick={() => setTab('crops')} className="underline hover:text-[#C6933F]">
-                      Select crops
-                    </button>{' '}
-                    — browse the library and pick what your family eats.
-                  </li>
-                )}
-              </ul>
-            </section>
-          )}
         </>
       )}
 

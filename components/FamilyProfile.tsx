@@ -17,7 +17,7 @@ const ROLE_DESCRIPTIONS: Record<FamilyRole, string> = {
 export function FamilyProfile() {
   const {
     state, adultEquivalents, familySize,
-    addMember, setMemberCount, removeMember,
+    addMember, setMemberCount,
     setSafetyMargin, setZone,
   } = useGardenPlanner();
 

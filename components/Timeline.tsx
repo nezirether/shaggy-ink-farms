@@ -1,7 +1,7 @@
 'use client';
 
 import { useGardenPlanner } from '@/app/garden-planner/GardenPlannerContext';
-import { MONTH_NAMES, doyToMonth } from '@/data/zones';
+import { MONTH_NAMES } from '@/data/zones';
 import { CATEGORY_ORDER } from '@/types/garden-planner';
 import type { CropCategory, TimelineRow } from '@/types/garden-planner';
 
@@ -60,11 +60,12 @@ function RowBar({ row }: RowBarProps) {
 
         {/* Planting dot */}
         <div
-          className="absolute top-1/2 -translate-y-1/2 z-10 h-3 w-3 rounded-full border-2 border-white shadow"
+          className="absolute z-10 h-3 w-3 rounded-full border-2 border-white shadow"
           style={{
             left: `${doyToPercent(row.plantingDOY)}%`,
-            backgroundColor: color,
+            top: '50%',
             transform: 'translateX(-50%) translateY(-50%)',
+            backgroundColor: color,
           }}
           title={`Plant: day ${row.plantingDOY}`}
         />
@@ -119,37 +120,38 @@ export function Timeline() {
 
       {/* Timeline chart */}
       <div className="overflow-x-auto rounded-sm border-2 border-[#1C1C1A] bg-[#D7D4CC]">
-        <div className="min-w-[700px] p-4">
+        <div className="relative min-w-[700px] p-4">
+
+          {/* Month grid lines — positioned relative to the full chart container */}
+          <div className="pointer-events-none absolute inset-0 ml-[152px] mr-4">
+            {MONTH_STARTS_DOY.slice(1).map((doy, i) => (
+              <div
+                key={i}
+                className="absolute inset-y-0 border-l border-[#1C1C1A]/8"
+                style={{ left: `${doyToPercent(doy)}%` }}
+              />
+            ))}
+          </div>
 
           {/* Month header */}
-          <div className="flex items-center gap-2 border-b border-[#1C1C1A]/15 pb-2 mb-4">
+          <div className="relative flex items-center gap-2 border-b border-[#1C1C1A]/15 pb-2 mb-4">
             <div className="w-36 shrink-0" />
-            <div className="relative flex-1">
-              <div className="flex">
-                {MONTH_NAMES.map((month, i) => (
-                  <div
-                    key={month}
-                    className="text-[10px] font-extrabold uppercase tracking-wider text-[#1C1C1A]/50 border-l border-[#1C1C1A]/10 pl-1"
-                    style={{ flex: `0 0 ${(doyToPercent(MONTH_STARTS_DOY[i + 1] ?? 366) - doyToPercent(MONTH_STARTS_DOY[i]))}%` }}
-                  >
-                    {month}
-                  </div>
-                ))}
-              </div>
-              {/* Month grid lines */}
-              {MONTH_STARTS_DOY.slice(1).map((doy, i) => (
+            <div className="flex flex-1">
+              {MONTH_NAMES.map((month, i) => (
                 <div
-                  key={i}
-                  className="absolute top-0 bottom-[-9999px] border-l border-[#1C1C1A]/8 pointer-events-none"
-                  style={{ left: `${doyToPercent(doy)}%` }}
-                />
+                  key={month}
+                  className="text-[10px] font-extrabold uppercase tracking-wider text-[#1C1C1A]/50 border-l border-[#1C1C1A]/10 pl-1"
+                  style={{ flex: `0 0 ${(doyToPercent(MONTH_STARTS_DOY[i + 1] ?? 366) - doyToPercent(MONTH_STARTS_DOY[i]))}%` }}
+                >
+                  {month}
+                </div>
               ))}
             </div>
           </div>
 
           {/* Rows by category */}
           {CATEGORY_ORDER.filter((cat) => byCategory[cat]?.length).map((cat) => (
-            <div key={cat} className="mb-5">
+            <div key={cat} className="relative mb-5">
               <p className="mb-2 ml-[calc(144px+8px)] text-[9px] font-extrabold uppercase tracking-[0.16em] text-[#1C1C1A]/40">
                 {cat}
               </p>
