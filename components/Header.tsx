@@ -5,18 +5,20 @@ import Image from "next/image";
 import { useState } from "react";
 import { farmImages } from "@/lib/images";
 import { navItems, siteConfig } from "@/lib/site";
+import { LearnDropdown, LearnMobileAccordion } from "@/components/LearnDropdown";
 
 export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b-2 border-[#1C1C1A]/10 bg-[#B8B6AE]/96 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b-2 border-[#1C1C1A]/10 bg-[#2C4A2E] backdrop-blur">
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8"
         aria-label="Primary navigation"
       >
+        {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
-          <span className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-[#2C4A2E] bg-[#2C4A2E] shadow-[4px_4px_0_rgba(198,147,63,0.45)]">
+          <span className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-[#C6933F] bg-[#1C1C1A] shadow-[4px_4px_0_rgba(198,147,63,0.45)]">
             <Image
               src={farmImages.badge.src}
               alt=""
@@ -26,60 +28,81 @@ export function Header() {
             />
           </span>
           <span>
-            <span className="block font-serif text-lg font-bold leading-none text-[#1C1C1A]">
+            <span className="block font-serif text-lg font-bold leading-none text-[#D7D4CC]">
               {siteConfig.name}
             </span>
-            <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#8B2A2A]">
+            <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#C6933F]">
               Oak Pasture Homestead
             </span>
           </span>
         </Link>
+
+        {/* Mobile menu button */}
         <button
           type="button"
-          className="focus-ring rounded-sm border-2 border-[#1C1C1A] px-3 py-2 text-sm font-bold uppercase tracking-[0.08em] text-[#1C1C1A] lg:hidden"
+          className="rounded-sm border-2 border-[#D7D4CC]/40 px-3 py-2 text-sm font-bold uppercase tracking-[0.08em] text-[#D7D4CC] transition hover:border-[#D7D4CC] lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
-          onClick={() => setOpen((value) => !value)}
+          onClick={() => setOpen((v) => !v)}
         >
-          Menu
+          {open ? 'Close' : 'Menu'}
         </button>
+
+        {/* Desktop nav */}
         <div className="hidden items-center gap-5 lg:flex">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="focus-ring text-sm font-bold uppercase tracking-[0.08em] text-[#1C1C1A]/75 transition hover:text-[#8B2A2A]"
+              className="text-sm font-bold uppercase tracking-[0.08em] text-[#D7D4CC]/75 transition hover:text-[#C6933F]"
             >
               {item.label}
             </Link>
           ))}
+
+          {/* Learn & Plan dropdown */}
+          <LearnDropdown />
+
           <Link
             href="/contact"
-            className="focus-ring rounded-sm border-2 border-[#8B2A2A] bg-[#8B2A2A] px-4 py-2 text-sm font-bold uppercase tracking-[0.08em] text-[#F5F0E8] transition hover:bg-[#6f2020]"
+            className="rounded-sm border-2 border-[#C6933F] bg-[#C6933F] px-4 py-2 text-sm font-bold uppercase tracking-[0.08em] text-white transition hover:bg-[#b07f35]"
           >
             Join Farm Updates
           </Link>
         </div>
       </nav>
-      {open ? (
+
+      {/* Mobile menu */}
+      {open && (
         <div
           id="mobile-menu"
-          className="border-t-2 border-[#1C1C1A]/10 bg-[#B8B6AE] px-4 py-4 lg:hidden"
+          className="border-t-2 border-[#D7D4CC]/10 bg-[#2C4A2E] px-4 py-4 lg:hidden"
         >
-          <div className="mx-auto grid max-w-7xl gap-2">
+          <div className="mx-auto grid max-w-7xl gap-1">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="focus-ring rounded-sm px-2 py-3 text-sm font-bold uppercase tracking-[0.08em] text-[#1C1C1A] hover:bg-[#C8C5BC]"
+                className="rounded-sm px-2 py-2.5 text-sm font-bold uppercase tracking-[0.08em] text-[#D7D4CC] transition hover:text-[#C6933F]"
                 onClick={() => setOpen(false)}
               >
                 {item.label}
               </Link>
             ))}
+
+            {/* Learn & Plan accordion */}
+            <LearnMobileAccordion />
+
+            <Link
+              href="/contact"
+              className="mt-2 rounded-sm border-2 border-[#C6933F] bg-[#C6933F] px-4 py-2.5 text-center text-sm font-bold uppercase tracking-[0.08em] text-white transition hover:bg-[#b07f35]"
+              onClick={() => setOpen(false)}
+            >
+              Join Farm Updates
+            </Link>
           </div>
         </div>
-      ) : null}
+      )}
     </header>
   );
 }
