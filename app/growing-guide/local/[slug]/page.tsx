@@ -193,11 +193,10 @@ export default async function LocalGuidePage({ params }: LocalPageProps) {
                   Deep Dive
                 </p>
                 <h2 className="mt-2 font-serif text-3xl font-bold text-[#1C1C1A] sm:text-4xl">
-                  Growing in Anderson, season by season
+                  {guide.name} — Season by Season
                 </h2>
                 <p className="mt-2 max-w-2xl text-sm text-[#1C1C1A]/65">
-                  The extra detail for our home ground — heat, water, the fall and
-                  winter gardens, and the family projects.
+                  Detailed planning for heat, water, seasonal timing, and the projects specific to this area.
                 </p>
               </div>
               <div className="space-y-5">
@@ -228,9 +227,15 @@ export default async function LocalGuidePage({ params }: LocalPageProps) {
           {!isFlagship ? (
             <section className="rounded-sm border-2 border-[#1C1C1A] bg-[#D7D4CC] p-6 shadow-[6px_6px_0_rgba(44,74,46,0.14)]">
               <p className="text-sm leading-7 text-[#1C1C1A]/75">
-                For the deepest version of this area&apos;s playbook — extreme
-                heat strategy, watering, fall and winter gardens, and our family
-                projects — see the{" "}
+                For the most detailed version of this area&apos;s playbook — see
+                the{" "}
+                <Link
+                  href="/growing-guide/local/shaggy-ink-farms"
+                  className="font-bold text-[#8B2A2A] underline hover:text-[#6f2020]"
+                >
+                  Shaggy Ink Farms guide
+                </Link>{" "}
+                or the{" "}
                 <Link
                   href="/growing-guide/local/anderson"
                   className="font-bold text-[#8B2A2A] underline hover:text-[#6f2020]"

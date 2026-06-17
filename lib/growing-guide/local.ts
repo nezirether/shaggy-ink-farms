@@ -23,6 +23,160 @@ function makeGuide(
   return { ...profile, ...base, ...overrides };
 }
 
+// ─── Shaggy Ink Farms — the actual farm, most specific guide on the site ────────
+
+const shaggyInkFarmsGuide: LocalGuide = {
+  ...northValleyProfile,
+  slug: "shaggy-ink-farms",
+  name: "Shaggy Ink Farms",
+  zone: "9b",
+  closestRegion: "Anderson, CA",
+  intro:
+    "This is the farm itself — 3 acres in Anderson, Northern California. Hot summers, well water, a flock of Plymouth Barred Rocks, strawberries, sunflowers, a family vegetable garden, a giant pumpkin project, and an orchard coming together one fruit tree at a time. Everything here is specific to this property, this soil, and what we're actually building.",
+  climateReality: [
+    "3-acre family farm on the valley floor in Anderson — one of the hottest spots in California",
+    "Triple-digit summers are the norm; the whole growing strategy is built around heat management",
+    "Well water for all irrigation — no municipal hookup, so timing and efficiency matter a lot",
+    "Mild winters with light frost, letting us grow through most of the year",
+    "Plymouth Barred Rocks free-ranging in rotation keep pest pressure down and add fertility",
+    "Deer pressure from the surrounding foothills, especially at the garden edges",
+    "Chickens are great for the soil but they will eat or scratch young transplants if not rotated carefully",
+  ],
+  growsWell: {
+    vegetables: ["Tomatoes", "Peppers", "Eggplant", "Cucumbers", "Summer squash", "Pumpkins", "Watermelon", "Beans", "Okra", "Sweet potatoes", "Brassicas (fall/winter)", "Garlic", "Onions"],
+    flowers: ["Sunflowers", "Zinnias", "Cosmos", "Marigolds", "Dahlias"],
+    fruitTrees: ["Figs", "Pomegranates", "Apricots", "Peaches", "Persimmons", "Asian pears", "Citrus"],
+    berries: ["Strawberries", "Blackberries", "Grapes"],
+    herbs: ["Basil", "Dill", "Cilantro", "Oregano", "Thyme", "Rosemary", "Lemon verbena"],
+    coverCrops: ["Field peas", "Vetch", "Clover", "Barley", "Rye"],
+  },
+  irrigationNotes: [
+    "Well water means we track every gallon — drip irrigation and heavy mulch are not optional",
+    "Run drip before dawn to cut evaporation and give plants a full tank before the heat peaks",
+    "Water deeply and infrequently — two to three long soaks a week trains roots deep where it stays cooler",
+    "Check emitters weekly; hard valley water clogs drip lines and one blocked emitter can kill a plant in a heat wave",
+    "Keep a log of pump run times and approximate gallons so water use is visible and improvable",
+  ],
+  commonChallenges: [
+    "Extreme summer heat stalling fruit set on tomatoes and peppers",
+    "Well water management during peak summer — irrigation has to be timed and efficient",
+    "Deer pressure at the garden edges, especially evenings and early mornings",
+    "Chickens will scratch and eat young transplants if rotated into garden beds too soon",
+    "Spider mites in hot, dusty conditions",
+    "Keeping fall brassica starts alive through September heat before transplanting",
+    "Gophers and ground squirrels working under beds",
+  ],
+  recommendedVarieties: [
+    { crop: "Tomatoes", varieties: "Heatmaster and Phoenix for main crop; Sun Gold cherry for season-long picking; Celebrity for reliable slicing and storage" },
+    { crop: "Strawberries", varieties: "Albion and Seascape (day-neutral, long season); Chandler for one big early flush" },
+    { crop: "Sunflowers", varieties: "ProCut series for cut flowers; Mammoth Grey Stripe for seed, height, and chicken treats at season end" },
+    { crop: "Pumpkins", varieties: "Howden for carving and fall sales; Dill's Atlantic Giant for the family pumpkin project" },
+    { crop: "Cucumbers", varieties: "Armenian and Lemon — both handle triple-digit heat better than standard slicers" },
+    { crop: "Peppers", varieties: "Shishito for easy picking; Jimmy Nardello for frying; Big Bertha for stuffing" },
+    { crop: "Beans", varieties: "Rattlesnake pole beans for heat tolerance; Provider bush beans for succession" },
+    { crop: "Orchard", varieties: "Blenheim apricot, Fuyu persimmon, Brown Turkey fig, pomegranate — all proven in Zone 9b" },
+  ],
+  flagshipSections: [
+    {
+      title: "About the Farm",
+      body: [
+        "Shaggy Ink Farms is a 3-acre family property in Anderson, at the north end of the Sacramento Valley. The land is flat valley ground with good soil that rewards compost and consistent water.",
+        "The farm runs without municipal water — everything comes from a well, which shapes every irrigation decision we make.",
+        "Summer temperatures regularly hit 105–112°F. The whole growing strategy is designed around that reality, not around fighting it.",
+        "We grow food for the family first — vegetables, fruit, berries, herbs — and we are building out the farm incrementally, season by season.",
+        "The Barred Rock flock, the strawberry patch, the sunflower field, the giant pumpkin project, and the orchard are all active projects being developed in the open.",
+      ],
+    },
+    {
+      title: "The Barred Rock Flock",
+      body: [
+        "Plymouth Barred Rocks are the backbone of the fertility system. They are calm, productive, and well-suited to the Anderson heat.",
+        "The flock is rotated through sections of the garden on a schedule — they scratch, eat bugs and weeds, and drop a season's worth of fertilizer before the next bed goes in.",
+        "Fresh chicken manure is too hot to use directly on plants. We compost all coop bedding and manure for several months before it goes near a growing bed.",
+        "Layer manure with carbon — straw, dry leaves, spent garden plants — to keep the pile balanced and cooking properly.",
+        "Finished chicken-manure compost is excellent worked into beds before heavy feeders like tomatoes, squash, and the pumpkin patch.",
+        "Rotate chickens OUT of a section at least two weeks before transplanting anything. They will eat or scratch seedlings even when they seem settled.",
+      ],
+    },
+    {
+      title: "Irrigation Planning",
+      body: [
+        "Well water is the farm's resource constraint. We design irrigation to be efficient, not just adequate.",
+        "All production beds run on drip — no overhead sprinklers in the vegetable garden during peak season. Drip reduces evaporation, keeps foliage dry, and puts water exactly where roots are.",
+        "We water deeply two to three times a week in peak summer rather than a little every day. Deep watering trains roots downward where soil stays cooler.",
+        "Timers run before dawn — water is in the soil and available before temperatures climb.",
+        "Mulch is part of the irrigation system. Every bare inch of bed is mulched to hold moisture and protect soil life from the heat.",
+        "Track pump run times. Knowing roughly how much water the farm uses in a week helps catch leaks, overshooting, and seasonal drift.",
+      ],
+    },
+    {
+      title: "Managing Deer & Chicken Pressure",
+      body: [
+        "Deer come in from the foothills, mostly evenings and early mornings. The most vulnerable areas are the edges of the property.",
+        "Tall fencing (8 feet or effective double-fence) is the only reliable deer solution. Motion-activated deterrents help but are not enough on their own.",
+        "The orchard is the most valuable deer target — young trees need protection before they establish.",
+        "Chickens are both an asset and a hazard. They will eat tomatoes, dig up seedling roots, and scratch out freshly planted rows if given access too soon.",
+        "Keep chickens out of any bed with young transplants or freshly direct-sown seed. Rotate them in only after plants are well established and not attractive as scratch material.",
+        "Temporary chicken wire panels around individual beds are the easiest way to let the flock forage nearby without losing plants.",
+      ],
+    },
+    {
+      title: "Strawberry Patch Planning",
+      body: [
+        "September is the time to plant or expand the strawberry patch here — the heat breaks and roots establish before winter.",
+        "Albion and Seascape (day-neutral) produce across the long season; Chandler (June-bearer) gives one early, heavy flush.",
+        "Plant in well-drained beds with the crown right at soil level — buried crowns rot, exposed crowns dry out.",
+        "Mulch with straw to keep berries clean, hold moisture, and moderate soil temperature.",
+        "Renovate the patch each year, let runners fill gaps, and replace the oldest plants every few seasons.",
+        "Keep chickens out of the strawberry patch — they will eat ripe and green berries alike.",
+      ],
+    },
+    {
+      title: "Sunflower Production",
+      body: [
+        "Sunflowers love the Anderson heat and are one of the farm's most reliable crops.",
+        "Direct-sow in succession every two to three weeks from April through July for continuous blooms and cut flowers through summer and fall.",
+        "For cut flowers, grow single-stem ProCut types planted close (6 inches); for seed, pollinators, and chicken treats, grow Mammoth Grey Stripe with more room to branch.",
+        "Sunflowers are heavy feeders and deep rooters — they tolerate heat but still need consistent water while getting established.",
+        "Leave several heads to dry on the stalk at season's end — seeds go to the chickens, and some are saved for next year.",
+      ],
+    },
+    {
+      title: "Giant Pumpkin Project",
+      body: [
+        "The giant pumpkin project is a family effort, and it starts the season before with the soil.",
+        "Prepare a deep, rich patch in fall — work in heavy compost and aged chicken manure, then cover-crop it through winter to protect and build the bed.",
+        "Start Dill's Atlantic Giant seed indoors in April. Transplant one well-spaced plant with plenty of room to run — a giant pumpkin vine can cover 500 square feet.",
+        "Provide huge amounts of water and feed. A fast-growing giant pumpkin can put on tens of pounds a day at peak and needs absolutely consistent moisture.",
+        "Shade the developing fruit from direct afternoon sun to prevent splitting and sunscald, and protect the vine from our worst heat days.",
+        "Bury vine nodes as the vine runs to grow secondary roots and improve the plant's water and nutrient access.",
+        "Pick one fruit per plant early in the season and put all that energy into a single giant.",
+      ],
+    },
+    {
+      title: "Orchard & Family Fruit",
+      body: [
+        "The orchard is a long-term project — we are planting and establishing fruit trees season by season.",
+        "Zone 9b is excellent for figs, pomegranates, apricots, peaches, Asian pears, persimmons, and citrus. All of these thrive in the heat.",
+        "Young trees need reliable water through their first two or three summers to establish a deep root system. After that, established trees are more drought-tolerant.",
+        "Protect young trees from deer — a simple wire cage or tube guard works while the trunk is vulnerable.",
+        "The chickens should not have free access to the orchard when trees are young. They will damage bark and roots.",
+        "Blenheim apricot, Fuyu persimmon, Brown Turkey fig, and pomegranate are reliable performers in this zone and worth planting early.",
+      ],
+    },
+    {
+      title: "Build-in-Public Farm Plan",
+      body: [
+        "Shaggy Ink Farms is being built and documented in the open. The goal is to share what actually works — and what doesn't — for a small family farm in the North Sacramento Valley.",
+        "Each season we track what we plant, how it does, what we change, and why. That record is what makes the next year better.",
+        "The current priorities are: getting the orchard established, expanding the strawberry patch, dialing in the chicken rotation system, and making the giant pumpkin project a real annual family event.",
+        "We are not trying to be a large commercial operation. The goal is a productive, manageable family farm that feeds us well and teaches the kids how food actually grows.",
+        "Following along means watching real decisions get made in real time — not a polished result after the fact.",
+      ],
+    },
+  ],
+};
+
 // ─── Anderson flagship — the most detailed guide on the site ────────────────────
 
 const andersonFlagship: LocalGuide = {
@@ -134,6 +288,7 @@ const andersonFlagship: LocalGuide = {
 // ─── All local guides ───────────────────────────────────────────────────────────
 
 export const localGuides: LocalGuide[] = [
+  shaggyInkFarmsGuide,
   andersonFlagship,
 
   // North valley floor — Zone 9b

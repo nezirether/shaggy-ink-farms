@@ -95,24 +95,3 @@ export type LocalProfile = Omit<
   "slug" | "name" | "zone" | "closestRegion" | "intro" | "flagshipSections"
 >;
 
-// ─── City lookup ───────────────────────────────────────────────────────────────
-
-export type CityEntry = {
-  city: string;
-  state: string; // 2-letter
-  zone: string; // e.g. "9b"
-  closestRegion: string;
-  // If set, the city routes to a detailed local guide. Otherwise it routes to
-  // the matching USDA zone guide.
-  localSlug?: string;
-};
-
-export type CityMatch = {
-  city: string;
-  state: string;
-  zone: string;
-  closestRegion: string;
-  guide:
-    | { type: "local"; slug: string; label: string }
-    | { type: "zone"; slug: string; label: string };
-};
