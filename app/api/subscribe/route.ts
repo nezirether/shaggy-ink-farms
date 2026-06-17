@@ -1,12 +1,7 @@
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
 
 export const runtime = "nodejs";
-
-// Resend audience IDs are UUIDs.
-// If RESEND_AUDIENCE_ID does not match this pattern the Resend API will return
-// a 404 or 422, which surfaces to the client as a confusing 502.
-const UUID_RE =
-  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 function field(formData: FormData, key: string): string {
   return String(formData.get(key) ?? "").trim();
@@ -16,41 +11,15 @@ function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-/** Returns a human-readable config problem string, or null if config is valid. */
-function checkConfig(): string | null {
-  if (!process.env.RESEND_API_KEY) {
-    console.error("[subscribe] RESEND_API_KEY environment variable is not set.");
-    return "RESEND_API_KEY missing";
-  }
-
-  const id = process.env.RESEND_AUDIENCE_ID;
-
-  if (!id) {
-    console.error("[subscribe] RESEND_AUDIENCE_ID environment variable is not set.");
-    return "RESEND_AUDIENCE_ID missing";
-  }
-
-  if (!UUID_RE.test(id)) {
-    console.error(
-      `[subscribe] RESEND_AUDIENCE_ID looks wrong: "${id}". ` +
-        `Expected a UUID like "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx". ` +
-        `Copy the Audience ID from the Resend dashboard → Audiences → ` +
-        `click your audience → copy the ID shown under the audience name. ` +
-        `Do NOT use the display name (e.g. "Resend → Audience").`,
-    );
-    return "RESEND_AUDIENCE_ID is not a valid UUID";
-  }
-
-  return null;
-}
-
 export async function POST(request: Request) {
   const formData = await request.formData();
   const email = field(formData, "email").toLowerCase();
   const company = field(formData, "company"); // honeypot
   const source = field(formData, "source") || "web_general";
+  const interest = field(formData, "interest") || "farm_updates";
+  const interestLabel = field(formData, "interest_label") || "Farm Updates";
 
-  // Honeypot — bots fill hidden fields; real users never see this field.
+  // Honeypot — bots fill hidden fields; real users never see this.
   if (company) {
     return NextResponse.json({ message: "You are on the farm updates list." });
   }
@@ -62,10 +31,8 @@ export async function POST(request: Request) {
     );
   }
 
-  // Validate config before making any external call.
-  const configProblem = checkConfig();
-  if (configProblem) {
-    // Do not expose the config problem to the client. Log it above.
+  if (!process.env.RESEND_API_KEY) {
+    console.error("[subscribe] RESEND_API_KEY is not set.");
     return NextResponse.json(
       {
         message:
@@ -75,28 +42,43 @@ export async function POST(request: Request) {
     );
   }
 
-  const audienceId = process.env.RESEND_AUDIENCE_ID!;
+  const resend = new Resend(process.env.RESEND_API_KEY);
 
-  // Create or update a contact in the Resend audience.
-  let response: Response;
-  try {
-    response = await fetch(
-      `https://api.resend.com/audiences/${audienceId}/contacts`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          unsubscribed: false,
-        }),
+  // Attempt to create the contact using the current Resend Contacts API.
+  // The new API does not require an audienceId — contacts are global.
+  // Properties (signup_source, signup_interest, signup_interest_label) must be
+  // pre-created in the Resend dashboard under Contacts → Properties before they
+  // will be stored. If they are not pre-created, Resend returns a validation
+  // error and the contact is not created. See README.md for setup instructions.
+  const { data: createData, error: createError } = await resend.contacts.create(
+    {
+      email,
+      unsubscribed: false,
+      properties: {
+        signup_source: source,
+        signup_interest: interest,
+        signup_interest_label: interestLabel,
       },
+    },
+  );
+
+  if (!createError) {
+    console.log(
+      `[subscribe] Contact created: ${createData.id} (email: ${email}, source: ${source})`,
     );
-  } catch (err) {
-    // Network-level failure (DNS, timeout, etc.)
-    console.error("[subscribe] Network error reaching Resend API:", err);
+    return NextResponse.json({ message: "You are on the farm updates list." });
+  }
+
+  // Resend returns validation_error when a contact already exists.
+  // Detect this and update the existing contact instead of failing.
+  const isDuplicate =
+    createError.name === "validation_error" ||
+    createError.message.toLowerCase().includes("already exist");
+
+  if (!isDuplicate) {
+    console.error(
+      `[subscribe] Resend create error for ${email} — ${createError.name}: ${createError.message}`,
+    );
     return NextResponse.json(
       {
         message:
@@ -106,18 +88,22 @@ export async function POST(request: Request) {
     );
   }
 
-  // 409 = contact already exists in this audience. Treat as success.
-  if (response.status === 409) {
-    console.log(`[subscribe] Already subscribed: ${email} (source: ${source})`);
-    return NextResponse.json({ message: "You are on the farm updates list." });
-  }
+  // Update the existing contact.
+  // Do NOT set `unsubscribed` here — preserve the contact's current status.
+  const { data: updateData, error: updateError } = await resend.contacts.update(
+    {
+      email,
+      properties: {
+        signup_source: source,
+        signup_interest: interest,
+        signup_interest_label: interestLabel,
+      },
+    },
+  );
 
-  if (!response.ok) {
-    // Read the error body so it appears in Vercel logs for diagnosis.
-    const errorBody = await response.text().catch(() => "(could not read body)");
+  if (updateError) {
     console.error(
-      `[subscribe] Resend API error — HTTP ${response.status} ` +
-        `(audience: ${audienceId}): ${errorBody}`,
+      `[subscribe] Resend update error for ${email} — ${updateError.name}: ${updateError.message}`,
     );
     return NextResponse.json(
       {
@@ -129,8 +115,7 @@ export async function POST(request: Request) {
   }
 
   console.log(
-    `[subscribe] Contact created — email: ${email}, source: ${source}, audience: ${audienceId}`,
+    `[subscribe] Contact updated: ${updateData.id} (email: ${email}, source: ${source})`,
   );
-
   return NextResponse.json({ message: "You are on the farm updates list." });
 }

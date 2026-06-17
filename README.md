@@ -70,66 +70,63 @@ Create these in Vercel → Project Settings → Environment Variables:
 | Variable | Required | Description |
 |---|---|---|
 | `RESEND_API_KEY` | Yes | Resend API key. Starts with `re_`. Found at resend.com/api-keys. |
-| `RESEND_AUDIENCE_ID` | Yes | Resend Audience UUID. See below — the most common setup mistake. |
+| `RESEND_AUDIENCE_ID` | No | Not used by the current signup route. Reserved for future segmentation. |
 | `CONTACT_TO_EMAIL` | Yes | Where contact form submissions are delivered. |
 | `CONTACT_FROM_EMAIL` | Yes | Outbound "From" address. Must be on a Resend-verified domain. |
 
-### Finding your RESEND_AUDIENCE_ID (critical)
+### How signup works
 
-**`RESEND_AUDIENCE_ID` must be the UUID, not the audience display name.**
+`/api/subscribe` uses the [Resend SDK](https://resend.com/docs/api-reference/contacts) global Contacts API — no Audience ID required.
 
-The most common setup mistake is copying the audience display name (e.g. `"Resend → Audience"` or `"Shaggy Ink Farms List"`) instead of the ID. This causes the Resend API URL to be malformed and returns a 502 error.
+- **New contact:** created with `unsubscribed: false` and custom properties (`signup_source`, `signup_interest`, `signup_interest_label`).
+- **Existing contact:** properties are updated; subscription status is **not changed** (an existing subscriber is never accidentally unsubscribed).
+- **Invalid email:** returns 400 with a friendly message.
+- **Missing API key:** returns 503 with a friendly message and logs the problem server-side.
 
-How to find the correct value:
+### Custom contact properties (optional)
 
-1. Go to [resend.com/audiences](https://resend.com/audiences)
-2. Click on your audience
-3. The ID appears below the audience name — it looks like: `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`
-4. Copy that UUID and set it as `RESEND_AUDIENCE_ID` in Vercel
+The route stores three properties on each contact: `signup_source`, `signup_interest`, and `signup_interest_label`. These must be **pre-created** in the Resend dashboard before they will be saved:
 
-If `RESEND_AUDIENCE_ID` is missing or does not look like a UUID, the API route returns a `503` with a user-friendly fallback message and logs the specific problem in Vercel Function Logs.
+1. Go to resend.com → Contacts → Properties
+2. Create a property for each key (type: Text)
+3. Redeploy — properties will now be stored with each new contact
+
+If the properties are not pre-created, Resend returns a validation error and the contact is not created. The error is logged in Vercel Function Logs.
 
 ### Diagnosing signup failures
 
-If subscribers are not being added, check **Vercel → Project → Functions → Logs** and filter by `/api/subscribe`. The route logs:
+Check **Vercel → Project → Functions → Logs** and filter by `/api/subscribe`. The route logs:
 
-- `[subscribe] RESEND_API_KEY environment variable is not set.` — key missing
-- `[subscribe] RESEND_AUDIENCE_ID looks wrong: "..."` — wrong format (display name instead of UUID)
-- `[subscribe] Resend API error — HTTP 4xx/5xx (audience: ...): ...` — Resend rejected the request; the error body is logged
-- `[subscribe] Contact created — email: ..., source: ..., audience: ...` — success
-- `[subscribe] Already subscribed: ...` — 409; contact exists, treated as success
+- `[subscribe] RESEND_API_KEY is not set.` — key missing in Vercel env
+- `[subscribe] Contact created: <id>` — success, new contact
+- `[subscribe] Contact updated: <id>` — success, returning contact
+- `[subscribe] Resend create error for <email> — <name>: <message>` — unexpected API error on create
+- `[subscribe] Resend update error for <email> — <name>: <message>` — unexpected API error on update
 
 ### Verifying contacts in the Resend dashboard
 
-After a successful signup in production:
+After a successful signup:
 
-1. Go to [resend.com/audiences](https://resend.com/audiences)
-2. Click your audience
-3. Click **Contacts** tab
-4. The email should appear with **Unsubscribed: No**
+1. Go to resend.com → Contacts
+2. The email should appear with **Unsubscribed: No**
 
-The contact is attached to the audience identified by `RESEND_AUDIENCE_ID`.
+### Newsletter segmentation plan
 
-### Newsletter list segmentation
-
-The current architecture (single Resend Audience) supports all planned newsletter types through **Resend Segments**:
-
-| Newsletter type | Segment approach |
+| Newsletter type | Approach |
 |---|---|
-| Farm Updates | All contacts (entire audience) |
-| Weekly Growing Tips | Segment: contacts from `/learn` signup source |
-| Egg Availability Alerts | Segment: contacts who clicked egg-related links |
-| Store & Product Releases | Segment: contacts from store-interest source |
+| Farm Updates | All global contacts |
+| Weekly Growing Tips | Filter by `signup_source` = `learn_zone` or `learn_guides` |
+| Egg Availability Alerts | Filter by `signup_interest` = `egg_alerts` |
+| Store & Product Releases | Filter by `signup_interest` = `store_releases` |
 
-To implement per-interest segmentation: add a hidden `source` field to the signup forms on each page section, then create Resend Segments filtering by the tags or date ranges you care about. No code redesign needed — the route already reads a `source` field from the form.
+Signup forms already pass a hidden `source` and `interest` field — no route changes needed to add segmentation.
 
 ### Implementation details
 
 - `/api/contact` sends contact messages through Resend email.
-- `/api/subscribe` adds subscribers to a Resend Audience via `POST /audiences/{id}/contacts`.
-- `RESEND_AUDIENCE_ID` is validated as a UUID before any API call is made.
+- `/api/subscribe` uses `resend.contacts.create()` and `resend.contacts.update()` from the `resend` npm SDK.
+- `RESEND_AUDIENCE_ID` is **not required** and is not read by the signup route.
 - `CONTACT_FROM_EMAIL` must use a verified sending domain in Resend.
-- If credentials are missing or malformed, forms return a user-friendly fallback message and log the specific error server-side.
 - Honeypot spam protection: a hidden `company` field is present in the form; if filled, the request is silently accepted without calling Resend.
 
 ## Pages
