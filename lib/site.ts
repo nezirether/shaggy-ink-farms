@@ -19,6 +19,7 @@ export const navItems = [
   { href: "/farm-journal", label: "Journal" },
   { href: "/chickens", label: "Chickens" },
   { href: "/growing-guide", label: "Growing Guide" },
+  { href: "/garden-planner", label: "Garden Planner" },
   { href: "/youtube", label: "YouTube" },
   { href: "/contact", label: "Contact" },
 ];
@@ -108,6 +109,7 @@ export const routes = [
   "/farm-journal",
   "/chickens",
   "/growing-guide",
+  "/garden-planner",
   "/eggs",
   "/homestead-projects",
   "/youtube",
