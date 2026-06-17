@@ -4,7 +4,7 @@ export const siteConfig = {
   subtitle: "A family farm in Anderson, California",
   description:
     "A Northern California family farm raising Plymouth Barred Rock chickens, growing strawberries and sunflowers, and sharing the work as we go.",
-  url: "https://shaggyinkfarms.com",
+  url: "https://www.shaggyinkfarms.com",
   email: "hello@shaggyinkfarms.com",
   location: "Northern California",
   social: {

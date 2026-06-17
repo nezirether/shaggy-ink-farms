@@ -22,9 +22,6 @@ export const metadata: Metadata = {
     "family homestead",
     "homestead YouTube",
   ],
-  alternates: {
-    canonical: siteConfig.url,
-  },
   icons: {
     icon: "/icon.svg",
     apple: "/icon.svg",

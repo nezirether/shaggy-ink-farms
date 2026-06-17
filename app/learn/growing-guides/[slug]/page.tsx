@@ -22,6 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${guide.title} — Shaggy Ink Farms`,
     description: guide.description,
     keywords: guide.keywords,
+    alternates: { canonical: `/learn/growing-guides/${guide.slug}` },
     openGraph: {
       title: `${guide.title} — Shaggy Ink Farms`,
       description: guide.description,

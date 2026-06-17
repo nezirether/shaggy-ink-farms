@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     'zone lookup garden',
     'frost date northern california',
   ],
+  alternates: { canonical: '/learn/know-your-growing-zone' },
   openGraph: {
     title: 'Know Your Growing Zone — Shaggy Ink Farms',
     description:

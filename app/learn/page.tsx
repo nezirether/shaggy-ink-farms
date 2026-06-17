@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     'sacramento valley garden',
     'anderson ca gardening',
   ],
+  alternates: { canonical: '/learn' },
   openGraph: {
     title: 'Learning Center — Shaggy Ink Farms',
     description:
