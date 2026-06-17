@@ -26,12 +26,32 @@ export const navItems = [
 
 // Supporting Learn and Plan links used in the footer.
 export const learnNavItems = [
-  { href: "/learn", label: "Learn" },
-  { href: "/learn/growing-guides", label: "Growing Guides" },
-  { href: "/learn/garden-planning", label: "Garden Planning" },
-  { href: "/learn/know-your-growing-zone", label: "Growing Zone" },
-  { href: "/garden-planner", label: "Plan" },
-  { href: "/growing-guide", label: "Legacy Growing Guide" },
+  {
+    href: "/learn",
+    label: "Learning Center",
+    description:
+      "Start here for Shaggy Ink Farms growing and homesteading resources.",
+  },
+  {
+    href: "/learn/growing-guides",
+    label: "Growing Guides",
+    description: "Practical crop, seed starting, and garden guides.",
+  },
+  {
+    href: "/learn/know-your-growing-zone",
+    label: "Know Your Zone",
+    description: "USDA zone lookup, frost dates, and weekly growing tasks.",
+  },
+  {
+    href: "/learn/garden-planning",
+    label: "Garden Planning",
+    description: "Planning tools and food security garden resources.",
+  },
+  {
+    href: "/growing-guide",
+    label: "Local Growing Guides",
+    description: "Northern California city and zone-specific growing pages.",
+  },
 ];
 
 export const featureCards = [
