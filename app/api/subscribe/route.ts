@@ -99,26 +99,36 @@ export async function POST(request: Request) {
 
   // Attempt to create the contact using the current Resend Contacts API.
   // The new API does not require an audienceId — contacts are global.
-  // Properties (signup_source, signup_interest, signup_interest_label) must be
-  // pre-created in the Resend dashboard under Contacts → Properties before they
-  // will be stored. See README.md for setup instructions.
-  const { data: createData, error: createError } =
-    await resend.contacts.create(
-      contactPayload({ email, firstName, interest, source }),
+  // Try with custom properties first; fall back to bare create if Resend
+  // rejects the properties (they must be pre-created in the dashboard).
+  let createData: { id: string } | null = null;
+  let createError: { name: string; message: string } | null = null;
+
+  ({ data: createData, error: createError } = await resend.contacts.create(
+    contactPayload({ email, firstName, interest, source }),
+  ));
+
+  if (createError && !createError.message.toLowerCase().includes("already exist")) {
+    // Properties may not be registered in Resend — retry without them.
+    console.warn(
+      `[subscribe] Retrying without properties — ${createError.name}: ${createError.message}`,
     );
+    ({ data: createData, error: createError } = await resend.contacts.create({
+      email,
+      firstName: firstName || undefined,
+      unsubscribed: false,
+    }));
+  }
 
   if (!createError) {
     console.log(
-      `[subscribe] Contact created: ${createData.id} (email: ${email}, source: ${source})`,
+      `[subscribe] Contact created: ${createData!.id} (email: ${email}, source: ${source})`,
     );
     return NextResponse.json({ message: successMessage });
   }
 
-  // Resend returns validation_error when a contact already exists.
-  // Detect this and update the existing contact instead of failing.
-  const isDuplicate =
-    createError.name === "validation_error" ||
-    createError.message.toLowerCase().includes("already exist");
+  // Only treat "already exists" messages as a duplicate — not generic validation errors.
+  const isDuplicate = createError.message.toLowerCase().includes("already exist");
 
   if (!isDuplicate) {
     console.error(
@@ -142,6 +152,16 @@ export async function POST(request: Request) {
     });
 
   if (updateError) {
+    // Properties not registered — try update without them.
+    if (updateError.message.toLowerCase().includes("property") ||
+        updateError.name === "validation_error") {
+      const { data: bareUpdateData, error: bareUpdateError } =
+        await resend.contacts.update({ email });
+      if (!bareUpdateError) {
+        console.log(`[subscribe] Contact updated (no properties): ${bareUpdateData.id} (email: ${email})`);
+        return NextResponse.json({ message: successMessage });
+      }
+    }
     console.error(
       `[subscribe] Resend update error for ${email} — ${updateError.name}: ${updateError.message}`,
     );
