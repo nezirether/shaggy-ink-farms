@@ -89,8 +89,7 @@ export function GardenPlannerApp() {
                 }`}
                 aria-current={activeTab === tab.id ? 'page' : undefined}
               >
-                <span className="hidden sm:inline">{tab.label}</span>
-                <span className="sm:hidden">{tab.short}</span>
+                {tab.label}
               </button>
             ))}
           </nav>

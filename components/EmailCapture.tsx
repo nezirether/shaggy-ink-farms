@@ -115,7 +115,7 @@ export function EmailCaptureForm({
       <input name="captureType" type="hidden" value={captureType} />
       {geo ? <input name="geo" type="hidden" value={geo} /> : null}
       <input name="firstName" type="hidden" value="" />
-      <label className="hidden" htmlFor={`${formId}-company`}>
+      <label className="sr-only" htmlFor={`${formId}-company`}>
         Company
       </label>
       <input
@@ -124,7 +124,8 @@ export function EmailCaptureForm({
         type="text"
         tabIndex={-1}
         autoComplete="off"
-        className="hidden"
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-[10000px] top-auto h-px w-px overflow-hidden opacity-0"
       />
       <button
         type="submit"

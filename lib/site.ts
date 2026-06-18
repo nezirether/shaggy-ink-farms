@@ -77,11 +77,6 @@ export const gardenNavItems: NavChild[] = [
     description: "Food for the family and practical growing notes from the farm.",
   },
   {
-    href: "/garden/market-garden",
-    label: "Market Garden",
-    description: "A future project after systems, water, soil, and labor are clearer.",
-  },
-  {
     href: "/garden/orchard",
     label: "Orchard",
     description: "Lemon, mandarin, fig, wild plums, pecans, and long-term food.",
@@ -93,134 +88,38 @@ export const gardenNavItems: NavChild[] = [
   },
 ];
 
+export const learnNavItems: NavChild[] = [
+  {
+    href: "/learn/growing-guides",
+    label: "Growing Guides",
+    description: "Browse the full guide library for growing, soil, pests, and harvest.",
+  },
+  {
+    href: "/plan/garden-planner",
+    label: "Garden Planner",
+    description: "Build a practical family food garden plan.",
+  },
+  {
+    href: "/learn/know-your-growing-zone",
+    label: "Know Your Growing Zone",
+    description: "Zone basics, frost timing, and weekly tasks for Northern California.",
+  },
+  {
+    href: "/learn/local",
+    label: "Local Growing Guides",
+    description: "Northern California local growing guides and planting calendars.",
+  },
+  {
+    href: "/learn",
+    label: "Learn Hub",
+    description: "Start here for guides, planning tools, and local growing resources.",
+  },
+];
+
 export const learnNavGroups: NavGroup[] = [
   {
-    title: "Growing Guides",
-    items: [
-      {
-        href: "/learn/growing-guides",
-        label: "Growing Guides",
-        description: "The full guide library for growing, soil, pests, and harvest.",
-      },
-      {
-        href: "/learn/growing-guides/preserving-your-harvest",
-        label: "Preserving Your Garden Harvest",
-      },
-      {
-        href: "/learn/growing-guides/fertilizer-injector-guide",
-        label: "Fertilizer Injector Guide",
-      },
-      {
-        href: "/learn/growing-guides/seed-starting-instructions",
-        label: "Seed Starting Instructions",
-      },
-      {
-        href: "/learn/growing-guides/family-garden-planner-guide",
-        label: "Family Garden Planner",
-      },
-      {
-        href: "/learn/growing-guides/spring-garden-layout",
-        label: "Spring Garden Layout",
-      },
-      {
-        href: "/learn/growing-guides/low-sunlight-vegetables",
-        label: "Low-Sunlight Vegetables",
-      },
-      {
-        href: "/learn/growing-guides/pest-control-comparison",
-        label: "Pest Control Comparison",
-      },
-      {
-        href: "/learn/growing-guides/warm-season-cover-crops",
-        label: "Warm Season Cover Crops",
-      },
-      {
-        href: "/learn/growing-guides/cool-season-cover-crops",
-        label: "Cool Season Cover Crops",
-      },
-      {
-        href: "/learn/growing-guides/companion-planting",
-        label: "Companion Planting",
-      },
-      {
-        href: "/learn/growing-guides/tomato-pepper-spray-program",
-        label: "Tomato & Pepper Spray Program",
-      },
-      {
-        href: "/learn/growing-guides/fruit-tree-spray-program",
-        label: "Fruit Tree Spray Program",
-      },
-      {
-        href: "/learn/growing-guides/sweet-corn-beans-spray-program",
-        label: "Sweet Corn & Beans Spray Program",
-      },
-      {
-        href: "/learn/growing-guides/nutrient-deficiency-guide",
-        label: "Nutrient Deficiency Guide",
-      },
-      {
-        href: "/learn/growing-guides/squash-variety-guide",
-        label: "Squash Variety Guide",
-      },
-      {
-        href: "/learn/growing-guides/common-plant-diseases",
-        label: "Common Plant Diseases",
-      },
-      {
-        href: "/learn/growing-guides/seed-starting-chart",
-        label: "Seed Starting Chart",
-      },
-      {
-        href: "/learn/growing-guides/tomato-growth-habit",
-        label: "Tomato Growth Habit",
-      },
-      {
-        href: "/learn/growing-guides/fungicide-comparison",
-        label: "Fungicide Comparison",
-      },
-      {
-        href: "/learn/growing-guides/crop-rotation",
-        label: "Crop Rotation",
-      },
-    ],
-  },
-  {
-    title: "Garden Planning",
-    items: [
-      {
-        href: "/learn/garden-planning",
-        label: "Garden Planning",
-        description: "Planning resources and calculators for a practical food garden.",
-      },
-      {
-        href: "/plan/garden-planner",
-        label: "Family Garden Planning Calculator",
-        description: "Build a family food garden plan without changing the current tool.",
-      },
-      {
-        href: "/learn/garden-planning#drip-tape-calculator",
-        label: "Drip Tape Calculator",
-      },
-      {
-        href: "/learn/garden-planning#vegetable-seed-calculator",
-        label: "Vegetable Seed Calculator",
-      },
-    ],
-  },
-  {
-    title: "Know Your Growing Zone",
-    items: [
-      {
-        href: "/learn/know-your-growing-zone",
-        label: "Location-Based Weekly Growing Guide",
-        description: "Zone basics, frost timing, and weekly tasks for Northern California cities.",
-      },
-      {
-        href: "/learn/local",
-        label: "Local Growing Guides",
-        description: "Northern California local growing guides and planting calendars.",
-      },
-    ],
+    title: "Learn & Plan",
+    items: learnNavItems,
   },
 ];
 
@@ -239,7 +138,7 @@ export const primaryNavItems: PrimaryNavItem[] = [
   {
     href: "/learn",
     label: "Learn & Plan",
-    groups: learnNavGroups,
+    children: learnNavItems,
   },
   { href: "/watch", label: "Watch" },
   { href: "/journal", label: "Journal" },
@@ -292,8 +191,6 @@ export const footerColumns = [
     notes: ["Strawberries (soon)", "Cut Flowers (soon)"],
   },
 ];
-
-export const learnNavItems = learnNavGroups.flatMap((group) => group.items);
 
 export const featureCards = [
   {

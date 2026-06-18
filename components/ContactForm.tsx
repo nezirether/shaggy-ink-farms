@@ -101,7 +101,7 @@ export function ContactForm() {
           className="focus-ring rounded-sm border-2 border-[#1C1C1A]/15 bg-[#F5F0E8] px-3 py-3 outline-none focus:border-[#8B2A2A]"
         />
       </div>
-      <label className="hidden" htmlFor="contact-company">
+      <label className="sr-only" htmlFor="contact-company">
         Company
       </label>
       <input
@@ -110,7 +110,8 @@ export function ContactForm() {
         type="text"
         tabIndex={-1}
         autoComplete="off"
-        className="hidden"
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-[10000px] top-auto h-px w-px overflow-hidden opacity-0"
       />
       <button
         type="submit"

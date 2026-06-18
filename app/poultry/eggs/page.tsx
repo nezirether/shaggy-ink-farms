@@ -96,7 +96,9 @@ export default function PoultryEggsPage() {
               </ButtonLink>
             </div>
           </div>
-          <AvailabilityCard item={poultryAvailability["eating-eggs"]} />
+          <AvailabilityCard
+            item={{ ...poultryAvailability["eating-eggs"], href: "#egg-list" }}
+          />
         </div>
       </section>
 
