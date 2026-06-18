@@ -19,7 +19,7 @@ export const GARDEN_CALCULATORS: GardenCalculator[] = [
     description:
       'Set your USDA zone, enter your family size, select crops, and get a complete planting plan — including plant counts, square footage, a Gantt timeline, and a shopping list. Built for serious food gardeners.',
     category: 'Planning',
-    href: '/garden-planner',
+    href: '/plan/garden-planner',
     isExternal: false,
     badge: 'Free Tool',
   },
@@ -30,7 +30,7 @@ export const GARDEN_CALCULATORS: GardenCalculator[] = [
     description:
       'Enter your city or ZIP code to find your USDA Plant Hardiness Zone. Used to determine frost dates, planting windows, and overwintering potential for your location.',
     category: 'Planning',
-    href: '/learn/know-your-growing-zone',
+    href: '/learn/zones',
     isExternal: false,
     badge: 'Free Tool',
   },
@@ -41,7 +41,7 @@ export const GARDEN_CALCULATORS: GardenCalculator[] = [
     description:
       'Get this week\'s planting, maintenance, and harvest tasks for your location. Updated seasonally for Northern California and the Sacramento Valley.',
     category: 'Planning',
-    href: '/learn/know-your-growing-zone#weekly-guide',
+    href: '/learn/zones#weekly-guide',
     isExternal: false,
     badge: 'Seasonal',
   },
@@ -52,7 +52,7 @@ export const GARDEN_CALCULATORS: GardenCalculator[] = [
     description:
       'Calculate how many raised beds, row feet, and total square footage you need for a given crop list and family size. Integrated into the full Garden Planner.',
     category: 'Planning',
-    href: '/garden-planner',
+    href: '/plan/garden-planner',
     isExternal: false,
   },
 ];

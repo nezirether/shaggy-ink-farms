@@ -67,7 +67,7 @@ export default function ChickensPage() {
               ]}
             />
             <div className="mt-8">
-              <ButtonLink href="/youtube">Watch on YouTube</ButtonLink>
+              <ButtonLink href="/watch">Watch on YouTube</ButtonLink>
             </div>
           </div>
         </div>

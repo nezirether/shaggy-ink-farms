@@ -49,7 +49,7 @@ export function AvailabilityCard() {
             and seasonal flock updates.
           </p>
           <div className="mt-6">
-            <ButtonLink href="/eggs" variant="light">
+            <ButtonLink href="/poultry/eggs" variant="light">
               Reserve Eggs
             </ButtonLink>
           </div>

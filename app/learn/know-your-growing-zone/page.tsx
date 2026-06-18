@@ -213,7 +213,7 @@ export default function KnowYourGrowingZonePage() {
           </h2>
           <div className="grid gap-3 sm:grid-cols-2">
             {[
-              { href: '/garden-planner', label: 'Family Food Security Garden Planner', description: 'Use your zone to build a complete planting plan' },
+              { href: '/plan/garden-planner', label: 'Family Food Security Garden Planner', description: 'Use your zone to build a complete planting plan' },
               { href: '/learn/growing-guides', label: 'Growing Guides', description: 'In-depth guides for every growing topic' },
               { href: '/learn/growing-guides/companion-planting', label: 'Companion Planting Guide', description: 'Which plants to grow together in Zone 9' },
               { href: '/learn/growing-guides/seed-starting-instructions', label: 'Seed Starting Guide', description: 'Zone 9b timing for starting seeds indoors' },

@@ -17,7 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority:
       route === "/"
         ? 1
-        : route === "/farm-journal"
+        : route === "/journal"
           ? 0.9
           : route === "/contact"
             ? 0.8
@@ -39,14 +39,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const zoneRoutes = getZoneNumbers().map((zone) => ({
-    url: absoluteUrl(`/growing-guide/zones/${zone}`),
+    url: absoluteUrl(`/learn/zones/${zone}`),
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
   const localRoutes = getLocalSlugs().map((slug) => ({
-    url: absoluteUrl(`/growing-guide/local/${slug}`),
+    url: absoluteUrl(`/learn/local/${slug}`),
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: slug === "anderson" ? 0.85 : 0.75,

@@ -48,7 +48,7 @@ export function VideoTeaser({
           <p className="mt-5 text-lg leading-8 text-[#1C1C1A]/75">{copy}</p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <ButtonLink href={siteConfig.social.youtube}>Watch on YouTube</ButtonLink>
-            <ButtonLink href="/youtube" variant="secondary">
+            <ButtonLink href="/watch" variant="secondary">
               Follow the Story
             </ButtonLink>
           </div>

@@ -13,46 +13,151 @@ export const siteConfig = {
   },
 };
 
-// Primary navigation items used by the header and footer.
-export const navItems = [
-  { href: "/about", label: "Farm" },
-  { href: "/learn", label: "Learn" },
-  { href: "/garden-planner", label: "Plan" },
-  { href: "/farm-journal", label: "Journal" },
-  { href: "/eggs", label: "Eggs" },
-  { href: "/store", label: "Store" },
-  { href: "/contact", label: "Contact" },
+export type NavChild = {
+  href: string;
+  label: string;
+  description?: string;
+};
+
+export type NavGroup = {
+  title: string;
+  items: NavChild[];
+};
+
+export type PrimaryNavItem = {
+  href: string;
+  label: string;
+  children?: NavChild[];
+  groups?: NavGroup[];
+};
+
+export const poultryNavItems: NavChild[] = [
+  {
+    href: "/poultry/heritage-barred-rocks",
+    label: "Heritage Barred Rocks",
+    description: "The breeding program and the Good Shepherd line behind it.",
+  },
+  {
+    href: "/poultry/the-flock",
+    label: "The Flock",
+    description: "Meet the mixed laying flock and the day-to-day poultry work.",
+  },
+  {
+    href: "/poultry/eggs",
+    label: "Fresh Eggs",
+    description: "Local egg updates for Anderson, Cottonwood, and Redding.",
+  },
+  {
+    href: "/poultry/hatching-eggs-and-stock",
+    label: "Hatching Eggs & Stock",
+    description: "Join the poultry waitlist for future availability.",
+  },
 ];
 
-// Supporting Learn and Plan links used in the footer.
-export const learnNavItems = [
+export const learnNavGroups: NavGroup[] = [
   {
-    href: "/learn",
-    label: "Learning Center",
-    description:
-      "Start here for Shaggy Ink Farms growing and homesteading resources.",
+    title: "Learn",
+    items: [
+      {
+        href: "/learn",
+        label: "Learning Hub",
+        description: "Start here for guides, local growing notes, and planning help.",
+      },
+      {
+        href: "/learn/growing-guides",
+        label: "Growing Guides",
+        description: "Crop and skill guides written for practical home food growing.",
+      },
+      {
+        href: "/learn/zones",
+        label: "Find Your Zone",
+        description: "Zone basics, frost timing, and weekly growing tasks.",
+      },
+      {
+        href: "/learn/local",
+        label: "Local Guides",
+        description: "Northern California local growing guides and planting calendars.",
+      },
+    ],
   },
   {
-    href: "/learn/growing-guides",
-    label: "Growing Guides",
-    description: "Practical crop, seed starting, and garden guides.",
-  },
-  {
-    href: "/learn/know-your-growing-zone",
-    label: "Know Your Zone",
-    description: "USDA zone lookup, frost dates, and weekly growing tasks.",
-  },
-  {
-    href: "/learn/garden-planning",
-    label: "Garden Planning",
-    description: "Planning tools and food security garden resources.",
-  },
-  {
-    href: "/growing-guide",
-    label: "Local Growing Guides",
-    description: "Northern California city and zone-specific growing pages.",
+    title: "Plan",
+    items: [
+      {
+        href: "/plan",
+        label: "Tools Hub",
+        description: "Garden planning tools collected in one place.",
+      },
+      {
+        href: "/plan/garden-planner",
+        label: "Garden Planner",
+        description: "Build a family food garden plan without changing the current tool.",
+      },
+    ],
   },
 ];
+
+export const primaryNavItems: PrimaryNavItem[] = [
+  {
+    href: "/poultry",
+    label: "Poultry",
+    children: poultryNavItems,
+  },
+  {
+    href: "/learn",
+    label: "Learn & Plan",
+    groups: learnNavGroups,
+  },
+  { href: "/watch", label: "Watch" },
+  { href: "/journal", label: "Journal" },
+  { href: "/about", label: "About" },
+];
+
+export const mobileQuickActions = [
+  { href: "/subscribe", label: "Get Updates" },
+  { href: "/poultry/eggs", label: "Fresh Eggs" },
+];
+
+export const footerColumns = [
+  {
+    title: "Poultry",
+    links: [
+      { href: "/poultry/heritage-barred-rocks", label: "Heritage Barred Rocks" },
+      { href: "/poultry/the-flock", label: "The Flock" },
+      { href: "/poultry/eggs", label: "Fresh Eggs" },
+      { href: "/poultry/hatching-eggs-and-stock", label: "Hatching Eggs & Stock" },
+    ],
+  },
+  {
+    title: "Learn & Plan",
+    links: [
+      { href: "/learn/growing-guides", label: "Growing Guides" },
+      { href: "/learn/zones", label: "Find Your Zone" },
+      { href: "/learn/local", label: "Local Guides" },
+      { href: "/plan/garden-planner", label: "Garden Planner" },
+    ],
+  },
+  {
+    title: "Follow The Farm",
+    links: [
+      { href: "/watch", label: "YouTube" },
+      { href: "/journal", label: "Journal" },
+      { href: "/about", label: "About" },
+      { href: "/subscribe", label: "Get Farm Updates" },
+    ],
+  },
+  {
+    title: "On The Horizon",
+    links: [
+      { href: "/store", label: "Farm Store (soon)" },
+      { href: "/contact", label: "Contact" },
+      { href: "/privacy-policy", label: "Privacy Policy" },
+    ],
+    notes: ["Strawberries (soon)", "Cut Flowers (soon)"],
+  },
+];
+
+export const learnNavItems = learnNavGroups.flatMap((group) => group.items);
 
 export const featureCards = [
   {
@@ -82,9 +187,9 @@ export const pageMetadata = {
       "Shaggy Ink Farms is a family farm in Anderson, California, building poultry, garden, flower, strawberry, and orchard projects one season at a time.",
   },
   journal: {
-    title: "Farm Journal",
+    title: "Field Notes and Journal",
     description:
-      "Read the Shaggy Ink Farms Farm Journal for homestead field notes, Heritage Plymouth Barred Rock breeding work, seasonal eggs, projects, and Northern California ranch life.",
+      "Read the Shaggy Ink Farms journal for homestead field notes, Heritage Plymouth Barred Rock breeding work, seasonal eggs, projects, and Northern California ranch life.",
   },
   about: {
     title: "About the Farm",
@@ -101,13 +206,23 @@ export const pageMetadata = {
     description:
       "Seasonal farm fresh eggs from a small mixed laying flock in Anderson, California. Join the list for local pickup near Redding and Shasta County.",
   },
+  poultry: {
+    title: "Poultry at Shaggy Ink Farms",
+    description:
+      "Explore the Heritage Plymouth Barred Rock program, the mixed laying flock, local egg updates, and poultry waitlist information at Shaggy Ink Farms.",
+  },
+  hatchingEggs: {
+    title: "Hatching Eggs and Stock Waitlist",
+    description:
+      "Join the Shaggy Ink Farms poultry waitlist for heritage hatching eggs, started birds, and future breeding stock updates.",
+  },
   projects: {
     title: "Homestead Projects",
     description:
       "Follow Shaggy Ink Farms homestead projects, including chicken coops, rustic fencing, garden builds, handmade labels, and family ranch work.",
   },
   youtube: {
-    title: "YouTube Homestead Journey",
+    title: "Watch the Farm Build",
     description:
       "Watch the Shaggy Ink Farms YouTube journey through heritage poultry, farm fresh eggs, homestead projects, wildlife, and oak pasture ranch life.",
   },
@@ -115,6 +230,16 @@ export const pageMetadata = {
     title: "Store",
     description:
       "The Shaggy Ink Farms store for simple farm goods and future offerings as the family farm grows.",
+  },
+  learn: {
+    title: "Learn & Plan",
+    description:
+      "Growing guides, local growing notes, zone help, and planning tools for Northern California gardeners.",
+  },
+  plan: {
+    title: "Plan Your Garden",
+    description:
+      "Explore Shaggy Ink Farms garden planning tools, including the Family Food Security Garden Planner.",
   },
   growingGuide: {
     title: "Growing Guide - What To Plant Right Now",
@@ -131,23 +256,31 @@ export const pageMetadata = {
     description:
       "Read the Shaggy Ink Farms privacy policy for contact forms, email updates, analytics, and third-party services.",
   },
+  subscribe: {
+    title: "Get Farm Updates",
+    description:
+      "Join the Shaggy Ink Farms email list for poultry updates, local egg notes, growing tips, and field notes from the farm.",
+  },
 };
 
 export const routes = [
   "/",
   "/about",
-  "/farm-journal",
-  "/chickens",
+  "/poultry",
+  "/poultry/heritage-barred-rocks",
+  "/poultry/hatching-eggs-and-stock",
+  "/poultry/eggs",
+  "/poultry/the-flock",
   "/learn",
   "/learn/growing-guides",
-  "/learn/garden-planning",
-  "/learn/know-your-growing-zone",
-  "/growing-guide",
-  "/garden-planner",
-  "/eggs",
-  "/homestead-projects",
-  "/youtube",
+  "/learn/local",
+  "/learn/zones",
+  "/plan",
+  "/plan/garden-planner",
+  "/watch",
+  "/journal",
   "/store",
+  "/subscribe",
   "/contact",
   "/privacy-policy",
 ];

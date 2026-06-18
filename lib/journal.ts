@@ -515,7 +515,7 @@ export function getArticleBySlug(slug: string) {
 }
 
 export function getArticleHref(article: JournalArticle) {
-  return `/farm-journal/${article.slug}`;
+  return `/journal/${article.slug}`;
 }
 
 export function getArticleUrl(article: JournalArticle) {

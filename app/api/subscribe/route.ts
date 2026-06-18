@@ -1,14 +1,14 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 import {
-  EMAIL_SIGNUP_INTERESTS,
-  isEmailSignupInterest,
-  type EmailSignupInterest,
-} from '@/lib/email-signup';
+  EMAIL_SEGMENTS,
+  resolveEmailSegment,
+  type EmailSegment,
+} from "@/lib/email-signup";
 
-export const runtime = 'nodejs';
+export const runtime = "nodejs";
 
 const successMessage = "You're on the list.";
-const RESEND_API_BASE = 'https://api.resend.com/contacts';
+const RESEND_API_BASE = "https://api.resend.com/contacts";
 
 type ResendError = {
   name: string;
@@ -21,61 +21,75 @@ type ResendContactResponse = {
 };
 
 function field(formData: FormData, key: string): string {
-  return String(formData.get(key) ?? '').trim();
+  return String(formData.get(key) ?? "").trim();
 }
 
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-function getInterest(value: string): EmailSignupInterest {
-  return isEmailSignupInterest(value) ? value : 'farm';
+function getSegment(formData: FormData): EmailSegment {
+  const segment = field(formData, "segment");
+  const interest = field(formData, "interest");
+  return resolveEmailSegment(segment || interest);
+}
+
+function buildProperties({
+  segment,
+  source,
+  geo,
+}: {
+  segment: EmailSegment;
+  source: string;
+  geo: string;
+}) {
+  const details = EMAIL_SEGMENTS[segment];
+  return {
+    signup_segment: segment,
+    signup_segment_label: details.label,
+    signup_source: source,
+    signup_geo: geo || details.geo || "national",
+  };
 }
 
 function contactPayload({
   email,
   firstName,
-  interest,
+  segment,
   source,
+  geo,
 }: {
   email: string;
   firstName: string;
-  interest: EmailSignupInterest;
+  segment: EmailSegment;
   source: string;
+  geo: string;
 }) {
-  const interestDetails = EMAIL_SIGNUP_INTERESTS[interest];
   return {
     email,
     firstName: firstName || undefined,
     unsubscribed: false,
-    properties: {
-      signup_interest: interest,
-      signup_interest_label: interestDetails.label,
-      signup_source: source,
-    },
+    properties: buildProperties({ segment, source, geo }),
   };
 }
 
 function contactUpdatePayload({
-  interest,
+  segment,
   source,
+  geo,
 }: {
-  interest: EmailSignupInterest;
+  segment: EmailSegment;
   source: string;
+  geo: string;
 }) {
-  const interestDetails = EMAIL_SIGNUP_INTERESTS[interest];
   return {
-    properties: {
-      signup_interest: interest,
-      signup_interest_label: interestDetails.label,
-      signup_source: source,
-    },
+    properties: buildProperties({ segment, source, geo }),
   };
 }
 
 async function resendRequest(
   apiKey: string,
-  method: 'POST' | 'PATCH',
+  method: "POST" | "PATCH",
   body: Record<string, unknown>,
 ): Promise<ResendContactResponse> {
   try {
@@ -83,34 +97,36 @@ async function resendRequest(
       method,
       headers: {
         Authorization: `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
-      cache: 'no-store',
+      cache: "no-store",
     });
 
-    const payload = await response.json() as Record<string, unknown>;
+    const payload = (await response.json()) as Record<string, unknown>;
 
     if (!response.ok) {
       return {
         data: null,
         error: {
-          name: String(payload.name ?? 'resend_error'),
-          message: String(payload.message ?? `Request failed with status ${response.status}`),
+          name: String(payload.name ?? "resend_error"),
+          message: String(
+            payload.message ?? `Request failed with status ${response.status}`,
+          ),
         },
       };
     }
 
     return {
-      data: { id: String((payload as { id?: string }).id ?? '') },
+      data: { id: String((payload as { id?: string }).id ?? "") },
       error: null,
     };
   } catch (error) {
     return {
       data: null,
       error: {
-        name: 'network_error',
-        message: error instanceof Error ? error.message : 'Unknown network error',
+        name: "network_error",
+        message: error instanceof Error ? error.message : "Unknown network error",
       },
     };
   }
@@ -118,11 +134,12 @@ async function resendRequest(
 
 export async function POST(request: Request) {
   const formData = await request.formData();
-  const firstName = field(formData, 'firstName');
-  const email = field(formData, 'email').toLowerCase();
-  const interest = getInterest(field(formData, 'interest'));
-  const source = field(formData, 'source') || 'website';
-  const company = field(formData, 'company');
+  const firstName = field(formData, "firstName");
+  const email = field(formData, "email").toLowerCase();
+  const segment = getSegment(formData);
+  const source = field(formData, "source") || "website";
+  const geo = field(formData, "geo");
+  const company = field(formData, "company");
 
   if (company) {
     return NextResponse.json({ message: successMessage });
@@ -130,18 +147,18 @@ export async function POST(request: Request) {
 
   if (!isValidEmail(email)) {
     return NextResponse.json(
-      { message: 'Please enter a valid email address.' },
+      { message: "Please enter a valid email address." },
       { status: 400 },
     );
   }
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
-    console.error('[subscribe] RESEND_API_KEY is not set.');
+    console.error("[subscribe] RESEND_API_KEY is not set.");
     return NextResponse.json(
       {
         message:
-          'Farm updates are almost ready. Please check back soon or email hello@shaggyinkfarms.com.',
+          "Farm updates are almost ready. Please check back soon or email hello@shaggyinkfarms.com.",
       },
       { status: 503 },
     );
@@ -149,15 +166,18 @@ export async function POST(request: Request) {
 
   let createResult = await resendRequest(
     apiKey,
-    'POST',
-    contactPayload({ email, firstName, interest, source }),
+    "POST",
+    contactPayload({ email, firstName, segment, source, geo }),
   );
 
-  if (createResult.error && !createResult.error.message.toLowerCase().includes('already exist')) {
+  if (
+    createResult.error &&
+    !createResult.error.message.toLowerCase().includes("already exist")
+  ) {
     console.warn(
       `[subscribe] Retrying without properties - ${createResult.error.name}: ${createResult.error.message}`,
     );
-    createResult = await resendRequest(apiKey, 'POST', {
+    createResult = await resendRequest(apiKey, "POST", {
       email,
       firstName: firstName || undefined,
       unsubscribed: false,
@@ -166,12 +186,14 @@ export async function POST(request: Request) {
 
   if (!createResult.error) {
     console.log(
-      `[subscribe] Contact created: ${createResult.data?.id ?? 'unknown'} (email: ${email}, source: ${source})`,
+      `[subscribe] Contact created: ${createResult.data?.id ?? "unknown"} (email: ${email}, source: ${source}, segment: ${segment})`,
     );
     return NextResponse.json({ message: successMessage });
   }
 
-  const isDuplicate = createResult.error.message.toLowerCase().includes('already exist');
+  const isDuplicate = createResult.error.message
+    .toLowerCase()
+    .includes("already exist");
   if (!isDuplicate) {
     console.error(
       `[subscribe] Resend create error for ${email} - ${createResult.error.name}: ${createResult.error.message}`,
@@ -179,23 +201,23 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         message:
-          'The farm updates list could not be joined right now. Please try again soon.',
+          "The farm updates list could not be joined right now. Please try again soon.",
       },
       { status: 502 },
     );
   }
 
-  let updateResult = await resendRequest(apiKey, 'PATCH', {
+  let updateResult = await resendRequest(apiKey, "PATCH", {
     email,
-    ...contactUpdatePayload({ interest, source }),
+    ...contactUpdatePayload({ segment, source, geo }),
   });
 
   if (updateResult.error) {
     if (
-      updateResult.error.message.toLowerCase().includes('property') ||
-      updateResult.error.name === 'validation_error'
+      updateResult.error.message.toLowerCase().includes("property") ||
+      updateResult.error.name === "validation_error"
     ) {
-      updateResult = await resendRequest(apiKey, 'PATCH', { email });
+      updateResult = await resendRequest(apiKey, "PATCH", { email });
     }
 
     if (updateResult.error) {
@@ -205,7 +227,7 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           message:
-            'The farm updates list could not be joined right now. Please try again soon.',
+            "The farm updates list could not be joined right now. Please try again soon.",
         },
         { status: 502 },
       );
@@ -213,7 +235,7 @@ export async function POST(request: Request) {
   }
 
   console.log(
-    `[subscribe] Contact updated: ${updateResult.data?.id ?? 'unknown'} (email: ${email}, source: ${source})`,
+    `[subscribe] Contact updated: ${updateResult.data?.id ?? "unknown"} (email: ${email}, source: ${source}, segment: ${segment})`,
   );
   return NextResponse.json({ message: successMessage });
 }

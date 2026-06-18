@@ -79,7 +79,7 @@ export default function EggsPage() {
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", path: "/" },
-          { name: "Farm Fresh Eggs", path: "/eggs" },
+          { name: "Farm Fresh Eggs", path: "/poultry/eggs" },
         ])}
       />
 
@@ -126,14 +126,14 @@ export default function EggsPage() {
           <p className="mx-auto mt-8 max-w-3xl text-center text-base leading-7 text-[#1C1C1A]/75">
             Want to know more about the birds themselves? Meet the flock on the{" "}
             <Link
-              href="/chickens"
+              href="/poultry/the-flock"
               className="font-bold text-[#2C4A2E] underline decoration-[#C6933F] underline-offset-2 hover:text-[#8B2A2A]"
             >
               chickens and Barred Rock breeding work
             </Link>{" "}
             page, or read the story of our{" "}
             <Link
-              href="/farm-journal/plymouth-barred-rock-heritage-genetics"
+              href="/journal/plymouth-barred-rock-heritage-genetics"
               className="font-bold text-[#2C4A2E] underline decoration-[#C6933F] underline-offset-2 hover:text-[#8B2A2A]"
             >
               heritage Barred Rock genetics
@@ -219,19 +219,19 @@ export default function EggsPage() {
         intro="Eggs are one piece of a bigger homestead. Here is where to go next — whether you want to meet the birds or grow more of your own food."
         links={[
           {
-            href: "/chickens",
+            href: "/poultry/the-flock",
             eyebrow: "The Flock",
             title: "Chickens and Barred Rock breeding work",
             copy: "Meet the mixed laying flock and the Heritage Plymouth Barred Rock program we are building slowly.",
           },
           {
-            href: "/farm-journal/plymouth-barred-rock-heritage-genetics",
+            href: "/journal/plymouth-barred-rock-heritage-genetics",
             eyebrow: "Journal",
             title: "The genetics behind our Barred Rocks",
             copy: "How our Barred Rock breeding stock traces back to Good Shepherd conservation lines, and why bloodline matters.",
           },
           {
-            href: "/garden-planner",
+            href: "/plan/garden-planner",
             eyebrow: "Plan",
             title: "Family Food Security Garden Planner",
             copy: "Eggs plus a garden is real food security. Build a complete planting plan for your family and zone.",
@@ -243,13 +243,13 @@ export default function EggsPage() {
             copy: "Add homegrown fruit to the table with our Zone 9b strawberry guide for the Sacramento Valley.",
           },
           {
-            href: "/learn/know-your-growing-zone",
+            href: "/learn/zones",
             eyebrow: "Learn",
             title: "Know your growing zone",
             copy: "Find your USDA zone, frost dates, and exactly what to plant this week in Northern California.",
           },
           {
-            href: "/farm-journal",
+            href: "/journal",
             eyebrow: "Follow Along",
             title: "Read the farm journal",
             copy: "Field notes on the flock, the garden, projects, and building this homestead one season at a time.",

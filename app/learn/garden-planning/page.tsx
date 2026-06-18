@@ -86,7 +86,7 @@ export default function GardenPlanningPage() {
             ))}
           </ul>
           <Link
-            href="/garden-planner"
+            href="/plan/garden-planner"
             className="mt-6 inline-block rounded-sm border-2 border-[#C6933F] bg-[#C6933F] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#b07f35]"
           >
             Open the Garden Planner →

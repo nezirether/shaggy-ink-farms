@@ -58,7 +58,7 @@ export default function LearnPage() {
               Browse all guides
             </Link>
             <Link
-              href="/learn/know-your-growing-zone"
+              href="/learn/zones"
               className="rounded-sm border-2 border-white/40 px-5 py-2.5 text-sm font-bold text-white transition hover:border-white hover:bg-white/10"
             >
               Find my zone + weekly tasks
@@ -109,14 +109,14 @@ export default function LearnPage() {
                 color: '#2C4A2E',
               },
               {
-                href: '/learn/garden-planning',
+                href: '/plan',
                 title: 'Planning Tools',
                 count: `${GARDEN_CALCULATORS.length} tools`,
                 description: 'Calculators and planners to figure out what to grow, when to plant it, and how much space you need.',
                 color: '#C6933F',
               },
               {
-                href: '/learn/know-your-growing-zone',
+                href: '/learn/zones',
                 title: 'Know Your Zone',
                 count: 'Week-by-week',
                 description: 'Zone lookup, frost date reference, and a full 52-week growing task calendar for Northern California.',
@@ -182,7 +182,7 @@ export default function LearnPage() {
               </h2>
             </div>
             <Link
-              href="/learn/garden-planning"
+              href="/plan"
               className="text-sm font-bold text-[#2C4A2E] hover:underline"
             >
               All tools →
@@ -211,7 +211,7 @@ export default function LearnPage() {
                 plant, maintain, and harvest right now.
               </p>
               <Link
-                href="/learn/know-your-growing-zone#weekly-guide"
+                href="/learn/zones#weekly-guide"
                 className="mt-5 inline-block rounded-sm border-2 border-[#C6933F] bg-[#C6933F] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#b07f35]"
               >
                 Get this week&apos;s tasks →
@@ -248,21 +248,21 @@ export default function LearnPage() {
           <div className="mt-6 grid gap-5 sm:grid-cols-3">
             {[
               {
-                href: '/chickens',
+                href: '/poultry/the-flock',
                 label: 'The Flock',
                 title: 'Plymouth Barred Rock chickens',
                 description:
                   'Meet the heritage breed at the center of the farm — and why we chose it.',
               },
               {
-                href: '/eggs',
+                href: '/poultry/eggs',
                 label: 'Eggs',
                 title: 'Seasonal farm fresh eggs',
                 description:
                   'Pasture-raised eggs with local pickup near Anderson and Redding.',
               },
               {
-                href: '/farm-journal',
+                href: '/journal',
                 label: 'Journal',
                 title: 'Notes from the farm',
                 description:
