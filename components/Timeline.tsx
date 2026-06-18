@@ -26,28 +26,24 @@ function RowBar({ row }: RowBarProps) {
 
   return (
     <div className="flex items-center gap-2" style={{ minHeight: 32 }}>
-      {/* Crop label */}
-      <div className="w-36 shrink-0 text-right text-xs font-bold text-[#1C1C1A] truncate" title={label}>
+      <div className="w-36 shrink-0 truncate text-right text-xs font-bold text-[#1C1C1A]" title={label}>
         {label}
       </div>
 
-      {/* Timeline bar area */}
       <div className="relative flex-1" style={{ height: 20 }}>
-        {/* Indoor start bar */}
         {row.indoorStartDOY !== null && (
           <div
-            className="absolute top-0 bottom-0 rounded-sm opacity-50"
+            className="absolute bottom-0 top-0 rounded-sm opacity-50"
             style={{
               left: `${doyToPercent(row.indoorStartDOY)}%`,
               width: `${widthPercent(row.indoorStartDOY, row.plantingDOY)}%`,
               backgroundColor: color,
-              borderRight: `2px dashed rgba(255,255,255,0.6)`,
+              borderRight: '2px dashed rgba(255,255,255,0.6)',
             }}
-            title={`Indoor start → transplant`}
+            title="Indoor start to transplant"
           />
         )}
 
-        {/* Planting dot */}
         <div
           className="absolute z-10 h-3 w-3 rounded-full border-2 border-white shadow"
           style={{
@@ -59,15 +55,14 @@ function RowBar({ row }: RowBarProps) {
           title={`Plant: day ${row.plantingDOY}`}
         />
 
-        {/* Harvest bar */}
         <div
-          className="absolute top-1 bottom-1 rounded-sm"
+          className="absolute bottom-1 top-1 rounded-sm"
           style={{
             left: `${doyToPercent(row.harvestStartDOY)}%`,
             width: `${widthPercent(row.harvestStartDOY, row.harvestEndDOY)}%`,
             backgroundColor: color,
           }}
-          title={`Harvest: day ${row.harvestStartDOY}–${row.harvestEndDOY}`}
+          title={`Harvest: day ${row.harvestStartDOY}-${row.harvestEndDOY}`}
         />
       </div>
     </div>
@@ -76,6 +71,7 @@ function RowBar({ row }: RowBarProps) {
 
 export function Timeline() {
   const { timelineRows, state } = useGardenPlanner();
+  const simpleMode = state.displayMode === 'simple';
 
   if (timelineRows.length === 0) {
     return (
@@ -88,7 +84,6 @@ export function Timeline() {
     );
   }
 
-  // Group by category
   const byCategory: Record<string, TimelineRow[]> = {};
   for (const row of timelineRows) {
     if (!byCategory[row.category]) byCategory[row.category] = [];
@@ -97,21 +92,20 @@ export function Timeline() {
 
   return (
     <div className="space-y-8">
-
-      {/* Header */}
       <div>
         <h2 className="font-serif text-xl font-bold text-[#1C1C1A]">Planting Timeline</h2>
         <p className="mt-1 text-sm text-[#1C1C1A]/65">
           Zone {state.zone} planting schedule.{' '}
-          <span className="opacity-60">Faded bars = indoor start. Dots = transplant/sow date. Solid bars = harvest window.</span>
+          <span className="opacity-60">
+            {simpleMode
+              ? 'Use this as your season-at-a-glance plan for sowing, planting, and harvest.'
+              : 'Faded bars = indoor start. Dots = transplant or sow date. Solid bars = harvest window.'}
+          </span>
         </p>
       </div>
 
-      {/* Timeline chart */}
       <div className="overflow-x-auto rounded-sm border-2 border-[#1C1C1A] bg-[#D7D4CC]">
         <div className="relative min-w-[700px] p-4">
-
-          {/* Month grid lines — positioned relative to the full chart container */}
           <div className="pointer-events-none absolute inset-0 ml-[152px] mr-4">
             {MONTH_STARTS_DOY.slice(1).map((doy, i) => (
               <div
@@ -122,14 +116,13 @@ export function Timeline() {
             ))}
           </div>
 
-          {/* Month header */}
-          <div className="relative flex items-center gap-2 border-b border-[#1C1C1A]/15 pb-2 mb-4">
+          <div className="relative mb-4 flex items-center gap-2 border-b border-[#1C1C1A]/15 pb-2">
             <div className="w-36 shrink-0" />
             <div className="flex flex-1">
               {MONTH_NAMES.map((month, i) => (
                 <div
                   key={month}
-                  className="text-[10px] font-extrabold uppercase tracking-wider text-[#1C1C1A]/50 border-l border-[#1C1C1A]/10 pl-1"
+                  className="border-l border-[#1C1C1A]/10 pl-1 text-[10px] font-extrabold uppercase tracking-wider text-[#1C1C1A]/50"
                   style={{ flex: `0 0 ${(doyToPercent(MONTH_STARTS_DOY[i + 1] ?? 366) - doyToPercent(MONTH_STARTS_DOY[i]))}%` }}
                 >
                   {month}
@@ -138,7 +131,6 @@ export function Timeline() {
             </div>
           </div>
 
-          {/* Rows by category */}
           {CATEGORY_ORDER.filter((cat) => byCategory[cat]?.length).map((cat) => (
             <div key={cat} className="relative mb-5">
               <p className="mb-2 ml-[calc(144px+8px)] text-[9px] font-extrabold uppercase tracking-[0.16em] text-[#1C1C1A]/40">
@@ -151,27 +143,26 @@ export function Timeline() {
               </div>
             </div>
           ))}
-
         </div>
       </div>
 
-      {/* Legend */}
-      <div className="flex flex-wrap gap-4 text-xs text-[#1C1C1A]/70">
-        <span className="flex items-center gap-1.5">
-          <span className="inline-block h-3 w-6 rounded-sm opacity-50 bg-[#2C4A2E]" style={{ borderRight: '2px dashed rgba(255,255,255,0.6)' }} />
-          Indoor start
-        </span>
-        <span className="flex items-center gap-1.5">
-          <span className="inline-block h-3 w-3 rounded-full bg-[#2C4A2E] border-2 border-white" />
-          Transplant / sow
-        </span>
-        <span className="flex items-center gap-1.5">
-          <span className="inline-block h-3 w-8 rounded-sm bg-[#2C4A2E]" />
-          Harvest window
-        </span>
-      </div>
+      {!simpleMode && (
+        <div className="flex flex-wrap gap-4 text-xs text-[#1C1C1A]/70">
+          <span className="flex items-center gap-1.5">
+            <span className="inline-block h-3 w-6 rounded-sm bg-[#2C4A2E] opacity-50" style={{ borderRight: '2px dashed rgba(255,255,255,0.6)' }} />
+            Indoor start
+          </span>
+          <span className="flex items-center gap-1.5">
+            <span className="inline-block h-3 w-3 rounded-full border-2 border-white bg-[#2C4A2E]" />
+            Transplant / sow
+          </span>
+          <span className="flex items-center gap-1.5">
+            <span className="inline-block h-3 w-8 rounded-sm bg-[#2C4A2E]" />
+            Harvest window
+          </span>
+        </div>
+      )}
 
-      {/* Category color key */}
       <div className="flex flex-wrap gap-2">
         {CATEGORY_ORDER.filter((cat) => byCategory[cat]).map((cat) => (
           <span
@@ -184,10 +175,9 @@ export function Timeline() {
         ))}
       </div>
 
-      {/* Row count */}
       <p className="text-xs text-[#1C1C1A]/50">
         {timelineRows.length} planting event{timelineRows.length !== 1 ? 's' : ''} across {Object.keys(byCategory).length} categories.
-        Some later plantings may be hidden if harvest would begin after first frost in your zone.
+        Perennial trees, berries, and vines are placed into their usual dormant-season planting window instead of the annual-frost model.
       </p>
     </div>
   );

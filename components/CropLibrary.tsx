@@ -44,6 +44,7 @@ function FilterToggle({
 export function CropLibrary() {
   const { state, cropMetrics, toggleCrop } = useGardenPlanner();
   const [filters, setFilters] = useState<CropFilterState>(INITIAL_FILTERS);
+  const simpleMode = state.displayMode === 'simple';
 
   const includedCount = Object.values(state.cropPlans).filter((plan) => plan.included).length;
   const filteredCrops = useMemo(() => filterCrops(filters), [filters]);
@@ -83,7 +84,7 @@ export function CropLibrary() {
         className="w-full rounded-sm border-2 border-[#1C1C1A] bg-[#D7D4CC] px-4 py-2 text-sm text-[#1C1C1A] placeholder:text-[#1C1C1A]/40 focus:border-[#2C4A2E] focus:outline-none"
       />
 
-      <div className="grid gap-4 rounded-sm border border-[#1C1C1A]/10 bg-[#D7D4CC]/50 p-4 lg:grid-cols-3">
+      <div className={`grid gap-4 rounded-sm border border-[#1C1C1A]/10 bg-[#D7D4CC]/50 p-4 ${simpleMode ? 'md:grid-cols-2' : 'lg:grid-cols-3'}`}>
         <label className="space-y-1 text-sm text-[#1C1C1A]/70">
           <span className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-[#1C1C1A]/55">Category</span>
           <select
@@ -130,7 +131,7 @@ export function CropLibrary() {
         </label>
       </div>
 
-      <div className="flex flex-wrap gap-2">
+      <div className={`flex flex-wrap gap-2 ${simpleMode ? 'hidden md:flex' : ''}`}>
         <FilterToggle active={filters.season === 'hot'} label="Hot Weather" onClick={() => setFilters((current) => ({ ...current, season: current.season === 'hot' ? 'all' : 'hot' }))} />
         <FilterToggle active={filters.season === 'cool'} label="Cool Weather" onClick={() => setFilters((current) => ({ ...current, season: current.season === 'cool' ? 'all' : 'cool' }))} />
         <FilterToggle active={filters.droughtTolerantOnly} label="Drought Tolerant" onClick={() => setFilters((current) => ({ ...current, droughtTolerantOnly: !current.droughtTolerantOnly }))} />
@@ -147,18 +148,32 @@ export function CropLibrary() {
       </div>
 
       <p className="text-xs text-[#1C1C1A]/50">
-        Showing {filteredCrops.length} crops. Filters are designed to support family food production, orchard planning, and future food forest workflows.
+        Showing {filteredCrops.length} crops. {simpleMode ? 'Simple Mode keeps the first recommendation visible and tucks the deeper planning detail away.' : 'Advanced Mode shows climate, spacing, succession, and long-term production detail.'}
       </p>
 
       {filteredCrops.length === 0 ? (
         <p className="py-8 text-center text-sm text-[#1C1C1A]/50">No crops match your filters.</p>
       ) : (
-        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+        <div className={`grid gap-4 ${simpleMode ? 'sm:grid-cols-1 lg:grid-cols-2' : 'sm:grid-cols-2 xl:grid-cols-3'}`}>
           {filteredCrops.map((crop) => {
             const plan = state.cropPlans[crop.id];
             const metrics = cropMetrics[crop.id];
             const included = plan?.included ?? false;
             const categoryMeta = CATEGORY_METADATA.find((item) => item.id === crop.category);
+            const isAreaBased = crop.planningModel === 'area-based';
+            const hasNumericYield = crop.yieldPerPlant > 0;
+            const isLongTermCrop = Boolean(crop.yearsToProduction);
+            const orchardSpacingNote = crop.growthHabit === 'tree'
+              ? 'Spacing shown is a general home-orchard midpoint. Dwarf trees can go tighter, while standard trees need more room.'
+              : null;
+            const spacingLabel = isAreaBased
+              ? `${metrics.recommendedAreaSqFt ?? crop.recommendedAreaSqFt ?? 100} sq ft starter patch`
+              : `${crop.spacingSqFt} sq ft each`;
+            const yieldLabel = isAreaBased
+              ? 'seed by area, not plant count'
+              : hasNumericYield
+              ? `${crop.yieldPerPlant} ${crop.yieldUnit}/plant`
+              : 'yield shown in notes';
 
             return (
               <button
@@ -189,14 +204,16 @@ export function CropLibrary() {
                   </p>
                 )}
 
-                <div className={`mt-3 grid grid-cols-2 gap-x-3 gap-y-0.5 text-xs ${included ? 'text-white/75' : 'text-[#1C1C1A]/60'}`}>
-                  <span>{crop.type}</span>
-                  <span>{crop.growthHabit}</span>
-                  <span>{crop.daysToHarvest ?? crop.daysToMaturity}d to harvest</span>
-                  <span>{crop.yieldPerPlant} {crop.yieldUnit}/plant</span>
-                  <span>{crop.spacingSqFt} sq ft each</span>
-                  <span>{crop.yearsToProduction ? `${crop.yearsToProduction}y to produce` : 'first-year crop'}</span>
-                </div>
+                {!simpleMode && (
+                  <div className={`mt-3 grid grid-cols-2 gap-x-3 gap-y-0.5 text-xs ${included ? 'text-white/75' : 'text-[#1C1C1A]/60'}`}>
+                    <span>{crop.type}</span>
+                    <span>{crop.growthHabit}</span>
+                    <span>{crop.daysToHarvest ?? crop.daysToMaturity}d to harvest</span>
+                    <span>{yieldLabel}</span>
+                    <span>{spacingLabel}</span>
+                    <span>{crop.yearsToProduction ? `${crop.yearsToProduction}y to produce` : 'first-year crop'}</span>
+                  </div>
+                )}
 
                 <div className="mt-2 flex flex-wrap gap-1">
                   {crop.hotWeatherCrop && <span className={`rounded-sm px-1.5 py-0.5 text-[9px] font-bold uppercase ${included ? 'bg-white/15 text-white' : 'bg-[#8B2A2A]/15 text-[#8B2A2A]'}`}>Hot</span>}
@@ -204,19 +221,73 @@ export function CropLibrary() {
                   {crop.droughtTolerant && <span className={`rounded-sm px-1.5 py-0.5 text-[9px] font-bold uppercase ${included ? 'bg-white/15 text-white' : 'bg-[#7A4A2A]/15 text-[#7A4A2A]'}`}>Dryland</span>}
                   {crop.containerFriendly && <span className={`rounded-sm px-1.5 py-0.5 text-[9px] font-bold uppercase ${included ? 'bg-white/15 text-white' : 'bg-[#B8B6AE] text-[#1C1C1A]/70'}`}>Container</span>}
                   {crop.pollinatorFriendly && <span className={`rounded-sm px-1.5 py-0.5 text-[9px] font-bold uppercase ${included ? 'bg-white/15 text-white' : 'bg-[#C6933F]/15 text-[#7A5A1A]'}`}>Pollinator</span>}
+                  {crop.andersonFit && (
+                    <span className={`rounded-sm px-1.5 py-0.5 text-[9px] font-bold uppercase ${included ? 'bg-white/15 text-white' : 'bg-[#2C4A2E]/12 text-[#2C4A2E]'}`}>
+                      Anderson: {crop.andersonFit}
+                    </span>
+                  )}
+                  {simpleMode && crop.foodSecurityRole && (
+                    <span className={`rounded-sm px-1.5 py-0.5 text-[9px] font-bold uppercase ${included ? 'bg-white/15 text-white' : 'bg-[#1C1C1A]/8 text-[#1C1C1A]'}`}>
+                      {crop.foodSecurityRole}
+                    </span>
+                  )}
                 </div>
 
                 <div className="mt-3 border-t border-current/15 pt-3 text-xs leading-5">
-                  <p className={included ? 'text-white/75' : 'text-[#1C1C1A]/70'}>
-                    Recommended:
-                    <strong className={included ? 'text-white' : 'text-[#2C4A2E]'}>
-                      {' '}{metrics.recommendedTotalPlants} total
-                    </strong>
-                    {' '}from {metrics.recommendedPlantsPerPlanting} per planting x {metrics.recommendedSuccessivePlantings} planting{metrics.recommendedSuccessivePlantings === 1 ? '' : 's'}.
-                  </p>
+                  {isAreaBased ? (
+                    <p className={included ? 'text-white/75' : 'text-[#1C1C1A]/70'}>
+                      Recommended:
+                      <strong className={included ? 'text-white' : 'text-[#2C4A2E]'}>
+                        {' '}{metrics.recommendedAreaSqFt ?? crop.recommendedAreaSqFt ?? 100} sq ft
+                      </strong>
+                      {' '}seeded by area, not by plant count.
+                    </p>
+                  ) : (
+                    <p className={included ? 'text-white/75' : 'text-[#1C1C1A]/70'}>
+                      Recommended:
+                      <strong className={included ? 'text-white' : 'text-[#2C4A2E]'}>
+                        {' '}{metrics.recommendedTotalPlants} total
+                      </strong>
+                      {' '}from {metrics.recommendedPlantsPerPlanting} per planting x {metrics.recommendedSuccessivePlantings} planting{metrics.recommendedSuccessivePlantings === 1 ? '' : 's'}.
+                    </p>
+                  )}
                   <p className={`mt-2 ${included ? 'text-white/65' : 'text-[#1C1C1A]/60'}`}>
                     {crop.notes}
                   </p>
+                  {!simpleMode && (
+                    <>
+                      {crop.yieldNote && (
+                        <p className={`mt-2 ${included ? 'text-white/65' : 'text-[#1C1C1A]/60'}`}>
+                          {crop.yieldNote}
+                        </p>
+                      )}
+                      {(crop.spacingNote || orchardSpacingNote) && (
+                        <p className={`mt-2 ${included ? 'text-white/65' : 'text-[#1C1C1A]/60'}`}>
+                          {crop.spacingNote ?? orchardSpacingNote}
+                        </p>
+                      )}
+                      {crop.pollinationNotes && (
+                        <p className={`mt-2 ${included ? 'text-white/65' : 'text-[#1C1C1A]/60'}`}>
+                          {crop.pollinationNotes}
+                        </p>
+                      )}
+                      {crop.chillHours && (
+                        <p className={`mt-2 ${included ? 'text-white/65' : 'text-[#1C1C1A]/60'}`}>
+                          Chill hours: {crop.chillHours}
+                        </p>
+                      )}
+                      {crop.trellisRequirement && (
+                        <p className={`mt-2 ${included ? 'text-white/65' : 'text-[#1C1C1A]/60'}`}>
+                          Trellis: {crop.trellisRequirement}
+                        </p>
+                      )}
+                      {isLongTermCrop && !crop.yieldNote && (
+                        <p className={`mt-2 ${included ? 'text-white/65' : 'text-[#1C1C1A]/60'}`}>
+                          Mature yield is shown here, not first-year production.
+                        </p>
+                      )}
+                    </>
+                  )}
                 </div>
 
                 <div

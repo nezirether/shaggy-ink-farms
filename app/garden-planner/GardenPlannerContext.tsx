@@ -6,7 +6,7 @@ import {
 } from 'react';
 import type {
   GardenPlannerState, FamilyMember, FamilyRole, CropPlan,
-  ActiveTab, CropMetrics, SpaceResult, TimelineRow, ShoppingItem, PlanSummary, Crop,
+  ActiveTab, CropMetrics, SpaceResult, TimelineRow, ShoppingItem, PlanSummary, Crop, PlannerDisplayMode,
 } from '@/types/garden-planner';
 import { CROPS, getCropById } from '@/data/crops';
 import { getZoneData } from '@/data/zones';
@@ -19,6 +19,8 @@ import {
 const STORAGE_KEY = 'shaggy-garden-planner-v2';
 
 function buildRecommendedCropPlan(crop: Crop, metrics: CropMetrics, current?: CropPlan): CropPlan {
+  const isAreaBased = crop.planningModel === 'area-based';
+
   return {
     cropId: crop.id,
     included: current?.included ?? false,
@@ -27,14 +29,25 @@ function buildRecommendedCropPlan(crop: Crop, metrics: CropMetrics, current?: Cr
     recommendedSuccessivePlantings: metrics.recommendedSuccessivePlantings,
     // Default selected plans to the recommendation so first-time users start from a coherent plan,
     // not from a contradictory "recommended 14, selected 1" state.
-    plantsPerPlanting: current?.plantsPerPlantingCustomized
+    plantsPerPlanting: isAreaBased
+      ? 0
+      : current?.plantsPerPlantingCustomized
       ? current.plantsPerPlanting
       : metrics.recommendedPlantsPerPlanting,
-    successivePlantings: current?.successivePlantingsCustomized
+    successivePlantings: isAreaBased
+      ? 1
+      : current?.successivePlantingsCustomized
       ? current.successivePlantings
       : metrics.recommendedSuccessivePlantings,
-    plantsPerPlantingCustomized: current?.plantsPerPlantingCustomized ?? false,
-    successivePlantingsCustomized: current?.successivePlantingsCustomized ?? false,
+    plantsPerPlantingCustomized: isAreaBased ? true : current?.plantsPerPlantingCustomized ?? false,
+    successivePlantingsCustomized: isAreaBased ? true : current?.successivePlantingsCustomized ?? false,
+    recommendedAreaSqFt: metrics.recommendedAreaSqFt,
+    areaSqFt: isAreaBased
+      ? current?.areaSqFtCustomized
+        ? current.areaSqFt ?? metrics.recommendedAreaSqFt ?? crop.recommendedAreaSqFt ?? 100
+        : metrics.recommendedAreaSqFt ?? crop.recommendedAreaSqFt ?? 100
+      : undefined,
+    areaSqFtCustomized: isAreaBased ? current?.areaSqFtCustomized ?? false : undefined,
   };
 }
 
@@ -54,6 +67,7 @@ const INITIAL_STATE: GardenPlannerState = {
   cropPlans: Object.fromEntries(CROPS.map((crop) => [crop.id, defaultCropPlan(crop)])),
   safetyMargin: 0.2,
   activeTab: 'dashboard',
+  displayMode: 'simple',
 };
 
 type Action =
@@ -65,9 +79,11 @@ type Action =
   | { type: 'SET_CROP_INCLUDED'; cropId: string; included: boolean }
   | { type: 'SET_CROP_PLANTS'; cropId: string; plantsPerPlanting: number }
   | { type: 'SET_CROP_SUCCESSIONS'; cropId: string; successivePlantings: number }
+  | { type: 'SET_CROP_AREA'; cropId: string; areaSqFt: number }
   | { type: 'SYNC_RECOMMENDATIONS'; plans: Record<string, CropPlan> }
   | { type: 'RESET_PLANNER' }
   | { type: 'SET_TAB'; tab: ActiveTab }
+  | { type: 'SET_DISPLAY_MODE'; mode: PlannerDisplayMode }
   | { type: 'LOAD'; state: GardenPlannerState };
 
 let nextMemberId = 100;
@@ -155,6 +171,22 @@ function reducer(state: GardenPlannerState, action: Action): GardenPlannerState 
       };
     }
 
+    case 'SET_CROP_AREA': {
+      const plan = state.cropPlans[action.cropId];
+      if (!plan) return state;
+      return {
+        ...state,
+        cropPlans: {
+          ...state.cropPlans,
+          [action.cropId]: {
+            ...plan,
+            areaSqFt: Math.max(1, Math.round(action.areaSqFt)),
+            areaSqFtCustomized: true,
+          },
+        },
+      };
+    }
+
     case 'SYNC_RECOMMENDATIONS':
       return { ...state, cropPlans: action.plans };
 
@@ -163,6 +195,9 @@ function reducer(state: GardenPlannerState, action: Action): GardenPlannerState 
 
     case 'SET_TAB':
       return { ...state, activeTab: action.tab };
+
+    case 'SET_DISPLAY_MODE':
+      return { ...state, displayMode: action.mode };
 
     case 'LOAD':
       return action.state;
@@ -188,12 +223,19 @@ function migrateCropPlan(rawPlan: unknown, crop: Crop, adultEq: number, safetyMa
     ? legacy.successions
     : metrics.recommendedSuccessivePlantings;
 
+  const legacyArea = typeof legacy.areaSqFt === 'number'
+    ? legacy.areaSqFt
+    : metrics.recommendedAreaSqFt ?? crop.recommendedAreaSqFt ?? 100;
   const plantsCustomized = typeof legacy.plantsPerPlantingCustomized === 'boolean'
     ? legacy.plantsPerPlantingCustomized
     : legacyPlants !== metrics.recommendedPlantsPerPlanting;
   const successionsCustomized = typeof legacy.successivePlantingsCustomized === 'boolean'
     ? legacy.successivePlantingsCustomized
     : legacySuccessions !== metrics.recommendedSuccessivePlantings;
+  const areaCustomized = typeof legacy.areaSqFtCustomized === 'boolean'
+    ? legacy.areaSqFtCustomized
+    : legacyArea !== (metrics.recommendedAreaSqFt ?? crop.recommendedAreaSqFt ?? 100);
+  const isAreaBased = crop.planningModel === 'area-based';
 
   return {
     cropId: crop.id,
@@ -201,10 +243,13 @@ function migrateCropPlan(rawPlan: unknown, crop: Crop, adultEq: number, safetyMa
     recommendedTotalPlants: metrics.recommendedTotalPlants,
     recommendedPlantsPerPlanting: metrics.recommendedPlantsPerPlanting,
     recommendedSuccessivePlantings: metrics.recommendedSuccessivePlantings,
-    plantsPerPlanting: Math.max(1, Math.round(legacyPlants)),
-    successivePlantings: Math.max(1, Math.round(legacySuccessions)),
-    plantsPerPlantingCustomized: plantsCustomized,
-    successivePlantingsCustomized: successionsCustomized,
+    plantsPerPlanting: isAreaBased ? 0 : Math.max(1, Math.round(legacyPlants)),
+    successivePlantings: isAreaBased ? 1 : Math.max(1, Math.round(legacySuccessions)),
+    plantsPerPlantingCustomized: isAreaBased ? true : plantsCustomized,
+    successivePlantingsCustomized: isAreaBased ? true : successionsCustomized,
+    recommendedAreaSqFt: metrics.recommendedAreaSqFt,
+    areaSqFt: isAreaBased ? Math.max(1, Math.round(legacyArea)) : undefined,
+    areaSqFtCustomized: isAreaBased ? areaCustomized : undefined,
   };
 }
 
@@ -218,8 +263,10 @@ interface GardenPlannerContextValue {
   toggleCrop: (cropId: string) => void;
   setCropPlants: (cropId: string, plants: number) => void;
   setCropSuccessions: (cropId: string, successions: number) => void;
+  setCropArea: (cropId: string, areaSqFt: number) => void;
   resetPlanner: () => void;
   setTab: (tab: ActiveTab) => void;
+  setDisplayMode: (mode: PlannerDisplayMode) => void;
   adultEquivalents: number;
   familySize: number;
   cropMetrics: Record<string, CropMetrics>;
@@ -258,6 +305,7 @@ export function GardenPlannerProvider({ children }: { children: ReactNode }) {
           cropPlans: migratedCropPlans,
           safetyMargin: parsed.safetyMargin ?? INITIAL_STATE.safetyMargin,
           activeTab: 'dashboard',
+          displayMode: parsed.displayMode ?? INITIAL_STATE.displayMode,
         },
       });
     } catch {
@@ -280,6 +328,7 @@ export function GardenPlannerProvider({ children }: { children: ReactNode }) {
   const setSafetyMargin = useCallback((margin: number) => dispatch({ type: 'SET_SAFETY_MARGIN', margin }), []);
   const setCropPlants = useCallback((cropId: string, plants: number) => dispatch({ type: 'SET_CROP_PLANTS', cropId, plantsPerPlanting: plants }), []);
   const setCropSuccessions = useCallback((cropId: string, successions: number) => dispatch({ type: 'SET_CROP_SUCCESSIONS', cropId, successivePlantings: successions }), []);
+  const setCropArea = useCallback((cropId: string, areaSqFt: number) => dispatch({ type: 'SET_CROP_AREA', cropId, areaSqFt }), []);
   const resetPlanner = useCallback(() => {
     try {
       localStorage.removeItem(STORAGE_KEY);
@@ -290,6 +339,7 @@ export function GardenPlannerProvider({ children }: { children: ReactNode }) {
     dispatch({ type: 'RESET_PLANNER' });
   }, []);
   const setTab = useCallback((tab: ActiveTab) => dispatch({ type: 'SET_TAB', tab }), []);
+  const setDisplayMode = useCallback((mode: PlannerDisplayMode) => dispatch({ type: 'SET_DISPLAY_MODE', mode }), []);
 
   const adultEquivalents = useMemo(
     () => calcAdultEquivalents(state.familyMembers),
@@ -397,8 +447,10 @@ export function GardenPlannerProvider({ children }: { children: ReactNode }) {
     toggleCrop,
     setCropPlants,
     setCropSuccessions,
+    setCropArea,
     resetPlanner,
     setTab,
+    setDisplayMode,
     adultEquivalents,
     familySize,
     cropMetrics,

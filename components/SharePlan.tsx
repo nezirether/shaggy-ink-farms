@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useGardenPlanner } from '@/app/garden-planner/GardenPlannerContext';
+import { formatYieldBreakdown } from '@/lib/garden-planner/engine';
 
 export function SharePlan() {
   const { shareText, planSummary, state, exportCSV } = useGardenPlanner();
@@ -44,14 +45,12 @@ export function SharePlan() {
 
   return (
     <div className="space-y-8">
-
-      {/* Plan summary cards */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {[
           { label: 'Zone', value: `Zone ${state.zone}`, sub: 'USDA Hardiness' },
           { label: 'Family Size', value: `${planSummary.adultEquivalents.toFixed(1)} AE`, sub: 'adult equivalents' },
-          { label: 'Crops Planned', value: planSummary.includedCropCount, sub: 'varieties' },
-          { label: 'Total Plants', value: planSummary.totalPlants.toLocaleString(), sub: `${Math.round(planSummary.totalSqFt)} sq ft` },
+          { label: 'Food Security', value: `${planSummary.foodSecurityScore}/100`, sub: 'overall resilience score' },
+          { label: 'Estimated Harvest', value: formatYieldBreakdown(planSummary.yieldBreakdown, 3), sub: `${Math.round(planSummary.totalSqFt)} sq ft total` },
         ].map((card) => (
           <div
             key={card.label}
@@ -64,7 +63,6 @@ export function SharePlan() {
         ))}
       </div>
 
-      {/* Share text */}
       <section className="rounded-sm border-2 border-[#1C1C1A] bg-[#D7D4CC] p-6 shadow-[6px_6px_0_rgba(44,74,46,0.14)]">
         <div className="flex items-start justify-between gap-4">
           <div>
@@ -81,7 +79,7 @@ export function SharePlan() {
                 : 'border-[#1C1C1A] bg-[#B8B6AE] text-[#1C1C1A] hover:bg-[#1C1C1A] hover:text-[#D7D4CC]'
             }`}
           >
-            {copiedText ? '✓ Copied!' : 'Copy Text'}
+            {copiedText ? 'Copied!' : 'Copy Text'}
           </button>
         </div>
 
@@ -92,7 +90,6 @@ export function SharePlan() {
         </div>
       </section>
 
-      {/* Top crops */}
       {planSummary.topCrops.length > 0 && (
         <section className="rounded-sm border-2 border-[#1C1C1A] bg-[#D7D4CC] p-6 shadow-[6px_6px_0_rgba(44,74,46,0.14)]">
           <h2 className="font-serif text-lg font-bold text-[#1C1C1A]">Top Crops by Space</h2>
@@ -104,7 +101,7 @@ export function SharePlan() {
                 <div key={crop.cropId} className="flex items-center gap-3">
                   <span className="w-5 text-right text-xs font-extrabold text-[#1C1C1A]/40">{i + 1}</span>
                   <span className="w-28 shrink-0 text-sm font-bold text-[#1C1C1A]">{crop.name}</span>
-                  <div className="flex-1 h-4 rounded-sm bg-[#B8B6AE] overflow-hidden">
+                  <div className="h-4 flex-1 overflow-hidden rounded-sm bg-[#B8B6AE]">
                     <div
                       className="h-full rounded-sm bg-[#2C4A2E] transition-all duration-500"
                       style={{ width: `${pct}%` }}
@@ -118,7 +115,6 @@ export function SharePlan() {
         </section>
       )}
 
-      {/* CSV export */}
       <section className="rounded-sm border-2 border-[#1C1C1A] bg-[#D7D4CC] p-6 shadow-[6px_6px_0_rgba(44,74,46,0.14)]">
         <h2 className="font-serif text-lg font-bold text-[#1C1C1A]">Export Data</h2>
         <p className="mt-1 text-sm text-[#1C1C1A]/65">
@@ -129,7 +125,7 @@ export function SharePlan() {
             onClick={handleDownloadCSV}
             className="rounded border-2 border-[#2C4A2E] bg-[#2C4A2E] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#1a2e1b]"
           >
-            ↓ Download CSV
+            Download CSV
           </button>
           <button
             onClick={handleCopyCSV}
@@ -139,17 +135,15 @@ export function SharePlan() {
                 : 'border-[#1C1C1A] bg-[#B8B6AE] text-[#1C1C1A] hover:bg-[#1C1C1A] hover:text-[#D7D4CC]'
             }`}
           >
-            {copiedCSV ? '✓ Copied to clipboard!' : 'Copy CSV to clipboard'}
+            {copiedCSV ? 'Copied to clipboard!' : 'Copy CSV to clipboard'}
           </button>
         </div>
       </section>
 
-      {/* Credit */}
       <p className="text-center text-xs text-[#1C1C1A]/40">
         Generated with the Family Food Security Garden Planner at{' '}
         <span className="font-bold text-[#1C1C1A]/60">shaggyinkfarms.com</span>
       </p>
-
     </div>
   );
 }

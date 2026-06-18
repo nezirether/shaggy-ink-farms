@@ -68,6 +68,12 @@ export type PlannerMode =
   | 'beginner'
   | 'advanced';
 
+export type PlanningModel = 'plant-count' | 'area-based';
+export type PlannerDisplayMode = 'simple' | 'advanced';
+export type ClimateFit = 'excellent' | 'good' | 'possible' | 'difficult';
+export type WaterNeed = 'low' | 'moderate' | 'high';
+export type FoodSecurityRole = 'staple' | 'fresh' | 'storage' | 'preservation' | 'luxury' | 'market';
+
 export const CATEGORY_ORDER: CropCategory[] = [
   'Vegetables',
   'Herbs',
@@ -142,6 +148,25 @@ export interface Crop {
   plannerModes?: PlannerMode[];
   commonNames?: string[];
   successionNote?: string;
+  planningModel?: PlanningModel;
+  recommendedAreaSqFt?: number;
+  seedRateNote?: string;
+  spacingNote?: string;
+  yieldNote?: string;
+  andersonFit?: ClimateFit;
+  waterNeed?: WaterNeed;
+  foodSecurityRole?: FoodSecurityRole;
+  priorityLevel?: 1 | 2 | 3 | 4 | 5;
+  calorieValue?: 1 | 2 | 3 | 4 | 5;
+  proteinValue?: 1 | 2 | 3 | 4 | 5;
+  storageValue?: 1 | 2 | 3 | 4 | 5;
+  preservationValue?: 1 | 2 | 3 | 4 | 5;
+  freshEatingValue?: 1 | 2 | 3 | 4 | 5;
+  marketValue?: 1 | 2 | 3 | 4 | 5;
+  yearsToMeaningfulHarvest?: number;
+  chillHours?: string;
+  trellisRequirement?: string;
+  orchardSpacing?: Partial<Record<'dwarf' | 'semi-dwarf' | 'standard', number>>;
   notes: string;
 }
 
@@ -155,6 +180,9 @@ export interface CropPlan {
   successivePlantings: number;
   plantsPerPlantingCustomized: boolean;
   successivePlantingsCustomized: boolean;
+  recommendedAreaSqFt?: number;
+  areaSqFt?: number;
+  areaSqFtCustomized?: boolean;
 }
 
 export interface ZoneData {
@@ -185,10 +213,16 @@ export interface SpaceCrop {
   cropName: string;
   totalPlants: number;
   sqFt: number;
+  quantityLabel?: string;
 }
 
 export interface SpaceResult {
   totalSqFt: number;
+  annualBedSqFt: number;
+  orchardSqFt: number;
+  berrySqFt: number;
+  vineSqFt: number;
+  foodForestSqFt: number;
   beds4x8: number;
   beds4x12: number;
   rowFeetAt30in: number;
@@ -204,6 +238,7 @@ export interface ShoppingItem {
   plantsPerPlanting: number;
   acquisition: 'seed' | 'transplant' | 'both';
   seedPackets: number;
+  quantityLabel?: string;
   note: string;
 }
 
@@ -214,16 +249,35 @@ export interface CropMetrics {
   recommendedSuccessivePlantings: number;
   recommendedTotalPlants: number;
   totalSqFt: number;
-  annualYield: number;
+  annualYield: number | null;
+  recommendedAreaSqFt?: number;
+}
+
+export interface YieldBreakdownItem {
+  unit: Crop['yieldUnit'];
+  amount: number;
 }
 
 export interface PlanSummary {
   adultEquivalents: number;
   totalPlants: number;
   totalSqFt: number;
+  annualCrops: number;
+  perennialCrops: number;
+  treeCount: number;
+  vineCount: number;
+  berryPlantCount: number;
+  annualBedSqFt: number;
+  orchardSqFt: number;
+  berrySqFt: number;
+  vineSqFt: number;
+  foodForestSqFt: number;
+  foodSecurityScore: number;
+  yieldBreakdown: YieldBreakdownItem[];
   beds4x8: number;
   includedCropCount: number;
   topCrops: { cropId: string; name: string; plants: number; sqFt: number }[];
+  topPriorityCrops: { cropId: string; name: string; role: FoodSecurityRole | 'none'; score: number }[];
 }
 
 export type ActiveTab =
@@ -242,6 +296,7 @@ export interface GardenPlannerState {
   cropPlans: Record<string, CropPlan>;
   safetyMargin: number;
   activeTab: ActiveTab;
+  displayMode: PlannerDisplayMode;
 }
 
 export interface CropFilterState {
