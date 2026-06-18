@@ -73,6 +73,7 @@ export type PlannerDisplayMode = 'simple' | 'advanced';
 export type ClimateFit = 'excellent' | 'good' | 'possible' | 'difficult';
 export type WaterNeed = 'low' | 'moderate' | 'high';
 export type FoodSecurityRole = 'staple' | 'fresh' | 'storage' | 'preservation' | 'luxury' | 'market';
+export type CropSourceQuality = 'unverified' | 'tier-1-reviewed' | 'tier-1-verified';
 
 export const CATEGORY_ORDER: CropCategory[] = [
   'Vegetables',
@@ -167,6 +168,11 @@ export interface Crop {
   chillHours?: string;
   trellisRequirement?: string;
   orchardSpacing?: Partial<Record<'dwarf' | 'semi-dwarf' | 'standard', number>>;
+  spacingSource?: string;
+  yieldSource?: string;
+  successionSource?: string;
+  sourceQuality?: CropSourceQuality;
+  lastVerifiedAt?: string;
   notes: string;
 }
 

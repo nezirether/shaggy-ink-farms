@@ -1,0 +1,94 @@
+Crop Name,Category,Yield Unit,Yield Value,Square Feet,Succession Recommendation,Source Used,Flags,Verification Score,Confidence
+Garlic,Vegetables,bulbs,1,0.25,1,Inline source note only (not a structured citation),Weak source; Estimated value,80,Mostly Verified
+Onion,Vegetables,bulbs,1,0.11,1,Inline source note only (not a structured citation),Weak source; Estimated value,80,Mostly Verified
+Sweet Corn,Vegetables,ears,1,1,3,Inline source note only (not a structured citation),Weak source; Estimated value,80,Mostly Verified
+Apple,Fruit Trees,lbs,80,144,1,No explicit source citation in crops.ts,Missing source; Needs verification,45,Needs Review
+Kiwi,Vines,fruit,40,100,1,No explicit source citation in crops.ts,Missing source; Estimated value; Needs verification,45,Needs Review
+Olive,Fruit Trees,lbs,80,144,1,No explicit source citation in crops.ts,Missing source; Needs verification,45,Needs Review
+Passion Fruit,Vines,fruit,25,100,1,No explicit source citation in crops.ts,Missing source; Estimated value; Needs verification,45,Needs Review
+Pear,Fruit Trees,lbs,100,144,1,No explicit source citation in crops.ts,Missing source; Needs verification,45,Needs Review
+Persimmon,Fruit Trees,lbs,90,144,1,No explicit source citation in crops.ts,Missing source; Needs verification,45,Needs Review
+Plum,Fruit Trees,lbs,70,144,1,No explicit source citation in crops.ts,Missing source; Needs verification,45,Needs Review
+Almond,Nut Trees,lbs,30,196,1,No explicit source citation in crops.ts,Missing source; Needs verification,40,Unverified
+Blueberry,Berries,lbs,6,9,1,No explicit source citation in crops.ts,Missing source; Needs verification,40,Unverified
+Chestnut,Nut Trees,lbs,100,400,1,No explicit source citation in crops.ts,Missing source; Needs verification,40,Unverified
+Dragon Fruit,Tropical Fruits,fruit,20,16,1,No explicit source citation in crops.ts,Missing source; Needs verification,40,Unverified
+Hazelnut,Nut Trees,lbs,15,100,1,No explicit source citation in crops.ts,Missing source; Needs verification,40,Unverified
+Jujube,Fruit Trees,lbs,50,144,1,No explicit source citation in crops.ts,Missing source; Estimated value; Needs verification,40,Unverified
+Lime,Subtropical Fruits,fruit,60,144,1,No explicit source citation in crops.ts,Missing source; Needs verification,40,Unverified
+Loquat,Subtropical Fruits,fruit,60,144,1,No explicit source citation in crops.ts,Missing source; Needs verification,40,Unverified
+Mandarin,Subtropical Fruits,fruit,80,144,1,No explicit source citation in crops.ts,Missing source; Needs verification,40,Unverified
+Mulberry,Fruit Trees,lbs,100,225,1,No explicit source citation in crops.ts,Missing source; Needs verification,40,Unverified
+Orange,Subtropical Fruits,fruit,100,144,1,No explicit source citation in crops.ts,Missing source; Needs verification,40,Unverified
+Pineapple Guava,Subtropical Fruits,fruit,25,64,1,No explicit source citation in crops.ts,Missing source; Estimated value; Needs verification,40,Unverified
+Table Grapes,Vines,lbs,15,12,1,No explicit source citation in crops.ts,Missing source; Needs verification,40,Unverified
+Annual Ryegrass,Cover Crops,bunches,Area-based,0.11,1,No explicit source citation in crops.ts,Missing source; Estimated value; Needs verification,35,Unverified
+Artichoke,Perennial Vegetables,lbs,6,9,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Asparagus,Perennial Vegetables,bunches,1,2,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Austrian Winter Pea,Cover Crops,bunches,Area-based,0.25,1,No explicit source citation in crops.ts,Missing source; Estimated value; Needs verification,35,Unverified
+Banana,Tropical Fruits,fruit,40,36,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Basil,Herbs,bunches,0.4,1,2,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Bell Bean,Cover Crops,bunches,Area-based,0.25,1,No explicit source citation in crops.ts,Missing source; Estimated value; Needs verification,35,Unverified
+Bell Pepper,Vegetables,lbs,4,2,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Blackberry,Berries,lbs,8,9,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Buckwheat,Cover Crops,bunches,Area-based,0.25,2,No explicit source citation in crops.ts,Missing source; Estimated value; Needs verification,35,Unverified
+Bush Bean,Vegetables,lbs,0.5,0.25,4,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Cabbage,Vegetables,heads,3,2.25,2,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Cantaloupe,Vegetables,lbs,8,12,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Carrot,Vegetables,lbs,0.2,0.06,3,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Cereal Rye,Cover Crops,bunches,Area-based,0.11,1,No explicit source citation in crops.ts,Missing source; Estimated value; Needs verification,35,Unverified
+Chamomile,Medicinals,flowers,0.15,0.5,2,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Cilantro,Herbs,bunches,0.2,0.5,3,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Comfrey,Medicinals,bunches,4,4,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Comfrey (Food Forest),Food Forest Plants,bunches,4,4,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Crimson Clover,Cover Crops,bunches,Area-based,0.25,1,No explicit source citation in crops.ts,Missing source; Estimated value; Needs verification,35,Unverified
+Cucumber,Vegetables,lbs,8,3,2,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Dent Corn,Grains,ears,0.4,1,2,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Echinacea,Medicinals,flowers,0.3,1.5,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Elderberry,Berries,lbs,12,16,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Fig,Fruit Trees,lbs,60,196,1,Inline agronomic note only,Missing source; Weak source; Estimated value; Needs verification,35,Unverified
+Goumi,Food Forest Plants,fruit,10,9,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Grain Amaranth,Grains,clusters,0.4,1,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Grape (Food Forest Vine),Food Forest Plants,lbs,15,12,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Guava,Tropical Fruits,fruit,60,100,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Hops,Vines,clusters,1,9,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Horseradish,Perennial Vegetables,lbs,2,2,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Jerusalem Artichoke,Perennial Vegetables,lbs,3,2,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Kale,Vegetables,lbs,2,2,2,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Lavender,Medicinals,bunches,0.5,3,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Lettuce,Vegetables,heads,0.75,1,4,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Loquat (Food Forest),Food Forest Plants,fruit,60,144,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Luffa,Experimental Crops,fruit,15,16,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Mango,Tropical Fruits,fruit,150,225,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Mint,Herbs,bunches,0.75,1,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Okra,Vegetables,lbs,4,2,2,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Oregano,Herbs,bunches,0.5,1,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Oregano (Food Forest),Food Forest Plants,bunches,0.5,1,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Papaya,Tropical Fruits,fruit,50,25,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Parsley,Herbs,bunches,0.4,1,2,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Pea,Vegetables,lbs,0.25,0.11,2,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Peach,Fruit Trees,lbs,80,144,1,Inline agronomic note only,Missing source; Weak source; Estimated value; Needs verification,35,Unverified
+Pomegranate,Fruit Trees,lbs,40,100,1,Inline agronomic note only,Missing source; Weak source; Estimated value; Needs verification,35,Unverified
+Potato,Vegetables,lbs,5,1.5,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Raspberry,Berries,lbs,3,4,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Rhubarb,Perennial Vegetables,lbs,4,9,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Sorghum Sudan,Cover Crops,bunches,Area-based,0.25,1,No explicit source citation in crops.ts,Missing source; Estimated value; Needs verification,35,Unverified
+Strawberry,Berries,lbs,1,1,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Sweet Potato,Vegetables,lbs,3,3,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Thyme,Herbs,bunches,0.3,1,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Walnut,Nut Trees,lbs,80,400,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Yarrow,Medicinals,flowers,0.25,1,1,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Zucchini,Vegetables,lbs,12,6,2,No explicit source citation in crops.ts,Missing source; Needs verification,35,Unverified
+Lemon,Subtropical Fruits,fruit,80,144,1,Inline agronomic note only,Missing source; Weak source; Estimated value; Needs verification,30,Unverified
+Rare Fruit Trial Planting,Experimental Crops,fruit,20,100,1,No explicit source citation in crops.ts,Missing source; Estimated value; Needs verification,30,Unverified
+Rosemary,Herbs,bunches,1,4,1,No explicit source citation in crops.ts,Missing source; Estimated value; Needs verification,30,Unverified
+Sorghum,Grains,clusters,0.5,1,1,No explicit source citation in crops.ts,Missing source; Estimated value; Needs verification,30,Unverified
+Sunflower,Flowers,flowers,1,1.5,4,Inline agronomic note only,Missing source; Weak source; Estimated value; Needs verification,30,Unverified
+Borage,Flowers,flowers,0,1.5,2,No explicit source citation in crops.ts,Missing source; Needs verification,28,Unverified
+Calendula,Flowers,flowers,0,1,3,No explicit source citation in crops.ts,Missing source; Needs verification,28,Unverified
+Nasturtium,Flowers,flowers,0,1.5,2,No explicit source citation in crops.ts,Missing source; Needs verification,28,Unverified
+Zinnia,Flowers,flowers,0,1,3,No explicit source citation in crops.ts,Missing source; Needs verification,28,Unverified
+Broccoli,Vegetables,lbs,1.5,2.25,2,Inline agronomic note only,Missing source; Weak source; Estimated value; Needs verification,25,Unverified
+Pole Bean,Vegetables,lbs,1.2,0.5,2,Inline agronomic note only,Missing source; Weak source; Estimated value; Needs verification,25,Unverified
+Tomato,Vegetables,lbs,12,4,1,Inline agronomic note only,Missing source; Weak source; Estimated value; Needs verification,25,Unverified
+Watermelon,Vegetables,lbs,15,24,1,Inline agronomic note only,Missing source; Weak source; Estimated value; Needs verification,25,Unverified
