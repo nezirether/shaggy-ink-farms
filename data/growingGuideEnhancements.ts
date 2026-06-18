@@ -166,7 +166,7 @@ export const GUIDE_CONTENT_ENHANCEMENTS: Record<string, GuideEnhancement> = {
         'Keep feeding records',
         'Use soil tests where possible',
       ],
-      relatedSlugs: ['drip-irrigation-basics', 'nutrient-deficiency-guide', 'family-garden-planner-guide'],
+      relatedSlugs: ['nutrient-deficiency-guide', 'family-garden-planner-guide', 'warm-season-cover-crops'],
       sources: [sources.ucAnr, sources.extension, sources.johnnys],
     }),
     {

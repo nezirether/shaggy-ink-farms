@@ -3,13 +3,35 @@ import { ButtonLink } from "@/components/ButtonLink";
 import { PageHero } from "@/components/PageHero";
 import { RelatedLinks } from "@/components/RelatedLinks";
 import { SectionHeader } from "@/components/SectionHeader";
+import { GROWING_GUIDES } from "@/data/growingGuides";
 import { gardenPages, type GardenPage } from "@/lib/garden";
+import { journalArticles } from "@/lib/journal";
+import {
+  guideLinksForTopic,
+  journalLinksForTopic,
+  plannerLinkForTopic,
+  topicsForGardenUrl,
+  uniqueRelatedLinks,
+} from "@/lib/topic-links";
 
 type GardenPageLayoutProps = {
   page: GardenPage;
 };
 
 export function GardenPageLayout({ page }: GardenPageLayoutProps) {
+  const topics = topicsForGardenUrl(page.href);
+  const learnGuideLinks = uniqueRelatedLinks(
+    topics.flatMap((topic) => guideLinksForTopic(topic, GROWING_GUIDES)),
+  );
+  const journalLinks = uniqueRelatedLinks(
+    topics.flatMap((topic) => journalLinksForTopic(topic, journalArticles)),
+  );
+  const toolLinks = uniqueRelatedLinks(
+    topics
+      .map(plannerLinkForTopic)
+      .filter((link): link is NonNullable<typeof link> => Boolean(link)),
+  );
+
   return (
     <>
       <PageHero
@@ -53,6 +75,33 @@ export function GardenPageLayout({ page }: GardenPageLayoutProps) {
           </div>
         </div>
       </section>
+
+      {learnGuideLinks.length ? (
+        <RelatedLinks
+          eyebrow="Grow It Yourself"
+          title="Related Learn Guides"
+          intro="These links keep the Garden pages focused on what Shaggy Ink Farms is building while sending how-to guidance to the Learn section."
+          links={learnGuideLinks}
+        />
+      ) : null}
+
+      {journalLinks.length ? (
+        <RelatedLinks
+          eyebrow="Field Notes"
+          title="Related Journal Entries"
+          intro="Dated notes from the farm that connect this Garden page to the real build as it happens."
+          links={journalLinks}
+        />
+      ) : null}
+
+      {toolLinks.length ? (
+        <RelatedLinks
+          eyebrow="Plan Your Version"
+          title="Related Planning Tools"
+          links={toolLinks}
+          tone="dark"
+        />
+      ) : null}
 
       <RelatedLinks
         eyebrow="Garden Paths"

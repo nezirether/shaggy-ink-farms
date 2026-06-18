@@ -4,6 +4,8 @@ import { notFound, redirect } from "next/navigation";
 import { ButtonLink } from "@/components/ButtonLink";
 import { EmailCapture } from "@/components/EmailCapture";
 import { JsonLd } from "@/components/JsonLd";
+import { RelatedLinks } from "@/components/RelatedLinks";
+import { GROWING_GUIDES } from "@/data/growingGuides";
 import { getJournalCaptureConfig } from "@/lib/conversion";
 import {
   articleJsonLd,
@@ -15,6 +17,13 @@ import {
   journalArticles,
 } from "@/lib/journal";
 import { openGraphImage, siteConfig } from "@/lib/site";
+import {
+  gardenLinkForTopic,
+  guideLinksForTopic,
+  poultryLinksForTopic,
+  topicsForArticle,
+  uniqueRelatedLinks,
+} from "@/lib/topic-links";
 
 type ArticlePageProps = {
   params: Promise<{
@@ -83,6 +92,16 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     article.category.toLowerCase().includes("poultry") ||
     article.slug.includes("barred-rock") ||
     article.slug.includes("flock");
+  const articleTopics = topicsForArticle(article);
+  const relatedGardenLinks = uniqueRelatedLinks(
+    articleTopics
+      .map(gardenLinkForTopic)
+      .filter((link): link is NonNullable<typeof link> => Boolean(link)),
+  );
+  const relatedGuideLinks = uniqueRelatedLinks(
+    articleTopics.flatMap((topic) => guideLinksForTopic(topic, GROWING_GUIDES)),
+  );
+  const relatedPoultryLinks = uniqueRelatedLinks(articleTopics.flatMap(poultryLinksForTopic));
 
   return (
     <>
@@ -245,6 +264,28 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </div>
         </div>
       </article>
+      {relatedGardenLinks.length ? (
+        <RelatedLinks
+          eyebrow="Related Garden Pages"
+          title="Where this shows up on the farm"
+          links={relatedGardenLinks}
+        />
+      ) : null}
+      {relatedGuideLinks.length ? (
+        <RelatedLinks
+          eyebrow="Related Growing Guides"
+          title="Learn the practical side"
+          links={relatedGuideLinks}
+          tone="dark"
+        />
+      ) : null}
+      {relatedPoultryLinks.length ? (
+        <RelatedLinks
+          eyebrow="Related Poultry Pages"
+          title="Follow the flock work"
+          links={relatedPoultryLinks}
+        />
+      ) : null}
       <EmailCapture
         segment={capture.segment}
         source={capture.source}

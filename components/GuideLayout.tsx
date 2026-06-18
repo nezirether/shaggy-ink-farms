@@ -1,8 +1,17 @@
 import Link from 'next/link';
 import { ConversionFooter } from '@/components/ConversionFooter';
 import { GuideCard } from '@/components/GuideCard';
+import { RelatedLinks } from '@/components/RelatedLinks';
 import type { GrowingGuide } from '@/data/growingGuides';
 import { getRelatedGuides } from '@/data/growingGuides';
+import { journalArticles } from '@/lib/journal';
+import {
+  gardenRelatedLinksForGuide,
+  journalLinksForTopic,
+  toolLinksForGuide,
+  topicsForGuideSlug,
+  uniqueRelatedLinks,
+} from '@/lib/topic-links';
 
 interface GuideLayoutProps {
   guide: GrowingGuide;
@@ -13,6 +22,12 @@ export function GuideLayout({ guide }: GuideLayoutProps) {
   if (!content) return null;
 
   const relatedGuides = getRelatedGuides(content.relatedSlugs);
+  const relatedTopics = topicsForGuideSlug(guide.slug);
+  const relatedFarmLinks = gardenRelatedLinksForGuide(guide);
+  const relatedJournalLinks = uniqueRelatedLinks(
+    relatedTopics.flatMap((topic) => journalLinksForTopic(topic, journalArticles)),
+  );
+  const relatedToolLinks = toolLinksForGuide(guide);
 
   return (
     <div className="min-h-screen bg-[#D7D4CC]">
@@ -255,6 +270,29 @@ export function GuideLayout({ guide }: GuideLayoutProps) {
           </section>
         )}
       </div>
+      {relatedFarmLinks.length ? (
+        <RelatedLinks
+          eyebrow="Related Farm Pages"
+          title="See how this connects to the farm"
+          intro="The Learn section teaches the how-to side. These farm pages show where the topic fits into Shaggy Ink Farms."
+          links={relatedFarmLinks}
+        />
+      ) : null}
+      {relatedJournalLinks.length ? (
+        <RelatedLinks
+          eyebrow="Related Field Notes"
+          title="Journal entries connected to this topic"
+          links={relatedJournalLinks}
+        />
+      ) : null}
+      {relatedToolLinks.length ? (
+        <RelatedLinks
+          eyebrow="Related Tools"
+          title="Turn this guide into a working plan"
+          links={relatedToolLinks}
+          tone="dark"
+        />
+      ) : null}
       <ConversionFooter
         title="Turn this guide into a practical next step."
         description="Use the planner to size your garden, join the weekly growing tips list, and keep one foot in the rest of the farm."
