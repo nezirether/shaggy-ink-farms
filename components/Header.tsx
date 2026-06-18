@@ -207,7 +207,7 @@ export function Header() {
                 >
                   <div className="px-4 pb-1 pt-4">
                     <p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#C6933F]">
-                      Poultry
+                      {item.label}
                     </p>
                   </div>
                   <NavList items={item.children} />

@@ -28,6 +28,8 @@ type SourceNote = {
   url?: string;
 };
 
+export type JournalContentType = "Journal" | "Article" | "Entry";
+
 export type JournalArticle = {
   slug: string;
   legacySlugs?: string[];
@@ -40,6 +42,8 @@ export type JournalArticle = {
   updatedAt?: string;
   author: string;
   category: string;
+  contentType?: JournalContentType;
+  tags?: string[];
   image: {
     src: string;
     alt: string;
@@ -58,6 +62,8 @@ export const journalArticles: JournalArticle[] = [
     publishedAt: "2026-06-11",
     author: siteConfig.name,
     category: "Farm Journal",
+    contentType: "Entry",
+    tags: ["Family", "Farm Build", "Garden", "Poultry"],
     image: farmImages.oakPasture,
     content: [
       {
@@ -174,6 +180,8 @@ export const journalArticles: JournalArticle[] = [
     updatedAt: "2026-06-11",
     author: siteConfig.name,
     category: "Heritage Poultry",
+    contentType: "Article",
+    tags: ["Poultry", "Farm Build"],
     image: farmImages.barredRockFlock,
     content: [
       {
@@ -535,6 +543,49 @@ export function getReadingTime(article: JournalArticle) {
     .filter(Boolean).length;
 
   return Math.max(1, Math.ceil(words / 225));
+}
+
+export function getArticleContentType(article: JournalArticle): JournalContentType {
+  return article.contentType ?? "Journal";
+}
+
+export function getArticleTags(article: JournalArticle) {
+  if (article.tags?.length) {
+    return article.tags;
+  }
+
+  const text = `${article.category} ${article.title} ${article.excerpt}`.toLowerCase();
+  const tags = new Set<string>();
+
+  if (text.includes("poultry") || text.includes("flock") || text.includes("barred")) {
+    tags.add("Poultry");
+  }
+  if (text.includes("garden") || text.includes("growing")) {
+    tags.add("Garden");
+  }
+  if (text.includes("strawberr")) {
+    tags.add("Strawberries");
+  }
+  if (text.includes("flower")) {
+    tags.add("Flowers");
+  }
+  if (text.includes("orchard") || text.includes("tree")) {
+    tags.add("Orchard");
+  }
+  if (text.includes("learn") || text.includes("plan")) {
+    tags.add("Learn & Plan");
+  }
+  if (text.includes("build") || text.includes("project") || text.includes("infrastructure")) {
+    tags.add("Farm Build");
+  }
+  if (text.includes("family")) {
+    tags.add("Family");
+  }
+  if (text.includes("wildlife") || text.includes("deer")) {
+    tags.add("Wildlife");
+  }
+
+  return [...tags];
 }
 
 export function getWordCount(article: JournalArticle) {

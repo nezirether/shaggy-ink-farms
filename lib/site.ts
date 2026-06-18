@@ -2,6 +2,7 @@ export const siteConfig = {
   name: "Shaggy Ink Farms",
   legalName: "Shaggy Ink Farms",
   subtitle: "A family farm in Anderson, California",
+  targetSeason: "2027 season",
   description:
     "A Northern California family farm building a Heritage Plymouth Barred Rock breeding program, keeping a mixed laying flock, growing flowers and food, and sharing the work as we go.",
   url: "https://www.shaggyinkfarms.com",
@@ -54,6 +55,39 @@ export const poultryNavItems: NavChild[] = [
   },
 ];
 
+export const gardenNavItems: NavChild[] = [
+  {
+    href: "/garden/what-were-growing",
+    label: "What We're Growing",
+    description: "What is being grown, tested, and planned for the 2027 season.",
+  },
+  {
+    href: "/garden/strawberries",
+    label: "Strawberries",
+    description: "The first planned production field, still in preparation.",
+  },
+  {
+    href: "/garden/family-garden",
+    label: "Family Garden",
+    description: "Food for the family and practical growing notes from the farm.",
+  },
+  {
+    href: "/garden/market-garden",
+    label: "Market Garden",
+    description: "A future project after systems, water, soil, and labor are clearer.",
+  },
+  {
+    href: "/garden/orchard",
+    label: "Orchard",
+    description: "Lemon, mandarin, fig, wild plums, pecans, and long-term food.",
+  },
+  {
+    href: "/garden/herbs-and-ground-covers",
+    label: "Herbs & Ground Covers",
+    description: "Culinary herbs, pollinators, living mulch, and soil-building plants.",
+  },
+];
+
 export const learnNavGroups: NavGroup[] = [
   {
     title: "Learn",
@@ -98,10 +132,16 @@ export const learnNavGroups: NavGroup[] = [
 ];
 
 export const primaryNavItems: PrimaryNavItem[] = [
+  { href: "/", label: "Home" },
   {
     href: "/poultry",
     label: "Poultry",
     children: poultryNavItems,
+  },
+  {
+    href: "/garden",
+    label: "Garden",
+    children: gardenNavItems,
   },
   {
     href: "/learn",
@@ -131,6 +171,8 @@ export const footerColumns = [
   {
     title: "Learn & Plan",
     links: [
+      { href: "/garden", label: "Garden Hub" },
+      { href: "/garden/what-were-growing", label: "What We're Growing" },
       { href: "/learn/growing-guides", label: "Growing Guides" },
       { href: "/learn/zones", label: "Find Your Zone" },
       { href: "/learn/local", label: "Local Guides" },
@@ -271,6 +313,13 @@ export const routes = [
   "/poultry/hatching-eggs-and-stock",
   "/poultry/eggs",
   "/poultry/the-flock",
+  "/garden",
+  "/garden/what-were-growing",
+  "/garden/strawberries",
+  "/garden/family-garden",
+  "/garden/market-garden",
+  "/garden/orchard",
+  "/garden/herbs-and-ground-covers",
   "/learn",
   "/learn/growing-guides",
   "/learn/local",

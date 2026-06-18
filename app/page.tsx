@@ -13,7 +13,7 @@ import { journalArticles } from "@/lib/journal";
 import { poultryAvailability } from "@/lib/poultry-availability";
 import { openGraphImage, siteConfig } from "@/lib/site";
 
-const targetSeason = "2027 season";
+const targetSeason = siteConfig.targetSeason;
 const latestJournalPosts = journalArticles.slice(0, 3);
 
 const frontDoors = [
@@ -35,7 +35,7 @@ const frontDoors = [
 
 const buildStatusItems = [
   {
-    title: "Breeding Program",
+    title: "Heritage Barred Rocks",
     copy: "Foundation Barred Rock flock in place; selecting, watching, and recording toward the Standard.",
     href: "/poultry/heritage-barred-rocks",
     cta: "Read the program",
@@ -43,16 +43,30 @@ const buildStatusItems = [
   {
     title: "Strawberries",
     copy: "Beds are being planned and prepared for a 2027 patch. Nothing is for sale yet.",
+    href: "/garden/strawberries",
+    cta: "Read the plan",
   },
   {
     title: "Cut Flowers",
     copy: "First plantings and variety trials are part of the farm build, not a finished flower business.",
   },
   {
-    title: "Infrastructure",
-    copy: "Coops, fencing, irrigation, garden beds, and work areas are being built as the farm takes shape.",
-    href: "/journal",
-    cta: "Read field notes",
+    title: "Family Garden",
+    copy: "Food for our family, plus notes on what grows well here, what fails, and what we learn.",
+    href: "/garden/family-garden",
+    cta: "Open family garden",
+  },
+  {
+    title: "Orchard",
+    copy: "Lemon, mandarin, fig, wild plums, and pecans are part of the long-term food plan.",
+    href: "/garden/orchard",
+    cta: "Open orchard notes",
+  },
+  {
+    title: "Herbs & Ground Covers",
+    copy: "Culinary herbs, pollinator plants, living mulch, and soil-building covers are low-cost farm improvements.",
+    href: "/garden/herbs-and-ground-covers",
+    cta: "Open herb notes",
   },
 ];
 
@@ -242,15 +256,15 @@ export default function Home() {
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <SectionHeader
               eyebrow={`Getting Ready For The ${targetSeason}`}
-              title="What we are building toward the 2027 season."
-              copy="Shaggy Ink Farms is a work in progress. Here is what is actually happening right now, and what you can watch come together."
+              title="What we are growing for 2027."
+              copy="Shaggy Ink Farms is a work in progress. Here is what is being planned, tested, prepared, and documented without pretending the farm is fully established."
               align="left"
             />
-            <ButtonLink href="#updates" variant="secondary">
-              Follow The Build
+            <ButtonLink href="/garden" variant="secondary">
+              Open Garden Hub
             </ButtonLink>
           </div>
-          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {buildStatusItems.map((item) => {
               const body = (
                 <>
