@@ -34,10 +34,10 @@ function DesktopMenu({
   children: React.ReactNode;
 }) {
   return (
-    <div className="group relative">
+    <div className="group relative flex h-full items-center">
       <Link
         href={href}
-        className={`flex items-center gap-1 text-sm font-bold uppercase tracking-[0.08em] transition ${
+        className={`focus-ring flex items-center gap-1 rounded-sm text-sm font-bold uppercase tracking-[0.08em] transition ${
           active ? "text-[#C6933F]" : "text-[#D7D4CC]/75 hover:text-[#C6933F]"
         }`}
       >
@@ -52,6 +52,7 @@ function DesktopMenu({
           <path strokeLinecap="round" strokeLinejoin="round" d="M4 6l4 4 4-4" />
         </svg>
       </Link>
+      <div aria-hidden="true" className="absolute inset-x-0 top-full h-3" />
       <div className="pointer-events-none absolute left-0 top-full z-50 mt-3 w-[22rem] rounded-sm border-2 border-[#1C1C1A] bg-[#2C4A2E] opacity-0 shadow-[8px_8px_0_rgba(28,28,26,0.35)] transition group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
         {children}
       </div>
@@ -66,7 +67,7 @@ function NavList({ items }: { items: NavChild[] }) {
         <Link
           key={item.href}
           href={item.href}
-          className="block px-4 py-3 transition hover:bg-white/10"
+          className="focus-ring block rounded-sm px-4 py-3 transition hover:bg-white/10"
         >
           <p className="text-sm font-bold text-white">{item.label}</p>
           {item.description ? (
@@ -132,7 +133,7 @@ function MobileAccordion({
           <Link
             href={item.href}
             onClick={onNavigate}
-            className="block rounded-sm px-2 py-2.5 text-sm font-bold text-[#C6933F] transition hover:bg-white/10"
+            className="focus-ring block rounded-sm px-2 py-2.5 text-sm font-bold text-[#C6933F] transition hover:bg-white/10"
           >
             {item.label} overview
           </Link>
@@ -141,7 +142,7 @@ function MobileAccordion({
               key={child.href}
               href={child.href}
               onClick={onNavigate}
-              className="block rounded-sm px-2 py-2.5 text-sm text-[#D7D4CC]/82 transition hover:bg-white/10 hover:text-[#C6933F]"
+              className="focus-ring block rounded-sm px-2 py-2.5 text-sm text-[#D7D4CC]/82 transition hover:bg-white/10 hover:text-[#C6933F]"
             >
               {child.label}
             </Link>
@@ -231,7 +232,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-sm font-bold uppercase tracking-[0.08em] transition ${
+                className={`focus-ring rounded-sm text-sm font-bold uppercase tracking-[0.08em] transition ${
                   active ? "text-[#C6933F]" : "text-[#D7D4CC]/75 hover:text-[#C6933F]"
                 }`}
               >
