@@ -13,6 +13,39 @@ export interface GardenCalculator {
 
 export const GARDEN_CALCULATORS: GardenCalculator[] = [
   {
+    slug: 'drip-tape-calculator',
+    title: 'Drip Tape Calculator',
+    shortTitle: 'Drip Tape',
+    description:
+      'Estimate drip tape row length, line count, and basic irrigation supply needs before you buy parts for a garden bed or small growing block.',
+    category: 'Water',
+    href: '/learn/garden-planning#drip-tape-calculator',
+    isExternal: false,
+    badge: 'Planning Aid',
+  },
+  {
+    slug: 'family-garden-planning-calculator',
+    title: 'Family Garden Planning Calculator',
+    shortTitle: 'Family Garden',
+    description:
+      'Use family size, crop choices, safety margin, and succession plantings to build a practical food garden plan.',
+    category: 'Planning',
+    href: '/plan/garden-planner',
+    isExternal: false,
+    badge: 'Free Tool',
+  },
+  {
+    slug: 'vegetable-seed-calculator',
+    title: 'Vegetable Seed Calculator',
+    shortTitle: 'Seed Calculator',
+    description:
+      'Plan seed packet needs from crop selections, planting waves, spacing, and a little backup for poor germination or weather losses.',
+    category: 'Planning',
+    href: '/learn/garden-planning#vegetable-seed-calculator',
+    isExternal: false,
+    badge: 'Planning Aid',
+  },
+  {
     slug: 'family-food-security-planner',
     title: 'Family Food Security Garden Planner',
     shortTitle: 'Garden Planner',

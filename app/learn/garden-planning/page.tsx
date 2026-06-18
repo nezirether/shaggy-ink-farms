@@ -49,6 +49,8 @@ export default function GardenPlanningPage() {
 
         {/* Tools grid */}
         <section>
+          <div id="drip-tape-calculator" className="scroll-mt-24" />
+          <div id="vegetable-seed-calculator" className="scroll-mt-24" />
           <div className="grid gap-5 sm:grid-cols-2">
             {GARDEN_CALCULATORS.map((calc) => (
               <CalculatorCard key={calc.slug} calculator={calc} />

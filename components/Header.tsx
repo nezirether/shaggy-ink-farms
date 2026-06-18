@@ -53,7 +53,7 @@ function DesktopMenu({
         </svg>
       </Link>
       <div aria-hidden="true" className="absolute inset-x-0 top-full h-3" />
-      <div className="pointer-events-none absolute left-0 top-full z-50 mt-3 w-[22rem] rounded-sm border-2 border-[#1C1C1A] bg-[#2C4A2E] opacity-0 shadow-[8px_8px_0_rgba(28,28,26,0.35)] transition group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
+      <div className="pointer-events-none absolute left-0 top-full z-50 mt-3 max-h-[80vh] w-[min(44rem,calc(100vw-2rem))] overflow-y-auto rounded-sm border-2 border-[#1C1C1A] bg-[#2C4A2E] opacity-0 shadow-[8px_8px_0_rgba(28,28,26,0.35)] transition group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
         {children}
       </div>
     </div>

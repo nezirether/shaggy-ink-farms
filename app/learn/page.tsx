@@ -58,7 +58,7 @@ export default function LearnPage() {
               Browse all guides
             </Link>
             <Link
-              href="/learn/zones"
+              href="/learn/know-your-growing-zone"
               className="rounded-sm border-2 border-white/40 px-5 py-2.5 text-sm font-bold text-white transition hover:border-white hover:bg-white/10"
             >
               Find my zone + weekly tasks
@@ -109,14 +109,14 @@ export default function LearnPage() {
                 color: '#2C4A2E',
               },
               {
-                href: '/plan',
+                href: '/learn/garden-planning',
                 title: 'Planning Tools',
                 count: `${GARDEN_CALCULATORS.length} tools`,
                 description: 'Calculators and planners to figure out what to grow, when to plant it, and how much space you need.',
                 color: '#C6933F',
               },
               {
-                href: '/learn/zones',
+                href: '/learn/know-your-growing-zone',
                 title: 'Know Your Zone',
                 count: 'Week-by-week',
                 description: 'Zone lookup, frost date reference, and a full 52-week growing task calendar for Northern California.',
@@ -211,7 +211,7 @@ export default function LearnPage() {
                 plant, maintain, and harvest right now.
               </p>
               <Link
-                href="/learn/zones#weekly-guide"
+                href="/learn/know-your-growing-zone"
                 className="mt-5 inline-block rounded-sm border-2 border-[#C6933F] bg-[#C6933F] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#b07f35]"
               >
                 Get this week&apos;s tasks →

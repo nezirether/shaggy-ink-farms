@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ConversionFooter } from '@/components/ConversionFooter';
+import { LocationGrowingGuide } from '@/components/LocationGrowingGuide';
 import { ZoneLookup } from '@/components/ZoneLookup';
 import { WeeklyGrowingGuide } from '@/components/WeeklyGrowingGuide';
 
@@ -162,12 +163,24 @@ export default function KnowYourGrowingZonePage() {
               Flagship feature
             </p>
             <h2 className="mt-1 font-serif text-2xl font-bold text-[#1C1C1A]">
-              Weekly Growing Guide
+              Location-Based Weekly Growing Guide
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-[#1C1C1A]/65">
-              52 weeks of specific planting, maintenance, and harvest tasks for Northern California
-              cities. Select your city and week to see exactly what to do in the garden right now.
+              Choose a nearby Northern California city for zone, heat, frost, planting, seed, transplant,
+              and next-month planning notes.
             </p>
+          </div>
+          <LocationGrowingGuide />
+        </section>
+
+        <section>
+          <div className="mb-5">
+            <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#8B2A2A]">
+              Seasonal task list
+            </p>
+            <h2 className="mt-1 font-serif text-2xl font-bold text-[#1C1C1A]">
+              Week-by-Week Growing Tasks
+            </h2>
           </div>
           <WeeklyGrowingGuide />
         </section>

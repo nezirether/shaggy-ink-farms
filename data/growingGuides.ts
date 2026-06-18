@@ -1,4 +1,6 @@
 // ─────────────────────────────────────────────────────────────────────────────
+import { GUIDE_CONTENT_ENHANCEMENTS } from './growingGuideEnhancements';
+
 // Growing Guides Data
 //
 // Each guide with status:'published' has full content rendered in
@@ -14,9 +16,13 @@ export type GuideStatus = 'published' | 'coming-soon';
 export type GuideCategory =
   | 'Soil & Fertility'
   | 'Pest & Disease'
+  | 'Pest, Disease & Weeds'
   | 'Planting Methods'
   | 'Crop-Specific'
   | 'Season Extension'
+  | 'Irrigation & Water'
+  | 'Heat & Climate'
+  | 'Orchard & Perennials'
   | 'Food Preservation'
   | 'Planning & Layout';
 
@@ -65,7 +71,7 @@ export interface GrowingGuide {
   content?: GuideContent;
 }
 
-export const GROWING_GUIDES: GrowingGuide[] = [
+const BASE_GROWING_GUIDES: GrowingGuide[] = [
 
   // ── PUBLISHED GUIDES ────────────────────────────────────────────────────────
 
@@ -1346,6 +1352,20 @@ Expect day-neutrals to fruit spring through fall with a clear slowdown during pe
 
 ];
 
+export const GROWING_GUIDES: GrowingGuide[] = BASE_GROWING_GUIDES.map((guide) => {
+  const enhancement = GUIDE_CONTENT_ENHANCEMENTS[guide.slug];
+
+  if (!enhancement) {
+    return guide;
+  }
+
+  return {
+    ...guide,
+    ...enhancement,
+    status: 'published',
+  };
+});
+
 // ─── Helper functions ─────────────────────────────────────────────────────────
 
 export function getGuideBySlug(slug: string): GrowingGuide | undefined {
@@ -1369,9 +1389,11 @@ export function getRelatedGuides(slugs: string[]): GrowingGuide[] {
 export const GUIDE_CATEGORIES: GuideCategory[] = [
   'Planting Methods',
   'Soil & Fertility',
-  'Pest & Disease',
+  'Irrigation & Water',
+  'Heat & Climate',
+  'Pest, Disease & Weeds',
   'Planning & Layout',
   'Crop-Specific',
-  'Season Extension',
+  'Orchard & Perennials',
   'Food Preservation',
 ];

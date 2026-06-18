@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { learnNavItems } from '@/lib/site';
+import { learnNavGroups, learnNavItems } from '@/lib/site';
 
 export function LearnDropdown() {
   const [open, setOpen] = useState(false);
@@ -63,29 +63,38 @@ export function LearnDropdown() {
       {open && (
         <div
           id="learn-menu"
-          className="absolute left-0 top-full z-50 mt-2 w-80 rounded-sm border-2 border-[#1C1C1A] bg-[#2C4A2E] shadow-[6px_6px_0_rgba(28,28,26,0.4)]"
+        className="absolute left-0 top-full z-50 mt-2 max-h-[80vh] w-[min(44rem,calc(100vw-2rem))] overflow-y-auto rounded-sm border-2 border-[#1C1C1A] bg-[#2C4A2E] shadow-[6px_6px_0_rgba(28,28,26,0.4)]"
         >
           <div className="px-3 pb-1 pt-3">
             <p className="text-[9px] font-extrabold uppercase tracking-[0.2em] text-[#C6933F]">
-              Learn
+              Learn & Plan
             </p>
           </div>
-          {learnNavItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`block px-3 py-2.5 transition hover:bg-white/10 ${
-                pathname === item.href ? 'bg-white/10' : ''
-              }`}
-            >
-              <p className="text-sm font-bold text-white">{item.label}</p>
-              {'description' in item ? (
-                <p className="text-xs leading-5 text-white/55">
-                  {item.description}
+          <div className="grid gap-4 p-3 md:grid-cols-2">
+            {learnNavGroups.map((group) => (
+              <div key={group.title} className="rounded-sm border border-white/10 bg-[#1C1C1A]/15 p-2">
+                <p className="px-2 pt-1 text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#C6933F]">
+                  {group.title}
                 </p>
-              ) : null}
-            </Link>
-          ))}
+                {group.items.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`block rounded-sm px-2 py-2.5 transition hover:bg-white/10 ${
+                      pathname === item.href ? 'bg-white/10' : ''
+                    }`}
+                  >
+                    <p className="text-sm font-bold text-white">{item.label}</p>
+                    {item.description ? (
+                      <p className="text-xs leading-5 text-white/55">
+                        {item.description}
+                      </p>
+                    ) : null}
+                  </Link>
+                ))}
+              </div>
+            ))}
+          </div>
           <div className="border-t border-white/10 p-3">
             <p className="text-[9px] text-white/35">
               shaggyinkfarms.com · Anderson, CA
@@ -124,7 +133,7 @@ export function LearnMobileAccordion({ onNavigate }: LearnMobileAccordionProps) 
         aria-expanded={open}
         aria-controls="mobile-learn-menu"
       >
-        Learn
+        Learn & Plan
         <svg
           className={`h-3.5 w-3.5 transition-transform ${open ? 'rotate-180' : ''}`}
           fill="none"
