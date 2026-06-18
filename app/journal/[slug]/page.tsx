@@ -79,6 +79,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     year: "numeric",
   }).format(new Date(`${article.publishedAt}T12:00:00Z`));
   const capture = getJournalCaptureConfig(article);
+  const isPoultryArticle =
+    article.category.toLowerCase().includes("poultry") ||
+    article.slug.includes("barred-rock") ||
+    article.slug.includes("flock");
 
   return (
     <>
@@ -224,6 +228,14 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 journey.
               </p>
               <div className="mt-6 grid gap-3">
+                {isPoultryArticle ? (
+                  <ButtonLink
+                    href="/poultry/heritage-barred-rocks"
+                    variant="secondary"
+                  >
+                    Heritage Barred Rocks
+                  </ButtonLink>
+                ) : null}
                 <ButtonLink href="/journal" variant="secondary">
                   Journal
                 </ButtonLink>

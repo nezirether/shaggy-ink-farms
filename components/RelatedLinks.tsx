@@ -17,7 +17,7 @@ type RelatedLinksProps = {
 
 /**
  * Internal-linking grid for passing context and authority between farm pages.
- * Each card is a real, descriptive link — not a bare "read more" — so the
+ * Each card is a real, descriptive link, not a bare "read more", so the
  * anchor text carries topical meaning for both readers and search engines.
  */
 export function RelatedLinks({
@@ -96,7 +96,7 @@ export function RelatedLinks({
                     : "text-[#2C4A2E] group-hover:text-[#8B2A2A]"
                 }`}
               >
-                Read more →
+                Read more
               </p>
             </Link>
           ))}

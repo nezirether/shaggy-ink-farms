@@ -197,24 +197,24 @@ export const pageMetadata = {
       "Meet the Bartlett family and learn about Shaggy Ink Farms, a small Northern California homestead in Anderson, California.",
   },
   chickens: {
-    title: "Chickens and Heritage Barred Rocks",
+    title: "Current Mixed Laying Flock",
     description:
-      "Meet the mixed laying flock at Shaggy Ink Farms and follow the Heritage Plymouth Barred Rock breeding program as it develops.",
+      "Meet the current mixed laying flock at Shaggy Ink Farms, including Rhode Island Reds, Ameraucanas, Olive Eggers, Copper Marans, Plymouth Barred Rocks, and other layers.",
   },
   eggs: {
-    title: "Farm Fresh Eggs in Anderson & Redding, CA",
+    title: "Northern California Farm Fresh Eggs",
     description:
-      "Seasonal farm fresh eggs from a small mixed laying flock in Anderson, California. Join the list for local pickup near Redding and Shasta County.",
+      "Seasonal farm fresh eggs from a small mixed laying flock in Anderson, California. Join the egg list for local pickup in Anderson, Cottonwood, Redding, and Shasta County.",
   },
   poultry: {
-    title: "Poultry at Shaggy Ink Farms",
+    title: "California Heritage Poultry and Local Eggs",
     description:
-      "Explore the Heritage Plymouth Barred Rock program, the mixed laying flock, local egg updates, and poultry waitlist information at Shaggy Ink Farms.",
+      "Follow the Shaggy Ink Farms Heritage Plymouth Barred Rock breeding program, mixed laying flock, Northern California egg list, and future poultry waitlist.",
   },
   hatchingEggs: {
-    title: "Hatching Eggs and Stock Waitlist",
+    title: "Barred Rock Hatching Eggs and Stock Waitlist",
     description:
-      "Join the Shaggy Ink Farms poultry waitlist for heritage hatching eggs, started birds, and future breeding stock updates.",
+      "Join the waitlist for future Heritage Plymouth Barred Rock hatching eggs, chicks, started pullets, and breeding stock updates from Shaggy Ink Farms.",
   },
   projects: {
     title: "Homestead Projects",
