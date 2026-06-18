@@ -49,6 +49,8 @@ const buildStatusItems = [
   {
     title: "Cut Flowers",
     copy: "First plantings and variety trials are part of the farm build, not a finished flower business.",
+    href: "/garden/cut-flowers",
+    cta: "Open flower notes",
   },
   {
     title: "Family Garden",
@@ -105,6 +107,8 @@ const horizonItems = [
     copy: "Flowers are in the trial-and-planting stage. Follow along before bouquets or stems are available.",
     segment: "flowers" as const,
     source: "homepage-horizon-flowers",
+    href: "/garden/cut-flowers",
+    cta: "Open Flower Notes",
   },
   {
     title: "Farm Store",
@@ -112,6 +116,7 @@ const horizonItems = [
     segment: "store" as const,
     source: "homepage-horizon-store",
     href: "/store",
+    cta: "Visit Store",
   },
 ];
 
@@ -473,7 +478,7 @@ export default function Home() {
                     href={item.href}
                     className="mt-4 inline-flex text-sm font-bold uppercase tracking-[0.08em] text-[#2C4A2E] hover:text-[#8B2A2A]"
                   >
-                    Visit Store
+                    {item.cta}
                   </Link>
                 ) : null}
                 <EmailCaptureForm

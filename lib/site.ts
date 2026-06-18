@@ -67,6 +67,11 @@ export const gardenNavItems: NavChild[] = [
     description: "The first planned production field, still in preparation.",
   },
   {
+    href: "/garden/cut-flowers",
+    label: "Cut Flowers",
+    description: "Sunflowers, trial varieties, pollinators, and future 2027 sales.",
+  },
+  {
     href: "/garden/family-garden",
     label: "Family Garden",
     description: "Food for the family and practical growing notes from the farm.",
@@ -316,6 +321,7 @@ export const routes = [
   "/garden",
   "/garden/what-were-growing",
   "/garden/strawberries",
+  "/garden/cut-flowers",
   "/garden/family-garden",
   "/garden/market-garden",
   "/garden/orchard",

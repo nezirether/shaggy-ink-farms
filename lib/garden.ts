@@ -59,6 +59,34 @@ export const gardenPages: GardenPage[] = [
     ],
   },
   {
+    slug: "cut-flowers",
+    href: "/garden/cut-flowers",
+    label: "Cut Flowers",
+    eyebrow: "Planned Farm Income Project",
+    title: "Cut flowers are being tested as one of the first planned farm income projects.",
+    description:
+      "The cut flower project at Shaggy Ink Farms is focused on sunflowers, trial varieties, pollinator value, local production lessons, and building honestly toward 2027 sales.",
+    image: farmImages.oakPasture,
+    sections: [
+      {
+        title: "Why cut flowers",
+        copy: "Cut flowers were chosen because they can fit a small farm, support pollinators, create useful content, and offer a future local income stream alongside strawberries and poultry without requiring the farm to pretend it is already in production.",
+      },
+      {
+        title: "Current testing and planning",
+        copy: "The current focus is sunflowers, trial varieties, bed timing, irrigation needs, harvest windows, and learning what local production looks like in Anderson heat before making sales claims.",
+      },
+      {
+        title: "Future goals",
+        copy: "The goal is to work toward 2027 flower sales if the trials, labor, water, and growing systems support it. Bouquets, stems, or small seasonal releases come later only if the farm can do them honestly.",
+      },
+      {
+        title: "Pollinators and documentation",
+        copy: "Flowers also help the farm document pollinator activity, seasonal planting choices, and low-cost beauty around the garden. The project gives people something real to follow while the farm learns.",
+      },
+    ],
+  },
+  {
     slug: "family-garden",
     href: "/garden/family-garden",
     label: "Family Garden",
