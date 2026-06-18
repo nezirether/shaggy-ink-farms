@@ -1,12 +1,13 @@
 'use client';
 
 import {
-  createContext, useContext, useReducer, useEffect, useMemo, useCallback,
+  createContext, useContext, useEffect, useMemo, useCallback, useRef, useState,
   type ReactNode,
 } from 'react';
 import type {
   GardenPlannerState, FamilyMember, FamilyRole, CropPlan,
   ActiveTab, CropMetrics, SpaceResult, TimelineRow, ShoppingItem, PlanSummary, Crop, PlannerDisplayMode,
+  GardenPlannerExport, GardenPlannerStorage,
 } from '@/types/garden-planner';
 import { CROPS, getCropById } from '@/data/crops';
 import { getZoneData } from '@/data/zones';
@@ -17,6 +18,10 @@ import {
 } from '@/lib/garden-planner/engine';
 
 const STORAGE_KEY = 'shaggy-garden-planner-v2';
+const COMPACT_STORAGE_KEY = 'shaggy-garden-planner-compact-v1';
+const LEGACY_STORAGE_KEY = 'shaggy-garden-planner-v1';
+const PLANNER_SCHEMA_VERSION = 1;
+const PLANNER_VERSION = '2026-06-18';
 
 function buildRecommendedCropPlan(crop: Crop, metrics: CropMetrics, current?: CropPlan): CropPlan {
   const isAreaBased = crop.planningModel === 'area-based';
@@ -70,6 +75,107 @@ const INITIAL_STATE: GardenPlannerState = {
   displayMode: 'simple',
 };
 
+type ImportResult = {
+  ok: boolean;
+  message: string;
+  warnings: string[];
+};
+
+type SavedPlanStatus = {
+  status: 'idle' | 'loaded' | 'saved' | 'imported' | 'reset' | 'error';
+  message: string;
+  lastSavedAt: string | null;
+};
+
+const VALID_TABS: ActiveTab[] = [
+  'dashboard',
+  'family',
+  'crops',
+  'plan',
+  'timeline',
+  'space',
+  'shopping',
+  'share',
+];
+
+const VALID_DISPLAY_MODES: PlannerDisplayMode[] = ['simple', 'advanced'];
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return Boolean(value) && typeof value === 'object' && !Array.isArray(value);
+}
+
+function isActiveTab(value: unknown): value is ActiveTab {
+  return typeof value === 'string' && VALID_TABS.includes(value as ActiveTab);
+}
+
+function isPlannerDisplayMode(value: unknown): value is PlannerDisplayMode {
+  return typeof value === 'string' && VALID_DISPLAY_MODES.includes(value as PlannerDisplayMode);
+}
+
+function normalizeFamilyMembers(value: unknown): FamilyMember[] {
+  if (!Array.isArray(value)) return INITIAL_STATE.familyMembers;
+
+  const members = value
+    .map((member, index) => {
+      if (!isRecord(member)) return null;
+      const role = typeof member.role === 'string' ? member.role : '';
+      const isRole = ['child', 'teen', 'adult', 'senior'].includes(role);
+      const count = typeof member.count === 'number' ? Math.max(0, Math.round(member.count)) : 0;
+      if (!isRole || count < 1) return null;
+      return {
+        id: typeof member.id === 'string' && member.id ? member.id : `imported-${index + 1}`,
+        role: role as FamilyRole,
+        count,
+      };
+    })
+    .filter((member): member is FamilyMember => Boolean(member));
+
+  return members.length > 0 ? members : INITIAL_STATE.familyMembers;
+}
+
+function createPlannerExport(state: GardenPlannerState, exportedAt: string): GardenPlannerExport {
+  return {
+    schemaVersion: PLANNER_SCHEMA_VERSION,
+    plannerVersion: PLANNER_VERSION,
+    exportedAt,
+    familySettings: {
+      familyMembers: state.familyMembers,
+      safetyMargin: state.safetyMargin,
+    },
+    zone: state.zone,
+    displayMode: state.displayMode,
+    activeTab: state.activeTab,
+    selectedCropIds: getSelectedCropIds(state),
+    cropSelections: Object.values(state.cropPlans),
+  };
+}
+
+function createStoragePayload(state: GardenPlannerState, lastSavedAt: string): GardenPlannerStorage {
+  return {
+    ...createPlannerExport(state, lastSavedAt),
+    lastSavedAt,
+  };
+}
+
+function getSelectedCropIds(state: GardenPlannerState): string[] {
+  return Object.values(state.cropPlans)
+    .filter((plan) => plan.included)
+    .map((plan) => plan.cropId);
+}
+
+function applySelectedCropIds(state: GardenPlannerState, selectedCropIds: string[]): GardenPlannerState {
+  const selected = new Set(selectedCropIds);
+  return {
+    ...state,
+    cropPlans: Object.fromEntries(
+      Object.entries(state.cropPlans).map(([cropId, plan]) => [
+        cropId,
+        { ...plan, included: selected.has(cropId) || plan.included },
+      ]),
+    ),
+  };
+}
+
 type Action =
   | { type: 'SET_ZONE'; zone: string }
   | { type: 'ADD_MEMBER'; role: FamilyRole }
@@ -77,6 +183,7 @@ type Action =
   | { type: 'REMOVE_MEMBER'; id: string }
   | { type: 'SET_SAFETY_MARGIN'; margin: number }
   | { type: 'SET_CROP_INCLUDED'; cropId: string; included: boolean }
+  | { type: 'SET_CROP_PLAN'; cropId: string; plan: CropPlan }
   | { type: 'SET_CROP_PLANTS'; cropId: string; plantsPerPlanting: number }
   | { type: 'SET_CROP_SUCCESSIONS'; cropId: string; successivePlantings: number }
   | { type: 'SET_CROP_AREA'; cropId: string; areaSqFt: number }
@@ -138,6 +245,15 @@ function reducer(state: GardenPlannerState, action: Action): GardenPlannerState 
         },
       };
     }
+
+    case 'SET_CROP_PLAN':
+      return {
+        ...state,
+        cropPlans: {
+          ...state.cropPlans,
+          [action.cropId]: action.plan,
+        },
+      };
 
     case 'SET_CROP_PLANTS': {
       const plan = state.cropPlans[action.cropId];
@@ -253,6 +369,92 @@ function migrateCropPlan(rawPlan: unknown, crop: Crop, adultEq: number, safetyMa
   };
 }
 
+function cropPlansFromUnknown(value: unknown): Record<string, unknown> {
+  if (Array.isArray(value)) {
+    return Object.fromEntries(
+      value
+        .filter((plan): plan is Record<string, unknown> => isRecord(plan) && typeof plan.cropId === 'string')
+        .map((plan) => [plan.cropId, plan]),
+    );
+  }
+
+  return isRecord(value) ? value : {};
+}
+
+function extractStateInput(raw: unknown, warnings: string[]): Record<string, unknown> | null {
+  if (!isRecord(raw)) return null;
+
+  if (raw.schemaVersion === PLANNER_SCHEMA_VERSION) {
+    const familySettings = isRecord(raw.familySettings) ? raw.familySettings : {};
+    return {
+      zone: raw.zone,
+      familyMembers: familySettings.familyMembers,
+      safetyMargin: familySettings.safetyMargin,
+      displayMode: raw.displayMode,
+      activeTab: raw.activeTab,
+      selectedCropIds: raw.selectedCropIds,
+      cropPlans: raw.cropSelections,
+    };
+  }
+
+  if (raw.schemaVersion === undefined) {
+    warnings.push('No schemaVersion was found. A safe import was attempted with the fields that matched.');
+  } else {
+    warnings.push(`Schema version ${String(raw.schemaVersion)} is not supported. A safe import was attempted with the fields that matched.`);
+  }
+
+  if (isRecord(raw.plan)) {
+    return raw.plan;
+  }
+
+  return raw;
+}
+
+function normalizeGardenPlannerState(raw: unknown): { state: GardenPlannerState | null; warnings: string[] } {
+  const warnings: string[] = [];
+  const input = extractStateInput(raw, warnings);
+  if (!input) {
+    return { state: null, warnings: ['The imported file is not a garden planner save.'] };
+  }
+
+  const rawCropPlans = cropPlansFromUnknown(input.cropPlans ?? input.cropSelections);
+  const knownCropIds = new Set(CROPS.map((crop) => crop.id));
+  const unknownCropIds = Object.keys(rawCropPlans).filter((cropId) => !knownCropIds.has(cropId));
+  if (unknownCropIds.length > 0) {
+    warnings.push(`Ignored unknown crop IDs: ${unknownCropIds.join(', ')}.`);
+  }
+  const selectedCropIds = Array.isArray(input.selectedCropIds)
+    ? input.selectedCropIds.filter((cropId): cropId is string => typeof cropId === 'string' && knownCropIds.has(cropId))
+    : [];
+
+  const familyMembers = normalizeFamilyMembers(input.familyMembers);
+  const safetyMargin = typeof input.safetyMargin === 'number'
+    ? Math.min(1, Math.max(0, input.safetyMargin))
+    : INITIAL_STATE.safetyMargin;
+  const adultEq = calcAdultEquivalents(familyMembers);
+  const cropPlans = Object.fromEntries(
+    CROPS.map((crop) => {
+      const plan = migrateCropPlan(rawCropPlans[crop.id], crop, adultEq, safetyMargin);
+      if (selectedCropIds.includes(crop.id)) {
+        plan.included = true;
+      }
+      return [crop.id, plan];
+    }),
+  );
+
+  return {
+    state: {
+      zone: typeof input.zone === 'string' && getZoneData(input.zone) ? input.zone : INITIAL_STATE.zone,
+      familyMembers,
+      cropPlans,
+      safetyMargin,
+      activeTab: isActiveTab(input.activeTab) ? input.activeTab : 'dashboard',
+      displayMode: isPlannerDisplayMode(input.displayMode) ? input.displayMode : INITIAL_STATE.displayMode,
+    },
+    warnings,
+  };
+}
+
 interface GardenPlannerContextValue {
   state: GardenPlannerState;
   setZone: (zone: string) => void;
@@ -277,49 +479,151 @@ interface GardenPlannerContextValue {
   monthlyWorkload: number[];
   shareText: string;
   exportCSV: () => string;
+  exportPlanJSON: () => string;
+  importPlanJSON: (json: string) => ImportResult;
+  storageKey: string;
+  savedPlanStatus: SavedPlanStatus;
 }
 
 const GardenPlannerContext = createContext<GardenPlannerContextValue | null>(null);
 
 export function GardenPlannerProvider({ children }: { children: ReactNode }) {
-  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
+  const [state, setState] = useState<GardenPlannerState>(INITIAL_STATE);
+  const [isReady, setIsReady] = useState(false);
+  const latestState = useRef<GardenPlannerState>(INITIAL_STATE);
+  const hasHydrated = useRef(false);
+  const skipNextSave = useRef(false);
+  const [savedPlanStatus, setSavedPlanStatus] = useState<SavedPlanStatus>({
+    status: 'idle',
+    message: 'Plans are saved in this browser unless exported.',
+    lastSavedAt: null,
+  });
 
-  useEffect(() => {
+  const persistState = useCallback((nextState: GardenPlannerState) => {
+    if (skipNextSave.current) {
+      skipNextSave.current = false;
+      return;
+    }
+
     try {
-      const stored = localStorage.getItem(STORAGE_KEY) ?? localStorage.getItem('shaggy-garden-planner-v1');
-      if (!stored) return;
-
-      const parsed = JSON.parse(stored) as Partial<GardenPlannerState>;
-      const migratedCropPlans = Object.fromEntries(
-        CROPS.map((crop) => [
-          crop.id,
-          migrateCropPlan(parsed.cropPlans?.[crop.id], crop, 1, parsed.safetyMargin ?? INITIAL_STATE.safetyMargin),
-        ]),
-      );
-
-      dispatch({
-        type: 'LOAD',
-        state: {
-          zone: parsed.zone ?? INITIAL_STATE.zone,
-          familyMembers: parsed.familyMembers ?? INITIAL_STATE.familyMembers,
-          cropPlans: migratedCropPlans,
-          safetyMargin: parsed.safetyMargin ?? INITIAL_STATE.safetyMargin,
-          activeTab: 'dashboard',
-          displayMode: parsed.displayMode ?? INITIAL_STATE.displayMode,
-        },
+      const lastSavedAt = new Date().toISOString();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(createStoragePayload(nextState, lastSavedAt)));
+      localStorage.setItem(COMPACT_STORAGE_KEY, JSON.stringify({
+        schemaVersion: PLANNER_SCHEMA_VERSION,
+        plannerVersion: PLANNER_VERSION,
+        lastSavedAt,
+        zone: nextState.zone,
+        familyMembers: nextState.familyMembers,
+        safetyMargin: nextState.safetyMargin,
+        displayMode: nextState.displayMode,
+        selectedCropIds: getSelectedCropIds(nextState),
+      }));
+      setSavedPlanStatus({
+        status: 'saved',
+        message: 'Plan saved locally',
+        lastSavedAt,
       });
     } catch {
-      // Ignore corrupt storage.
+      setSavedPlanStatus({
+        status: 'error',
+        message: 'Plan could not be saved in this browser.',
+        lastSavedAt: null,
+      });
     }
   }, []);
 
+  const dispatch = useCallback((action: Action) => {
+    setState((current) => {
+      const nextState = reducer(current, action);
+      if (nextState !== current && action.type !== 'LOAD' && action.type !== 'SYNC_RECOMMENDATIONS') {
+        persistState(nextState);
+      }
+      return nextState;
+    });
+  }, [persistState]);
+
+  useEffect(() => {
+    latestState.current = state;
+  }, [state]);
+
   useEffect(() => {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      const stored = localStorage.getItem(STORAGE_KEY) ?? localStorage.getItem(LEGACY_STORAGE_KEY);
+      if (!stored) {
+        hasHydrated.current = true;
+        persistState(INITIAL_STATE);
+        setIsReady(true);
+        return;
+      }
+
+      const parsed = JSON.parse(stored) as unknown;
+      const normalized = normalizeGardenPlannerState(parsed);
+      if (!normalized.state) {
+        setSavedPlanStatus({
+          status: 'error',
+          message: normalized.warnings.join(' ') || 'Saved plan could not be loaded.',
+          lastSavedAt: null,
+        });
+        hasHydrated.current = true;
+        setIsReady(true);
+        return;
+      }
+
+      const compactStored = localStorage.getItem(COMPACT_STORAGE_KEY);
+      let loadedState = normalized.state;
+      if (compactStored) {
+        const compact = JSON.parse(compactStored) as unknown;
+        if (isRecord(compact) && Array.isArray(compact.selectedCropIds)) {
+          loadedState = applySelectedCropIds(
+            loadedState,
+            compact.selectedCropIds.filter((cropId): cropId is string => typeof cropId === 'string'),
+          );
+        }
+      }
+
+      setState(loadedState);
+      const lastSavedAt = isRecord(parsed) && typeof parsed.lastSavedAt === 'string'
+        ? parsed.lastSavedAt
+        : null;
+      setSavedPlanStatus({
+        status: 'loaded',
+        message: normalized.warnings.length > 0
+          ? `Loaded saved plan. ${normalized.warnings.join(' ')}`
+          : 'Loaded saved plan',
+        lastSavedAt,
+      });
+      hasHydrated.current = true;
+      setIsReady(true);
     } catch {
-      // Ignore storage errors.
+      setSavedPlanStatus({
+        status: 'error',
+        message: 'Saved plan could not be loaded. The saved data may be damaged.',
+        lastSavedAt: null,
+      });
+      hasHydrated.current = true;
+      setIsReady(true);
     }
-  }, [state]);
+  }, [persistState]);
+
+  useEffect(() => {
+    function saveLatestPlan() {
+      persistState(latestState.current);
+    }
+
+    function saveWhenHidden() {
+      if (document.visibilityState === 'hidden') {
+        saveLatestPlan();
+      }
+    }
+
+    window.addEventListener('pagehide', saveLatestPlan);
+    document.addEventListener('visibilitychange', saveWhenHidden);
+
+    return () => {
+      window.removeEventListener('pagehide', saveLatestPlan);
+      document.removeEventListener('visibilitychange', saveWhenHidden);
+    };
+  }, [persistState]);
 
   const setZone = useCallback((zone: string) => dispatch({ type: 'SET_ZONE', zone }), []);
   const addMember = useCallback((role: FamilyRole) => dispatch({ type: 'ADD_MEMBER', role }), []);
@@ -332,10 +636,17 @@ export function GardenPlannerProvider({ children }: { children: ReactNode }) {
   const resetPlanner = useCallback(() => {
     try {
       localStorage.removeItem(STORAGE_KEY);
-      localStorage.removeItem('shaggy-garden-planner-v1');
+      localStorage.removeItem(COMPACT_STORAGE_KEY);
+      localStorage.removeItem(LEGACY_STORAGE_KEY);
     } catch {
       // Ignore storage errors.
     }
+    skipNextSave.current = true;
+    setSavedPlanStatus({
+      status: 'reset',
+      message: 'Saved plan cleared from this browser.',
+      lastSavedAt: null,
+    });
     dispatch({ type: 'RESET_PLANNER' });
   }, []);
   const setTab = useCallback((tab: ActiveTab) => dispatch({ type: 'SET_TAB', tab }), []);
@@ -360,6 +671,8 @@ export function GardenPlannerProvider({ children }: { children: ReactNode }) {
   );
 
   useEffect(() => {
+    if (!isReady) return;
+
     const nextPlans: Record<string, CropPlan> = {};
     let changed = false;
 
@@ -376,13 +689,20 @@ export function GardenPlannerProvider({ children }: { children: ReactNode }) {
     if (changed) {
       dispatch({ type: 'SYNC_RECOMMENDATIONS', plans: nextPlans });
     }
-  }, [cropMetrics, state.cropPlans]);
+  }, [cropMetrics, isReady, state.cropPlans]);
 
   const toggleCrop = useCallback((cropId: string) => {
     const plan = state.cropPlans[cropId];
     if (!plan) return;
 
     if (plan.included) {
+      persistState({
+        ...state,
+        cropPlans: {
+          ...state.cropPlans,
+          [cropId]: { ...plan, included: false },
+        },
+      });
       dispatch({ type: 'SET_CROP_INCLUDED', cropId, included: false });
       return;
     }
@@ -392,14 +712,15 @@ export function GardenPlannerProvider({ children }: { children: ReactNode }) {
 
     const metrics = calcCropMetrics(crop, adultEquivalents, state.safetyMargin);
     const nextPlan = buildRecommendedCropPlan(crop, metrics, plan);
-    dispatch({
-      type: 'SYNC_RECOMMENDATIONS',
-      plans: {
+    persistState({
+      ...state,
+      cropPlans: {
         ...state.cropPlans,
         [cropId]: { ...nextPlan, included: true },
       },
     });
-  }, [adultEquivalents, state.cropPlans, state.safetyMargin]);
+    dispatch({ type: 'SET_CROP_PLAN', cropId, plan: { ...nextPlan, included: true } });
+  }, [adultEquivalents, persistState, state, state.cropPlans, state.safetyMargin]);
 
   const spaceResult = useMemo(
     () => calcSpaceResult(state.cropPlans),
@@ -437,6 +758,60 @@ export function GardenPlannerProvider({ children }: { children: ReactNode }) {
     [shoppingList],
   );
 
+  const exportPlanJSON = useCallback(
+    () => JSON.stringify(createPlannerExport(state, new Date().toISOString()), null, 2),
+    [state],
+  );
+
+  const importPlanJSON = useCallback((json: string): ImportResult => {
+    try {
+      const parsed = JSON.parse(json) as unknown;
+      const normalized = normalizeGardenPlannerState(parsed);
+
+      if (!normalized.state) {
+        return {
+          ok: false,
+          message: normalized.warnings.join(' ') || 'Import failed. This does not look like a garden planner export.',
+          warnings: normalized.warnings,
+        };
+      }
+
+      const importedState = { ...normalized.state, activeTab: 'share' as ActiveTab };
+      const lastSavedAt = new Date().toISOString();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(createStoragePayload(importedState, lastSavedAt)));
+      localStorage.setItem(COMPACT_STORAGE_KEY, JSON.stringify({
+        schemaVersion: PLANNER_SCHEMA_VERSION,
+        plannerVersion: PLANNER_VERSION,
+        lastSavedAt,
+        zone: importedState.zone,
+        familyMembers: importedState.familyMembers,
+        safetyMargin: importedState.safetyMargin,
+        displayMode: importedState.displayMode,
+        selectedCropIds: getSelectedCropIds(importedState),
+      }));
+      dispatch({ type: 'LOAD', state: importedState });
+      setSavedPlanStatus({
+        status: 'imported',
+        message: normalized.warnings.length > 0
+          ? `Imported plan with warnings. ${normalized.warnings.join(' ')}`
+          : 'Imported plan and saved it locally',
+        lastSavedAt,
+      });
+
+      return {
+        ok: true,
+        message: normalized.warnings.length > 0 ? 'Plan imported with warnings.' : 'Plan imported successfully.',
+        warnings: normalized.warnings,
+      };
+    } catch {
+      return {
+        ok: false,
+        message: 'Import failed. Check that the JSON is valid and try again.',
+        warnings: [],
+      };
+    }
+  }, []);
+
   const value: GardenPlannerContextValue = {
     state,
     setZone,
@@ -461,6 +836,10 @@ export function GardenPlannerProvider({ children }: { children: ReactNode }) {
     monthlyWorkload,
     shareText,
     exportCSV,
+    exportPlanJSON,
+    importPlanJSON,
+    storageKey: STORAGE_KEY,
+    savedPlanStatus,
   };
 
   return (

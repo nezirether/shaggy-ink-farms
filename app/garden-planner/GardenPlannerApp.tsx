@@ -26,6 +26,11 @@ export function GardenPlannerApp() {
   const { state, setTab, setDisplayMode, planSummary, resetPlanner } = useGardenPlanner();
   const activeTab = state.activeTab;
 
+  function handleResetPlanner() {
+    const confirmed = window.confirm('Reset your saved garden plan? This will clear the plan saved in this browser.');
+    if (confirmed) resetPlanner();
+  }
+
   return (
     <div className="min-h-screen bg-[#F2EFE8]">
       <div className="border-b-2 border-[#1C1C1A] bg-[#D7D4CC]">
@@ -60,7 +65,7 @@ export function GardenPlannerApp() {
                 ))}
               </div>
               <button
-                onClick={resetPlanner}
+                onClick={handleResetPlanner}
                 className="rounded border-2 border-[#8B2A2A] px-4 py-2 text-xs font-extrabold uppercase tracking-[0.14em] text-[#8B2A2A] transition hover:bg-[#8B2A2A] hover:text-white"
               >
                 Reset Plan

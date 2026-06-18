@@ -305,6 +305,26 @@ export interface GardenPlannerState {
   displayMode: PlannerDisplayMode;
 }
 
+export interface GardenPlannerExport {
+  schemaVersion: 1;
+  plannerVersion: string;
+  exportedAt: string;
+  familySettings: {
+    familyMembers: FamilyMember[];
+    safetyMargin: number;
+  };
+  zone: string;
+  displayMode: PlannerDisplayMode;
+  activeTab: ActiveTab;
+  selectedCropIds: string[];
+  cropSelections: CropPlan[];
+  notes?: string;
+}
+
+export interface GardenPlannerStorage extends GardenPlannerExport {
+  lastSavedAt: string;
+}
+
 export interface CropFilterState {
   category: CropCategory | 'All';
   zone: number | 'All';
