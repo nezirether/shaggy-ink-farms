@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { EmailSignup } from '@/components/EmailSignup';
+import { ConversionFooter } from '@/components/ConversionFooter';
 import { GuideCard } from '@/components/GuideCard';
 import type { GrowingGuide } from '@/data/growingGuides';
 import { getRelatedGuides } from '@/data/growingGuides';
@@ -241,11 +241,6 @@ export function GuideLayout({ guide }: GuideLayoutProps) {
           </section>
         )}
 
-        {/* Email signup */}
-        <div className="mb-10">
-          <EmailSignup defaultInterest="growing" source="learn-growing-guide" />
-        </div>
-
         {/* Related guides */}
         {relatedGuides.length > 0 && (
           <section>
@@ -260,6 +255,28 @@ export function GuideLayout({ guide }: GuideLayoutProps) {
           </section>
         )}
       </div>
+      <ConversionFooter
+        title="Turn this guide into a practical next step."
+        description="Use the planner to size your garden, join the weekly growing tips list, and keep one foot in the rest of the farm."
+        cta={{
+          href: '/plan/garden-planner',
+          label: 'Open the Garden Planner',
+          description: 'Translate what you just learned into plant counts, space, timing, and a working plan.',
+        }}
+        signup={{
+          segment: 'growing-guides',
+          source: 'growing-guide',
+          title: 'Get Weekly Growing Tips',
+          description: 'Join the growing guides list for seasonal timing, crop notes, and practical reminders built for Northern California.',
+          buttonLabel: 'Join Growing Tips',
+          helperText: 'Useful growing notes only. No checkbox wall, and no clutter.',
+        }}
+        related={{
+          href: '/poultry/eggs',
+          label: 'Fresh Eggs',
+          description: 'See the local egg list if you want another real-food layer alongside the garden.',
+        }}
+      />
     </div>
   );
 }

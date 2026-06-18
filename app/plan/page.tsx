@@ -73,11 +73,11 @@ export default function PlanPage() {
       </div>
 
       <EmailCapture
-        segment="growing-tips"
+        segment="garden-planner"
         source="plan-hub"
-        eyebrow="Growing Tips"
-        title="Want planning notes and seasonal reminders?"
-        description="Join the growing tips list for planner-adjacent help without changing how the current tool works."
+        eyebrow="Garden Planner"
+        title="Want planner notes and seasonal reminders?"
+        description="Join the planner list for follow-up notes, seasonal reminders, and future save-your-plan improvements."
       />
     </div>
   );

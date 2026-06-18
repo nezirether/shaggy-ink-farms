@@ -56,11 +56,34 @@ export default function HatchingEggsAndStockPage() {
           </div>
           <div className="rounded-sm border-2 border-[#1C1C1A] bg-[#D7D4CC] p-6 shadow-[8px_8px_0_rgba(44,74,46,0.14)]">
             <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#8B2A2A]">
+              Availability Status
+            </p>
+            <h2 className="mt-3 font-serif text-2xl font-bold text-[#1C1C1A]">
+              Waitlist open. Inventory not live yet.
+            </h2>
+            <p className="mt-3 text-sm leading-7 text-[#1C1C1A]/78">
+              This is a waitlist-only page. We are collecting serious interest
+              before any public inventory goes live, and we will use the list to
+              stage future availability in a controlled way.
+            </p>
+            <div className="mt-5 rounded-sm border border-[#1C1C1A]/15 bg-[#F5F0E8] p-4">
+              <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#2C4A2E]">
+                Expected Availability
+              </p>
+              <p className="mt-2 text-sm leading-7 text-[#1C1C1A]/76">
+                We expect this list to support future releases for hatching eggs,
+                chicks, started pullets, and select breeding stock once the
+                flock and season justify it.
+              </p>
+            </div>
+            <p className="mt-5 text-xs font-extrabold uppercase tracking-[0.2em] text-[#8B2A2A]">
               Waitlist Uses
             </p>
             <ul className="mt-4 space-y-3 text-sm leading-7 text-[#1C1C1A]/78">
               <li>Seasonal hatching egg availability</li>
+              <li>Chick and started pullet release announcements</li>
               <li>Started bird and flock update announcements</li>
+              <li>Future breeding stock notices</li>
               <li>Breeding program progress worth sharing</li>
               <li>Clear expectations when inventory is still limited</li>
             </ul>
@@ -69,7 +92,7 @@ export default function HatchingEggsAndStockPage() {
       </section>
 
       <WaitlistForm
-        segment="poultry"
+        segment="hatching-eggs"
         source="poultry-hatching-eggs-and-stock"
         title="Join the heritage poultry waitlist."
         description="We will use this list for hatching egg drops, started bird availability, and meaningful breeding updates."

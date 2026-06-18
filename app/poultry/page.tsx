@@ -91,7 +91,7 @@ export default function PoultryPage() {
       </section>
 
       <EmailCapture
-        segment="farm-updates"
+        segment="general-farm-updates"
         source="poultry-hub"
         eyebrow="Get Farm Updates"
         title="Follow the flock, the breeding work, and the farm as it grows."

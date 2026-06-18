@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ConversionFooter } from "@/components/ConversionFooter";
 import { zoneGuides } from "@/lib/growing-guide/zones";
 import { localGuides } from "@/lib/growing-guide/local";
 import { pageMetadata, siteConfig, openGraphImage } from "@/lib/site";
@@ -148,6 +149,28 @@ export default function GrowingGuidePage() {
 
         </div>
       </div>
+      <ConversionFooter
+        title="Keep the local cluster working for you."
+        description="Use the planner for crop counts, get local growing updates, and stay connected to the rest of the farm."
+        cta={{
+          href: "/plan/garden-planner",
+          label: "Open the Garden Planner",
+          description: "Turn local timing into a full family food plan with the planner.",
+        }}
+        signup={{
+          segment: "local-guides",
+          source: "local-guides-hub",
+          title: "Get Anderson Area Growing Updates",
+          description: "Join the local list for seasonal planting reminders tuned to the Anderson and Redding area.",
+          buttonLabel: "Get Local Updates",
+          geo: "local",
+        }}
+        related={{
+          href: "/poultry/eggs",
+          label: "Fresh Eggs",
+          description: "See the local egg list if you want another practical, local food stream from the farm.",
+        }}
+      />
     </>
   );
 }

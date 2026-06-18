@@ -28,7 +28,7 @@ export default function SubscribePage() {
         imageAlt={farmImages.youtubeSetup.alt}
       />
       <EmailCapture
-        segment="farm-updates"
+        segment="general-farm-updates"
         source="subscribe-page"
         eyebrow="Farm Updates"
         title="Get the next field note, video, and farm update."

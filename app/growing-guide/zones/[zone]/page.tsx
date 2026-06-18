@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ConversionFooter } from "@/components/ConversionFooter";
 import { MonthlyCalendar } from "../../MonthlyCalendar";
 import { getZoneGuide, getZoneNumbers } from "@/lib/growing-guide/zones";
 import { siteConfig, openGraphImage } from "@/lib/site";
@@ -136,6 +137,27 @@ export default async function ZoneGuidePage({ params }: ZonePageProps) {
           </section>
         </div>
       </div>
+      <ConversionFooter
+        title="Turn zone knowledge into an actual planting plan."
+        description="Zone pages help with broad timing. The planner and growing tips list help you turn that timing into a season you can use."
+        cta={{
+          href: "/plan/garden-planner",
+          label: "Open the Garden Planner",
+          description: "Use your zone as the starting point for a crop list, plant counts, and garden space planning.",
+        }}
+        signup={{
+          segment: "growing-guides",
+          source: "zone-guide",
+          title: "Get Weekly Growing Tips",
+          description: "Join for practical seasonal notes that pair well with the zone guides.",
+          buttonLabel: "Join Growing Tips",
+        }}
+        related={{
+          href: "/learn/local/anderson",
+          label: "Local Guides",
+          description: "If you garden near Anderson, Redding, or Red Bluff, the local guides go deeper than zone-only advice.",
+        }}
+      />
     </>
   );
 }

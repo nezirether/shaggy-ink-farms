@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { GROWING_GUIDES, GUIDE_CATEGORIES } from '@/data/growingGuides';
 import { GuideCard } from '@/components/GuideCard';
-import { EmailSignup } from '@/components/EmailSignup';
 import type { GuideCategory } from '@/data/growingGuides';
 
 export function GrowingGuidesClient() {
@@ -87,14 +86,6 @@ export function GrowingGuidesClient() {
           {filteredGuides.map((guide) => (
             <GuideCard key={guide.slug} guide={guide} />
           ))}
-        </div>
-
-        {/* Newsletter CTA */}
-        <div className="mt-14">
-          <EmailSignup
-            defaultInterest="growing"
-            source="learn-growing-guides"
-          />
         </div>
       </div>
     </div>

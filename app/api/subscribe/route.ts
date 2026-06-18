@@ -38,10 +38,12 @@ function buildProperties({
   segment,
   source,
   geo,
+  captureType,
 }: {
   segment: EmailSegment;
   source: string;
   geo: string;
+  captureType: string;
 }) {
   const details = EMAIL_SEGMENTS[segment];
   return {
@@ -49,6 +51,7 @@ function buildProperties({
     signup_segment_label: details.label,
     signup_source: source,
     signup_geo: geo || details.geo || "national",
+    signup_capture_type: captureType || "email-signup",
   };
 }
 
@@ -58,18 +61,20 @@ function contactPayload({
   segment,
   source,
   geo,
+  captureType,
 }: {
   email: string;
   firstName: string;
   segment: EmailSegment;
   source: string;
   geo: string;
+  captureType: string;
 }) {
   return {
     email,
     firstName: firstName || undefined,
     unsubscribed: false,
-    properties: buildProperties({ segment, source, geo }),
+    properties: buildProperties({ segment, source, geo, captureType }),
   };
 }
 
@@ -77,13 +82,15 @@ function contactUpdatePayload({
   segment,
   source,
   geo,
+  captureType,
 }: {
   segment: EmailSegment;
   source: string;
   geo: string;
+  captureType: string;
 }) {
   return {
-    properties: buildProperties({ segment, source, geo }),
+    properties: buildProperties({ segment, source, geo, captureType }),
   };
 }
 
@@ -139,6 +146,7 @@ export async function POST(request: Request) {
   const segment = getSegment(formData);
   const source = field(formData, "source") || "website";
   const geo = field(formData, "geo");
+  const captureType = field(formData, "captureType") || "email-signup";
   const company = field(formData, "company");
 
   if (company) {
@@ -167,7 +175,7 @@ export async function POST(request: Request) {
   let createResult = await resendRequest(
     apiKey,
     "POST",
-    contactPayload({ email, firstName, segment, source, geo }),
+    contactPayload({ email, firstName, segment, source, geo, captureType }),
   );
 
   if (
@@ -209,7 +217,7 @@ export async function POST(request: Request) {
 
   let updateResult = await resendRequest(apiKey, "PATCH", {
     email,
-    ...contactUpdatePayload({ segment, source, geo }),
+    ...contactUpdatePayload({ segment, source, geo, captureType }),
   });
 
   if (updateResult.error) {

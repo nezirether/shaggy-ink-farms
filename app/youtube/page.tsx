@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CalloutGrid } from "@/components/CalloutGrid";
+import { EmailCapture } from "@/components/EmailCapture";
 import { PageHero } from "@/components/PageHero";
 import { VideoTeaser } from "@/components/VideoTeaser";
 import { farmImages } from "@/lib/images";
@@ -55,6 +56,14 @@ export default function YouTubePage() {
           />
         </div>
       </section>
+      <EmailCapture
+        segment="general-farm-updates"
+        source="watch"
+        eyebrow="Never Miss A New Video"
+        title="Never miss a new video."
+        description="Join the main farm updates list for new uploads, field notes, and the long-form record of this place being built."
+        buttonLabel="Get Video Updates"
+      />
     </>
   );
 }

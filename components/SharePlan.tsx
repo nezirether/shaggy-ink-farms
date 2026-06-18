@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useGardenPlanner } from '@/app/garden-planner/GardenPlannerContext';
+import { PlannerSaveCapture } from '@/components/PlannerSaveCapture';
 import { formatYieldBreakdown } from '@/lib/garden-planner/engine';
 
 export function SharePlan() {
@@ -139,6 +140,8 @@ export function SharePlan() {
           </button>
         </div>
       </section>
+
+      <PlannerSaveCapture />
 
       <p className="text-center text-xs text-[#1C1C1A]/40">
         Generated with the Family Food Security Garden Planner at{' '}

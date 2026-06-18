@@ -30,6 +30,7 @@ export function WaitlistForm({
       description={description}
       buttonLabel="Join The Waitlist"
       helperText={helperText}
+      captureType="waitlist"
       compact
     />
   );

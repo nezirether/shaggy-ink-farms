@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { ConversionFooter } from '@/components/ConversionFooter';
 import { ZoneLookup } from '@/components/ZoneLookup';
 import { WeeklyGrowingGuide } from '@/components/WeeklyGrowingGuide';
-import { EmailSignup } from '@/components/EmailSignup';
 
 export const metadata: Metadata = {
   title: 'Know Your Growing Zone — Shaggy Ink Farms',
@@ -204,8 +204,6 @@ export default function KnowYourGrowingZonePage() {
           </div>
         </section>
 
-        <EmailSignup defaultInterest="growing" source="learn-growing-zone" />
-
         {/* Related links */}
         <section>
           <h2 className="mb-4 font-serif text-xl font-bold text-[#1C1C1A]">
@@ -233,6 +231,27 @@ export default function KnowYourGrowingZonePage() {
         </section>
 
       </div>
+      <ConversionFooter
+        title="Use your zone, then plan the season."
+        description="Zone knowledge is the starting point. The planner helps with crop counts, and the growing tips list keeps the timing practical."
+        cta={{
+          href: '/plan/garden-planner',
+          label: 'Open the Garden Planner',
+          description: 'Build a full food-garden plan once you know your zone and timing window.',
+        }}
+        signup={{
+          segment: 'growing-guides',
+          source: 'zone-hub',
+          title: 'Get Weekly Growing Tips',
+          description: 'Join for practical planting reminders and seasonal growing notes.',
+          buttonLabel: 'Join Growing Tips',
+        }}
+        related={{
+          href: '/learn/local/anderson',
+          label: 'Local Guides',
+          description: 'Want more than zone advice? Step into the Anderson-area local guides next.',
+        }}
+      />
     </div>
   );
 }

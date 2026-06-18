@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound, redirect } from "next/navigation";
 import { ButtonLink } from "@/components/ButtonLink";
-import { EmailSignup } from "@/components/EmailSignup";
+import { EmailCapture } from "@/components/EmailCapture";
 import { JsonLd } from "@/components/JsonLd";
+import { getJournalCaptureConfig } from "@/lib/conversion";
 import {
   articleJsonLd,
   getArticleBySlug,
@@ -77,6 +78,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     day: "numeric",
     year: "numeric",
   }).format(new Date(`${article.publishedAt}T12:00:00Z`));
+  const capture = getJournalCaptureConfig(article);
 
   return (
     <>
@@ -231,7 +233,14 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </div>
         </div>
       </article>
-      <EmailSignup defaultInterest="farm" source="journal-article" />
+      <EmailCapture
+        segment={capture.segment}
+        source={capture.source}
+        eyebrow={capture.eyebrow}
+        title={capture.title}
+        description={capture.description}
+        buttonLabel={capture.buttonLabel}
+      />
     </>
   );
 }

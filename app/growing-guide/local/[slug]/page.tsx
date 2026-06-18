@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ConversionFooter } from "@/components/ConversionFooter";
 import { MonthlyCalendar } from "../../MonthlyCalendar";
 import { getLocalGuide, getLocalSlugs } from "@/lib/growing-guide/local";
 import type { GrowsWell } from "@/lib/growing-guide/types";
@@ -248,6 +249,28 @@ export default async function LocalGuidePage({ params }: LocalPageProps) {
           ) : null}
         </div>
       </div>
+      <ConversionFooter
+        title="Stay on top of this local growing season."
+        description="The local guide gives the timing. The planner helps with crop counts, and the local updates list keeps the season moving."
+        cta={{
+          href: "/plan/garden-planner",
+          label: "Open the Garden Planner",
+          description: "Size your garden around this local guide instead of relying on generic national advice.",
+        }}
+        signup={{
+          segment: "local-guides",
+          source: "local-guide",
+          title: "Get Anderson Area Growing Updates",
+          description: "Join the local list for planting reminders and hyperlocal seasonal notes.",
+          buttonLabel: "Get Local Updates",
+          geo: "local",
+        }}
+        related={{
+          href: "/poultry/eggs",
+          label: "Fresh Eggs",
+          description: "If you are close enough for local growing notes, you may also want the local egg list.",
+        }}
+      />
     </>
   );
 }

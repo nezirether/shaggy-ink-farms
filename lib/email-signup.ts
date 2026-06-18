@@ -1,19 +1,26 @@
 export type EmailSegment =
   | "egg-alerts"
+  | "hatching-eggs"
   | "poultry"
-  | "growing-tips"
-  | "farm-updates"
+  | "growing-guides"
+  | "local-guides"
+  | "garden-planner"
   | "strawberries"
   | "flowers"
+  | "general-farm-updates"
   | "store";
 
 export type LegacyEmailSignupInterest =
   | "growing"
   | "eggs"
   | "farm"
-  | "store";
+  | "store"
+  | "growing-tips"
+  | "farm-updates";
 
 export type EmailSignupInterest = EmailSegment | LegacyEmailSignupInterest;
+
+export type CaptureType = "email-signup" | "waitlist" | "planner-save";
 
 type EmailSegmentDetails = {
   label: string;
@@ -36,35 +43,55 @@ export const EMAIL_SEGMENTS: Record<EmailSegment, EmailSegmentDetails> = {
     eventName: "email_signup_egg_alerts",
     geo: "local",
   },
-  poultry: {
-    label: "Poultry Waitlist",
+  "hatching-eggs": {
+    label: "Hatching Egg Waitlist",
     description:
-      "Updates on heritage hatching eggs, started birds, flock progress, and future poultry availability.",
-    eyebrow: "Heritage Poultry",
-    headline: "Join The Poultry Waitlist",
+      "First notice for heritage hatching eggs, chicks, started pullets, and breeding stock updates.",
+    eyebrow: "Hatching Eggs",
+    headline: "Join The Hatching Egg Waitlist",
     buttonLabel: "Join The Waitlist",
+    eventName: "email_signup_hatching_eggs",
+    geo: "national",
+  },
+  poultry: {
+    label: "Poultry Updates",
+    description:
+      "Follow the breeding program, flock progress, and practical poultry updates from the farm.",
+    eyebrow: "Poultry Updates",
+    headline: "Follow The Poultry Breeding Program",
+    buttonLabel: "Get Poultry Updates",
     eventName: "email_signup_poultry",
     geo: "national",
   },
-  "growing-tips": {
-    label: "Growing Tips",
+  "growing-guides": {
+    label: "Weekly Growing Tips",
     description:
-      "Northern California planting notes, seasonal timing, and garden planning guidance.",
-    eyebrow: "Growing Tips",
-    headline: "Get Practical Northern California Growing Tips",
+      "Practical Northern California planting notes, seasonal timing, and guide updates.",
+    eyebrow: "Growing Guides",
+    headline: "Get Weekly Growing Tips",
     buttonLabel: "Join Growing Tips",
-    eventName: "email_signup_growing_tips",
+    eventName: "email_signup_growing_guides",
     geo: "regional",
   },
-  "farm-updates": {
-    label: "Farm Updates",
+  "local-guides": {
+    label: "Local Growing Updates",
     description:
-      "Field notes from the flock, the family, and the long build at Shaggy Ink Farms.",
-    eyebrow: "Farm Updates",
-    headline: "Follow The Build Of Shaggy Ink Farms",
-    buttonLabel: "Get Farm Updates",
-    eventName: "email_signup_farm_updates",
-    geo: "national",
+      "Hyperlocal planting notes, seasonal reminders, and Anderson-area growing updates.",
+    eyebrow: "Local Growing Guides",
+    headline: "Get Anderson Area Growing Updates",
+    buttonLabel: "Get Local Updates",
+    eventName: "email_signup_local_guides",
+    geo: "local",
+  },
+  "garden-planner": {
+    label: "Garden Planner Updates",
+    description:
+      "Save your plan, get seasonal planting reminders, and hear when planner updates ship.",
+    eyebrow: "Garden Planner",
+    headline: "Save My Plan",
+    buttonLabel: "Save My Plan",
+    eventName: "email_signup_garden_planner",
+    geo: "regional",
   },
   strawberries: {
     label: "Strawberry Updates",
@@ -86,6 +113,16 @@ export const EMAIL_SEGMENTS: Record<EmailSegment, EmailSegmentDetails> = {
     eventName: "email_signup_flowers",
     geo: "local",
   },
+  "general-farm-updates": {
+    label: "General Farm Updates",
+    description:
+      "Field notes from the flock, the family, and the long build at Shaggy Ink Farms.",
+    eyebrow: "Farm Updates",
+    headline: "Follow The Build Of Shaggy Ink Farms",
+    buttonLabel: "Get Farm Updates",
+    eventName: "email_signup_general_farm_updates",
+    geo: "national",
+  },
   store: {
     label: "Store Updates",
     description:
@@ -101,10 +138,12 @@ export const EMAIL_SEGMENTS: Record<EmailSegment, EmailSegmentDetails> = {
 export const EMAIL_SEGMENT_VALUES = Object.keys(EMAIL_SEGMENTS) as EmailSegment[];
 
 const LEGACY_SEGMENT_MAP: Record<LegacyEmailSignupInterest, EmailSegment> = {
-  growing: "growing-tips",
+  growing: "growing-guides",
   eggs: "egg-alerts",
-  farm: "farm-updates",
+  farm: "general-farm-updates",
   store: "store",
+  "growing-tips": "growing-guides",
+  "farm-updates": "general-farm-updates",
 };
 
 export function isEmailSegment(value: string): value is EmailSegment {
@@ -113,7 +152,7 @@ export function isEmailSegment(value: string): value is EmailSegment {
 
 export function resolveEmailSegment(value?: string): EmailSegment {
   if (!value) {
-    return "farm-updates";
+    return "general-farm-updates";
   }
 
   if (isEmailSegment(value)) {
@@ -124,7 +163,7 @@ export function resolveEmailSegment(value?: string): EmailSegment {
     return LEGACY_SEGMENT_MAP[value as LegacyEmailSignupInterest];
   }
 
-  return "farm-updates";
+  return "general-farm-updates";
 }
 
 export function getEmailSegmentDetails(value?: string) {
