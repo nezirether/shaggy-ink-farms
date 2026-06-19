@@ -5,12 +5,12 @@ import { openGraphImage, siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Know Your Growing Zone",
   description:
-    "Find your USDA Plant Hardiness Zone and get week-by-week growing tasks for Northern California.",
+    "Find your USDA Plant Hardiness Zone, choose manual guidance for Zones 3-10, and use Northern California presets for local frost and timing context.",
   alternates: { canonical: "/learn/zones" },
   openGraph: {
     title: `Know Your Growing Zone | ${siteConfig.name}`,
     description:
-      "Zone lookup and weekly growing tasks for Northern California gardeners.",
+      "Use USDA zone guidance nationwide and Northern California local presets for planting timing and crop-fit decisions.",
     images: [openGraphImage],
   },
 };

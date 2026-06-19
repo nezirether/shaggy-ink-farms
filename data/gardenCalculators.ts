@@ -1,4 +1,5 @@
-export type CalculatorCategory = 'Planning' | 'Water' | 'Soil' | 'Harvest';
+export type CalculatorCategory = "Planning" | "Water" | "Soil" | "Harvest";
+export type CalculatorStatus = "live" | "coming-soon";
 
 export interface GardenCalculator {
   slug: string;
@@ -9,87 +10,75 @@ export interface GardenCalculator {
   href: string;
   isExternal: boolean;
   badge?: string;
+  status?: CalculatorStatus;
+  ctaLabel?: string;
 }
 
 export const GARDEN_CALCULATORS: GardenCalculator[] = [
   {
-    slug: 'drip-tape-calculator',
-    title: 'Drip Tape Calculator',
-    shortTitle: 'Drip Tape',
+    slug: "family-food-security-planner",
+    title: "Family Food Security Garden Planner",
+    shortTitle: "Garden Planner",
     description:
-      'Estimate drip tape row length, line count, and basic irrigation supply needs before you buy parts for a garden bed or small growing block.',
-    category: 'Water',
-    href: '/learn/garden-planning#drip-tape-calculator',
+      "Set your USDA zone, enter your family size, choose crops, and build a practical planting plan with crop counts, square footage, yields, and seasonal timing.",
+    category: "Planning",
+    href: "/plan/garden-planner",
     isExternal: false,
-    badge: 'Planning Aid',
+    badge: "Free Tool",
+    status: "live",
   },
   {
-    slug: 'family-garden-planning-calculator',
-    title: 'Family Garden Planning Calculator',
-    shortTitle: 'Family Garden',
+    slug: "find-my-zone",
+    title: "Know Your Growing Zone",
+    shortTitle: "Find My Zone",
     description:
-      'Use family size, crop choices, safety margin, and succession plantings to build a practical food garden plan.',
-    category: 'Planning',
-    href: '/plan/garden-planner',
+      "Use Northern California presets or manually choose USDA Zones 3 through 10 to get planting guidance, crop fit notes, and seasonal timing context.",
+    category: "Planning",
+    href: "/learn/zones",
     isExternal: false,
-    badge: 'Free Tool',
+    badge: "Free Tool",
+    status: "live",
   },
   {
-    slug: 'vegetable-seed-calculator',
-    title: 'Vegetable Seed Calculator',
-    shortTitle: 'Seed Calculator',
+    slug: "weekly-growing-guide",
+    title: "What Should I Do This Week in the Garden?",
+    shortTitle: "Weekly Guide",
     description:
-      'Plan seed packet needs from crop selections, planting waves, spacing, and a little backup for poor germination or weather losses.',
-    category: 'Planning',
-    href: '/learn/garden-planning#vegetable-seed-calculator',
+      "Get seasonal weekly tasks for Anderson, Redding, Red Bluff, Chico, and Sacramento, with manual USDA zone guidance available for gardeners nationwide.",
+    category: "Planning",
+    href: "/learn/zones#weekly-guide",
     isExternal: false,
-    badge: 'Planning Aid',
+    badge: "Seasonal",
+    status: "live",
   },
   {
-    slug: 'family-food-security-planner',
-    title: 'Family Food Security Garden Planner',
-    shortTitle: 'Garden Planner',
+    slug: "drip-tape-calculator",
+    title: "Drip Tape Calculator",
+    shortTitle: "Drip Tape",
     description:
-      'Set your USDA zone, enter your family size, select crops, and get a complete planting plan — including plant counts, square footage, a Gantt timeline, and a shopping list. Built for serious food gardeners.',
-    category: 'Planning',
-    href: '/plan/garden-planner',
+      "A dedicated calculator page for row length, tape runs, and irrigation planning is on the roadmap. Visit the page to see what is coming next.",
+    category: "Water",
+    href: "/learn/garden-planning/drip-tape-calculator",
     isExternal: false,
-    badge: 'Free Tool',
+    badge: "Coming Soon",
+    status: "coming-soon",
+    ctaLabel: "View details",
   },
   {
-    slug: 'find-my-zone',
-    title: 'Find My USDA Hardiness Zone',
-    shortTitle: 'Find My Zone',
+    slug: "vegetable-seed-calculator",
+    title: "Vegetable Seed Calculator",
+    shortTitle: "Seed Calculator",
     description:
-      'Enter your city or ZIP code to find your USDA Plant Hardiness Zone. Used to determine frost dates, planting windows, and overwintering potential for your location.',
-    category: 'Planning',
-    href: '/learn/zones',
+      "A dedicated seed-planning calculator page is reserved so gardeners can track packet needs, succession sowings, and backup seed quantities when it is ready.",
+    category: "Planning",
+    href: "/learn/garden-planning/vegetable-seed-calculator",
     isExternal: false,
-    badge: 'Free Tool',
-  },
-  {
-    slug: 'weekly-growing-guide',
-    title: 'What Should I Do This Week in the Garden?',
-    shortTitle: 'Weekly Guide',
-    description:
-      'Get this week\'s planting, maintenance, and harvest tasks for your location. Updated seasonally for Northern California and the Sacramento Valley.',
-    category: 'Planning',
-    href: '/learn/zones#weekly-guide',
-    isExternal: false,
-    badge: 'Seasonal',
-  },
-  {
-    slug: 'square-footage-calculator',
-    title: 'Garden Square Footage Calculator',
-    shortTitle: 'Space Calculator',
-    description:
-      'Calculate how many raised beds, row feet, and total square footage you need for a given crop list and family size. Integrated into the full Garden Planner.',
-    category: 'Planning',
-    href: '/plan/garden-planner',
-    isExternal: false,
+    badge: "Coming Soon",
+    status: "coming-soon",
+    ctaLabel: "View details",
   },
 ];
 
 export function getCalculatorBySlug(slug: string): GardenCalculator | undefined {
-  return GARDEN_CALCULATORS.find((c) => c.slug === slug);
+  return GARDEN_CALCULATORS.find((calculator) => calculator.slug === slug);
 }
