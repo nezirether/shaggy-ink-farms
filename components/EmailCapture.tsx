@@ -11,6 +11,12 @@ import {
 
 type FormState = "idle" | "loading" | "success" | "error";
 
+const INTEREST_OPTIONS: { value: EmailSegment; label: string; desc: string }[] = [
+  { value: "growing-guides", label: "Growing & Garden", desc: "Planting guides, Zone 9b timing, seasonal notes" },
+  { value: "poultry", label: "Poultry & Homestead", desc: "Flock updates, breeding program, farm systems" },
+  { value: "general-farm-updates", label: "All of the above", desc: "The full Shaggy Ink Farms story" },
+];
+
 type EmailCaptureFormProps = {
   segment: EmailSegment;
   source?: string;
@@ -18,8 +24,11 @@ type EmailCaptureFormProps = {
   buttonLabel?: string;
   helperText?: string;
   successMessage?: string;
+  successHref?: string;
+  successHrefLabel?: string;
   panelLabel?: string;
   captureType?: CaptureType;
+  showInterest?: boolean;
   className?: string;
 };
 
@@ -28,6 +37,7 @@ type EmailCaptureProps = EmailCaptureFormProps & {
   title?: string;
   description?: string;
   compact?: boolean;
+  showInterest?: boolean;
 };
 
 export function EmailCaptureForm({
@@ -37,14 +47,18 @@ export function EmailCaptureForm({
   buttonLabel,
   helperText = "One field, one button, and the right updates for this page.",
   successMessage = "You're on the list.",
+  successHref,
+  successHrefLabel = "Download now",
   panelLabel = "Email address",
   captureType = "email-signup",
+  showInterest = false,
   className = "",
 }: EmailCaptureFormProps) {
   const formId = useId();
   const [state, setState] = useState<FormState>("idle");
   const [message, setMessage] = useState("");
-  const resolvedSegment = resolveEmailSegment(segment);
+  const [activeSegment, setActiveSegment] = useState<EmailSegment>(resolveEmailSegment(segment));
+  const resolvedSegment = activeSegment;
   const details = getEmailSegmentDetails(resolvedSegment);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -54,6 +68,7 @@ export function EmailCaptureForm({
 
     const form = event.currentTarget;
     const formData = new FormData(form);
+    formData.set("segment", resolvedSegment);
 
     try {
       const response = await fetch("/api/subscribe", {
@@ -95,6 +110,38 @@ export function EmailCaptureForm({
       className={`grid gap-3 rounded-sm border-2 border-[#F5F0E8]/25 bg-[#1C1C1A]/20 p-4 ${className}`}
       aria-busy={state === "loading"}
     >
+      {showInterest && (
+        <fieldset className="grid gap-2">
+          <legend className="text-xs font-bold uppercase tracking-[0.14em] text-[#F5F0E8]">
+            I&apos;m most interested in
+          </legend>
+          <div className="mt-1 grid gap-2">
+            {INTEREST_OPTIONS.map((opt) => (
+              <label
+                key={opt.value}
+                className={`flex cursor-pointer items-start gap-3 rounded-sm border-2 p-3 transition ${
+                  activeSegment === opt.value
+                    ? "border-[#C6933F] bg-[#C6933F]/10"
+                    : "border-[#F5F0E8]/20 hover:border-[#F5F0E8]/40"
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="interest-display"
+                  value={opt.value}
+                  checked={activeSegment === opt.value}
+                  onChange={() => setActiveSegment(opt.value)}
+                  className="mt-0.5 accent-[#C6933F]"
+                />
+                <span>
+                  <span className="block text-sm font-bold text-[#F5F0E8]">{opt.label}</span>
+                  <span className="block text-xs text-[#F5F0E8]/60">{opt.desc}</span>
+                </span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      )}
       <label
         className="text-xs font-bold uppercase tracking-[0.14em]"
         htmlFor={`${formId}-email`}
@@ -146,6 +193,15 @@ export function EmailCaptureForm({
           {message}
         </p>
       ) : null}
+      {state === "success" && successHref ? (
+        <a
+          href={successHref}
+          download
+          className="focus-ring inline-flex items-center justify-center rounded-sm border-2 border-[#D6DDC4] bg-[#D6DDC4]/10 px-5 py-3 text-sm font-bold uppercase tracking-[0.08em] text-[#D6DDC4] transition hover:bg-[#D6DDC4]/20"
+        >
+          {successHrefLabel}
+        </a>
+      ) : null}
     </form>
   );
 }
@@ -160,9 +216,12 @@ export function EmailCapture({
   buttonLabel,
   helperText,
   successMessage,
+  successHref,
+  successHrefLabel,
   panelLabel,
   compact = false,
   captureType = "email-signup",
+  showInterest = false,
 }: EmailCaptureProps) {
   const resolvedSegment = resolveEmailSegment(segment);
   const details = getEmailSegmentDetails(resolvedSegment);
@@ -194,8 +253,11 @@ export function EmailCapture({
           buttonLabel={buttonLabel}
           helperText={helperText}
           successMessage={successMessage}
+          successHref={successHref}
+          successHrefLabel={successHrefLabel}
           panelLabel={panelLabel}
           captureType={captureType}
+          showInterest={showInterest}
         />
       </div>
     </section>

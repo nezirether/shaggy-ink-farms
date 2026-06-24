@@ -5,6 +5,53 @@ import {
   type EmailSegment,
 } from "@/lib/email-signup";
 
+const LEAD_MAGNET_ASSET_URL = "https://www.shaggyinkfarms.com/downloads/zone-9b-planting-calendar.pdf";
+
+async function sendLeadMagnetEmail(apiKey: string, email: string) {
+  const from = process.env.CONTACT_FROM_EMAIL ?? "Shaggy Ink Farms <updates@shaggyinkfarms.com>";
+  try {
+    await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from,
+        to: [email],
+        subject: "Your Zone 9b Planting Calendar — Shaggy Ink Farms",
+        html: `
+<div style="font-family:Georgia,serif;max-width:560px;margin:0 auto;color:#1C1C1A;padding:32px 24px">
+  <p style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.18em;color:#C6933F;margin:0 0 12px">
+    Shaggy Ink Farms — Zone 9b Resource
+  </p>
+  <h1 style="font-size:26px;margin:0 0 16px;line-height:1.25">
+    Your Zone 9b Planting Calendar is ready
+  </h1>
+  <p style="font-size:15px;line-height:1.7;color:#3a3a38;margin:0 0 24px">
+    Here's your free printable calendar for Sacramento Valley gardeners.
+    It covers planting windows, frost timing, and seasonal tasks for Anderson and the surrounding area.
+  </p>
+  <a href="${LEAD_MAGNET_ASSET_URL}" style="display:inline-block;background:#2C4A2E;color:#F5F0E8;text-decoration:none;padding:14px 28px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;border-radius:2px">
+    Download the Calendar PDF
+  </a>
+  <p style="font-size:13px;line-height:1.7;color:#6b6b68;margin:28px 0 0">
+    You've also been added to the growing guides list — expect practical planting notes
+    built for Zone 9b. You can unsubscribe any time.
+  </p>
+  <hr style="border:none;border-top:1px solid #ddd;margin:28px 0"/>
+  <p style="font-size:12px;color:#9b9b98;margin:0">
+    Shaggy Ink Farms · Anderson, CA · <a href="https://www.shaggyinkfarms.com" style="color:#9b9b98">shaggyinkfarms.com</a>
+  </p>
+</div>`,
+      }),
+      cache: "no-store",
+    });
+  } catch (err) {
+    console.error("[subscribe] Failed to send lead magnet email:", err);
+  }
+}
+
 export const runtime = "nodejs";
 
 const successMessage = "You're on the list.";
@@ -196,6 +243,9 @@ export async function POST(request: Request) {
     console.log(
       `[subscribe] Contact created: ${createResult.data?.id ?? "unknown"} (email: ${email}, source: ${source}, segment: ${segment})`,
     );
+    if (captureType === "lead-magnet") {
+      await sendLeadMagnetEmail(apiKey, email);
+    }
     return NextResponse.json({ message: successMessage });
   }
 
@@ -245,5 +295,8 @@ export async function POST(request: Request) {
   console.log(
     `[subscribe] Contact updated: ${updateResult.data?.id ?? "unknown"} (email: ${email}, source: ${source}, segment: ${segment})`,
   );
+  if (captureType === "lead-magnet") {
+    await sendLeadMagnetEmail(apiKey, email);
+  }
   return NextResponse.json({ message: successMessage });
 }
