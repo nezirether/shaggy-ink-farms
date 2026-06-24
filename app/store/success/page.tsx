@@ -45,13 +45,13 @@ export default async function StoreSuccessPage({ searchParams }: Props) {
           </p>
           {product && (
             <a
-              href={product.downloadPath}
-              download
+              href="/bundle?print=1"
               className="focus-ring mt-6 inline-flex items-center gap-2 rounded-sm border-2 border-[#2C4A2E] bg-[#2C4A2E] px-6 py-3 text-sm font-bold uppercase tracking-[0.08em] text-[#F5F0E8] transition hover:bg-[#1C1C1A]"
             >
-              Download Now
+              Open &amp; Print Your Bundle
             </a>
           )}
+          <p className="mt-2 text-xs text-[#1C1C1A]/45">Opens in your browser — use Print or Save as PDF.</p>
           <p className="mt-4 text-xs text-[#1C1C1A]/45">
             Didn&apos;t get the email? Check your spam folder or{" "}
             <a href="/contact" className="underline hover:text-[#2C4A2E]">
