@@ -216,8 +216,42 @@ function YouTubeIcon() {
 // ─── Main header ─────────────────────────────────────────────────────────────
 
 const LOGO_SRC = "/images/brand/shaggy-ink-farms-logo.png";
+const BADGE_SRC = "/images/brand/shaggy-ink-farms-badge.svg";
 const LOGO_W = 108;
 const LOGO_H = 128;
+
+function CenterLogo() {
+  const [useFallback, setUseFallback] = useState(false);
+
+  if (useFallback) {
+    return (
+      <Link href="/" className="focus-ring block">
+        <span className="relative block h-14 w-14 overflow-hidden rounded-full border-2 border-[#C6933F] bg-[#1C1C1A] shadow-[0_0_0_3px_rgba(198,147,63,0.25)]">
+          <Image src={BADGE_SRC} alt="Shaggy Ink Farms" fill sizes="56px" className="object-cover" />
+        </span>
+      </Link>
+    );
+  }
+
+  return (
+    <Link
+      href="/"
+      className="focus-ring block"
+      style={{ marginTop: -(LOGO_H - 56) }}
+    >
+      <Image
+        src={LOGO_SRC}
+        alt="Shaggy Ink Farms"
+        width={LOGO_W}
+        height={LOGO_H}
+        priority
+        className="drop-shadow-lg"
+        style={{ objectFit: "contain" }}
+        onError={() => setUseFallback(true)}
+      />
+    </Link>
+  );
+}
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -308,23 +342,9 @@ export function Header() {
               ))}
             </div>
 
-            {/* CENTER LOGO — overflows above the nav bar into tier 1 */}
-            <div className="relative flex shrink-0 justify-center px-6" style={{ width: LOGO_W + 48 }}>
-              <Link
-                href="/"
-                className="focus-ring block"
-                style={{ marginTop: -(LOGO_H - 56) }}
-              >
-                <Image
-                  src={LOGO_SRC}
-                  alt={siteConfig.name}
-                  width={LOGO_W}
-                  height={LOGO_H}
-                  priority
-                  className="drop-shadow-lg"
-                  style={{ objectFit: "contain" }}
-                />
-              </Link>
+            {/* CENTER LOGO */}
+            <div className="relative flex shrink-0 items-center justify-center px-6" style={{ width: LOGO_W + 48 }}>
+              <CenterLogo />
             </div>
 
             {/* RIGHT NAV */}
