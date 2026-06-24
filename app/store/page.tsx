@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
-import { CalloutGrid } from "@/components/CalloutGrid";
-import { EmailSignup } from "@/components/EmailSignup";
-import { PageHero } from "@/components/PageHero";
-import { FarmVisual } from "@/components/FarmVisual";
-import { SectionHeader } from "@/components/SectionHeader";
-import { farmImages } from "@/lib/images";
+import { BuyButton } from "@/components/BuyButton";
+import { PRODUCTS } from "@/lib/products";
 import { openGraphImage, pageMetadata, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -18,58 +14,101 @@ export const metadata: Metadata = {
   },
 };
 
+const tripwire = PRODUCTS[0]!;
+
 export default function StorePage() {
   return (
-    <>
-      <PageHero
-        eyebrow="Store"
-        title="A small farm store, built slowly."
-        copy="The store is not open as a full shop yet. As the farm grows, this page will hold simple goods, seasonal notes, seeds, plants, and practical things that make sense for Shaggy Ink Farms."
-        imageTitle="Cartons, labels, field notes, and goods"
-        imageDetail="Cream paper, barn red marks, warm gold, barred feather texture, and rugged work surfaces for small farm goods."
-        imageSrc={farmImages.storeGoods.src}
-        imageAlt={farmImages.storeGoods.alt}
-      />
-      <section className="px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
-          <div>
-            <SectionHeader
-              eyebrow="Store Plans"
-              title="Nothing here needs to be rushed."
-              copy="The first offerings should stay close to the farm: eggs when available, small printed pieces, plants, seeds, and useful goods when we can make or source them honestly."
-              align="left"
-            />
-            <CalloutGrid
-              items={[
-                {
-                  eyebrow: "Farm",
-                  title: "Egg cartons and pickup notes",
-                  copy: "Seasonal drops, waitlist updates, and packaging that feels like a real farm label.",
-                },
-                {
-                  eyebrow: "Print",
-                  title: "Field notes and labels",
-                  copy: "Small printed pieces inspired by seed packets, ranch marks, and field journal pages.",
-                },
-                {
-                  eyebrow: "Goods",
-                  title: "Apparel and durable small items",
-                  copy: "Simple items only if they fit the farm and are worth keeping.",
-                },
-              ]}
-            />
-          </div>
-          <FarmVisual
-            title="Small farm goods"
-            detail="Egg cartons, labels, printed pieces, and farm goods should be plain, useful, and tied to real work on the farm."
-            tone="gold"
-            label="Farm Goods"
-            src={farmImages.eggCartons.src}
-            alt={farmImages.eggCartons.alt}
-          />
+    <div className="min-h-screen bg-[#D7D4CC]">
+      {/* Hero */}
+      <section className="border-b-2 border-[#1C1C1A] bg-[#2C4A2E] px-4 py-14 text-[#F5F0E8] sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl">
+          <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#C6933F]">
+            Farm Store
+          </p>
+          <h1 className="mt-3 font-serif text-4xl font-bold leading-tight sm:text-5xl">
+            Simple goods from the farm.
+          </h1>
+          <p className="mt-4 text-lg leading-relaxed text-[#F5F0E8]/78">
+            Practical printed references for Sacramento Valley growers. More to come
+            as the farm grows — eggs, seeds, and useful things, when they&apos;re ready.
+          </p>
         </div>
       </section>
-      <EmailSignup defaultInterest="store" source="store" />
-    </>
+
+      {/* Product listing */}
+      <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
+        {/* Featured product */}
+        <div className="rounded-sm border-2 border-[#1C1C1A] bg-white/55 p-8">
+          <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-start">
+            <div>
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#C6933F]">
+                Printable Reference · PDF Download
+              </p>
+              <h2 className="mt-3 font-serif text-3xl font-bold text-[#1C1C1A]">
+                {tripwire.name}
+              </h2>
+              <p className="mt-3 text-base leading-relaxed text-[#1C1C1A]/70">
+                {tripwire.description}
+              </p>
+
+              {/* What's inside */}
+              <div className="mt-6">
+                <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-[#1C1C1A]/50">
+                  What&apos;s inside
+                </p>
+                <ul className="mt-3 space-y-2">
+                  {tripwire.whatsInside.map((item, i) => (
+                    <li
+                      key={i}
+                      className="flex items-start gap-3 text-sm text-[#1C1C1A]/75"
+                    >
+                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#2C4A2E] text-[10px] font-extrabold text-white">
+                        ✓
+                      </span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Price + CTA */}
+            <div className="lg:min-w-[200px]">
+              <div className="rounded-sm border-2 border-[#1C1C1A]/15 bg-[#D7D4CC] p-6 text-center">
+                <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-[#1C1C1A]/50">
+                  One-time purchase
+                </p>
+                <p className="mt-2 font-serif text-4xl font-bold text-[#1C1C1A]">
+                  $9
+                </p>
+                <p className="mt-1 text-xs text-[#1C1C1A]/45">PDF download</p>
+                <BuyButton
+                  productSlug={tripwire.slug}
+                  label="Buy Now — $9"
+                  className="mt-5 w-full"
+                />
+                <p className="mt-3 text-xs text-[#1C1C1A]/45">
+                  Delivered to your inbox instantly.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Coming soon */}
+        <div className="mt-10 rounded-sm border-2 border-[#1C1C1A]/15 bg-white/30 p-6">
+          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#1C1C1A]/40">
+            On The Horizon
+          </p>
+          <p className="mt-2 font-serif text-lg font-bold text-[#1C1C1A]/60">
+            Eggs, seeds, and farm goods — when they&apos;re ready.
+          </p>
+          <p className="mt-2 text-sm text-[#1C1C1A]/50">
+            Local egg pickup, hatching egg availability, and practical farm goods will
+            appear here as the farm builds toward the 2027 season.
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }

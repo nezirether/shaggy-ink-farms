@@ -143,6 +143,7 @@ export const primaryNavItems: PrimaryNavItem[] = [
   { href: "/watch", label: "Watch" },
   { href: "/journal", label: "Journal" },
   { href: "/about", label: "About" },
+  { href: "/store", label: "Store" },
   { href: "/download", label: "Free Download" },
 ];
 
@@ -186,7 +187,7 @@ export const footerColumns = [
   {
     title: "On The Horizon",
     links: [
-      { href: "/store", label: "Farm Store (soon)" },
+      { href: "/store", label: "Farm Store" },
       { href: "/contact", label: "Contact" },
       { href: "/privacy-policy", label: "Privacy Policy" },
     ],
