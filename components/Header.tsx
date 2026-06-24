@@ -217,8 +217,8 @@ function YouTubeIcon() {
 
 const LOGO_SRC = "/images/brand/shaggy-ink-farms-logo.png";
 const BADGE_SRC = "/images/brand/shaggy-ink-farms-badge.svg";
-const LOGO_W = 108;
-const LOGO_H = 128;
+const LOGO_W = 90;
+const LOGO_H = 90;
 
 function CenterLogo() {
   const [useFallback, setUseFallback] = useState(false);
@@ -234,11 +234,7 @@ function CenterLogo() {
   }
 
   return (
-    <Link
-      href="/"
-      className="focus-ring block"
-      style={{ marginTop: -(LOGO_H - 56) }}
-    >
+    <Link href="/" className="focus-ring absolute bottom-0 left-1/2 z-[60] -translate-x-1/2">
       <Image
         src={LOGO_SRC}
         alt="Shaggy Ink Farms"
@@ -343,7 +339,7 @@ export function Header() {
             </div>
 
             {/* CENTER LOGO */}
-            <div className="relative flex shrink-0 items-center justify-center px-6" style={{ width: LOGO_W + 48 }}>
+            <div className="relative flex shrink-0 items-center justify-center self-stretch px-6" style={{ width: LOGO_W + 48 }}>
               <CenterLogo />
             </div>
 

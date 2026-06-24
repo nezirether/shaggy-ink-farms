@@ -82,7 +82,7 @@ export default function HatchingEggsAndStockPage() {
       <PageHero
         eyebrow="Hatching Eggs & Stock"
         title="Not for sale yet. The honest waitlist starts here."
-        copy="Join this list for future Heritage Plymouth Barred Rock hatching eggs, chicks, started pullets, and breeding stock updates. Availability will stay limited, seasonal, and tied to the real condition of the flock."
+        copy="Join this list for future Standard Bred Heritage Plymouth Barred Rock hatching eggs, chicks, started pullets, and breeding stock updates. Availability will stay limited, seasonal, and tied to the real condition of the flock."
         imageTitle="Breeding season starts with good planning"
         imageDetail="The offer is intentionally simple at this stage: a clear waitlist, not premature checkout."
         imageSrc={farmImages.heroRooster.src}

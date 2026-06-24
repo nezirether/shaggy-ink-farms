@@ -4,7 +4,7 @@ export const siteConfig = {
   subtitle: "A family farm in Anderson, California",
   targetSeason: "2027 season",
   description:
-    "A Northern California family farm building a Heritage Plymouth Barred Rock breeding program, keeping a mixed laying flock, growing flowers and food, and sharing the work as we go.",
+    "A Northern California family farm building a Standard Bred Heritage Plymouth Barred Rock breeding program, keeping a mixed laying flock, growing flowers and food, and sharing the work as we go.",
   url: "https://www.shaggyinkfarms.com",
   email: "hello@shaggyinkfarms.com",
   location: "Northern California",
@@ -252,14 +252,14 @@ export const pageMetadata = {
       "Seasonal farm fresh eggs from a small mixed laying flock in Anderson, California. Join the egg list for local pickup in Anderson, Cottonwood, Redding, and Shasta County.",
   },
   poultry: {
-    title: "California Heritage Poultry and Local Eggs",
+    title: "California Standard Bred Heritage Poultry and Local Eggs",
     description:
-      "Follow the Shaggy Ink Farms Heritage Plymouth Barred Rock breeding program, mixed laying flock, Northern California egg list, and future poultry waitlist.",
+      "Follow the Shaggy Ink Farms Standard Bred Heritage Plymouth Barred Rock breeding program, mixed laying flock, Northern California egg list, and future poultry waitlist.",
   },
   hatchingEggs: {
     title: "Barred Rock Hatching Eggs and Stock Waitlist",
     description:
-      "Join the waitlist for future Heritage Plymouth Barred Rock hatching eggs, chicks, started pullets, and breeding stock updates from Shaggy Ink Farms.",
+      "Join the waitlist for future Standard Bred Heritage Plymouth Barred Rock hatching eggs, chicks, started pullets, and breeding stock updates from Shaggy Ink Farms.",
   },
   projects: {
     title: "Homestead Projects",

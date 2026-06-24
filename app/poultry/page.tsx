@@ -35,8 +35,8 @@ export default function PoultryPage() {
     <>
       <PageHero
         eyebrow="Poultry"
-        title="Heritage poultry, local eggs, and the slow work of building a breeding program."
-        copy="Shaggy Ink Farms keeps a mixed laying flock now while building a Heritage Plymouth Barred Rock program carefully. This is the starting point for flock updates, local egg notices, and the future hatching eggs and stock waitlist."
+        title="Standard Bred Heritage poultry, local eggs, and the slow work of building a breeding program."
+        copy="Shaggy Ink Farms keeps a mixed laying flock now while building a Standard Bred Heritage Plymouth Barred Rock program carefully. This is the starting point for flock updates, local egg notices, and the future hatching eggs and stock waitlist."
         imageTitle="Barred Rock birds under the oaks"
         imageDetail="The poultry section brings the breeding program, the mixed flock, and the local egg list into one place."
         imageSrc={farmImages.barredRockFlock.src}
@@ -86,9 +86,9 @@ export default function PoultryPage() {
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-start">
           <div>
             <SectionHeader
-              eyebrow="Heritage Program"
+              eyebrow="Standard Bred Heritage Program"
               title="The Barred Rock work is being built before it is sold."
-              copy="The goal is a useful, well-documented Heritage Plymouth Barred Rock program rooted in careful selection, flock health, and accurate records."
+              copy="The goal is a useful, well-documented Standard Bred Heritage Plymouth Barred Rock program rooted in careful selection, flock health, and accurate records."
               align="left"
             />
             <div className="space-y-5 text-lg leading-8 text-[#1C1C1A]/82">

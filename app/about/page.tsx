@@ -24,7 +24,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About the Farm"
         title="A family homestead with a long view."
-        copy="Shaggy Ink Farms is a family farm in Anderson, California. We are building a Heritage Plymouth Barred Rock breeding program, keeping a mixed laying flock, growing food and flowers, planting an orchard, and learning as we go."
+        copy="Shaggy Ink Farms is a family farm in Anderson, California. We are building a Standard Bred Heritage Plymouth Barred Rock breeding program, keeping a mixed laying flock, growing food and flowers, planting an orchard, and learning as we go."
         imageTitle="Oak pasture, fence line, and family work"
         imageDetail="Mature oaks, open pastureland, rustic fencing, and the scale of a real family homestead."
         imageSrc={farmImages.oakPasture.src}
