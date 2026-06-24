@@ -12,3 +12,14 @@ export function PrintTrigger() {
   }, [searchParams]);
   return null;
 }
+
+export function PrintButton({ className }: { className?: string }) {
+  return (
+    <button
+      onClick={() => window.print()}
+      className={className}
+    >
+      Print / Save PDF
+    </button>
+  );
+}

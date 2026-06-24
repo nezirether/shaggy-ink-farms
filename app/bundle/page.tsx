@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { PrintTrigger } from "@/components/PrintTrigger";
+import { PrintTrigger, PrintButton } from "@/components/PrintTrigger";
 import { SEED_STARTING_DATA, COMPANION_PLANTING_DATA } from "@/lib/planting-data";
 
 export const metadata: Metadata = {
@@ -66,12 +66,7 @@ export default function BundlePage() {
           <span className="mx-2 text-[#F5F0E8]/40">·</span>
           <span className="text-sm font-bold">Zone 9b Grower's Bundle</span>
         </div>
-        <button
-          onClick={() => window.print()}
-          className="rounded-sm border-2 border-[#C6933F] bg-[#C6933F] px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] text-[#1C1C1A] transition hover:bg-[#F5F0E8]"
-        >
-          Print / Save PDF
-        </button>
+        <PrintButton className="rounded-sm border-2 border-[#C6933F] bg-[#C6933F] px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] text-[#1C1C1A] transition hover:bg-[#F5F0E8]" />
       </div>
 
       <div className="bg-[#F5F0E8] print:bg-white">
