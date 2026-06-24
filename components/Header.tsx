@@ -258,7 +258,7 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b-2 border-[#1C1C1A]/10 bg-[#2C4A2E] backdrop-blur">
+    <header className="sticky top-0 z-50 overflow-visible border-b-2 border-[#1C1C1A]/10 bg-[#2C4A2E] backdrop-blur">
 
       {/* ── TIER 1: Utility bar ─────────────────────────────────────────── */}
       <div className="hidden border-b border-[#1C1C1A]/25 lg:block">
@@ -302,8 +302,8 @@ export function Header() {
       </div>
 
       {/* ── TIER 2: Main nav ────────────────────────────────────────────── */}
-      <div className="relative">
-        <div className="mx-auto flex max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+      <div className="relative overflow-visible">
+        <div className="mx-auto flex max-w-7xl items-center overflow-visible px-4 sm:px-6 lg:px-8">
 
           {/* Mobile: farm name + hamburger */}
           <div className="flex w-full items-center justify-between py-3 lg:hidden">
