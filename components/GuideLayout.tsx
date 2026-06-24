@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ConversionFooter } from '@/components/ConversionFooter';
+import { GuideDownloadCTA } from '@/components/GuideDownloadCTA';
 import { GuideCard } from '@/components/GuideCard';
 import { RelatedLinks } from '@/components/RelatedLinks';
 import type { GrowingGuide } from '@/data/growingGuides';
@@ -255,6 +256,9 @@ export function GuideLayout({ guide }: GuideLayoutProps) {
             </ul>
           </section>
         )}
+
+        {/* Lead magnet CTA */}
+        <GuideDownloadCTA />
 
         {/* Related guides */}
         {relatedGuides.length > 0 && (

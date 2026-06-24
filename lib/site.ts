@@ -143,6 +143,7 @@ export const primaryNavItems: PrimaryNavItem[] = [
   { href: "/watch", label: "Watch" },
   { href: "/journal", label: "Journal" },
   { href: "/about", label: "About" },
+  { href: "/download", label: "Free Download" },
 ];
 
 export const mobileQuickActions = [
@@ -170,6 +171,7 @@ export const footerColumns = [
       { href: "/learn/know-your-growing-zone", label: "Know Your Growing Zone" },
       { href: "/learn/local", label: "Local Guides" },
       { href: "/plan/garden-planner", label: "Garden Planner" },
+      { href: "/download", label: "Free Zone 9b Calendar" },
     ],
   },
   {
