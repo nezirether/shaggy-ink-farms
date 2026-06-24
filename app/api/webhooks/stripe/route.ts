@@ -32,7 +32,7 @@ async function sendFulfillmentEmail(email: string, productSlug: string) {
   const from =
     process.env.CONTACT_FROM_EMAIL ??
     "Shaggy Ink Farms <updates@shaggyinkfarms.com>";
-  const downloadUrl = `${siteConfig.url}${product.downloadPath}`;
+  const downloadUrl = `${siteConfig.url}/bundle?print=1`;
 
   await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -53,10 +53,10 @@ async function sendFulfillmentEmail(email: string, productSlug: string) {
     ${product.name} is ready to download
   </h1>
   <p style="font-size:15px;line-height:1.7;color:#3a3a38;margin:0 0 24px">
-    Thank you for your purchase. Here's your download link — it goes directly to the PDF, ready to print.
+    Thank you for your purchase. Click below to open your bundle — use your browser's Print or Save as PDF to keep a copy.
   </p>
   <a href="${downloadUrl}" style="display:inline-block;background:#2C4A2E;color:#F5F0E8;text-decoration:none;padding:14px 28px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;border-radius:2px">
-    Download Your Bundle
+    Open &amp; Print Your Bundle
   </a>
   <p style="font-size:13px;line-height:1.7;color:#6b6b68;margin:28px 0 0">
     If you have any questions, reply to this email or reach us at
