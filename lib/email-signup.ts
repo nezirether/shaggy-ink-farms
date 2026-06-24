@@ -20,7 +20,7 @@ export type LegacyEmailSignupInterest =
 
 export type EmailSignupInterest = EmailSegment | LegacyEmailSignupInterest;
 
-export type CaptureType = "email-signup" | "waitlist" | "planner-save";
+export type CaptureType = "email-signup" | "waitlist" | "planner-save" | "lead-magnet";
 
 type EmailSegmentDetails = {
   label: string;
