@@ -51,7 +51,15 @@ export default function CalendarPage() {
           <span className="text-[#F5F0E8]/40">·</span>
           <span className="text-sm font-semibold">Zone 9b Planting Calendar</span>
         </div>
-        <PrintButton className="rounded-sm border-2 border-[#C6933F] bg-[#C6933F] px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] text-[#1C1C1A] transition hover:bg-[#F5F0E8]" />
+        <div className="flex items-center gap-2">
+          <a
+            href="/api/calendar.pdf"
+            className="rounded-sm border-2 border-[#F5F0E8]/30 px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] text-[#F5F0E8] transition hover:bg-white/10"
+          >
+            Download PDF
+          </a>
+          <PrintButton className="rounded-sm border-2 border-[#C6933F] bg-[#C6933F] px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] text-[#1C1C1A] transition hover:bg-[#F5F0E8]" />
+        </div>
       </div>
 
       <div className="min-h-screen bg-[#F5F0E8] print:bg-white">

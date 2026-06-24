@@ -32,7 +32,7 @@ async function sendFulfillmentEmail(email: string, productSlug: string) {
   const from =
     process.env.CONTACT_FROM_EMAIL ??
     "Shaggy Ink Farms <updates@shaggyinkfarms.com>";
-  const downloadUrl = `${siteConfig.url}/bundle?print=1`;
+  const downloadUrl = `${siteConfig.url}/api/bundle.pdf`;
 
   await fetch("https://api.resend.com/emails", {
     method: "POST",
