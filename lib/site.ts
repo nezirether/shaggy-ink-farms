@@ -123,28 +123,37 @@ export const learnNavGroups: NavGroup[] = [
   },
 ];
 
-export const primaryNavItems: PrimaryNavItem[] = [
-  { href: "/", label: "Home" },
+export const storiesNavItems: NavChild[] = [
   {
-    href: "/poultry",
-    label: "Poultry",
-    children: poultryNavItems,
+    href: "/watch",
+    label: "Watch",
+    description: "Farm videos on YouTube — flock updates, builds, and field notes.",
   },
   {
-    href: "/garden",
-    label: "Garden",
-    children: gardenNavItems,
+    href: "/journal",
+    label: "Journal",
+    description: "Written field notes, seasonal updates, and farm journal entries.",
   },
-  {
-    href: "/learn",
-    label: "Learn & Plan",
-    children: learnNavItems,
-  },
-  { href: "/watch", label: "Watch" },
-  { href: "/journal", label: "Journal" },
+];
+
+// Left of logo: Poultry, Garden, Learn & Plan
+export const leftNavItems: PrimaryNavItem[] = [
+  { href: "/poultry", label: "Poultry", children: poultryNavItems },
+  { href: "/garden", label: "Garden", children: gardenNavItems },
+  { href: "/learn", label: "Learn & Plan", children: learnNavItems },
+];
+
+// Right of logo: Stories, About, Store
+export const rightNavItems: PrimaryNavItem[] = [
+  { href: "/watch", label: "Stories", children: storiesNavItems },
   { href: "/about", label: "About" },
   { href: "/store", label: "Store" },
-  { href: "/download", label: "Free Download" },
+];
+
+// Combined for mobile / legacy references
+export const primaryNavItems: PrimaryNavItem[] = [
+  ...leftNavItems,
+  ...rightNavItems,
 ];
 
 export const mobileQuickActions = [
