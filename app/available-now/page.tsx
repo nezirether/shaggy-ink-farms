@@ -188,7 +188,7 @@ export default function AvailableNowPage() {
             </div>
             <div>
               <span className="font-bold text-[#1C1C1A]">Available: </span>
-              Spring 2027 — waitlist only
+              Waitlist only — est. 18-month wait
             </div>
           </div>
           <p className="mt-4 text-sm leading-relaxed text-[#1C1C1A]/60">

@@ -17,7 +17,7 @@ const hatchingEggsFaqs: FaqItem[] = [
   {
     question: "Are hatching eggs available right now?",
     answer:
-      "No. The page is waitlist only right now. Public hatching egg drops will only happen when the breeding season, flock condition, and farm selection support it.",
+      "No. The current estimated wait is approximately 18 months. The waitlist is open and we work through it in order. Public hatching egg drops will only happen when the breeding season, flock condition, and farm selection support it.",
   },
   {
     question: "What does the poultry waitlist cover?",
@@ -99,6 +99,17 @@ export default function HatchingEggsAndStockPage() {
             <h2 className="mt-3 font-serif text-3xl font-bold leading-tight">
               Get notified when there is real availability.
             </h2>
+            <div className="mt-4 rounded-sm border border-[#E8C87E]/40 bg-[#1C1C1A]/20 px-4 py-3">
+              <p className="text-xs font-extrabold uppercase tracking-[0.15em] text-[#E8C87E]">
+                Current Wait Time
+              </p>
+              <p className="mt-1 font-serif text-2xl font-bold text-[#F5F0E8]">
+                Approximately 18 months
+              </p>
+              <p className="mt-1 text-xs text-[#F5F0E8]/60">
+                Join the list now — we work through it in order.
+              </p>
+            </div>
             <p className="mt-4 text-sm leading-7 text-[#F5F0E8]/78">
               This form is for poultry interest only. It does not reserve a
               specific bird, hatch, or shipment.

@@ -37,8 +37,8 @@ export const poultryAvailability = {
     title: "Heritage Hatching Eggs",
     shortTitle: "Hatching Eggs",
     status: "waitlist",
-    availabilityLabel: "Waitlist open",
-    expectedWindow: "Future breeding season; no public drops scheduled yet.",
+    availabilityLabel: "Waitlist — est. 18 months out",
+    expectedWindow: "Current estimated wait: 18 months. Waitlist is open now.",
     pickupShippingNotes:
       "Shipping may be considered later. Details will be shared before any release.",
     segment: "hatching-eggs",
