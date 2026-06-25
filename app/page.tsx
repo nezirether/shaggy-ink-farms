@@ -185,6 +185,9 @@ export default function Home() {
               className="mt-7 max-w-xl text-[#F5F0E8]"
             />
             <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <ButtonLink href="/available-now" variant="primary">
+                See What&apos;s Available Now
+              </ButtonLink>
               <ButtonLink href="/poultry" variant="secondary">
                 Explore Poultry
               </ButtonLink>

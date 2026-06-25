@@ -140,6 +140,7 @@ export const storiesNavItems: NavChild[] = [
 
 // Left of logo: Poultry, Garden, Learn & Plan
 export const leftNavItems: PrimaryNavItem[] = [
+  { href: "/available-now", label: "Available Now" },
   { href: "/poultry", label: "Poultry", children: poultryNavItems },
   { href: "/garden", label: "Garden", children: gardenNavItems },
   { href: "/learn", label: "Learn & Plan", children: learnNavItems },
@@ -159,6 +160,7 @@ export const primaryNavItems: PrimaryNavItem[] = [
 ];
 
 export const mobileQuickActions = [
+  { href: "/available-now", label: "Available Now" },
   { href: "/subscribe", label: "Get Updates" },
   { href: "/poultry/eggs", label: "Fresh Eggs" },
 ];
@@ -189,6 +191,7 @@ export const footerColumns = [
   {
     title: "Follow The Farm",
     links: [
+      { href: "/available-now", label: "Available Now" },
       { href: "/watch", label: "YouTube" },
       { href: "/journal", label: "Journal" },
       { href: "/about", label: "About" },
