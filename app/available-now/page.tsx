@@ -93,6 +93,16 @@ export default function AvailableNowPage() {
               more
             </div>
           </div>
+          <div className="mt-5 overflow-hidden rounded-sm border border-[#1C1C1A]/15">
+            <Image
+              src={farmImages.eatingEggsFlock.src}
+              alt={farmImages.eatingEggsFlock.alt}
+              width={631}
+              height={790}
+              className="w-full object-cover object-top"
+              sizes="(min-width: 768px) 42rem, 100vw"
+            />
+          </div>
           <div className="mt-5">
             <a
               href={siteConfig.phoneHref}
@@ -186,6 +196,16 @@ export default function AvailableNowPage() {
             breeding program. Join the waitlist and we&apos;ll reach out when
             the first eggs become available.
           </p>
+          <div className="mt-5 overflow-hidden rounded-sm border border-[#1C1C1A]/15">
+            <Image
+              src={farmImages.hatchingEggsTray.src}
+              alt={farmImages.hatchingEggsTray.alt}
+              width={480}
+              height={640}
+              className="w-full object-cover"
+              sizes="(min-width: 768px) 42rem, 100vw"
+            />
+          </div>
           <div className="mt-5 rounded-sm border-2 border-[#2C4A2E] bg-[#2C4A2E] p-5 text-[#F5F0E8]">
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#C6933F]">
               Join the Waitlist
