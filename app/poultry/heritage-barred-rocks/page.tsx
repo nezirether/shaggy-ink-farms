@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ButtonLink } from "@/components/ButtonLink";
 import { PageHero } from "@/components/PageHero";
@@ -65,8 +66,8 @@ export default function HeritageBarredRocksPage() {
         copy="Shaggy Ink Farms is building a Standard Bred Heritage Plymouth Barred Rock program in Anderson, California. The work starts with Good Shepherd and Frank Reese lineage context, then moves through records, selection, temperament, utility, and the discipline to avoid claims before the flock earns them."
         imageTitle="Standard Bred Heritage flock under Northern California oaks"
         imageDetail="This is the canonical home for the breeding program. The genetics journal post remains the deeper field note."
-        imageSrc={farmImages.barredRockFlock.src}
-        imageAlt={farmImages.barredRockFlock.alt}
+        imageSrc={farmImages.heritageRoosterPrimary.src}
+        imageAlt={farmImages.heritageRoosterPrimary.alt}
         priority
       />
 
@@ -110,6 +111,16 @@ export default function HeritageBarredRocksPage() {
               >
                 Read The Genetics Field Note
               </ButtonLink>
+            </div>
+            <div className="mt-8 overflow-hidden rounded-sm border-2 border-[#1C1C1A]">
+              <Image
+                src={farmImages.heritageRoosterSecondary.src}
+                alt={farmImages.heritageRoosterSecondary.alt}
+                width={900}
+                height={1100}
+                className="w-full object-cover"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+              />
             </div>
           </div>
 

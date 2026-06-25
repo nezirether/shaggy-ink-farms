@@ -1,15 +1,27 @@
 export const farmImages = {
   heroRooster: {
-    src: "/images/farm/plymouth-barred-rock-rooster-oak-pasture-hero.png",
-    alt: "Plymouth Barred Rock rooster standing in golden-hour oak pasture at a Northern California homestead",
+    src: "/images/farm/20260612_174103.jpg",
+    alt: "Standard Bred Barred Rock rooster on pasture at Shaggy Ink Farms, Anderson California",
+  },
+  heritageRoosterPrimary: {
+    src: "/images/farm/20260613_184002.jpg",
+    alt: "Heritage Standard Bred Barred Rock rooster showing classic barring pattern",
+  },
+  heritageRoosterSecondary: {
+    src: "/images/farm/20260315_155308.jpg",
+    alt: "Barred Rock rooster on open pasture at Shaggy Ink Farms",
+  },
+  barnChick: {
+    src: "/images/farm/Snapchat-890031848.jpg",
+    alt: "Barnyard mix chicks in hand at Shaggy Ink Farms",
   },
   oakPasture: {
     src: "/images/farm/northern-california-oak-pasture-fence-line.png",
     alt: "Mature oak trees, open Northern California pastureland, and rustic fence posts in golden light",
   },
   barredRockFlock: {
-    src: "/images/chickens/plymouth-barred-rock-flock-rustic-fence.png",
-    alt: "Plymouth Barred Rock rooster and hens foraging near rustic fencing in pasture grass",
+    src: "/images/farm/20260613_183111.jpg",
+    alt: "Barred Rock rooster and hen on pasture at Shaggy Ink Farms",
   },
   eggCartons: {
     src: "/images/eggs/farm-fresh-eggs-cream-cartons-workbench.png",
