@@ -746,6 +746,104 @@ export const journalArticles: JournalArticle[] = [
       },
     ],
   },
+  {
+    slug: "ringlet-line",
+    title: "The Birds in My Yard Have a History Worth Knowing",
+    seoTitle: "The Ringlet Line: Barred Rock Breeding History at Shaggy Ink Farms",
+    dek: "Walk into any feed store in Northern California this spring and you'll find Barred Rock chicks labeled heritage. They won't be Standard Bred. Here's why that difference matters — and what the Ringlet line has to do with the birds on this farm.",
+    excerpt: "The Ringlet line, E.B. Thompson, Ralph Sturgeon, and why the birds ranging on three acres in Anderson, California have a documented breeding history most 'heritage' flocks don't.",
+    publishedAt: "2026-06-25",
+    author: siteConfig.name,
+    category: "Poultry / Breeding Program",
+    contentType: "Article",
+    tags: ["Poultry", "Heritage Poultry"],
+    image: {
+      src: "/images/farm/20260612_174103.jpg",
+      alt: "Standard Bred Barred Rock rooster at Shaggy Ink Farms, Anderson California",
+    },
+    content: [
+      {
+        type: "paragraph",
+        text: "Walk into any feed store in Northern California this spring and you'll find Barred Rock chicks in the brooder. They'll be labeled heritage. They'll look the part. And they'll be fine birds for a backyard flock.",
+      },
+      {
+        type: "paragraph",
+        text: "But they won't be Standard Bred. And the difference matters more than most people realize.",
+      },
+      {
+        type: "heading",
+        text: "What Happened to the Barred Rock",
+      },
+      {
+        type: "paragraph",
+        text: "Over the last seventy years, commercial hatcheries selected Barred Rocks for one thing — egg production. The body depth is gone. The barring is loose. The genetics that made them genuinely productive as both layers and meat birds got traded away for higher egg counts in confinement.",
+      },
+      {
+        type: "paragraph",
+        text: "The American Poultry Association Standard of Perfection describes what a Barred Rock is actually supposed to be: equal-width black and white bars on every feather, sharply defined. A five-pointed single comb, upright and red. A deep, broad body built to work. Yellow legs, clean.",
+      },
+      {
+        type: "paragraph",
+        text: "That bird still exists. But you have to know where to find it.",
+      },
+      {
+        type: "heading",
+        text: "The Ringlet Line",
+      },
+      {
+        type: "paragraph",
+        text: "In serious Barred Rock breeding circles, one of the most important strains ever developed was called the Ringlet — built by a breeder named E.B. Thompson. He selected specifically for barring quality: tight, fine, parallel bars that wrap cleanly around every feather. Thompson wasn't breeding for egg numbers. He was breeding toward the Standard.",
+      },
+      {
+        type: "paragraph",
+        text: "The Ringlet line became foundational for exhibition Barred Rocks in America. When Frank Reese built his program at Good Shepherd Poultry Ranch — one of the most respected Standard Bred programs in the country — Thompson's Ringlet genetics were in the mix.",
+      },
+      {
+        type: "heading",
+        text: "Ralph Sturgeon and the Line That Survived",
+      },
+      {
+        type: "paragraph",
+        text: "Serious breeding programs are hard to maintain. Most don't survive a generation. Ralph Sturgeon was one of the breeders who kept the Ringlet line alive — working with birds that traced directly to Thompson's strain during the decades when the hatchery industry was busy discarding everything the Standard called for.",
+      },
+      {
+        type: "paragraph",
+        text: "My flock traces back through that lineage. Ringlet genetics, maintained through Sturgeon's program, are the foundation of what's ranging on my three acres in Anderson right now.",
+      },
+      {
+        type: "heading",
+        text: "What That Means",
+      },
+      {
+        type: "paragraph",
+        text: "My roosters run a little lighter than a textbook SOP bird — wider white bars than ideal. That's a known characteristic of the Ringlet line in roosters. Thompson's strain was selected heavily through the hens, where the barring shows tightest. The roosters look lighter because the genetics express differently by sex.",
+      },
+      {
+        type: "paragraph",
+        text: "Every generation I'm selecting toward the Standard. Tightest-barring hens. Most correct roosters. Keep building.",
+      },
+      {
+        type: "paragraph",
+        text: "But the foundation is real. Documented. Historically significant in a way that most flocks sold as \"heritage\" simply aren't.",
+      },
+      {
+        type: "heading",
+        text: "Why It Matters",
+      },
+      {
+        type: "paragraph",
+        text: "When you buy hatching eggs from a hatchery, you're buying birds optimized for industrial confinement. When you buy from a documented Standard Bred program, you're buying genetics selected for exactly what a small farm needs — consistent laying, good foraging, useful carcass weight, breeds true.",
+      },
+      {
+        type: "paragraph",
+        text: "The Barred Rock that built American homesteads is still out there. Mine trace back to E.B. Thompson's Ringlet line through Ralph Sturgeon.",
+      },
+      {
+        type: "quote",
+        text: "That's not marketing. That's just the history of the birds in my yard.",
+      },
+    ],
+  },
 ];
 
 export const featuredArticle = journalArticles[0];
