@@ -138,10 +138,10 @@ export default function AvailableNowPage() {
             <Image
               src={farmImages.barnChick.src}
               alt={farmImages.barnChick.alt}
-              width={600}
-              height={600}
-              className="w-full object-cover"
-              sizes="(min-width: 768px) 50vw, 100vw"
+              width={418}
+              height={743}
+              className="mx-auto w-full max-w-sm object-cover"
+              sizes="(min-width: 768px) 24rem, 100vw"
             />
           </div>
           <div className="mt-5">
