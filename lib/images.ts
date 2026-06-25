@@ -12,8 +12,8 @@ export const farmImages = {
     alt: "Barred Rock rooster on open pasture at Shaggy Ink Farms",
   },
   barnChick: {
-    src: "/images/farm/Snapchat-890031848.jpg",
-    alt: "Barnyard mix chicks in hand at Shaggy Ink Farms",
+    src: "/images/farm/Snapchat-308249512.jpg",
+    alt: "Barnyard mix chick held in hand at Shaggy Ink Farms",
   },
   oakPasture: {
     src: "/images/farm/northern-california-oak-pasture-fence-line.png",
