@@ -512,6 +512,240 @@ export const journalArticles: JournalArticle[] = [
       },
     ],
   },
+  {
+    slug: "field-notes-001-inspecting-barred-rocks",
+    title: "Field Notes #001 — Inspecting Plymouth Barred Rocks",
+    seoTitle: "Field Notes #001: Inspecting Plymouth Barred Rocks (APA Standard Quick Reference) | Shaggy Ink Farms",
+    dek: "A one-page inspection checklist for Plymouth Barred Rocks — body type, barring quality, condition, and common faults. Summarized from APA Standard criteria for use in the field.",
+    excerpt: "Quick-reference field guide for evaluating Plymouth Barred Rocks against Standard criteria. Covers overall type, head, body, legs, barring, condition, temperament, and common faults. Print it. Take it to the yard.",
+    metaDescription: "Field Notes #001: a printable inspection checklist for Plymouth Barred Rocks. Covers body type, barring, condition, and common faults based on APA Standard of Perfection criteria. From Shaggy Ink Farms.",
+    publishedAt: "2026-06-25",
+    author: siteConfig.name,
+    category: "Field Notes",
+    contentType: "Article",
+    tags: ["Poultry", "Heritage Poultry"],
+    image: {
+      src: "/images/farm/20260613_184002.jpg",
+      alt: "Heritage Standard Bred Barred Rock rooster showing classic barring pattern",
+    },
+    content: [
+      {
+        type: "paragraph",
+        text: "Print this. Take it to the yard. These notes summarize Plymouth Barred Rock evaluation criteria in plain language for use during actual bird inspection. The underlying framework comes from the American Poultry Association Standard of Perfection — this document paraphrases those criteria in practical terms and does not reproduce APA text.",
+      },
+      {
+        type: "heading",
+        text: "Before You Catch the Bird",
+      },
+      {
+        type: "list",
+        items: [
+          "Observe from outside the pen first — at least 60 seconds.",
+          "Watch how the bird carries itself at rest and moving.",
+          "Note alertness — eyes tracking, head up, aware of surroundings.",
+          "Watch for limp, hunch, labored breathing, isolation from flock.",
+          "A good bird should look like it belongs in the middle of the flock, not the edge.",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Overall Impression (5-second check)",
+      },
+      {
+        type: "paragraph",
+        text: "Before you look at any single part, look at the whole bird.",
+      },
+      {
+        type: "list",
+        items: [
+          "□  Correct body shape — broad, deep, slightly rectangular, not round or narrow",
+          "□  Balanced proportions — nothing obviously oversized or undersized",
+          "□  Strong stance — standing square, not crouching or listing",
+          "□  Active and alert — not puffed, not drooping",
+          "□  Healthy feather condition — tight, clean, no obvious damage",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Head",
+      },
+      {
+        type: "subheading",
+        text: "Comb",
+      },
+      {
+        type: "list",
+        items: [
+          "Single comb, medium size, straight and upright on male — never falling to the side.",
+          "Five even points. The rear point follows the neck line.",
+          "Red and well-developed in laying hens. Pale comb can signal low production or health issue.",
+          "Fault: rose comb, twisted comb, side sprig.",
+        ],
+      },
+      {
+        type: "subheading",
+        text: "Eyes, Beak, Wattles, Ear lobes",
+      },
+      {
+        type: "list",
+        items: [
+          "Eyes: bay red (reddish-orange). Bright, full, clear. No discharge.",
+          "Beak: yellow (may show horn tint), medium length, slightly curved. Not crossed.",
+          "Wattles: medium, red, matching — no significant size difference side to side.",
+          "Ear lobes: red. White ear lobes are a disqualification in exhibition birds.",
+          "Face: red, smooth. Not overly feathered at the face.",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Body",
+      },
+      {
+        type: "list",
+        items: [
+          "Back: medium length, broad, slightly sloped toward the tail.",
+          "Breast: broad, full, and carried forward — not flat or narrow.",
+          "Depth: good depth through the keel. Breed is dual-purpose; substance matters.",
+          "Width: wide through the saddle and shoulders. Narrow birds fail the standard.",
+          "Tail: moderate angle, not too high (squirrel) or too low (wry). Coverts tight.",
+          "Wings: carried tight against the body, tips not drooping.",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Legs & Feet",
+      },
+      {
+        type: "list",
+        items: [
+          "Shanks: yellow, clean, no feathering.",
+          "Four toes, straight, well-spread.",
+          "Legs set wide apart — indicates good width and body substance.",
+          "No scaliness, swelling, or bumblefoot.",
+          "Fault: crooked toes, feathered shanks, green or dark shank color.",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Barring",
+      },
+      {
+        type: "paragraph",
+        text: "Barring is the defining feature of the breed. Evaluate it on the saddle, breast, and wing bay where bars are most visible.",
+      },
+      {
+        type: "subheading",
+        text: "Males",
+      },
+      {
+        type: "list",
+        items: [
+          "Black and white bars should be nearly equal in width.",
+          "Bars run across the feather, parallel, without bleeding or blurring.",
+          "Color appears lighter overall than females due to double barring gene.",
+          "Fault: smudgy bars, mossiness (irregular spots), excessive white leakage, dark feathers without barring.",
+        ],
+      },
+      {
+        type: "subheading",
+        text: "Females",
+      },
+      {
+        type: "list",
+        items: [
+          "Darker overall than males — single copy of the barring gene.",
+          "Black bars wider than white bars.",
+          "Even pattern across feather still required — no mossiness.",
+          "Fault: same as males. Also watch for females that appear too light (may indicate barring gene issues).",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Condition",
+      },
+      {
+        type: "list",
+        items: [
+          "□  Proper weight — breast muscle firm, keel not sharp",
+          "□  Bright eyes — no discharge, no swelling around eye",
+          "□  Clean vent — no pastiness, no soiling",
+          "□  No mites or lice — check under wings, at vent, along feather shafts",
+          "□  Healthy breathing — no wheezing, no open-mouth breathing",
+          "□  No injuries or wounds — check comb tips, toes, wattles",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Temperament",
+      },
+      {
+        type: "list",
+        items: [
+          "Should tolerate handling without extreme panic.",
+          "Calm and curious is ideal — not flighty, not torpid.",
+          "Overly aggressive cocks are a management problem and a temperament fault.",
+          "Note temperament in records. Temperament is heritable.",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Breeder's Decision",
+      },
+      {
+        type: "list",
+        items: [
+          "☐  Keep for breeding",
+          "☐  Watch for another season",
+          "☐  Place with another flock / sell",
+          "☐  Harvest",
+          "☐  Cull from program — record the reason",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "Notes: ____________________________________________",
+      },
+      {
+        type: "heading",
+        text: "Common Faults",
+      },
+      {
+        type: "list",
+        items: [
+          "Narrow body — fails the dual-purpose standard, do not breed",
+          "High tail (squirrel tail) — disqualification in show; deprioritize in breeding",
+          "Wry tail — feathers twisted to one side; do not breed",
+          "Mossiness in barring — irregular spotting instead of clean bars",
+          "White ear lobes — disqualification in exhibition",
+          "Pale shanks — yellow shanks required; greenish or dark shanks are a fault",
+          "Crossed beak — disqualify from breeding",
+          "Poor barring contrast — bars bleed together, no clean edge",
+          "Soft, loose feathering — breed should carry tight feathers",
+          "Light body weight — insufficient muscle for a dual-purpose breed",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Field Tip",
+      },
+      {
+        type: "quote",
+        text: "Start at the tail. A squirrel tail or wry tail tells you immediately that the bird is not a breeding candidate. Don't spend ten minutes on a bird the tail already disqualified.",
+      },
+      {
+        type: "paragraph",
+        text: "This is a summary document for field use. The American Poultry Association Standard of Perfection is the authoritative source for breed standards and exhibition disqualifications. This document paraphrases and interprets those criteria and does not substitute for the full APA Standard.",
+      },
+    ],
+    sourceNotes: [
+      {
+        label: "American Poultry Association Standard of Perfection — Plymouth Rock, Barred variety (current edition)",
+      },
+      {
+        label: "Good Shepherd Poultry Ranch — breeding and selection criteria documentation",
+      },
+    ],
+  },
 ];
 
 export const featuredArticle = journalArticles[0];
