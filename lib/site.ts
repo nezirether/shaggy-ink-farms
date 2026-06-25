@@ -7,6 +7,8 @@ export const siteConfig = {
     "A Northern California family farm building a Heritage Plymouth Barred Rock breeding program, keeping a mixed laying flock, growing flowers and food, and sharing the work as we go.",
   url: "https://www.shaggyinkfarms.com",
   email: "hello@shaggyinkfarms.com",
+  phone: "(530) 364-4861",
+  phoneHref: "tel:+15303644861",
   location: "Northern California",
   social: {
     youtube: "https://www.youtube.com/@shaggyinkfarms",
