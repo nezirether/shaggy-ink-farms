@@ -164,7 +164,7 @@ export default function Home() {
               Anderson, California - getting ready for the {targetSeason}
             </p>
             <h1 className="mt-6 max-w-4xl font-serif text-5xl font-bold leading-[0.95] text-[#1C1C1A] sm:text-7xl">
-              Heritage Barred Rocks and a family farm, taking shape for 2027.
+              Standard Bred Heritage Barred Rocks and a family farm, taking shape for 2027.
             </h1>
             <p className="mt-6 max-w-2xl text-lg font-bold leading-8 text-[#2C4A2E] sm:text-2xl">
               We are building Shaggy Ink Farms in public: a Plymouth Barred
@@ -310,7 +310,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl">
           <SectionHeader
             eyebrow="Poultry"
-            title="Heritage poultry is the identity of this farm, not a side project."
+            title="Standard Bred Heritage poultry is the identity of this farm, not a side project."
             copy="Local eggs today when the hens and season allow. A documented Plymouth Barred Rock breeding program for the long run."
           />
           <div className="grid gap-5 lg:grid-cols-3">

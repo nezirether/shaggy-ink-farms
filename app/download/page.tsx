@@ -85,9 +85,9 @@ export default function DownloadPage() {
             geo="regional"
             showInterest
             buttonLabel="Send Me the Calendar"
-            successMessage="It's on its way — check your inbox."
-            successHref="/downloads/zone-9b-planting-calendar.pdf"
-            successHrefLabel="Download now"
+            successMessage="It's on its way — check your inbox (or download directly below)."
+            successHref="/api/calendar.pdf"
+            successHrefLabel="Download PDF now"
             helperText="No spam. Just the PDF, then seasonal Zone 9b growing notes."
             className="mt-5"
           />

@@ -1,6 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
-import { farmImages } from "@/lib/images";
 import { footerColumns, siteConfig } from "@/lib/site";
 
 export function Footer() {
@@ -8,21 +6,12 @@ export function Footer() {
     <footer className="border-t-2 border-[#1C1C1A]/10 bg-[#1C1C1A] px-4 py-14 text-[#F5F0E8] sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex items-center gap-4">
-            <Image
-              src={farmImages.badge.src}
-              alt={farmImages.badge.alt}
-              width={72}
-              height={72}
-              className="rounded-full border-2 border-[#C6933F]"
-            />
-            <div>
+          <div>
               <p className="font-serif text-2xl font-bold">{siteConfig.name}</p>
               <p className="text-sm leading-6 text-[#F5F0E8]/72">
                 Heritage poultry, local eggs, and practical growing guidance from Anderson, California.
               </p>
             </div>
-          </div>
           <div className="flex flex-col gap-1 lg:items-end lg:text-right">
             <a
               href={`mailto:${siteConfig.email}`}

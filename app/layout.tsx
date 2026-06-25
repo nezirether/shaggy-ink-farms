@@ -54,9 +54,9 @@ export default function RootLayout({
       <body>
         <JsonLd data={organizationJsonLd()} />
         <JsonLd data={farmJsonLd()} />
-        <Header />
+        <div className="print:hidden"><Header /></div>
         <main>{children}</main>
-        <Footer />
+        <div className="print:hidden"><Footer /></div>
         <GoogleAnalytics />
       </body>
     </html>

@@ -4,23 +4,25 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { farmImages } from "@/lib/images";
 import {
-  mobileQuickActions,
+  leftNavItems,
+  rightNavItems,
   primaryNavItems,
+  mobileQuickActions,
   siteConfig,
   type NavChild,
   type NavGroup,
   type PrimaryNavItem,
 } from "@/lib/site";
 
-function isItemActive(pathname: string, item: PrimaryNavItem) {
-  if (item.href === "/") {
-    return pathname === "/";
-  }
+// ─── Utility helpers ────────────────────────────────────────────────────────
 
+function isItemActive(pathname: string, item: PrimaryNavItem) {
+  if (item.href === "/") return pathname === "/";
   return pathname === item.href || pathname.startsWith(`${item.href}/`);
 }
+
+// ─── Dropdown menu ──────────────────────────────────────────────────────────
 
 function DesktopMenu({
   href,
@@ -94,6 +96,44 @@ function GroupedNavList({ groups }: { groups: NavGroup[] }) {
   );
 }
 
+function NavItemDesktop({ item, pathname }: { item: PrimaryNavItem; pathname: string }) {
+  const active = isItemActive(pathname, item);
+
+  if (item.children) {
+    return (
+      <DesktopMenu href={item.href} label={item.label} active={active}>
+        <div className="px-4 pb-1 pt-4">
+          <p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#C6933F]">
+            {item.label}
+          </p>
+        </div>
+        <NavList items={item.children} />
+      </DesktopMenu>
+    );
+  }
+
+  if (item.groups) {
+    return (
+      <DesktopMenu href={item.href} label={item.label} active={active}>
+        <GroupedNavList groups={item.groups} />
+      </DesktopMenu>
+    );
+  }
+
+  return (
+    <Link
+      href={item.href}
+      className={`focus-ring rounded-sm text-sm font-bold uppercase tracking-[0.08em] transition ${
+        active ? "text-[#C6933F]" : "text-[#D7D4CC]/75 hover:text-[#C6933F]"
+      }`}
+    >
+      {item.label}
+    </Link>
+  );
+}
+
+// ─── Mobile accordion ───────────────────────────────────────────────────────
+
 function MobileAccordion({
   item,
   pathname,
@@ -105,13 +145,13 @@ function MobileAccordion({
 }) {
   const [open, setOpen] = useState(false);
   const active = isItemActive(pathname, item);
-  const flatItems = item.children ?? item.groups?.flatMap((group) => group.items) ?? [];
+  const flatItems = item.children ?? item.groups?.flatMap((g) => g.items) ?? [];
 
   return (
     <div className="rounded-sm border border-white/10">
       <button
         type="button"
-        onClick={() => setOpen((value) => !value)}
+        onClick={() => setOpen((v) => !v)}
         className={`flex w-full items-center justify-between px-3 py-3 text-left text-sm font-bold uppercase tracking-[0.08em] ${
           active ? "text-[#C6933F]" : "text-[#D7D4CC]"
         }`}
@@ -128,7 +168,7 @@ function MobileAccordion({
           <path strokeLinecap="round" strokeLinejoin="round" d="M4 6l4 4 4-4" />
         </svg>
       </button>
-      {open ? (
+      {open && (
         <div className="border-t border-white/10 px-3 py-2">
           <Link
             href={item.href}
@@ -148,8 +188,64 @@ function MobileAccordion({
             </Link>
           ))}
         </div>
-      ) : null}
+      )}
     </div>
+  );
+}
+
+// ─── Social icons ────────────────────────────────────────────────────────────
+
+function InstagramIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} className="h-4 w-4">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function YouTubeIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
+      <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" />
+    </svg>
+  );
+}
+
+// ─── Main header ─────────────────────────────────────────────────────────────
+
+const LOGO_SRC = "/images/brand/shaggy-ink-farms-logo.png";
+const BADGE_SRC = "/images/brand/shaggy-ink-farms-badge.svg";
+const LOGO_W = 90;
+const LOGO_H = 90;
+
+function CenterLogo() {
+  const [useFallback, setUseFallback] = useState(false);
+
+  if (useFallback) {
+    return (
+      <Link href="/" className="focus-ring block">
+        <span className="relative block h-14 w-14 overflow-hidden rounded-full border-2 border-[#C6933F] bg-[#1C1C1A] shadow-[0_0_0_3px_rgba(198,147,63,0.25)]">
+          <Image src={BADGE_SRC} alt="Shaggy Ink Farms" fill sizes="56px" className="object-cover" />
+        </span>
+      </Link>
+    );
+  }
+
+  return (
+    <Link href="/" className="focus-ring absolute bottom-0 left-1/2 z-[60] -translate-x-1/2">
+      <Image
+        src={LOGO_SRC}
+        alt="Shaggy Ink Farms"
+        width={LOGO_W}
+        height={LOGO_H}
+        priority
+        className="drop-shadow-lg"
+        style={{ objectFit: "contain" }}
+        onError={() => setUseFallback(true)}
+      />
+    </Link>
   );
 }
 
@@ -158,98 +254,114 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b-2 border-[#1C1C1A]/10 bg-[#2C4A2E] backdrop-blur">
-      <nav
-        className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8"
-        aria-label="Primary navigation"
-      >
-        <Link href="/" className="flex items-center gap-3">
-          <span className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-[#C6933F] bg-[#1C1C1A] shadow-[4px_4px_0_rgba(198,147,63,0.45)]">
-            <Image
-              src={farmImages.badge.src}
-              alt=""
-              fill
-              sizes="48px"
-              className="object-cover"
-            />
-          </span>
-          <span>
-            <span className="block font-serif text-lg font-bold leading-none text-[#D7D4CC]">
-              {siteConfig.name}
-            </span>
-            <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#C6933F]">
-              Oak Pasture Homestead
-            </span>
-          </span>
-        </Link>
+    <header className="sticky top-0 z-50 overflow-visible border-b-2 border-[#1C1C1A]/10 bg-[#2C4A2E] backdrop-blur">
 
-        <button
-          type="button"
-          className="rounded-sm border-2 border-[#D7D4CC]/40 px-3 py-2 text-sm font-bold uppercase tracking-[0.08em] text-[#D7D4CC] transition hover:border-[#D7D4CC] lg:hidden"
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          onClick={() => setOpen((value) => !value)}
-        >
-          {open ? "Close" : "Menu"}
-        </button>
-
-        <div className="hidden items-center gap-5 lg:flex">
-          {primaryNavItems.map((item) => {
-            const active = isItemActive(pathname, item);
-
-            if (item.children) {
-              return (
-                <DesktopMenu
-                  key={item.href}
-                  href={item.href}
-                  label={item.label}
-                  active={active}
-                >
-                  <div className="px-4 pb-1 pt-4">
-                    <p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#C6933F]">
-                      {item.label}
-                    </p>
-                  </div>
-                  <NavList items={item.children} />
-                </DesktopMenu>
-              );
-            }
-
-            if (item.groups) {
-              return (
-                <DesktopMenu
-                  key={item.href}
-                  href={item.href}
-                  label={item.label}
-                  active={active}
-                >
-                  <GroupedNavList groups={item.groups} />
-                </DesktopMenu>
-              );
-            }
-
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`focus-ring rounded-sm text-sm font-bold uppercase tracking-[0.08em] transition ${
-                  active ? "text-[#C6933F]" : "text-[#D7D4CC]/75 hover:text-[#C6933F]"
-                }`}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-          <Link
-            href="/subscribe"
-            className="focus-ring inline-flex items-center rounded-sm border-2 border-[#C6933F] bg-[#C6933F] px-4 py-2.5 text-sm font-bold uppercase tracking-[0.08em] text-[#1C1C1A] transition hover:bg-[#F5F0E8]"
-          >
-            Get Farm Updates
-          </Link>
+      {/* ── TIER 1: Utility bar ─────────────────────────────────────────── */}
+      <div className="hidden border-b border-[#1C1C1A]/25 lg:block">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-1.5 lg:px-8">
+          {/* Left utility links */}
+          <div className="flex items-center gap-1 text-[#D7D4CC]/55">
+            <Link href="/journal" className="rounded-sm px-2 py-0.5 text-[11px] font-semibold transition hover:text-[#C6933F]">
+              Follow the Build
+            </Link>
+            <span className="text-[#D7D4CC]/25">·</span>
+            <Link href="/download" className="rounded-sm px-2 py-0.5 text-[11px] font-semibold transition hover:text-[#C6933F]">
+              Free Download
+            </Link>
+            <span className="text-[#D7D4CC]/25">·</span>
+            <Link href="/contact" className="rounded-sm px-2 py-0.5 text-[11px] font-semibold transition hover:text-[#C6933F]">
+              Contact
+            </Link>
+          </div>
+          {/* Right social icons */}
+          <div className="flex items-center gap-3">
+            <a
+              href={siteConfig.social.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="text-[#D7D4CC]/50 transition hover:text-[#C6933F]"
+            >
+              <InstagramIcon />
+            </a>
+            <a
+              href={siteConfig.social.youtube}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube"
+              className="text-[#D7D4CC]/50 transition hover:text-[#C6933F]"
+            >
+              <YouTubeIcon />
+            </a>
+          </div>
         </div>
-      </nav>
+      </div>
 
-      {open ? (
+      {/* ── TIER 2: Main nav ────────────────────────────────────────────── */}
+      <div className="relative overflow-visible">
+        <div className="mx-auto flex max-w-7xl items-center overflow-visible px-4 sm:px-6 lg:px-8">
+
+          {/* Mobile: farm name + hamburger */}
+          <div className="flex w-full items-center justify-between py-3 lg:hidden">
+            <Link href="/" className="flex items-center gap-2.5">
+              <span className="relative h-10 w-10 overflow-hidden rounded-full border-2 border-[#C6933F] bg-[#1C1C1A]">
+                <Image
+                  src="/images/brand/shaggy-ink-farms-badge.svg"
+                  alt=""
+                  fill
+                  sizes="40px"
+                  className="object-cover"
+                />
+              </span>
+              <span className="font-serif text-base font-bold text-[#D7D4CC]">
+                {siteConfig.name}
+              </span>
+            </Link>
+            <button
+              type="button"
+              className="rounded-sm border-2 border-[#D7D4CC]/40 px-3 py-2 text-sm font-bold uppercase tracking-[0.08em] text-[#D7D4CC] transition hover:border-[#D7D4CC]"
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+              onClick={() => setOpen((v) => !v)}
+            >
+              {open ? "Close" : "Menu"}
+            </button>
+          </div>
+
+          {/* Desktop two-column nav with centered logo */}
+          <div className="hidden w-full items-center lg:flex">
+
+            {/* LEFT NAV */}
+            <div className="flex flex-1 items-center gap-6">
+              {leftNavItems.map((item) => (
+                <NavItemDesktop key={item.href} item={item} pathname={pathname} />
+              ))}
+            </div>
+
+            {/* CENTER LOGO */}
+            <div className="relative flex shrink-0 items-center justify-center self-stretch px-6" style={{ width: LOGO_W + 48 }}>
+              <CenterLogo />
+            </div>
+
+            {/* RIGHT NAV */}
+            <div className="flex flex-1 items-center justify-end gap-6">
+              {rightNavItems.map((item) => (
+                <NavItemDesktop key={item.href} item={item} pathname={pathname} />
+              ))}
+              <Link
+                href="/subscribe"
+                className="focus-ring ml-2 inline-flex items-center rounded-sm border-2 border-[#C6933F] bg-[#C6933F] px-4 py-2 text-sm font-bold uppercase tracking-[0.08em] text-[#1C1C1A] transition hover:bg-[#F5F0E8]"
+              >
+                Get Farm Updates
+              </Link>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* ── Mobile menu ──────────────────────────────────────────────────── */}
+      {open && (
         <div
           id="mobile-menu"
           className="border-t-2 border-[#D7D4CC]/10 bg-[#2C4A2E] px-4 py-4 lg:hidden"
@@ -288,9 +400,18 @@ export function Header() {
                 ),
               )}
             </div>
+            <div className="border-t border-white/10 pt-3">
+              <Link
+                href="/subscribe"
+                onClick={() => setOpen(false)}
+                className="focus-ring block w-full rounded-sm border-2 border-[#C6933F] bg-[#C6933F] px-4 py-3 text-center text-sm font-bold uppercase tracking-[0.08em] text-[#1C1C1A]"
+              >
+                Get Farm Updates
+              </Link>
+            </div>
           </div>
         </div>
-      ) : null}
+      )}
     </header>
   );
 }

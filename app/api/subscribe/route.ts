@@ -5,7 +5,7 @@ import {
   type EmailSegment,
 } from "@/lib/email-signup";
 
-const LEAD_MAGNET_ASSET_URL = "https://www.shaggyinkfarms.com/downloads/zone-9b-planting-calendar.pdf";
+const LEAD_MAGNET_ASSET_URL = "https://www.shaggyinkfarms.com/api/calendar.pdf";
 
 async function sendLeadMagnetEmail(apiKey: string, email: string) {
   const from = process.env.CONTACT_FROM_EMAIL ?? "Shaggy Ink Farms <updates@shaggyinkfarms.com>";

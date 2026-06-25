@@ -36,9 +36,9 @@ const breedingGoals = [
 ];
 
 export const metadata: Metadata = {
-  title: "Heritage Plymouth Barred Rocks in California",
+  title: "Standard Bred Heritage Plymouth Barred Rocks in California",
   description:
-    "The canonical Shaggy Ink Farms page for Heritage Plymouth Barred Rocks, Good Shepherd and Frank Reese lineage context, breeding goals, current status, and the future poultry waitlist.",
+    "The canonical Shaggy Ink Farms page for Standard Bred Heritage Plymouth Barred Rocks, Good Shepherd and Frank Reese lineage context, breeding goals, current status, and the future poultry waitlist.",
   keywords: [
     "Heritage Plymouth Barred Rocks",
     "Good Shepherd Barred Rocks",
@@ -60,10 +60,10 @@ export default function HeritageBarredRocksPage() {
   return (
     <>
       <PageHero
-        eyebrow="Heritage Plymouth Barred Rocks"
+        eyebrow="Standard Bred Heritage Plymouth Barred Rocks"
         title="A Barred Rock breeding program built slowly enough to stay honest."
-        copy="Shaggy Ink Farms is building a Heritage Plymouth Barred Rock program in Anderson, California. The work starts with Good Shepherd and Frank Reese lineage context, then moves through records, selection, temperament, utility, and the discipline to avoid claims before the flock earns them."
-        imageTitle="Heritage flock under Northern California oaks"
+        copy="Shaggy Ink Farms is building a Standard Bred Heritage Plymouth Barred Rock program in Anderson, California. The work starts with Good Shepherd and Frank Reese lineage context, then moves through records, selection, temperament, utility, and the discipline to avoid claims before the flock earns them."
+        imageTitle="Standard Bred Heritage flock under Northern California oaks"
         imageDetail="This is the canonical home for the breeding program. The genetics journal post remains the deeper field note."
         imageSrc={farmImages.barredRockFlock.src}
         imageAlt={farmImages.barredRockFlock.alt}
