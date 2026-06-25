@@ -211,7 +211,7 @@ export default function Home() {
                 fill
                 priority
                 sizes="(min-width: 1024px) 46vw, 100vw"
-                className="object-cover"
+                className="object-cover object-top"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1C1C1A]/60 via-transparent to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-5 text-[#F5F0E8]">
