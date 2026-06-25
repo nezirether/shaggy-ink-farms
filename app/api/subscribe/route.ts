@@ -33,9 +33,8 @@ async function sendLeadMagnetEmail(apiKey: string, email: string) {
     It covers planting windows, frost timing, and seasonal tasks for Anderson and the surrounding area.
   </p>
   <a href="${LEAD_MAGNET_ASSET_URL}" style="display:inline-block;background:#2C4A2E;color:#F5F0E8;text-decoration:none;padding:14px 28px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;border-radius:2px">
-    Open &amp; Print the Calendar
+    Download the Calendar PDF
   </a>
-  <p style="font-size:12px;color:#9b9b98;margin:8px 0 0">Opens in your browser — use Print or Save as PDF to keep a copy.</p>
   <p style="font-size:13px;line-height:1.7;color:#6b6b68;margin:28px 0 0">
     You've also been added to the growing guides list — expect practical planting notes
     built for Zone 9b. You can unsubscribe any time.

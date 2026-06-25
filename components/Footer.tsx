@@ -12,12 +12,26 @@ export function Footer() {
                 Heritage poultry, local eggs, and practical growing guidance from Anderson, California.
               </p>
             </div>
-          <a
-            href={`mailto:${siteConfig.email}`}
-            className="text-sm font-bold text-[#C6933F] hover:text-[#F5F0E8]"
-          >
-            {siteConfig.email}
-          </a>
+          <div className="flex flex-col gap-1 lg:items-end lg:text-right">
+            <a
+              href={`mailto:${siteConfig.email}`}
+              className="text-sm font-bold text-[#C6933F] hover:text-[#F5F0E8]"
+            >
+              {siteConfig.email}
+            </a>
+            <a
+              href={siteConfig.phoneHref}
+              className="text-sm font-bold text-[#C6933F] hover:text-[#F5F0E8]"
+            >
+              {siteConfig.phone}
+            </a>
+            <span className="text-sm text-[#F5F0E8]/72">
+              Anderson, California — Shasta County
+            </span>
+            <span className="text-sm text-[#F5F0E8]/40">
+              Text or call — we typically respond within 24 hours
+            </span>
+          </div>
         </div>
 
         <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-4">

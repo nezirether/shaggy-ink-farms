@@ -53,6 +53,29 @@ export default function ContactPage() {
                 {siteConfig.email}
               </a>
             </div>
+            <div className="mt-4 min-w-0 rounded-sm border-2 border-[#1C1C1A]/15 bg-[#F5F0E8] p-5">
+              <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#8B2A2A]">
+                Call or Text
+              </p>
+              <a
+                href={siteConfig.phoneHref}
+                className="focus-ring mt-2 block break-words font-serif text-xl font-bold text-[#2C4A2E] sm:text-2xl"
+              >
+                {siteConfig.phone}
+              </a>
+              <p className="mt-3 leading-7 text-[#1C1C1A]/75">
+                We respond to texts fastest. Calls welcome during daylight hours.
+              </p>
+              <p className="mt-3 text-sm font-bold uppercase tracking-[0.14em] text-[#8B2A2A]">
+                Location
+              </p>
+              <p className="mt-1 text-[#1C1C1A]/75">
+                Anderson, California — Shasta County
+              </p>
+              <p className="mt-3 text-sm text-[#1C1C1A]/60">
+                We typically respond within 24 hours.
+              </p>
+            </div>
           </div>
           <ContactForm />
         </div>

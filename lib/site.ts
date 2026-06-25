@@ -7,6 +7,8 @@ export const siteConfig = {
     "A Northern California family farm building a Standard Bred Heritage Plymouth Barred Rock breeding program, keeping a mixed laying flock, growing flowers and food, and sharing the work as we go.",
   url: "https://www.shaggyinkfarms.com",
   email: "hello@shaggyinkfarms.com",
+  phone: "(530) 364-4861",
+  phoneHref: "tel:+15303644861",
   location: "Northern California",
   social: {
     youtube: "https://www.youtube.com/@shaggyinkfarms",
@@ -138,6 +140,7 @@ export const storiesNavItems: NavChild[] = [
 
 // Left of logo: Poultry, Garden, Learn & Plan
 export const leftNavItems: PrimaryNavItem[] = [
+  { href: "/available-now", label: "Available Now" },
   { href: "/poultry", label: "Poultry", children: poultryNavItems },
   { href: "/garden", label: "Garden", children: gardenNavItems },
   { href: "/learn", label: "Learn & Plan", children: learnNavItems },
@@ -157,6 +160,7 @@ export const primaryNavItems: PrimaryNavItem[] = [
 ];
 
 export const mobileQuickActions = [
+  { href: "/available-now", label: "Available Now" },
   { href: "/subscribe", label: "Get Updates" },
   { href: "/poultry/eggs", label: "Fresh Eggs" },
 ];
@@ -187,6 +191,7 @@ export const footerColumns = [
   {
     title: "Follow The Farm",
     links: [
+      { href: "/available-now", label: "Available Now" },
       { href: "/watch", label: "YouTube" },
       { href: "/journal", label: "Journal" },
       { href: "/about", label: "About" },
