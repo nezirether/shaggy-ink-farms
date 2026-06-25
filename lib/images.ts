@@ -15,6 +15,18 @@ export const farmImages = {
     src: "/images/farm/Snapchat-308249512.jpg",
     alt: "Barnyard mix chick held in hand at Shaggy Ink Farms",
   },
+  eatingEggsFlock: {
+    src: "/images/farm/eating-eggs-flock-hands.jpg",
+    alt: "Hands holding a colorful mix of farm fresh eggs with the mixed laying flock in the background at Shaggy Ink Farms",
+  },
+  eatingEggsBox: {
+    src: "/images/farm/eating-eggs-box.jpg",
+    alt: "Box of mixed farm fresh eggs in shades of brown, cream, pink, and blue from the Shaggy Ink Farms laying flock",
+  },
+  hatchingEggsTray: {
+    src: "/images/farm/hatching-eggs-foam-tray.jpg",
+    alt: "Heritage Barred Rock hatching eggs packed in foam tray with packing peanuts, individually numbered for incubation tracking",
+  },
   oakPasture: {
     src: "/images/farm/northern-california-oak-pasture-fence-line.png",
     alt: "Mature oak trees, open Northern California pastureland, and rustic fence posts in golden light",
