@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { EmailCaptureForm } from "@/components/EmailCapture";
+import { farmImages } from "@/lib/images";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -131,6 +133,16 @@ export default function AvailableNowPage() {
               <span className="font-bold text-[#1C1C1A]">Pickup: </span>Farm
               pickup · Anderson, CA
             </div>
+          </div>
+          <div className="mt-5 overflow-hidden rounded-sm border border-[#1C1C1A]/15">
+            <Image
+              src={farmImages.barnChick.src}
+              alt={farmImages.barnChick.alt}
+              width={600}
+              height={600}
+              className="w-full object-cover"
+              sizes="(min-width: 768px) 50vw, 100vw"
+            />
           </div>
           <div className="mt-5">
             <a
