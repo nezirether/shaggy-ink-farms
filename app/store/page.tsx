@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { BuyButton } from "@/components/BuyButton";
 import { PRODUCTS } from "@/lib/products";
 import { openGraphImage, pageMetadata, siteConfig } from "@/lib/site";
@@ -34,6 +35,33 @@ export default function StorePage() {
           </p>
         </div>
       </section>
+
+      {/* Available Now banner */}
+      <div className="border-b-2 border-[#1C1C1A]/15 bg-[#C6933F]/15 px-4 py-6 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#8B2A2A]">
+              Farm Direct
+            </p>
+            <p className="mt-1 font-serif text-xl font-bold text-[#1C1C1A]">
+              Eggs, chicks, and hatching eggs available now.
+            </p>
+            <p className="mt-1 text-sm text-[#1C1C1A]/65">
+              Text{" "}
+              <a href={siteConfig.phoneHref} className="font-bold text-[#2C4A2E] hover:text-[#8B2A2A]">
+                {siteConfig.phone}
+              </a>{" "}
+              to confirm before driving out.
+            </p>
+          </div>
+          <Link
+            href="/available-now"
+            className="inline-flex shrink-0 items-center rounded-sm border-2 border-[#1C1C1A] bg-[#1C1C1A] px-5 py-3 text-sm font-extrabold uppercase tracking-[0.08em] text-[#F5F0E8] transition hover:bg-[#2C4A2E] hover:border-[#2C4A2E]"
+          >
+            See What&apos;s Available
+          </Link>
+        </div>
+      </div>
 
       {/* Product listing */}
       <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
