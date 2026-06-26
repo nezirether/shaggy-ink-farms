@@ -159,25 +159,23 @@ export const blogNavItems: NavChild[] = [
 // Keep old name for backward compat
 export const storiesNavItems = blogNavItems;
 
-// Left of logo: Available Now, Chickens, Garden
+// V3 flat nav — no dropdowns, no mega menus
 export const leftNavItems: PrimaryNavItem[] = [
-  { href: "/available-now", label: "Available Now" },
-  { href: "/poultry", label: "Chickens", children: chickensNavItems },
-  { href: "/garden", label: "Garden", children: gardenNavItems },
+  { href: "/about", label: "Our Farm" },
+  { href: "/poultry", label: "Chickens" },
 ];
 
-// Right of logo: Blog, Store, About, Search
 export const rightNavItems: PrimaryNavItem[] = [
-  { href: "/journal", label: "Blog", children: blogNavItems },
+  { href: "/flowers", label: "Flowers" },
   { href: "/store", label: "Store" },
-  { href: "/about", label: "About" },
-  { href: "/search", label: "Search" },
 ];
 
 // Combined for mobile / legacy references
 export const primaryNavItems: PrimaryNavItem[] = [
-  ...leftNavItems,
-  ...rightNavItems,
+  { href: "/about", label: "Our Farm" },
+  { href: "/poultry", label: "Chickens" },
+  { href: "/flowers", label: "Flowers" },
+  { href: "/store", label: "Store" },
 ];
 
 export const mobileQuickActions = [
@@ -188,9 +186,18 @@ export const mobileQuickActions = [
 
 export const footerColumns = [
   {
+    title: "The Farm",
+    links: [
+      { href: "/about", label: "Our Farm" },
+      { href: "/available-now", label: "Available Now" },
+      { href: "/contact", label: "Contact" },
+      { href: "/subscribe", label: "Get Farm Updates" },
+    ],
+  },
+  {
     title: "Chickens",
     links: [
-      { href: "/poultry", label: "Chickens Overview" },
+      { href: "/poultry", label: "Chickens" },
       { href: "/poultry/heritage-barred-rocks", label: "Heritage Barred Rocks" },
       { href: "/poultry/the-flock", label: "The Flock" },
       { href: "/poultry/eggs", label: "Fresh Eggs" },
@@ -198,36 +205,19 @@ export const footerColumns = [
     ],
   },
   {
-    title: "Garden & Growing",
+    title: "Flowers & Garden",
     links: [
-      { href: "/garden", label: "Garden Overview" },
-      { href: "/garden/what-were-growing", label: "What We're Growing" },
-      { href: "/learn/growing-guides", label: "Growing Guides" },
-      { href: "/learn/know-your-growing-zone", label: "Know Your Growing Zone" },
-      { href: "/learn/local", label: "Local Guides" },
-      { href: "/plan/garden-planner", label: "Garden Planner" },
-      { href: "/download", label: "Free Zone 9b Calendar" },
+      { href: "/flowers", label: "Cut Flowers" },
+      { href: "/garden/strawberries", label: "Strawberries" },
     ],
+    notes: ["More varieties coming 2027"],
   },
   {
-    title: "Blog & Stories",
-    links: [
-      { href: "/journal", label: "Journal" },
-      { href: "/watch", label: "Watch on YouTube" },
-      { href: "/available-now", label: "Available Now" },
-      { href: "/subscribe", label: "Get Farm Updates" },
-      { href: "/search", label: "Search" },
-    ],
-  },
-  {
-    title: "Farm & Store",
+    title: "Store & Legal",
     links: [
       { href: "/store", label: "Farm Store" },
-      { href: "/about", label: "About" },
-      { href: "/contact", label: "Contact" },
       { href: "/privacy-policy", label: "Privacy Policy" },
     ],
-    notes: ["Strawberries (soon)", "Cut Flowers (soon)"],
   },
 ];
 
