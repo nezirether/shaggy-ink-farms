@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
-import { getProductBySlug } from "@/lib/products";
+import {
+  getProductBySlug,
+  DONATION_MIN_CENTS,
+  DONATION_MAX_CENTS,
+} from "@/lib/products";
 import { siteConfig } from "@/lib/site";
 
 export const runtime = "nodejs";
@@ -23,9 +27,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Store is not yet configured." }, { status: 503 });
   }
 
-  let body: { productSlug?: string };
+  let body: { productSlug?: string; amount?: number };
   try {
-    body = (await request.json()) as { productSlug?: string };
+    body = (await request.json()) as { productSlug?: string; amount?: number };
   } catch {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
   }
@@ -35,12 +39,25 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Product not found." }, { status: 404 });
   }
 
+  // Donations use a customer-entered amount; everything else uses the fixed price.
+  let unitAmount = product.price;
+  if (product.donation) {
+    const requested = Math.round(Number(body.amount));
+    if (!Number.isFinite(requested) || requested < DONATION_MIN_CENTS) {
+      return NextResponse.json(
+        { error: `Please enter an amount of at least $${DONATION_MIN_CENTS / 100}.` },
+        { status: 400 },
+      );
+    }
+    unitAmount = Math.min(requested, DONATION_MAX_CENTS);
+  }
+
   const baseUrl = siteConfig.url;
   const formBody = encodeForm({
     "line_items[0][price_data][currency]": "usd",
     "line_items[0][price_data][product_data][name]": product.name,
     "line_items[0][price_data][product_data][description]": product.tagline,
-    "line_items[0][price_data][unit_amount]": product.price,
+    "line_items[0][price_data][unit_amount]": unitAmount,
     "line_items[0][quantity]": 1,
     mode: "payment",
     success_url: `${baseUrl}/store/success?session_id={CHECKOUT_SESSION_ID}&product=${product.slug}`,

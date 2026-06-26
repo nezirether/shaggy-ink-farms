@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BuyButton } from "@/components/BuyButton";
+import { DonationCard } from "@/components/DonationCard";
 import { PRODUCTS } from "@/lib/products";
 import { openGraphImage, pageMetadata, siteConfig } from "@/lib/site";
 
@@ -56,7 +57,7 @@ export default function StorePage() {
           </div>
           <Link
             href="/available-now"
-            className="inline-flex shrink-0 items-center rounded-sm border-2 border-[#1C1C1A] bg-[#1C1C1A] px-5 py-3 text-sm font-extrabold uppercase tracking-[0.08em] text-[#F5F0E8] transition hover:bg-[#2C4A2E] hover:border-[#2C4A2E]"
+            className="inline-flex shrink-0 items-center rounded-sm border-2 border-[#1C1C1A] bg-[#C6933F] px-5 py-3 text-sm font-extrabold uppercase tracking-[0.08em] text-[#1C1C1A] transition hover:bg-[#b07f2e]"
           >
             See What&apos;s Available
           </Link>
@@ -123,38 +124,9 @@ export default function StorePage() {
           </div>
         </div>
 
-        {/* Support the Farm — donation placeholder */}
-        <div className="mt-10 rounded-sm border-2 border-[#1C1C1A] bg-[#2C4A2E] p-7 text-[#F5F0E8]">
-          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#C6933F]">
-            Support the Farm
-          </p>
-          <h2 className="mt-3 font-serif text-2xl font-bold">
-            Want to support the build directly?
-          </h2>
-          <p className="mt-3 text-sm leading-7 text-[#F5F0E8]/75">
-            We are working on adding a direct donation option here. Stripe supports
-            custom-amount donations, but the integration requires additional setup
-            to accept open-ended amounts safely. That is coming soon.
-          </p>
-          <p className="mt-3 text-sm leading-7 text-[#F5F0E8]/60">
-            In the meantime, the best ways to support the farm are buying the
-            planting guide above, joining the newsletter, or buying eggs and
-            hatching eggs directly.
-          </p>
-          <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-            <Link
-              href="/available-now"
-              className="inline-flex items-center justify-center rounded-sm border-2 border-[#C6933F] bg-[#C6933F] px-5 py-2.5 text-sm font-bold uppercase tracking-[0.08em] text-[#1C1C1A] transition hover:bg-[#F5F0E8]"
-            >
-              See What&apos;s Available
-            </Link>
-            <Link
-              href="/subscribe"
-              className="inline-flex items-center justify-center rounded-sm border-2 border-[#F5F0E8]/40 px-5 py-2.5 text-sm font-bold uppercase tracking-[0.08em] text-[#F5F0E8]/80 transition hover:border-[#F5F0E8] hover:text-[#F5F0E8]"
-            >
-              Join the Newsletter
-            </Link>
-          </div>
+        {/* Support the Farm — live donation */}
+        <div className="mt-10">
+          <DonationCard />
         </div>
 
         {/* Coming soon */}

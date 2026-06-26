@@ -8,6 +8,7 @@ type PageHeroProps = {
   imageDetail: string;
   imageSrc?: string;
   imageAlt?: string;
+  imagePosition?: string;
   priority?: boolean;
 };
 
@@ -19,6 +20,7 @@ export function PageHero({
   imageDetail,
   imageSrc,
   imageAlt,
+  imagePosition,
   priority = false,
 }: PageHeroProps) {
   return (
@@ -42,6 +44,7 @@ export function PageHero({
           label="Shaggy Ink Farms"
           src={imageSrc}
           alt={imageAlt}
+          objectPosition={imagePosition}
           priority={priority}
         />
       </div>
