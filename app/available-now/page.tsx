@@ -226,7 +226,53 @@ export default function AvailableNowPage() {
           </div>
         </section>
 
-        {/* Section 4: Digital Products */}
+        {/* Section 4: Strawberries */}
+        <section className="rounded-sm border-2 border-[#1C1C1A] bg-white/60 p-6">
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#1C1C1A]/50">
+                Strawberries
+              </p>
+              <h2 className="mt-1 font-serif text-2xl font-bold text-[#1C1C1A]">
+                Strawberries
+              </h2>
+            </div>
+            <StatusBadge status="coming-soon" label="Coming — 2027" />
+          </div>
+          <p className="mt-4 text-sm leading-relaxed text-[#1C1C1A]/70">
+            Coming — Albion and Chandler varieties. Planting begins September,
+            with local berries expected for the 2027 season. Join the list to be
+            notified.
+          </p>
+          <div className="mt-5 rounded-sm border-2 border-[#2C4A2E] bg-[#2C4A2E] p-5 text-[#F5F0E8]">
+            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#C6933F]">
+              Join the Strawberry List
+            </p>
+            <p className="mt-2 text-sm text-[#F5F0E8]/78">
+              Enter your email and we&apos;ll notify you when local strawberries
+              are ready.
+            </p>
+            <EmailCaptureForm
+              segment="strawberries"
+              source="available-now-strawberries"
+              captureType="waitlist"
+              buttonLabel="Join the List"
+              successMessage="You're on the list — we'll reach out when strawberries are ready."
+              helperText="Strawberry updates only. No spam."
+              className="mt-4"
+            />
+          </div>
+          <div className="mt-5">
+            <Link
+              href="/strawberries"
+              className="inline-block rounded-sm border-2 border-[#1C1C1A] px-5 py-3 text-sm font-extrabold uppercase tracking-[0.08em] text-[#1C1C1A] hover:bg-[#1C1C1A] hover:text-[#F5F0E8] transition-colors"
+            >
+              Read the Strawberry Plan
+            </Link>
+          </div>
+        </section>
+
+        {/* Section 5: Digital Products */}
         <section className="rounded-sm border-2 border-[#1C1C1A] bg-white/60 p-6">
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div>

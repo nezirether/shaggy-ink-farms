@@ -24,7 +24,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="Our Farm"
         title="A family farm in Anderson, California."
-        copy="Shaggy Ink Farms is built by a family of five. We keep Heritage Plymouth Barred Rocks, a mixed laying flock, and we are planting sunflowers and strawberries toward the 2027 season."
+        copy="Shaggy Ink Farms is built by a family of five. We are building three things in earnest — a Standard Bred Heritage Plymouth Barred Rock breeding program, a strawberry patch, and a cut flower field — alongside a mixed laying flock that feeds the family and the neighborhood."
         imageTitle="Oak pasture, fence line, and family work"
         imageDetail="Mature oaks, open pastureland, rustic fencing, and the scale of a real family homestead."
         imageSrc={farmImages.oakPasture.src}
@@ -33,7 +33,7 @@ export default function AboutPage() {
       <BrandPanel
         eyebrow="What Makes It Different"
         title="A real place, built one project at a time."
-        copy="The farm is still young. The work is poultry, gardens, cut flowers, strawberries, orchard trees, repairs, fencing, and the ordinary routines that make a place more useful over time."
+        copy="The farm is still young. The three ventures we are building in earnest are Heritage Barred Rocks, strawberries, and cut flowers — supported by a mixed laying flock, an orchard, gardens, repairs, fencing, and the ordinary routines that make a place more useful over time."
         items={[
           "Family work before polish",
           "Useful projects over big claims",
