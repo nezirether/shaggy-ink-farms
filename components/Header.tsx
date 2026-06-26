@@ -213,6 +213,14 @@ function YouTubeIcon() {
   );
 }
 
+function TikTokIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
+      <path d="M16.5 3c.3 2.1 1.5 3.6 3.6 3.9v2.4c-1.2.1-2.4-.2-3.5-.8v5.9c0 3.3-2.4 5.6-5.5 5.6a5.4 5.4 0 0 1-5.4-5.5c0-3.1 2.5-5.4 5.6-5.3v2.5c-.3 0-.6-.1-.9-.1-1.5 0-2.7 1.3-2.5 2.9.1 1.4 1.4 2.4 2.8 2.3 1.4-.1 2.4-1.2 2.4-2.6V3h2.8z" />
+    </svg>
+  );
+}
+
 // ─── Main header ─────────────────────────────────────────────────────────────
 
 const LOGO_SRC = "/images/brand/shaggy-ink-farms-logo.png";
@@ -292,6 +300,15 @@ export function Header() {
               className="text-[#D7D4CC]/50 transition hover:text-[#C6933F]"
             >
               <YouTubeIcon />
+            </a>
+            <a
+              href={siteConfig.social.tiktok}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TikTok"
+              className="text-[#D7D4CC]/50 transition hover:text-[#C6933F]"
+            >
+              <TikTokIcon />
             </a>
           </div>
         </div>

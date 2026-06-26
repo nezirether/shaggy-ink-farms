@@ -13,6 +13,7 @@ export const siteConfig = {
   social: {
     youtube: "https://www.youtube.com/@shaggyinkfarms",
     instagram: "https://www.instagram.com/shaggyinkfarms",
+    tiktok: "https://www.tiktok.com/@shaggyinkfarms",
   },
 };
 
