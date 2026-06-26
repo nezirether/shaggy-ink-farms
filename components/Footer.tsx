@@ -5,7 +5,7 @@ const footerLinks = [
   { href: "/about", label: "Our Farm" },
   { href: "/poultry", label: "Chickens" },
   { href: "/flowers", label: "Flowers" },
-  { href: "/garden/strawberries", label: "Strawberries" },
+  { href: "/strawberries", label: "Strawberries" },
   { href: "/store", label: "Store" },
   { href: "/contact", label: "Contact" },
   { href: "/privacy-policy", label: "Privacy" },

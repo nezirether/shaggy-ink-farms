@@ -42,8 +42,8 @@ const farmCards = [
   {
     eyebrow: "Strawberries",
     title: "Strawberry Patch Progress",
-    copy: "Planting begins September. Production expected for 2027. One field, done right, before we make any promises.",
-    href: "/garden/strawberries",
+    copy: "Albion and Chandler varieties. Planting begins September, production expected for 2027. One field, done right, before we make any promises.",
+    href: "/strawberries",
     cta: "Follow the Strawberries",
     dark: false,
   },

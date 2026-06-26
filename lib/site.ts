@@ -67,12 +67,12 @@ export const gardenNavItems: NavChild[] = [
     description: "What is being grown, tested, and planned for the 2027 season.",
   },
   {
-    href: "/garden/strawberries",
+    href: "/strawberries",
     label: "Strawberries",
-    description: "The first planned production field, still in preparation.",
+    description: "Albion and Chandler varieties going in toward 2027.",
   },
   {
-    href: "/garden/cut-flowers",
+    href: "/flowers",
     label: "Cut Flowers",
     description: "Sunflowers, trial varieties, pollinators, and future 2027 sales.",
   },
@@ -90,21 +90,6 @@ export const gardenNavItems: NavChild[] = [
     href: "/garden/herbs-and-ground-covers",
     label: "Herbs & Ground Covers",
     description: "Culinary herbs, pollinators, living mulch, and soil-building plants.",
-  },
-  {
-    href: "/plan/garden-planner",
-    label: "Garden Planner",
-    description: "Build a practical family food garden plan.",
-  },
-  {
-    href: "/learn/growing-guides",
-    label: "Growing Guides",
-    description: "Browse the full guide library for growing, soil, pests, and harvest.",
-  },
-  {
-    href: "/learn/know-your-growing-zone",
-    label: "Know Your Zone",
-    description: "Zone basics, frost timing, and weekly tasks for Northern California.",
   },
 ];
 
@@ -159,23 +144,26 @@ export const blogNavItems: NavChild[] = [
 // Keep old name for backward compat
 export const storiesNavItems = blogNavItems;
 
-// V3 flat nav — no dropdowns, no mega menus
+// Nav order: Available Now · Chickens · Strawberries · Garden · Flowers · Store · Stories · About
+// Split around the centered logo: first four left, last four right.
 export const leftNavItems: PrimaryNavItem[] = [
-  { href: "/about", label: "Our Farm" },
-  { href: "/poultry", label: "Chickens" },
+  { href: "/available-now", label: "Available Now" },
+  { href: "/poultry", label: "Chickens", children: chickensNavItems },
+  { href: "/strawberries", label: "Strawberries" },
+  { href: "/garden", label: "Garden", children: gardenNavItems },
 ];
 
 export const rightNavItems: PrimaryNavItem[] = [
   { href: "/flowers", label: "Flowers" },
   { href: "/store", label: "Store" },
+  { href: "/journal", label: "Stories", children: storiesNavItems },
+  { href: "/about", label: "About" },
 ];
 
 // Combined for mobile / legacy references
 export const primaryNavItems: PrimaryNavItem[] = [
-  { href: "/about", label: "Our Farm" },
-  { href: "/poultry", label: "Chickens" },
-  { href: "/flowers", label: "Flowers" },
-  { href: "/store", label: "Store" },
+  ...leftNavItems,
+  ...rightNavItems,
 ];
 
 export const mobileQuickActions = [
@@ -333,10 +321,10 @@ export const routes = [
   "/poultry/hatching-eggs-and-stock",
   "/poultry/eggs",
   "/poultry/the-flock",
+  "/strawberries",
+  "/flowers",
   "/garden",
   "/garden/what-were-growing",
-  "/garden/strawberries",
-  "/garden/cut-flowers",
   "/garden/family-garden",
   "/garden/market-garden",
   "/garden/orchard",
