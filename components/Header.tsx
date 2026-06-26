@@ -96,8 +96,31 @@ function GroupedNavList({ groups }: { groups: NavGroup[] }) {
   );
 }
 
+function SearchIcon() {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth={2} className="h-4 w-4">
+      <circle cx="8.5" cy="8.5" r="5.5" />
+      <path strokeLinecap="round" d="M13.5 13.5L17 17" />
+    </svg>
+  );
+}
+
 function NavItemDesktop({ item, pathname }: { item: PrimaryNavItem; pathname: string }) {
   const active = isItemActive(pathname, item);
+
+  if (item.href === "/search") {
+    return (
+      <Link
+        href="/search"
+        aria-label="Search"
+        className={`focus-ring rounded-sm transition ${
+          active ? "text-[#C6933F]" : "text-[#D7D4CC]/75 hover:text-[#C6933F]"
+        }`}
+      >
+        <SearchIcon />
+      </Link>
+    );
+  }
 
   if (item.children) {
     return (

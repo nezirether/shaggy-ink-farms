@@ -34,7 +34,7 @@ export type PrimaryNavItem = {
   groups?: NavGroup[];
 };
 
-export const poultryNavItems: NavChild[] = [
+export const chickensNavItems: NavChild[] = [
   {
     href: "/poultry/heritage-barred-rocks",
     label: "Heritage Barred Rocks",
@@ -56,6 +56,9 @@ export const poultryNavItems: NavChild[] = [
     description: "Join the poultry waitlist for future availability.",
   },
 ];
+
+// Keep the old export name for backward compat
+export const poultryNavItems = chickensNavItems;
 
 export const gardenNavItems: NavChild[] = [
   {
@@ -87,6 +90,21 @@ export const gardenNavItems: NavChild[] = [
     href: "/garden/herbs-and-ground-covers",
     label: "Herbs & Ground Covers",
     description: "Culinary herbs, pollinators, living mulch, and soil-building plants.",
+  },
+  {
+    href: "/plan/garden-planner",
+    label: "Garden Planner",
+    description: "Build a practical family food garden plan.",
+  },
+  {
+    href: "/learn/growing-guides",
+    label: "Growing Guides",
+    description: "Browse the full guide library for growing, soil, pests, and harvest.",
+  },
+  {
+    href: "/learn/know-your-growing-zone",
+    label: "Know Your Zone",
+    description: "Zone basics, frost timing, and weekly tasks for Northern California.",
   },
 ];
 
@@ -125,32 +143,35 @@ export const learnNavGroups: NavGroup[] = [
   },
 ];
 
-export const storiesNavItems: NavChild[] = [
-  {
-    href: "/watch",
-    label: "Watch",
-    description: "Farm videos on YouTube — flock updates, builds, and field notes.",
-  },
+export const blogNavItems: NavChild[] = [
   {
     href: "/journal",
     label: "Journal",
     description: "Written field notes, seasonal updates, and farm journal entries.",
   },
+  {
+    href: "/watch",
+    label: "Watch",
+    description: "Farm videos on YouTube — flock updates, builds, and field notes.",
+  },
 ];
 
-// Left of logo: Poultry, Garden, Learn & Plan
+// Keep old name for backward compat
+export const storiesNavItems = blogNavItems;
+
+// Left of logo: Available Now, Chickens, Garden
 export const leftNavItems: PrimaryNavItem[] = [
   { href: "/available-now", label: "Available Now" },
-  { href: "/poultry", label: "Poultry", children: poultryNavItems },
+  { href: "/poultry", label: "Chickens", children: chickensNavItems },
   { href: "/garden", label: "Garden", children: gardenNavItems },
-  { href: "/learn", label: "Learn & Plan", children: learnNavItems },
 ];
 
-// Right of logo: Stories, About, Store
+// Right of logo: Blog, Store, About, Search
 export const rightNavItems: PrimaryNavItem[] = [
-  { href: "/watch", label: "Stories", children: storiesNavItems },
-  { href: "/about", label: "About" },
+  { href: "/journal", label: "Blog", children: blogNavItems },
   { href: "/store", label: "Store" },
+  { href: "/about", label: "About" },
+  { href: "/search", label: "Search" },
 ];
 
 // Combined for mobile / legacy references
@@ -167,8 +188,9 @@ export const mobileQuickActions = [
 
 export const footerColumns = [
   {
-    title: "Poultry",
+    title: "Chickens",
     links: [
+      { href: "/poultry", label: "Chickens Overview" },
       { href: "/poultry/heritage-barred-rocks", label: "Heritage Barred Rocks" },
       { href: "/poultry/the-flock", label: "The Flock" },
       { href: "/poultry/eggs", label: "Fresh Eggs" },
@@ -176,12 +198,11 @@ export const footerColumns = [
     ],
   },
   {
-    title: "Learn & Plan",
+    title: "Garden & Growing",
     links: [
-      { href: "/garden", label: "Garden Hub" },
+      { href: "/garden", label: "Garden Overview" },
       { href: "/garden/what-were-growing", label: "What We're Growing" },
       { href: "/learn/growing-guides", label: "Growing Guides" },
-      { href: "/learn/garden-planning", label: "Garden Planning" },
       { href: "/learn/know-your-growing-zone", label: "Know Your Growing Zone" },
       { href: "/learn/local", label: "Local Guides" },
       { href: "/plan/garden-planner", label: "Garden Planner" },
@@ -189,19 +210,20 @@ export const footerColumns = [
     ],
   },
   {
-    title: "Follow The Farm",
+    title: "Blog & Stories",
     links: [
-      { href: "/available-now", label: "Available Now" },
-      { href: "/watch", label: "YouTube" },
       { href: "/journal", label: "Journal" },
-      { href: "/about", label: "About" },
+      { href: "/watch", label: "Watch on YouTube" },
+      { href: "/available-now", label: "Available Now" },
       { href: "/subscribe", label: "Get Farm Updates" },
+      { href: "/search", label: "Search" },
     ],
   },
   {
-    title: "On The Horizon",
+    title: "Farm & Store",
     links: [
       { href: "/store", label: "Farm Store" },
+      { href: "/about", label: "About" },
       { href: "/contact", label: "Contact" },
       { href: "/privacy-policy", label: "Privacy Policy" },
     ],
