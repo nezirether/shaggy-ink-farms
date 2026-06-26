@@ -39,8 +39,8 @@ export default function PoultryPage() {
         copy="Shaggy Ink Farms keeps a mixed laying flock now while building a Standard Bred Heritage Plymouth Barred Rock program carefully. This is the starting point for flock updates, local egg notices, and the future hatching eggs and stock waitlist."
         imageTitle="Barred Rock birds under the oaks"
         imageDetail="The poultry section brings the breeding program, the mixed flock, and the local egg list into one place."
-        imageSrc={farmImages.barredRockFlock.src}
-        imageAlt={farmImages.barredRockFlock.alt}
+        imageSrc={farmImages.heroRooster.src}
+        imageAlt={farmImages.heroRooster.alt}
         priority
       />
 

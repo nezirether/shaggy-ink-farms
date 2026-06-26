@@ -35,6 +35,14 @@ export const farmImages = {
     src: "/images/farm/20260613_183111.jpg",
     alt: "Barred Rock rooster and hen on pasture at Shaggy Ink Farms",
   },
+  hatchingEggsPageHero: {
+    src: "/images/farm/20260613_183151.jpg",
+    alt: "Standard Bred Barred Rock rooster side profile on open pasture at Shaggy Ink Farms",
+  },
+  gardenSunflower: {
+    src: "/images/farm/20260612_193439.jpg",
+    alt: "Sunflower with honeybee in the Shaggy Ink Farms garden, Anderson California",
+  },
   eggCartons: {
     src: "/images/eggs/farm-fresh-eggs-cream-cartons-workbench.png",
     alt: "Farm fresh eggs in cream cartons on a rustic workbench with pasture visible beyond",

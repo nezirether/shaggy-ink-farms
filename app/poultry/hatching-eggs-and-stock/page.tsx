@@ -85,8 +85,8 @@ export default function HatchingEggsAndStockPage() {
         copy="Join this list for future Standard Bred Heritage Plymouth Barred Rock hatching eggs, chicks, started pullets, and breeding stock updates. Availability will stay limited, seasonal, and tied to the real condition of the flock."
         imageTitle="Breeding season starts with good planning"
         imageDetail="The offer is intentionally simple at this stage: a clear waitlist, not premature checkout."
-        imageSrc={farmImages.heroRooster.src}
-        imageAlt={farmImages.heroRooster.alt}
+        imageSrc={farmImages.hatchingEggsPageHero.src}
+        imageAlt={farmImages.hatchingEggsPageHero.alt}
         priority
       />
 
