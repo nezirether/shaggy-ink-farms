@@ -8,6 +8,7 @@ type FarmVisualProps = {
   src?: string;
   alt?: string;
   priority?: boolean;
+  objectPosition?: string;
 };
 
 export function FarmVisual({
@@ -18,6 +19,7 @@ export function FarmVisual({
   src,
   alt,
   priority = false,
+  objectPosition = "center",
 }: FarmVisualProps) {
   const color = {
     green: "from-[#2C4A2E] to-[#476B3D]",
@@ -37,9 +39,10 @@ export function FarmVisual({
             fill
             priority={priority}
             sizes="(min-width: 1024px) 48vw, 100vw"
-            className="object-cover object-top"
+            className="object-cover"
+            style={{ objectPosition }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1C1C1A]/78 via-[#1C1C1A]/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1C1C1A]/68 via-[#1C1C1A]/10 to-transparent" />
           <div className="absolute inset-0 border-[10px] border-[#F5F0E8]/10" />
         </>
       ) : (

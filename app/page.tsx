@@ -200,7 +200,7 @@ export default function Home() {
           </div>
           <Link
             href="/available-now"
-            className="shrink-0 inline-flex items-center justify-center rounded-sm border-2 border-[#1C1C1A] bg-[#1C1C1A] px-7 py-3 text-sm font-bold uppercase tracking-[0.08em] text-[#F5F0E8] transition hover:bg-[#2C4A2E] hover:border-[#2C4A2E]"
+            className="shrink-0 inline-flex items-center justify-center rounded-sm border-2 border-[#1C1C1A] bg-[#C6933F] px-7 py-3 text-sm font-extrabold uppercase tracking-[0.08em] text-[#1C1C1A] transition hover:bg-[#b07f2e]"
           >
             See What&apos;s Available
           </Link>

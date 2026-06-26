@@ -32,6 +32,48 @@ async function sendFulfillmentEmail(email: string, productSlug: string) {
   const from =
     process.env.CONTACT_FROM_EMAIL ??
     "Shaggy Ink Farms <updates@shaggyinkfarms.com>";
+
+  // Donations have no digital product to deliver — send a thank-you instead.
+  if (product.donation) {
+    await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from,
+        to: [email],
+        subject: "Thank you for supporting Shaggy Ink Farms",
+        html: `
+<div style="font-family:Georgia,serif;max-width:560px;margin:0 auto;color:#1C1C1A;padding:32px 24px">
+  <p style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.18em;color:#C6933F;margin:0 0 12px">
+    Shaggy Ink Farms
+  </p>
+  <h1 style="font-size:26px;margin:0 0 16px;line-height:1.25">
+    Thank you for supporting the farm
+  </h1>
+  <p style="font-size:15px;line-height:1.7;color:#3a3a38;margin:0 0 24px">
+    Your contribution goes straight back into the work — feed, fencing, seed,
+    beds, and the slow build toward the 2027 season. It means a great deal to
+    a small family farm. Thank you.
+  </p>
+  <p style="font-size:13px;line-height:1.7;color:#6b6b68;margin:28px 0 0">
+    Questions? Reply to this email or reach us at
+    <a href="mailto:${siteConfig.email}" style="color:#2C4A2E">${siteConfig.email}</a>.
+  </p>
+  <hr style="border:none;border-top:1px solid #ddd;margin:28px 0"/>
+  <p style="font-size:12px;color:#9b9b98;margin:0">
+    Shaggy Ink Farms · Anderson, CA ·
+    <a href="${siteConfig.url}" style="color:#9b9b98">shaggyinkfarms.com</a>
+  </p>
+</div>`,
+      }),
+      cache: "no-store",
+    });
+    return;
+  }
+
   const downloadUrl = `${siteConfig.url}/api/bundle.pdf`;
 
   await fetch("https://api.resend.com/emails", {
