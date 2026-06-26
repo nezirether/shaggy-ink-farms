@@ -37,7 +37,7 @@ export function FarmVisual({
             fill
             priority={priority}
             sizes="(min-width: 1024px) 48vw, 100vw"
-            className="object-cover"
+            className="object-cover object-top"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1C1C1A]/78 via-[#1C1C1A]/20 to-transparent" />
           <div className="absolute inset-0 border-[10px] border-[#F5F0E8]/10" />
