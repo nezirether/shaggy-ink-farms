@@ -40,6 +40,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       { source: "/youtube", destination: "/watch", permanent: true },
+      { source: "/garden/cut-flowers", destination: "/flowers", permanent: true },
     ];
   },
 };
