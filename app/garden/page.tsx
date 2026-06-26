@@ -27,8 +27,8 @@ export default function GardenHubPage() {
         copy={gardenHub.description}
         imageTitle="Garden planning under oak pasture"
         imageDetail="Strawberries, family food, flowers, orchard trees, herbs, ground covers, and soil systems are being built before they are presented as finished."
-        imageSrc={farmImages.oakPasture.src}
-        imageAlt={farmImages.oakPasture.alt}
+        imageSrc={farmImages.gardenSunflower.src}
+        imageAlt={farmImages.gardenSunflower.alt}
         priority
       />
 

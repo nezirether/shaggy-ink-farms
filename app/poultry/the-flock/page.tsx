@@ -68,8 +68,8 @@ export default function PoultryFlockPage() {
         copy="The birds laying eggs today are a mixed flock: Rhode Island Reds, Salmon Faverolles, Ameraucanas, Olive Eggers, Copper Marans, Plymouth Barred Rocks, and other layers. The Heritage Plymouth Barred Rock breeding program is a separate, slower track."
         imageTitle="Mixed flock under oak shade"
         imageDetail="This page is about the working laying flock: eggs, daily chores, breed variety, and the practical poultry rhythm of the farm."
-        imageSrc={farmImages.barredRockFlock.src}
-        imageAlt={farmImages.barredRockFlock.alt}
+        imageSrc={farmImages.heritageRoosterSecondary.src}
+        imageAlt={farmImages.heritageRoosterSecondary.alt}
         priority
       />
 
