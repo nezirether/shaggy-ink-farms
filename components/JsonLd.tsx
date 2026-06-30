@@ -1,6 +1,7 @@
 import { siteConfig, absoluteUrl } from "@/lib/site";
 import { farmImages } from "@/lib/images";
 import type { GrowingGuide } from "@/data/growingGuides";
+import type { Product } from "@/lib/products";
 
 type JsonLdProps = {
   data: Record<string, unknown>;
@@ -76,6 +77,36 @@ export function farmJsonLd() {
 }
 
 // Reusable schema builders
+
+/**
+ * Product schema for a real, fixed-price store product. Always includes an
+ * `offers` block (required by Google for Product rich results). Do NOT use this
+ * for the variable-amount donation — that is not a priced Offer.
+ */
+export function productJsonLd(product: Product) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.description,
+    image: `${siteConfig.url}${farmImages.storeGoods.src}`,
+    brand: {
+      "@type": "Brand",
+      name: siteConfig.name,
+    },
+    offers: {
+      "@type": "Offer",
+      price: (product.price / 100).toFixed(2),
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: absoluteUrl("/store"),
+      seller: {
+        "@type": "Organization",
+        name: siteConfig.name,
+      },
+    },
+  };
+}
 
 type Crumb = { name: string; path: string };
 

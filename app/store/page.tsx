@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BuyButton } from "@/components/BuyButton";
 import { DonationCard } from "@/components/DonationCard";
+import { JsonLd, productJsonLd } from "@/components/JsonLd";
 import { PRODUCTS } from "@/lib/products";
 import { openGraphImage, pageMetadata, siteConfig } from "@/lib/site";
 
@@ -21,6 +22,7 @@ const tripwire = PRODUCTS[0]!;
 export default function StorePage() {
   return (
     <div className="min-h-screen bg-[#D7D4CC]">
+      <JsonLd data={productJsonLd(tripwire)} />
       {/* Hero */}
       <section className="border-b-2 border-[#1C1C1A] bg-[#2C4A2E] px-4 py-14 text-[#F5F0E8] sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl">
