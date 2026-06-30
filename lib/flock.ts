@@ -11,7 +11,10 @@ export type FlockBird = {
     src: string;
     alt: string;
   };
-  /** object-position for the cropped card image. Defaults to "center". */
+  /** CSS aspect-ratio for the card image, matched to the photo so nothing is
+   *  cropped (e.g. "1086 / 1448" portrait, "1448 / 1086" landscape). */
+  aspect?: string;
+  /** object-position for the card image. Defaults to "center". */
   objectPosition?: string;
   founder?: boolean;
 };
@@ -26,6 +29,7 @@ export const founderFlock: FlockBird[] = [
       src: "/images/chickens/abigail.webp",
       alt: "Abigail, a Barred Plymouth Rock hen, founder flock breeding hen at Shaggy Ink Farms.",
     },
+    aspect: "1086 / 1448",
     objectPosition: "center",
     founder: true,
   },
@@ -38,6 +42,7 @@ export const founderFlock: FlockBird[] = [
       src: "/images/chickens/boone.webp",
       alt: "Boone, a Barred Plymouth Rock rooster, founder flock breeding rooster at Shaggy Ink Farms.",
     },
+    aspect: "1448 / 1086",
     objectPosition: "center",
     founder: true,
   },

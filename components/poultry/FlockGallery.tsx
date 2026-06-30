@@ -52,7 +52,10 @@ export function FlockGallery({
                 featured ? "bg-[#2C4A2E] text-[#F5F0E8]" : "bg-[#D7D4CC]"
               }`}
             >
-              <div className="relative aspect-[4/5] w-full">
+              <div
+                className="relative w-full bg-[#1C1C1A]/10"
+                style={{ aspectRatio: bird.aspect ?? "4 / 5" }}
+              >
                 <Image
                   src={bird.image.src}
                   alt={bird.image.alt}
