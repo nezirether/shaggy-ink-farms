@@ -7,7 +7,9 @@ import { RelatedLinks } from "@/components/RelatedLinks";
 import { SectionHeader } from "@/components/SectionHeader";
 import { WaitlistForm } from "@/components/WaitlistForm";
 import { AvailabilityBadge } from "@/components/poultry/AvailabilityBadge";
+import { FlockGallery } from "@/components/poultry/FlockGallery";
 import { PoultryTrustPanel } from "@/components/poultry/PoultryTrustPanel";
+import { founderFlock } from "@/lib/flock";
 import { farmImages } from "@/lib/images";
 import { getArticleBySlug } from "@/lib/journal";
 import { poultryAvailabilityLastUpdated } from "@/lib/poultry-availability";
@@ -69,6 +71,15 @@ export default function HeritageBarredRocksPage() {
         imageSrc={farmImages.heritageRoosterPrimary.src}
         imageAlt={farmImages.heritageRoosterPrimary.alt}
         priority
+      />
+
+      <FlockGallery
+        birds={founderFlock}
+        featured
+        eyebrow="Founder Flock"
+        title="The foundational birds behind the program."
+        copy="These are the founder-flock birds — the foundational genetics the Heritage Plymouth Barred Rock program is being built from. Each carries a breeder ID so selection and lineage stay documented."
+        className="bg-[#F5F0E8]"
       />
 
       <section className="px-4 py-16 sm:px-6 lg:px-8">

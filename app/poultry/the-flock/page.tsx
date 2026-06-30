@@ -4,6 +4,8 @@ import { JsonLd, breadcrumbJsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { RelatedLinks } from "@/components/RelatedLinks";
 import { SectionHeader } from "@/components/SectionHeader";
+import { FlockGallery } from "@/components/poultry/FlockGallery";
+import { founderFlock } from "@/lib/flock";
 import { farmImages } from "@/lib/images";
 import { openGraphImage, pageMetadata, siteConfig } from "@/lib/site";
 
@@ -152,6 +154,14 @@ export default function PoultryFlockPage() {
           </div>
         </div>
       </section>
+
+      <FlockGallery
+        birds={founderFlock}
+        eyebrow="Meet the Birds"
+        title="Some of the flock have names — and records."
+        copy="Our founder-flock Barred Rocks are part of the daily flock here, and also the foundation of the Heritage breeding program. Each carries a breeder ID for lineage tracking."
+        className="bg-[#F5F0E8]"
+      />
 
       <RelatedLinks
         eyebrow="Flock Paths"
